@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 — Rate Architecture · Dusit Learning</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --b900:#001F3F;--b800:#003570;--b700:#004B94;--b600:#1A6DC0;--b400:#5B9FD4;
+  --b200:#B5D4F4;--b100:#D8EAFB;--b50:#EEF6FD;
+  --dark:#0A0A1A;--dark2:#12122A;
+  --g700:#374151;--g500:#6B7280;--g300:#9CA3AF;--g100:#E5E7EB;--g50:#F8F9FA;
+  --white:#FFFFFF;--gold:#C9A84C;--gold-l:#F5EDD8;
+  --r:12px;--rs:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--g50);color:var(--dark);line-height:1.6;}
+#shell{display:flex;height:100vh;width:100%;overflow:hidden;}
+
+/* ── SIDEBAR ── */
+#sidebar{
+  width:234px;min-width:234px;flex-shrink:0;
+  background:var(--dark);border-right:1px solid rgba(255,255,255,0.06);
+  display:flex;flex-direction:column;height:100%;overflow-y:auto;overflow-x:hidden;
+  z-index:200;transition:transform 0.28s ease;
+}
+.sb-top{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;}
+.sb-logo img{height:24px;width:auto;filter:brightness(0) invert(1);opacity:0.88;}
+.sb-series{font-size:9px;color:rgba(255,255,255,0.28);letter-spacing:0.12em;text-transform:uppercase;margin-top:8px;}
+
+/* Sidebar progress — just a clean bar, no number */
+.sb-prog{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;}
+.sb-prog-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;}
+.sb-prog-fill{height:100%;background:var(--gold);border-radius:2px;transition:width 0.4s;}
+
+.sb-nav{padding:10px 10px;flex:1;}
+.sb-section{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);padding:0 8px;margin:8px 0 5px;}
+.sb-item{display:flex;align-items:center;gap:8px;padding:8px 8px;border-radius:6px;cursor:pointer;transition:background 0.15s;border:1px solid transparent;margin-bottom:2px;}
+.sb-item:hover:not(.locked):not(.active){background:rgba(255,255,255,0.04);}
+.sb-item.active{background:rgba(29,95,180,0.2);border-color:rgba(29,95,180,0.35);}
+.sb-item.visited .sb-dot{background:var(--gold);}
+.sb-item.locked{cursor:not-allowed;opacity:0.32;}
+.sb-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.14);flex-shrink:0;transition:background 0.2s;}
+.sb-item.active .sb-dot{background:var(--b400);}
+.sb-text{flex:1;}
+.sb-stitle{font-size:11px;font-weight:500;color:rgba(255,255,255,0.42);line-height:1.3;}
+.sb-item.active .sb-stitle{color:white;font-weight:600;}
+.sb-lock{font-size:9px;color:rgba(255,255,255,0.22);flex-shrink:0;}
+.sb-divider{height:1px;background:rgba(255,255,255,0.05);margin:6px 8px;}
+.sb-footer{padding:12px 16px;border-top:1px solid rgba(255,255,255,0.06);font-size:9px;color:rgba(255,255,255,0.15);line-height:1.55;flex-shrink:0;}
+
+/* ── CONTENT ── */
+#content{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;overflow:hidden;}
+
+/* ── TOPBAR ── */
+.topbar{
+  background:var(--dark);height:50px;padding:0 18px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.tb-left{display:flex;align-items:center;gap:10px;min-width:0;}
+.tb-logo img{height:19px;filter:brightness(0) invert(1);opacity:0.82;}
+.tb-pipe{color:rgba(255,255,255,0.1);font-size:14px;flex-shrink:0;}
+.tb-mod{font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;color:var(--b400);letter-spacing:0.06em;white-space:nowrap;}
+.tb-crumb{font-size:10px;color:rgba(255,255,255,0.28);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tb-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.btn-icon{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.45);padding:5px 9px;border-radius:5px;cursor:pointer;font-size:13px;transition:all 0.14s;line-height:1;}
+.btn-icon:hover{background:rgba(255,255,255,0.11);color:white;}
+#menuToggle{display:none;background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.5);font-size:18px;padding:4px;}
+
+/* ── STAGE: light surround ── */
+#stage{
+  flex:1;position:relative;overflow:hidden;
+  background:var(--g100);
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ── CANVAS — fixed 900×540, scaled+positioned by JS ── */
+#canvas{
+  width:900px;height:540px;
+  background:var(--white);
+  border-radius:10px;
+  box-shadow:0 8px 40px rgba(0,0,0,0.45);
+  position:absolute;
+  overflow:hidden;
+  transform-origin:top left;
+}
+body.fullscreen #canvas{border-radius:0;box-shadow:none;}
+
+/* ── SLIDES — each fills the canvas absolutely ── */
+.slide{display:none;position:absolute;inset:0;overflow:hidden;}
+.slide.on{display:flex;flex-direction:column;}
+.slide.s-dark{background:var(--white);}
+.slide.s-light{background:var(--white);}
+.slide.s-off{background:var(--g50);}
+.slide.s-quiz{background:var(--g50);position:absolute;}
+.slide.s-split{display:none;flex-direction:row;}
+.slide.s-split.on{display:flex;}
+
+/* left white / right white split — unified white canvas */
+.split-left{
+  width:336px;min-width:336px;flex-shrink:0;
+  background:var(--b800);padding:28px 26px;
+  display:flex;flex-direction:column;justify-content:center;overflow:hidden;
+}
+.split-right{
+  flex:1;background:var(--white);padding:22px 22px;
+  display:flex;flex-direction:column;justify-content:center;
+  overflow-y:auto;overflow-x:hidden;
+}
+
+/* content slides: top-anchored, no forced centering */
+.s-inner{padding:26px 30px;height:100%;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;}
+
+/* sparse slides (overview, do/dont, score) can centre */
+.s-centre{justify-content:center;}
+
+/* ── TYPOGRAPHY ── */
+.eye-lt{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b600);margin-bottom:6px;display:block;}
+.eye{font-size:9px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--b600);margin-bottom:6px;display:block;}
+.sh-lt{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;color:var(--dark);line-height:1.25;margin-bottom:10px;}
+.sh{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;color:var(--dark);line-height:1.25;margin-bottom:10px;}
+.why-lt{font-size:12px;color:var(--g700);line-height:1.78;margin-bottom:14px;}
+.why-lt b{color:var(--b700);font-weight:700;}
+.why-lt i{font-style:italic;color:var(--g500);}
+.sp{font-size:12px;color:var(--g500);line-height:1.7;}
+.deep-n{font-family:'Outfit',sans-serif;font-size:38px;font-weight:800;color:var(--b200);line-height:1;margin-bottom:2px;}
+.deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);margin-bottom:8px;opacity:0.7;}
+.deep-title{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;color:var(--white);line-height:1.2;margin-bottom:10px;}
+.deep-why{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.78;}
+.deep-why b{color:var(--b200);font-weight:600;}
+.deep-why em{font-style:italic;color:rgba(255,255,255,0.8);}
+
+/* ── OVERVIEW GRID ── */
+.ov-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px;}
+.ov-card{border-radius:var(--rs);border:1.5px solid var(--b100);background:var(--b50);padding:14px 10px;cursor:pointer;transition:all 0.15s;text-align:center;}
+.ov-card:hover{border-color:var(--b400);background:var(--b100);transform:translateY(-2px);}
+.ov-num{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--b700);line-height:1;margin-bottom:4px;}
+.ov-label{font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;color:var(--b800);margin-bottom:3px;}
+.ov-desc{font-size:10px;color:var(--g500);line-height:1.45;}
+
+/* ── VS CARDS ── */
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.vs-card{border-radius:var(--rs);overflow:hidden;border:1px solid var(--g100);}
+.vs-hdr{padding:7px 12px;font-family:'Outfit',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
+.vs-hdr.a{background:var(--b50);color:var(--b800);}.vs-hdr.b{background:var(--g50);color:var(--g500);}
+.vs-body{background:var(--white);padding:11px;}
+.vs-price{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;margin-bottom:6px;}
+.vs-price.a{color:var(--b800);}.vs-price.b{color:var(--g500);}
+.vs-facts{list-style:none;}
+.vs-fact{font-size:11px;color:var(--g500);padding:3px 0;border-bottom:1px solid var(--g100);display:flex;gap:6px;line-height:1.35;}
+.vs-fact:last-child{border-bottom:none;}
+.vfi{color:var(--b400);font-size:9px;margin-top:2px;flex-shrink:0;}
+.key-box{background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:9px 13px;font-size:11px;color:var(--b800);line-height:1.6;}
+.key-box strong{color:var(--b700);}
+
+/* ── ROOM LADDER ── */
+.room-ladder{display:flex;flex-direction:column;gap:7px;margin-bottom:10px;}
+.room-rung{border-radius:var(--rs);padding:11px 14px;display:flex;justify-content:space-between;align-items:center;}
+.room-rung.std{background:var(--g50);border:1px solid var(--g100);}
+.room-rung.dlx{background:var(--b50);border:1px solid var(--b100);}
+.room-rung.ste{background:var(--b800);border:1px solid var(--b700);}
+.rr-name{font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;}
+.room-rung.std .rr-name{color:var(--dark);}.room-rung.dlx .rr-name{color:var(--b800);}.room-rung.ste .rr-name{color:white;}
+.rr-sup{font-size:10px;margin-top:1px;}
+.room-rung.std .rr-sup{color:var(--g300);}.room-rung.dlx .rr-sup{color:var(--b400);}.room-rung.ste .rr-sup{color:rgba(91,159,212,0.7);}
+.rr-price{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;}
+.room-rung.std .rr-price{color:var(--dark);}.room-rung.dlx .rr-price{color:var(--b800);}.room-rung.ste .rr-price{color:white;}
+
+/* ── DO / DON'T ── */
+.dodont{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.do-box{background:var(--b50);border:1px solid var(--b100);border-radius:var(--r);padding:18px;}
+.dont-box{background:var(--g50);border:1px solid var(--g100);border-radius:var(--r);padding:18px;}
+.dd-lbl{font-family:'Outfit',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:11px;}
+.do-box .dd-lbl{color:var(--b700);}.dont-box .dd-lbl{color:var(--g500);}
+.ddi{font-size:12px;padding:5px 0;border-bottom:1px solid rgba(0,0,0,0.05);display:flex;gap:7px;align-items:flex-start;line-height:1.45;color:var(--dark);}
+.ddi:last-child{border-bottom:none;}
+.ddi-ic{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;flex-shrink:0;margin-top:1px;}
+.do-box .ddi-ic{background:var(--b700);color:white;}.dont-box .ddi-ic{background:var(--g300);color:white;}
+
+/* ── CHECKLIST ── */
+.chklist{list-style:none;margin-top:6px;}
+.chi{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px solid var(--g100);font-size:12px;color:var(--dark);cursor:pointer;}
+.chi:last-child{border-bottom:none;}
+.chbox{width:18px;height:18px;border:2px solid var(--g100);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:all 0.15s;background:white;}
+.chi.done .chbox{background:var(--b700);border-color:var(--b700);}
+.chi.done .chbox::after{content:'';display:block;width:4px;height:7px;border:2px solid white;border-top:none;border-left:none;transform:rotate(45deg) translate(-1px,-1px);}
+.chi.done{color:var(--g300);text-decoration:line-through;}
+
+/* ── QUIZ ── */
+.quiz-wrap{display:flex;flex-direction:column;height:100%;}
+.quiz-header{padding:20px 24px 0;flex-shrink:0;}
+.q-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.q-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--b600);}
+.q-dots{display:flex;gap:5px;}
+.q-dot{width:9px;height:9px;border-radius:50%;background:var(--g100);transition:all 0.2s;}
+.q-dot.current{background:var(--b700);transform:scale(1.2);}
+.q-dot.ok{background:var(--b400);}
+.q-dot.wrong{background:var(--g300);}
+.q-text{font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;color:var(--dark);line-height:1.5;margin-bottom:0;}
+.quiz-opts{padding:12px 24px;display:flex;flex-direction:column;gap:7px;flex:1;overflow-y:auto;}
+.qopt{padding:10px 14px;border:1.5px solid var(--g100);border-radius:var(--rs);font-size:12px;color:var(--dark);cursor:pointer;background:var(--white);text-align:left;line-height:1.45;transition:all 0.12s;font-family:'DM Sans',sans-serif;}
+.qopt:hover:not([disabled]){border-color:var(--b600);background:var(--b50);color:var(--b800);}
+.qopt.correct{background:var(--b50);border-color:var(--b400);color:var(--b800);font-weight:600;}
+.qopt.wrong{background:var(--g50);border-color:var(--g300);color:var(--g700);}
+.qopt.reveal{border-color:var(--b400);border-style:dashed;}
+.q-fb{margin:0 24px;padding:9px 12px;border-radius:var(--rs);font-size:11px;line-height:1.65;display:none;flex-shrink:0;}
+.q-fb.correct{background:var(--b50);color:var(--b800);border-left:3px solid var(--b700);}
+.q-fb.wrong{background:var(--g50);color:var(--g700);border-left:3px solid var(--g300);}
+.quiz-foot{padding:10px 24px;background:var(--white);border-top:1px solid var(--g100);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.quiz-foot-left{font-size:10px;color:var(--g300);font-family:'Outfit',sans-serif;font-weight:700;letter-spacing:0.05em;}
+
+/* Results panel — overlaid inside the quiz slide when complete */
+.results-overlay{
+  display:none;position:absolute;inset:0;
+  background:var(--b800);
+  flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:32px;
+}
+.results-overlay.on{display:flex;}
+.res-n{font-family:'Outfit',sans-serif;font-size:64px;font-weight:800;color:white;line-height:1;}
+.res-l{font-size:11px;color:rgba(255,255,255,0.38);margin-top:4px;letter-spacing:0.06em;text-transform:uppercase;}
+.res-msg{font-size:13px;color:rgba(255,255,255,0.65);font-weight:500;margin-top:14px;max-width:380px;line-height:1.7;}
+.res-actions{display:flex;gap:10px;margin-top:22px;}
+.res-btn{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;padding:9px 20px;border-radius:var(--rs);cursor:pointer;letter-spacing:0.03em;transition:all 0.15s;border:none;}
+.res-btn.retry{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.65);border:1.5px solid rgba(255,255,255,0.18);}
+.res-btn.retry:hover{background:rgba(255,255,255,0.18);color:white;}
+.res-btn.back{background:var(--b700);color:white;}
+.res-btn.back:hover{background:var(--b900);}
+
+/* ── NAV BAR ── */
+#nav-bar{
+  background:var(--white);border-top:1px solid var(--g100);
+  padding:0 18px;height:48px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;gap:10px;
+}
+.nav-mid{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.nav-label{font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;color:var(--g300);letter-spacing:0.05em;white-space:nowrap;}
+.nav-dots{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:320px;}
+.ndot{width:6px;height:6px;border-radius:50%;background:var(--g100);cursor:pointer;transition:background 0.18s;flex-shrink:0;}
+.ndot.on{background:var(--b700);}
+.ndot.locked{cursor:not-allowed;opacity:0.28;}
+.ndot.done{background:var(--gold);}
+.btn{font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;padding:8px 18px;border-radius:var(--rs);cursor:pointer;border:none;transition:all 0.14s;letter-spacing:0.02em;white-space:nowrap;}
+.btn-p{background:var(--b700);color:white;}.btn-p:hover{background:var(--b800);}
+.btn-g{background:transparent;color:var(--g500);border:1.5px solid var(--g100);}.btn-g:hover{border-color:var(--b600);color:var(--b700);}
+.btn:disabled{opacity:0.28;cursor:not-allowed;}
+
+/* ── FULLSCREEN ── */
+body.fullscreen #sidebar,body.fullscreen .topbar,body.fullscreen #nav-bar{display:none !important;}
+body.fullscreen #stage{background:#000;}
+
+/* Fullscreen HUD — top bar + bottom nav as overlays */
+#fs-top{display:none;position:fixed;top:0;left:0;right:0;height:44px;z-index:1000;
+  background:rgba(10,10,26,0.88);backdrop-filter:blur(10px);
+  padding:0 18px;align-items:center;justify-content:space-between;}
+#fs-bot{display:none;position:fixed;bottom:0;left:0;right:0;height:50px;z-index:1000;
+  background:rgba(10,10,26,0.85);backdrop-filter:blur(8px);
+  border-top:1px solid rgba(255,255,255,0.07);
+  padding:0 18px;align-items:center;justify-content:space-between;gap:10px;}
+body.fullscreen #fs-top{display:flex;}
+body.fullscreen #fs-bot{display:flex;}
+.fs-info{display:flex;align-items:center;gap:10px;}
+.fs-info img{height:17px;filter:brightness(0) invert(1);opacity:0.75;}
+.fs-mod{font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;color:var(--b400);letter-spacing:0.05em;}
+.fs-crumb{font-size:10px;color:rgba(255,255,255,0.28);}
+.fs-exit{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.55);font-size:10px;font-weight:600;padding:5px 12px;border-radius:5px;cursor:pointer;font-family:'Outfit',sans-serif;letter-spacing:0.04em;transition:all 0.14s;}
+.fs-exit:hover{background:rgba(255,255,255,0.13);color:white;}
+.fs-nav-mid{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;}
+.fs-nav-lbl{font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,0.28);letter-spacing:0.05em;}
+.fs-ndots{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:280px;}
+.fs-ndot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.12);cursor:pointer;transition:background 0.18s;}
+.fs-ndot.on{background:var(--b400);}
+.fs-ndot.locked{cursor:not-allowed;opacity:0.2;}
+.fs-ndot.done{background:var(--gold);}
+.fs-btn{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;padding:7px 16px;border-radius:var(--rs);cursor:pointer;border:none;transition:all 0.14s;white-space:nowrap;}
+.fs-btn.p{background:var(--b700);color:white;}.fs-btn.p:hover{background:var(--b800);}
+.fs-btn.g{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1.5px solid rgba(255,255,255,0.12);}.fs-btn.g:hover{border-color:var(--b400);color:var(--b200);}
+.fs-btn:disabled{opacity:0.22;cursor:not-allowed;}
+
+@media(max-width:800px){
+  #sidebar{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%);}
+  #sidebar.open{transform:translateX(0);}
+  #menuToggle{display:block;}
+}
+</style>
+</head>
+<body>
+<div id="shell">
+
+<!-- ── SIDEBAR ── -->
+<div id="sidebar">
+  <div class="sb-top">
+    <div class="sb-logo"><img src="https://cdn.prod.website-files.com/686e2126992edd7b040ec218/689a91cf61756f4f15c57114_dusit.avif" alt="Dusit Hotels &amp; Resorts"></div>
+    <div class="sb-series">Learning &amp; Development · Revenue Series</div>
+  </div>
+  <div class="sb-prog">
+    <div class="sb-prog-bar"><div class="sb-prog-fill" id="sbFill" style="width:7%"></div></div>
+  </div>
+  <div class="sb-nav">
+    <div class="sb-section">Content</div>
+    <div class="sb-item active" id="sbi-0" onclick="nav(0)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Overview — The 5 Questions</div></div></div>
+    <div class="sb-item" id="sbi-1" onclick="nav(1)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Right Guest</div></div></div>
+    <div class="sb-item" id="sbi-2" onclick="nav(2)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Right Time</div></div></div>
+    <div class="sb-item" id="sbi-3" onclick="nav(3)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Right Channel</div></div></div>
+    <div class="sb-item" id="sbi-4" onclick="nav(4)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Right Conditions</div></div></div>
+    <div class="sb-item" id="sbi-5" onclick="nav(5)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Right Room</div></div></div>
+    <div class="sb-item" id="sbi-6" onclick="nav(6)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The System</div></div></div>
+    <div class="sb-item" id="sbi-7" onclick="nav(7)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Do / Don't</div></div></div>
+    <div class="sb-item" id="sbi-8" onclick="nav(8)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Checklist</div></div></div>
+    <div class="sb-divider"></div>
+    <div class="sb-section">Quiz</div>
+    <!-- Single quiz entry in sidebar. Locked until content done. -->
+    <div class="sb-item locked" id="sbi-quiz" onclick="nav(9)">
+      <div class="sb-dot"></div>
+      <div class="sb-text"><div class="sb-stitle">Quiz · 5 Questions</div></div>
+      <div class="sb-lock" id="quizLock">🔒</div>
+    </div>
+  </div>
+  <div class="sb-footer">Complete all content slides and tick the checklist to unlock the quiz.</div>
+</div>
+
+<!-- ── CONTENT ── -->
+<div id="content">
+  <div class="topbar">
+    <div class="tb-left">
+      <button id="menuToggle" onclick="document.getElementById('sidebar').classList.toggle('open')">&#9776;</button>
+      <div class="tb-logo"><img src="https://cdn.prod.website-files.com/686e2126992edd7b040ec218/689a91cf61756f4f15c57114_dusit.avif" alt="Dusit"></div>
+      <span class="tb-pipe">|</span>
+      <span class="tb-mod">MODULE 1</span>
+      <span class="tb-pipe" style="font-size:10px;padding:0 2px;">›</span>
+      <span class="tb-crumb" id="tbCrumb">Overview</span>
+    </div>
+    <div class="tb-right">
+      <button class="btn-icon" onclick="toggleFS()" title="Fullscreen">⛶</button>
+    </div>
+  </div>
+
+  <div id="stage">
+    <div id="canvas">
+
+      <!-- SLIDE 0: OVERVIEW -->
+      <div class="slide s-dark on" id="s-0">
+        <div class="s-inner s-centre">
+          <span class="eye-lt">Module 1 · Rate Architecture</span>
+          <h2 class="sh-lt">Revenue management is not just about selling at the highest price</h2>
+          <p class="why-lt">It is about selling to the <b>right guest</b>, at the <b>right time</b>, through the <b>right channel</b>, under the <b>right conditions</b>, in the <b>right room</b>. These five questions sit behind every rate in your hotel. Rate architecture is the system that answers all five — automatically.</p>
+          <div class="ov-grid">
+            <div class="ov-card" onclick="nav(1)"><div class="ov-num">1</div><div class="ov-label">Right Guest</div><div class="ov-desc">Same room, different guests, different rates — all correct.</div></div>
+            <div class="ov-card" onclick="nav(2)"><div class="ov-num">2</div><div class="ov-label">Right Time</div><div class="ov-desc">February vs New Year's Eve. Demand changes. The rate follows.</div></div>
+            <div class="ov-card" onclick="nav(3)"><div class="ov-num">3</div><div class="ov-label">Right Channel</div><div class="ov-desc">Direct vs OTA. Same room. Different acquisition cost. Rate reflects that.</div></div>
+            <div class="ov-card" onclick="nav(4)"><div class="ov-num">4</div><div class="ov-label">Right Conditions</div><div class="ov-desc">Prepaid non-refundable vs flexible. Certainty earns a discount.</div></div>
+            <div class="ov-card" onclick="nav(5)"><div class="ov-num">5</div><div class="ov-label">Right Room</div><div class="ov-desc">Standard, Deluxe, Suite. Each type adds a supplement. Intentional.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 1: RIGHT GUEST -->
+      <div class="slide s-split" id="s-1">
+        <div class="split-left">
+          <div class="deep-n">01</div><div class="deep-label">The first question</div>
+          <h2 class="deep-title">Right Guest</h2>
+          <p class="deep-why">Your hotel has 200 rooms tonight. A <b>Dusit Gold member</b> books the same Standard room as a <b>walk-in tourist</b>. Should they pay the same price? No — and that is not unfair. The Gold member has a loyalty relationship the hotel wants to reward. The tourist has no qualifying account. <b>Different rates for different guests is the system working correctly.</b></p>
+        </div>
+        <div class="split-right">
+          <div class="vs-grid">
+            <div class="vs-card"><div class="vs-hdr a">Dusit Gold Member</div><div class="vs-body"><div class="vs-price a">$120</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>Loyalty membership verified</li><li class="vs-fact"><span class="vfi">●</span>10% discount applied automatically</li><li class="vs-fact"><span class="vfi">●</span>Points credited to account</li><li class="vs-fact"><span class="vfi">●</span>Segment tagged: DLOYAL</li></ul></div></div>
+            <div class="vs-card"><div class="vs-hdr b">Walk-in Tourist</div><div class="vs-body"><div class="vs-price b">$133</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>No qualifying account</li><li class="vs-fact"><span class="vfi">●</span>Pays the Best Available Rate</li><li class="vs-fact"><span class="vfi">●</span>No discount applied</li><li class="vs-fact"><span class="vfi">●</span>Segment tagged: DBRRT</li></ul></div></div>
+          </div>
+          <div class="key-box"><strong>Key principle:</strong> The rate difference is not generosity. It is rate architecture recognising who qualifies for what. The Gold member earned the lower rate. The walk-in did not — yet.</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: RIGHT TIME -->
+      <div class="slide s-split" id="s-2">
+        <div class="split-left">
+          <div class="deep-n">02</div><div class="deep-label">The second question</div>
+          <h2 class="deep-title">Right Time</h2>
+          <p class="deep-why">The same Standard room. The same hotel. A Tuesday in February versus New Year's Eve. <b>Demand changes everything.</b> On a quiet Tuesday, the hotel needs to fill rooms. On New Year's Eve, demand far exceeds supply. <b>This is not overcharging. This is how every market in the world works.</b></p>
+        </div>
+        <div class="split-right">
+          <div class="vs-grid">
+            <div class="vs-card"><div class="vs-hdr a">Tuesday in February</div><div class="vs-body"><div class="vs-price a">$110</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>Low demand period</li><li class="vs-fact"><span class="vfi">●</span>Hotel needs to fill rooms</li><li class="vs-fact"><span class="vfi">●</span>Rate set to attract bookings</li><li class="vs-fact"><span class="vfi">●</span>BAR calibrated to demand signal</li></ul></div></div>
+            <div class="vs-card"><div class="vs-hdr b">New Year's Eve</div><div class="vs-body"><div class="vs-price b" style="color:var(--b800)">$280</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>Peak demand — hotel near sold out</li><li class="vs-fact"><span class="vfi">●</span>Rate rises to reflect demand</li><li class="vs-fact"><span class="vfi">●</span>BAR adjusted by Revenue Manager</li><li class="vs-fact"><span class="vfi">●</span>All linked rates follow automatically</li></ul></div></div>
+          </div>
+          <div class="key-box"><strong>Key principle:</strong> BAR is not a fixed price. When the RM moves BAR, every linked rate — corporate, OTA, member — automatically follows. Same room. Very different nights.</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: RIGHT CHANNEL -->
+      <div class="slide s-split" id="s-3">
+        <div class="split-left">
+          <div class="deep-n">03</div><div class="deep-label">The third question</div>
+          <h2 class="deep-title">Right Channel</h2>
+          <p class="deep-why">A guest who books on dusit.com costs the hotel nothing beyond the website. A guest who books via Booking.com costs the hotel a <b>15–20% commission</b>. Same guest, same room — but the hotel earns less through the OTA. <b>The rate structure accounts for this. That is why direct rates stay competitive without breaking parity.</b></p>
+        </div>
+        <div class="split-right">
+          <div class="vs-grid">
+            <div class="vs-card"><div class="vs-hdr a">Direct — dusit.com</div><div class="vs-body"><div class="vs-price a">$133</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>Guest books on hotel website</li><li class="vs-fact"><span class="vfi">●</span>Hotel receives full $133</li><li class="vs-fact"><span class="vfi">●</span>No third-party commission</li><li class="vs-fact"><span class="vfi">●</span>Best for hotel profitability</li></ul></div></div>
+            <div class="vs-card"><div class="vs-hdr b">OTA — Booking.com</div><div class="vs-body"><div class="vs-price b">$133</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>Guest books on OTA platform</li><li class="vs-fact"><span class="vfi">●</span>OTA takes ~$20 commission (15%)</li><li class="vs-fact"><span class="vfi">●</span>Hotel nets only ~$113</li><li class="vs-fact"><span class="vfi">●</span>Wider reach, lower margin</li></ul></div></div>
+          </div>
+          <div class="key-box"><strong>Key principle:</strong> OTA-derived rates are set as a percentage below BAR — so the hotel offers competitive OTA prices without cannibalising the direct channel or diluting margins.</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: RIGHT CONDITIONS -->
+      <div class="slide s-split" id="s-4">
+        <div class="split-left">
+          <div class="deep-n">04</div><div class="deep-label">The fourth question</div>
+          <h2 class="deep-title">Right Conditions</h2>
+          <p class="deep-why">Two guests. Same room. Same night. One can cancel anytime — full refund. The other prepaid and cannot cancel. <b>Should they pay the same? No.</b> The cancellable guest forces the hotel to hold a room that might go empty. The prepaid guest gives certainty. <b>Certainty earns a discount. Flexibility costs more — it carries risk.</b></p>
+        </div>
+        <div class="split-right">
+          <div class="vs-grid">
+            <div class="vs-card"><div class="vs-hdr a">Flexible Rate</div><div class="vs-body"><div class="vs-price a">$133</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>Cancel anytime — full refund</li><li class="vs-fact"><span class="vfi">●</span>No prepayment required</li><li class="vs-fact"><span class="vfi">●</span>Hotel carries cancellation risk</li><li class="vs-fact"><span class="vfi">●</span>Highest rate — BAR</li></ul></div></div>
+            <div class="vs-card"><div class="vs-hdr b">Saver Rate</div><div class="vs-body"><div class="vs-price b">$120</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>Prepaid — non-refundable</li><li class="vs-fact"><span class="vfi">●</span>Minimum conditions apply</li><li class="vs-fact"><span class="vfi">●</span>Guest carries the risk</li><li class="vs-fact"><span class="vfi">●</span>10% off BAR — in return for certainty</li></ul></div></div>
+          </div>
+          <div class="key-box"><strong>2026 levels:</strong> <strong>Flexible</strong> (no discount), <strong>Saver</strong> (10% off, prepaid), <strong>Stay Longer</strong> (15% off, min stay). Each rewards a different commitment.</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5: RIGHT ROOM -->
+      <div class="slide s-split" id="s-5">
+        <div class="split-left">
+          <div class="deep-n">05</div><div class="deep-label">The fifth question</div>
+          <h2 class="deep-title">Right Room</h2>
+          <p class="deep-why">A Standard room and a Suite are not the same product. The room ladder ensures every room type is priced relative to the one below. <b>Each type carries a fixed supplement added on top of the derived rate</b> — applied <em>after</em> the segment discount, not before. <b>This is the order that matters.</b></p>
+        </div>
+        <div class="split-right">
+          <p style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--b600);margin-bottom:10px;">Room ladder — BAR $133 base</p>
+          <div class="room-ladder">
+            <div class="room-rung std"><div><div class="rr-name">Standard Room</div><div class="rr-sup">No supplement — base derived rate</div></div><div class="rr-price">$133</div></div>
+            <div class="room-rung dlx"><div><div class="rr-name">Deluxe Room</div><div class="rr-sup">+ $17 fixed supplement</div></div><div class="rr-price">$150</div></div>
+            <div class="room-rung ste"><div><div class="rr-name">Suite</div><div class="rr-sup">+ $50 fixed supplement</div></div><div class="rr-price">$183</div></div>
+          </div>
+          <div class="key-box"><strong>Critical rule:</strong> Supplement is added to the <em>derived rate</em> — after the segment discount. Never to BAR directly. Corporate Deluxe = (BAR × 0.85) + $17. Not BAR + $17, then discounted.</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 6: THE SYSTEM — Animated BAR propagation -->
+      <div class="slide s-dark" id="s-6">
+        <div style="display:grid;grid-template-columns:268px 1fr;height:100%;">
+
+          <!-- LEFT: context panel -->
+          <div style="padding:28px 22px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--b800);">
+            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.7;margin-bottom:8px;display:block;">The connected system</span>
+            <h2 style="font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">One change.<br>Every rate.<br>Automatic.</h2>
+            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:18px;">BAR is the single source of truth. Every channel rate is a fixed percentage of BAR. When the RM moves BAR — all derived rates update instantly, with zero manual work.</p>
+            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:11px 13px;">
+              <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b200);margin-bottom:8px;">Watch BAR move: ฿4,000 → ฿5,000</div>
+              <div style="display:flex;flex-direction:column;gap:5px;">
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Corporate −15%</span><span style="font-family:'Outfit',sans-serif;font-size:11px;font-weight:800;color:var(--b200);">฿3,400 → ฿4,250</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">OTA −20%</span><span style="font-family:'Outfit',sans-serif;font-size:11px;font-weight:800;color:var(--b200);">฿3,200 → ฿4,000</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Member −10%</span><span style="font-family:'Outfit',sans-serif;font-size:11px;font-weight:800;color:var(--b200);">฿3,600 → ฿4,500</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Direct BAR</span><span style="font-family:'Outfit',sans-serif;font-size:11px;font-weight:800;color:var(--b200);">฿4,000 → ฿5,000</span></div>
+              </div>
+              <div style="margin-top:8px;padding-top:7px;border-top:1px solid rgba(255,255,255,0.08);font-size:9px;color:rgba(255,255,255,0.28);text-align:center;">All updated automatically · No manual work</div>
+            </div>
+          </div>
+
+          <!-- RIGHT: animated diagram -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 16px;background:var(--white);position:relative;">
+
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--b600);margin-bottom:16px;">Live rate propagation</div>
+
+            <!-- The animation canvas -->
+            <div id="sys-anim" style="width:100%;max-width:540px;position:relative;height:280px;">
+
+              <!-- SVG for spokes/lines -->
+              <svg id="sys-svg" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;" viewBox="0 0 540 280" preserveAspectRatio="xMidYMid meet">
+                <!-- Lines from BAR hub to each channel — drawn with stroke-dasharray animation -->
+                <!-- BAR hub centre: x=270, y=140 -->
+                <!-- Channels: TL, ML, BL, TR, MR, BR -->
+                <line id="ln-0" x1="270" y1="140" x2="80"  y2="52"  stroke="var(--b400)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
+                <line id="ln-1" x1="270" y1="140" x2="72"  y2="140" stroke="var(--b400)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
+                <line id="ln-2" x1="270" y1="140" x2="80"  y2="228" stroke="var(--b400)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
+                <line id="ln-3" x1="270" y1="140" x2="460" y2="52"  stroke="var(--b400)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
+                <line id="ln-4" x1="270" y1="140" x2="468" y2="140" stroke="var(--b400)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
+                <line id="ln-5" x1="270" y1="140" x2="460" y2="228" stroke="var(--b400)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
+                <!-- Pulse dots travelling along each spoke -->
+                <circle id="pulse-0" r="4" fill="var(--b500,#2B78D4)" opacity="0"><animateMotion id="am-0" dur="0.6s" fill="freeze" begin="indefinite" path="M270,140 L80,52"/></circle>
+                <circle id="pulse-1" r="4" fill="var(--b500,#2B78D4)" opacity="0"><animateMotion id="am-1" dur="0.6s" fill="freeze" begin="indefinite" path="M270,140 L72,140"/></circle>
+                <circle id="pulse-2" r="4" fill="var(--b500,#2B78D4)" opacity="0"><animateMotion id="am-2" dur="0.6s" fill="freeze" begin="indefinite" path="M270,140 L80,228"/></circle>
+                <circle id="pulse-3" r="4" fill="var(--b500,#2B78D4)" opacity="0"><animateMotion id="am-3" dur="0.6s" fill="freeze" begin="indefinite" path="M270,140 L460,52"/></circle>
+                <circle id="pulse-4" r="4" fill="var(--b500,#2B78D4)" opacity="0"><animateMotion id="am-4" dur="0.6s" fill="freeze" begin="indefinite" path="M270,140 L468,140"/></circle>
+                <circle id="pulse-5" r="4" fill="var(--b500,#2B78D4)" opacity="0"><animateMotion id="am-5" dur="0.6s" fill="freeze" begin="indefinite" path="M270,140 L460,228"/></circle>
+              </svg>
+
+              <!-- BAR HUB (centre) -->
+              <div id="bar-hub" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:var(--b700);border:3px solid var(--b400);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:10;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;" onclick="triggerAnim()">
+                <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--b200);margin-bottom:2px;">BAR</div>
+                <div id="bar-val" style="font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:white;transition:all 0.3s;">฿4,000</div>
+                <div style="font-size:8px;color:rgba(255,255,255,0.45);margin-top:1px;">tap to update</div>
+              </div>
+
+              <!-- CHANNEL CARDS — positioned absolutely around the hub -->
+              <!-- TL: Corporate -->
+              <div class="ch-card" id="ch-0" style="position:absolute;left:0;top:18px;width:112px;">
+                <div class="ch-label">Corporate</div>
+                <div class="ch-disc">−15%</div>
+                <div class="ch-rate" id="cv-0">฿3,400</div>
+              </div>
+              <!-- ML: OTA -->
+              <div class="ch-card" id="ch-1" style="position:absolute;left:0;top:50%;transform:translateY(-50%);width:112px;">
+                <div class="ch-label">OTA</div>
+                <div class="ch-disc">−20%</div>
+                <div class="ch-rate" id="cv-1">฿3,200</div>
+              </div>
+              <!-- BL: Member -->
+              <div class="ch-card" id="ch-2" style="position:absolute;left:0;bottom:18px;width:112px;">
+                <div class="ch-label">Dusit Gold</div>
+                <div class="ch-disc">−10%</div>
+                <div class="ch-rate" id="cv-2">฿3,600</div>
+              </div>
+              <!-- TR: Direct -->
+              <div class="ch-card" id="ch-3" style="position:absolute;right:0;top:18px;width:112px;">
+                <div class="ch-label">Direct</div>
+                <div class="ch-disc">BAR rate</div>
+                <div class="ch-rate" id="cv-3">฿4,000</div>
+              </div>
+              <!-- MR: GDS -->
+              <div class="ch-card" id="ch-4" style="position:absolute;right:0;top:50%;transform:translateY(-50%);width:112px;">
+                <div class="ch-label">GDS</div>
+                <div class="ch-disc">−18%</div>
+                <div class="ch-rate" id="cv-4">฿3,280</div>
+              </div>
+              <!-- BR: Wholesale -->
+              <div class="ch-card" id="ch-5" style="position:absolute;right:0;bottom:18px;width:112px;">
+                <div class="ch-label">Wholesale</div>
+                <div class="ch-disc">−22%</div>
+                <div class="ch-rate" id="cv-5">฿3,120</div>
+              </div>
+
+            </div><!-- /sys-anim -->
+
+            <div style="font-size:10px;color:var(--g300);margin-top:10px;text-align:center;letter-spacing:0.03em;">Tap the BAR hub to simulate a rate update</div>
+          </div>
+        </div>
+      </div>
+
+      <style>
+        .ch-card{
+          background:var(--white);border:1.5px solid var(--b100);border-radius:8px;
+          padding:8px 10px;text-align:center;
+          transition:border-color 0.3s,background 0.3s,transform 0.2s;
+          box-shadow:0 1px 6px rgba(0,60,150,0.07);
+        }
+        .ch-card.updated{border-color:var(--b600);background:var(--b50);}
+        .ch-card.flash{animation:cardflash 0.5s ease;}
+        @keyframes cardflash{0%{background:var(--b100);}100%{background:var(--b50);}}
+        .ch-label{font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;color:var(--b800);margin-bottom:2px;}
+        .ch-disc{font-size:9px;color:var(--g500);margin-bottom:4px;}
+        .ch-rate{font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;color:var(--b700);transition:color 0.3s;}
+        .ch-card.updated .ch-rate{color:var(--b700);}
+        /* Active line state */
+        .ln-active{opacity:0.9 !important;stroke:var(--b600);stroke-dasharray:none;}
+        .ln-idle{opacity:0.2;}
+        /* Hub pulse ring */
+        @keyframes hubpulse{0%{box-shadow:0 0 0 0 rgba(29,95,180,0.6);}70%{box-shadow:0 0 0 18px rgba(29,95,180,0);}100%{box-shadow:0 0 0 0 rgba(29,95,180,0);}}
+        .hub-firing{animation:hubpulse 0.6s ease-out;}
+      </style>
+
+      <script>
+        (function(){
+          const BARS  = [4000, 5000, 3500, 4500];
+          const DISCS = [0.85, 0.80, 0.90, 1.00, 0.82, 0.78];
+          const CARDS = ['ch-0','ch-1','ch-2','ch-3','ch-4','ch-5'];
+          const VALS  = ['cv-0','cv-1','cv-2','cv-3','cv-4','cv-5'];
+          const LINES = ['ln-0','ln-1','ln-2','ln-3','ln-4','ln-5'];
+          let barIdx  = 0;
+          let animating = false;
+
+          function fmt(n){ return '฿'+Math.round(n).toLocaleString(); }
+
+          function triggerAnim(){
+            if(animating) return;
+            animating = true;
+            barIdx = (barIdx + 1) % BARS.length;
+            const newBar = BARS[barIdx];
+
+            // Hub fires
+            const hub = document.getElementById('bar-hub');
+            hub.classList.add('hub-firing');
+            hub.style.transform = 'translate(-50%,-50%) scale(1.08)';
+            setTimeout(()=>{ hub.style.transform='translate(-50%,-50%) scale(1)'; },300);
+            setTimeout(()=>hub.classList.remove('hub-firing'),700);
+
+            // Update BAR display mid-scale
+            setTimeout(()=>{
+              document.getElementById('bar-val').textContent = fmt(newBar);
+            }, 150);
+
+            // Animate lines and update cards with stagger
+            LINES.forEach((lid,i)=>{
+              const ln = document.getElementById(lid);
+              ln.style.opacity = '0.22';
+              ln.setAttribute('stroke-dasharray','4 3');
+            });
+
+            CARDS.forEach((cid, i)=>{
+              const delay = 220 + i * 140;
+
+              // Show pulse dot
+              setTimeout(()=>{
+                const p = document.getElementById('pulse-'+i);
+                const am = document.getElementById('am-'+i);
+                p.setAttribute('opacity','0.9');
+                am.beginElement();
+
+                // Activate line briefly
+                const ln = document.getElementById('ln-'+i);
+                ln.style.opacity = '1';
+                ln.setAttribute('stroke-dasharray','none');
+              }, delay - 80);
+
+              setTimeout(()=>{
+                // Flip card
+                const card = document.getElementById(cid);
+                const val  = document.getElementById(VALS[i]);
+                card.classList.add('updated','flash');
+                val.textContent = fmt(newBar * DISCS[i]);
+
+                // Fade pulse dot
+                const p = document.getElementById('pulse-'+i);
+                p.setAttribute('opacity','0');
+
+                // Return line to idle
+                const ln = document.getElementById('ln-'+i);
+                ln.style.opacity = '0.25';
+                ln.setAttribute('stroke-dasharray','4 3');
+              }, delay + 520);
+            });
+
+            // Reset after all done
+            setTimeout(()=>{
+              animating = false;
+              CARDS.forEach(cid=>{
+                setTimeout(()=>document.getElementById(cid).classList.remove('updated','flash'), 1200);
+              });
+            }, 220 + 5*140 + 1400);
+          }
+
+          // Expose to global for onclick
+          window.triggerAnim = triggerAnim;
+
+          // Auto-trigger once when slide becomes visible
+          const slide = document.getElementById('s-6');
+          const obs = new MutationObserver(()=>{
+            if(slide.classList.contains('on')){
+              setTimeout(triggerAnim, 700);
+            }
+          });
+          obs.observe(slide, {attributes:true, attributeFilter:['class']});
+        })();
+      </script>
+
+      <!-- SLIDE 7: DO / DON'T -->
+      <div class="slide s-light" id="s-7">
+        <div class="s-inner s-centre">
+          <span class="eye" style="margin-bottom:12px;">On every shift</span>
+          <h2 class="sh" style="margin-bottom:18px;">Do / Don't</h2>
+          <div class="dodont">
+            <div class="do-box">
+              <div class="dd-lbl">Do</div>
+              <div class="ddi"><div class="ddi-ic">✓</div>Think of rate as a connected system — every part affects the others</div>
+              <div class="ddi"><div class="ddi-ic">✓</div>Flag rate discrepancies between channels to the RM immediately</div>
+              <div class="ddi"><div class="ddi-ic">✓</div>Use the correct market segment code — it drives which rate logic applies</div>
+              <div class="ddi"><div class="ddi-ic">✓</div>Understand why a guest pays a different rate so you can explain it</div>
+            </div>
+            <div class="dont-box">
+              <div class="dd-lbl">Don't</div>
+              <div class="ddi"><div class="ddi-ic">✗</div>Override rates manually without RM approval — it breaks the system</div>
+              <div class="ddi"><div class="ddi-ic">✗</div>Assume all channels show the same price — they rarely do without architecture</div>
+              <div class="ddi"><div class="ddi-ic">✗</div>Quote rates from memory — always check the live system</div>
+              <div class="ddi"><div class="ddi-ic">✗</div>Tell a guest the rate "is just how it is" — you should be able to explain it</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 8: CHECKLIST -->
+      <div class="slide s-off" id="s-8">
+        <div class="s-inner s-centre">
+          <span class="eye" style="margin-bottom:8px;">Before the quiz</span>
+          <h2 class="sh" style="margin-bottom:6px;">Quick checklist</h2>
+          <p style="font-size:12px;color:var(--g500);margin-bottom:14px;">Tick all five <em>and</em> visit all content slides — then the quiz unlocks.</p>
+          <ul class="chklist" id="checklistItems">
+            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I can name the 5 questions: right guest, time, channel, conditions, room</li>
+            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I understand BAR is the single source of truth all rates link to</li>
+            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I can explain why different guests pay different rates for the same room</li>
+            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I know who to call immediately if I spot a rate discrepancy between channels</li>
+            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I know the 3 rate levels: Flexible, Saver (10%), Stay Longer (15%)</li>
+          </ul>
+          <div id="unlockNote" style="display:none;margin-top:14px;background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:10px 14px;font-size:11px;color:var(--b800);">✓ <strong>Quiz unlocked.</strong> Press Next to begin.</div>
+          <div id="visitNote" style="display:none;margin-top:10px;font-size:10px;color:var(--gold);">↑ Visit all slides first — some are still unvisited.</div>
+        </div>
+      </div>
+
+      <!-- SLIDES 9–13: QUIZ (one per slide) -->
+      <!-- Q1 -->
+      <div class="slide s-quiz" id="s-9">
+        <div class="quiz-wrap">
+          <div class="quiz-header">
+            <div class="q-meta"><div class="q-label">Quiz · Question 1 of 5</div><div class="q-dots" id="qd-0"></div></div>
+            <div class="q-text">A hotel has 200 rooms and five types of guests checking in tonight: a tourist, a Dusit Gold member, a corporate banker, a travel agent, and airline crew. Which statement best explains why they should all pay different prices?</div>
+          </div>
+          <div class="quiz-opts">
+            <button class="qopt" onclick="answer(0,0,this)">A. The hotel is trying to maximise revenue from whoever will pay the most</button>
+            <button class="qopt" onclick="answer(0,1,this)">B. Rate architecture prices each guest according to their segment, channel, conditions, and booking type — making the hotel more revenue overall</button>
+            <button class="qopt" onclick="answer(0,2,this)">C. The front desk decides rates based on availability at check-in</button>
+            <button class="qopt" onclick="answer(0,3,this)">D. OTAs and corporate accounts negotiate the same rate as walk-ins</button>
+          </div>
+          <div class="q-fb" id="qfb-0"></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q1 / 5</div><button class="btn btn-p" id="qnxt-0" onclick="nav(10)" style="display:none">Next →</button></div>
+        </div>
+      </div>
+      <!-- Q2 -->
+      <div class="slide s-quiz" id="s-10">
+        <div class="quiz-wrap">
+          <div class="quiz-header">
+            <div class="q-meta"><div class="q-label">Quiz · Question 2 of 5</div><div class="q-dots" id="qd-1"></div></div>
+            <div class="q-text">A guest who prepaid and cannot cancel asks why they pay less than a guest who can cancel anytime. What is the correct explanation?</div>
+          </div>
+          <div class="quiz-opts">
+            <button class="qopt" onclick="answer(1,0,this)">A. The hotel made an error — both guests should pay the same price</button>
+            <button class="qopt" onclick="answer(1,1,this)">B. The prepaid guest gets a discount because the hotel values their loyalty</button>
+            <button class="qopt" onclick="answer(1,2,this)">C. Flexibility is a premium — the hotel carries cancellation risk, and that risk is priced in</button>
+            <button class="qopt" onclick="answer(1,3,this)">D. The prepaid rate is a promotional mistake that should be corrected</button>
+          </div>
+          <div class="q-fb" id="qfb-1"></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q2 / 5</div><button class="btn btn-p" id="qnxt-1" onclick="nav(11)" style="display:none">Next →</button></div>
+        </div>
+      </div>
+      <!-- Q3 -->
+      <div class="slide s-quiz" id="s-11">
+        <div class="quiz-wrap">
+          <div class="quiz-header">
+            <div class="q-meta"><div class="q-label">Quiz · Question 3 of 5</div><div class="q-dots" id="qd-2"></div></div>
+            <div class="q-text">A guest books on Booking.com and finds the same room for ฿800 less than the front desk is quoting. The Revenue Manager updated BAR this morning. What most likely happened?</div>
+          </div>
+          <div class="quiz-opts">
+            <button class="qopt" onclick="answer(2,0,this)">A. The front desk is quoting incorrectly from memory</button>
+            <button class="qopt" onclick="answer(2,1,this)">B. BAR was updated but the OTA rate was not properly linked and did not follow automatically</button>
+            <button class="qopt" onclick="answer(2,2,this)">C. Booking.com has access to a special deal — that is normal</button>
+            <button class="qopt" onclick="answer(2,3,this)">D. The guest used a secret promo code on the OTA</button>
+          </div>
+          <div class="q-fb" id="qfb-2"></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q3 / 5</div><button class="btn btn-p" id="qnxt-2" onclick="nav(12)" style="display:none">Next →</button></div>
+        </div>
+      </div>
+      <!-- Q4 -->
+      <div class="slide s-quiz" id="s-12">
+        <div class="quiz-wrap">
+          <div class="quiz-header">
+            <div class="q-meta"><div class="q-label">Quiz · Question 4 of 5</div><div class="q-dots" id="qd-3"></div></div>
+            <div class="q-text">The Revenue Manager is described as a 'price system designer.' What does this mean in practice?</div>
+          </div>
+          <div class="quiz-opts">
+            <button class="qopt" onclick="answer(3,0,this)">A. The RM sets a single price for the hotel and applies it to all rooms</button>
+            <button class="qopt" onclick="answer(3,1,this)">B. The RM designs the rules between rates so the system runs automatically — not manually changing every rate every day</button>
+            <button class="qopt" onclick="answer(3,2,this)">C. The RM negotiates directly with OTAs every morning to set prices</button>
+            <button class="qopt" onclick="answer(3,3,this)">D. The RM decides which guests deserve a discount based on loyalty status</button>
+          </div>
+          <div class="q-fb" id="qfb-3"></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q4 / 5</div><button class="btn btn-p" id="qnxt-3" onclick="nav(13)" style="display:none">Next →</button></div>
+        </div>
+      </div>
+      <!-- Q5 — results render here when done -->
+      <div class="slide s-quiz" id="s-13">
+        <div class="quiz-wrap">
+          <div class="quiz-header">
+            <div class="q-meta"><div class="q-label">Quiz · Question 5 of 5</div><div class="q-dots" id="qd-4"></div></div>
+            <div class="q-text">Which of the following best describes what rate architecture actually is?</div>
+          </div>
+          <div class="quiz-opts">
+            <button class="qopt" onclick="answer(4,0,this)">A. A spreadsheet the RM uses to track daily room prices manually</button>
+            <button class="qopt" onclick="answer(4,1,this)">B. A live connected system where all rates link to BAR and update automatically when it changes</button>
+            <button class="qopt" onclick="answer(4,2,this)">C. A pricing policy document that front desk staff follow</button>
+            <button class="qopt" onclick="answer(4,3,this)">D. A set of discounts the hotel offers to different types of guests</button>
+          </div>
+          <div class="q-fb" id="qfb-4"></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q5 / 5</div><button class="btn btn-p" id="qnxt-4" onclick="finishQuiz()" style="display:none">See Results →</button></div>
+        </div>
+        <!-- Results rendered inside this slide — no separate slide needed -->
+        <div class="results-overlay" id="res-overlay">
+          <div class="res-n" id="res-n">0/5</div>
+          <div class="res-l">Questions Correct</div>
+          <div class="res-msg" id="res-msg"></div>
+          <div class="res-actions">
+            <button class="res-btn retry" onclick="retryQuiz()">↺ Retry Quiz</button>
+            <button class="res-btn back" onclick="nav(0)">← Back to start</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /canvas -->
+  </div><!-- /stage -->
+
+  <!-- FULLSCREEN OVERLAYS -->
+  <div id="fs-top">
+    <div class="fs-info">
+      <img src="https://cdn.prod.website-files.com/686e2126992edd7b040ec218/689a91cf61756f4f15c57114_dusit.avif" alt="Dusit">
+      <span style="color:rgba(255,255,255,0.1);font-size:12px;">|</span>
+      <span class="fs-mod">MODULE 1 · RATE ARCHITECTURE</span>
+      <span style="color:rgba(255,255,255,0.12);font-size:10px;">›</span>
+      <span class="fs-crumb" id="fsCrumb">Overview</span>
+    </div>
+    <button class="fs-exit" onclick="toggleFS()">✕ Exit Fullscreen</button>
+  </div>
+  <div id="fs-bot">
+    <button class="fs-btn g" id="fsPrev" onclick="prev()" disabled>← Prev</button>
+    <div class="fs-nav-mid">
+      <div class="fs-nav-lbl" id="fsLabel">Slide 1 of 14</div>
+      <div class="fs-ndots" id="fsNdots"></div>
+    </div>
+    <button class="fs-btn p" id="fsNext" onclick="next()">Next →</button>
+  </div>
+
+  <!-- NORMAL NAV BAR -->
+  <div id="nav-bar">
+    <button class="btn btn-g" id="prevBtn" onclick="prev()" disabled>← Prev</button>
+    <div class="nav-mid">
+      <div class="nav-label" id="navLabel">Slide 1 of 14</div>
+      <div class="nav-dots" id="navDots"></div>
+    </div>
+    <button class="btn btn-p" id="nextBtn" onclick="next()">Next →</button>
+  </div>
+</div><!-- /content -->
+</div><!-- /shell -->
+
+<script>
+// ═══════════════════════════════════════════
+// CLEAN SINGLE NAVIGATION MODEL
+// 14 navigable slides: 0–8 content, 9–13 quiz
+// Results are a state overlay inside slide 13
+// No fake 15th slide. One counter. One model.
+// ═══════════════════════════════════════════
+
+const N = 14; // total navigable slides
+const CONTENT_END = 8; // last content slide index
+const QUIZ_START  = 9; // first quiz slide index
+
+const TITLES = [
+  'Overview — The 5 Questions',
+  'Right Guest', 'Right Time', 'Right Channel', 'Right Conditions', 'Right Room',
+  'The System', 'Do / Don\'t', 'Checklist',
+  'Quiz · Q1', 'Quiz · Q2', 'Quiz · Q3', 'Quiz · Q4', 'Quiz · Q5'
+];
+
+// State
+let cur = 0;
+let quizUnlocked = false;
+const visited = Array(N).fill(false);
+visited[0] = true;
+
+// Quiz answers
+const QA = [1,2,1,1,1]; // correct answer index per question
+const QFB = [
+  'Rate architecture answers all five questions — guest, time, channel, conditions, room — for every booking simultaneously.',
+  'This is the Right Conditions pillar. Flexible rates cost more because the hotel carries cancellation risk. Prepaid guests earn a discount in return for certainty.',
+  'When BAR is updated but the OTA rate is not linked, channel undercutting happens — the OTA appears cheaper than the hotel\'s own desk.',
+  'The RM designs the pricing architecture so the system runs automatically. Every associate entering a market code operates inside that system.',
+  'Rate architecture is a live, connected pricing system. BAR is the single source of truth. When it moves, all derived rates follow automatically.'
+];
+const answered = Array(5).fill(false);
+const correct  = Array(5).fill(false);
+let score = 0;
+let quizDone = false;
+
+// ── Core navigation ──
+function nav(n) {
+  if(n < 0 || n >= N) return;
+  if(n >= QUIZ_START && !quizUnlocked) { flashLock(); return; }
+  if(n >= QUIZ_START && quizDone && n < 13) { n = 13; } // always jump to results after quiz done
+
+  document.getElementById('s-'+cur).classList.remove('on');
+  visited[cur] = true;
+  cur = n;
+  visited[cur] = true;
+  document.getElementById('s-'+cur).classList.add('on');
+
+  syncUI();
+  checkUnlock();
+  updateQDots();
+  if(window.innerWidth <= 800) document.getElementById('sidebar').classList.remove('open');
+
+  // Scroll slide content to top
+  const inner = document.querySelector('#s-'+cur+' .s-inner, #s-'+cur+' .split-right, #s-'+cur+' .quiz-wrap');
+  if(inner) inner.scrollTop = 0;
+}
+
+function prev() { nav(cur - 1); }
+function next() { nav(cur + 1); }
+
+// ── Sync all UI from cur ──
+function syncUI() {
+  const title = TITLES[cur] || '';
+
+  // Topbar + fullscreen crumbs
+  document.getElementById('tbCrumb').textContent = title;
+  document.getElementById('fsCrumb').textContent = title;
+
+  // Sidebar progress — based on content slides visited (0–8)
+  const contentVisited = visited.slice(0, CONTENT_END+1).filter(Boolean).length;
+  const quizVisited    = visited.slice(QUIZ_START).filter(Boolean).length;
+  const total = (CONTENT_END+1) + 5;
+  const pct = Math.round(((contentVisited + quizVisited) / total) * 100);
+  document.getElementById('sbFill').style.width = pct + '%';
+
+  // Sidebar items
+  for(let i = 0; i <= CONTENT_END; i++) {
+    const el = document.getElementById('sbi-'+i);
+    if(!el) continue;
+    el.classList.toggle('active', i === cur);
+    el.classList.toggle('visited', visited[i] && i !== cur);
+  }
+  const qEl = document.getElementById('sbi-quiz');
+  qEl.classList.toggle('active', cur >= QUIZ_START);
+
+  // Nav label + buttons
+  const label = 'Slide ' + (cur+1) + ' of ' + N;
+  document.getElementById('navLabel').textContent = label;
+  document.getElementById('fsLabel').textContent  = label;
+
+  const atStart = cur === 0;
+  const atEnd   = cur === N-1;
+  const nextBlocked = atEnd || (cur === CONTENT_END && !quizUnlocked);
+
+  ['prevBtn','fsPrev'].forEach(id => { const e=document.getElementById(id); if(e) e.disabled = atStart; });
+  ['nextBtn','fsNext'].forEach(id => { const e=document.getElementById(id); if(e) e.disabled = nextBlocked; });
+
+  buildDots();
+}
+
+// ── Dots ──
+function buildDots() {
+  const sets = [
+    { id:'navDots', cls:'ndot' },
+    { id:'fsNdots', cls:'fs-ndot' }
+  ];
+  sets.forEach(({ id, cls }) => {
+    const c = document.getElementById(id);
+    if(!c) return;
+    c.innerHTML = '';
+    for(let i = 0; i < N; i++) {
+      const d = document.createElement('div');
+      const locked = i >= QUIZ_START && !quizUnlocked;
+      let c2 = cls;
+      if(i === cur)        c2 += ' on';
+      else if(locked)      c2 += ' locked';
+      else if(visited[i])  c2 += ' done';
+      d.className = c2;
+      d.onclick = (function(idx,lk){ return function(){ if(!lk) nav(idx); }; })(i, locked);
+      c.appendChild(d);
+    }
+  });
+}
+
+// ── Quiz unlock ──
+function checkUnlock() {
+  if(quizUnlocked) return;
+  const allContent = visited.slice(0, CONTENT_END+1).every(Boolean);
+  const items = document.querySelectorAll('#checklistItems .chi');
+  const allTicked = Array.from(items).every(el => el.classList.contains('done'));
+
+  if(allContent && allTicked) {
+    quizUnlocked = true;
+    const qi = document.getElementById('sbi-quiz');
+    qi.classList.remove('locked');
+    document.getElementById('quizLock').style.display = 'none';
+
+    const note = document.getElementById('unlockNote');
+    if(note) note.style.display = 'block';
+    const vn = document.getElementById('visitNote');
+    if(vn) vn.style.display = 'none';
+
+    // Unblock Next button if on checklist slide
+    if(cur === CONTENT_END) {
+      document.getElementById('nextBtn').disabled = false;
+      document.getElementById('fsNext').disabled  = false;
+    }
+    buildDots();
+    syncUI();
+  }
+}
+
+function flashLock() {
+  const el = document.getElementById('sbi-quiz');
+  el.style.outline = '1px solid rgba(201,168,76,0.55)';
+  setTimeout(() => el.style.outline = '', 700);
+
+  // Show hint on checklist if user is there
+  if(cur === CONTENT_END) {
+    const allContent = visited.slice(0, CONTENT_END+1).every(Boolean);
+    const vn = document.getElementById('visitNote');
+    if(vn) vn.style.display = allContent ? 'none' : 'block';
+  }
+}
+
+// ── Checklist ──
+function tick(el) {
+  el.classList.toggle('done');
+  checkUnlock();
+}
+
+// ── Quiz ──
+function updateQDots() {
+  for(let qi = 0; qi < 5; qi++) {
+    const el = document.getElementById('qd-'+qi);
+    if(!el) continue;
+    el.innerHTML = '';
+    for(let k = 0; k < 5; k++) {
+      const d = document.createElement('div');
+      let c = 'q-dot';
+      if(k === cur - QUIZ_START) c += ' current'; // highlight the slide we're on
+      if(answered[k]) c += correct[k] ? ' ok' : ' wrong';
+      d.className = c;
+      el.appendChild(d);
+    }
+  }
+}
+
+function answer(qi, chosen, btn) {
+  if(answered[qi]) return;
+  answered[qi] = true;
+
+  const ok = chosen === QA[qi];
+  correct[qi] = ok;
+  if(ok) score++;
+
+  const slide = btn.closest('.slide');
+  slide.querySelectorAll('.qopt').forEach(o => o.disabled = true);
+  btn.classList.add(ok ? 'correct' : 'wrong');
+  if(!ok) slide.querySelectorAll('.qopt')[QA[qi]].classList.add('reveal');
+
+  const fb = document.getElementById('qfb-'+qi);
+  fb.className = 'q-fb ' + (ok ? 'correct' : 'wrong');
+  fb.textContent = (ok ? 'Correct — ' : 'Not quite — ') + QFB[qi];
+  fb.style.display = 'block';
+
+  document.getElementById('qnxt-'+qi).style.display = 'inline-block';
+  updateQDots();
+}
+
+function finishQuiz() {
+  quizDone = true;
+
+  const s = score;
+  const msgs = [
+    'Go back through the module carefully — this knowledge protects revenue on every shift.',
+    'Go back through the module carefully — this knowledge protects revenue on every shift.',
+    'Good effort — revisit the module before applying on shift.',
+    'Strong result — review any missed questions before your next shift.',
+    'Strong result — review any missed questions before your next shift.',
+    'Perfect score. Outstanding.'
+  ];
+
+  document.getElementById('res-n').textContent   = s + '/5';
+  document.getElementById('res-msg').textContent  = msgs[s];
+  document.getElementById('res-overlay').classList.add('on');
+
+  // Mark quiz sidebar item as complete
+  document.getElementById('sbi-quiz').classList.add('visited');
+  visited[13] = true;
+
+  // Final progress — 100%
+  document.getElementById('sbFill').style.width = '100%';
+  syncUI();
+}
+
+function retryQuiz() {
+  score = 0; quizDone = false;
+  for(let i=0;i<5;i++){answered[i]=false;correct[i]=false;}
+  for(let i=9;i<=13;i++){
+    const sl=document.getElementById('s-'+i);
+    sl.querySelectorAll('.qopt').forEach(o=>{o.disabled=false;o.className='qopt';});
+    const fb=document.getElementById('qfb-'+(i-9));
+    if(fb){fb.style.display='none';fb.className='q-fb';}
+    const nb=document.getElementById('qnxt-'+(i-9));
+    if(nb) nb.style.display='none';
+  }
+  document.getElementById('res-overlay').classList.remove('on');
+  nav(9);
+}
+
+// ── Fullscreen ──
+function toggleFS() {
+  const inFS = !!(document.fullscreenElement || document.webkitFullscreenElement);
+  if(!inFS) {
+    const el = document.documentElement;
+    const p = el.requestFullscreen ? el.requestFullscreen() :
+              el.webkitRequestFullscreen ? el.webkitRequestFullscreen() : null;
+    // Class applied by fullscreenchange listener; CSS fallback for iframes
+    if(!p) { document.body.classList.add('fullscreen'); scaleCanvas(); }
+    else p.then(()=>{ document.body.classList.add('fullscreen'); scaleCanvas(); })
+          .catch(()=>{ /* browser denied — don't force UI state */ });
+  } else {
+    const ex = document.exitFullscreen || document.webkitExitFullscreen;
+    if(ex) ex.call(document);
+    else { document.body.classList.remove('fullscreen'); scaleCanvas(); }
+  }
+}
+
+['fullscreenchange','webkitfullscreenchange'].forEach(ev => {
+  document.addEventListener(ev, () => {
+    const inFS = !!(document.fullscreenElement || document.webkitFullscreenElement);
+    document.body.classList.toggle('fullscreen', inFS);
+    scaleCanvas();
+  });
+});
+
+// ── Canvas scaling — precisely centred, padding-aware ──
+function scaleCanvas() {
+  const stage  = document.getElementById('stage');
+  const canvas = document.getElementById('canvas');
+  const W = 900, H = 540;
+  const inFS = document.body.classList.contains('fullscreen');
+
+  // Measure real overlay heights from DOM so we never use magic numbers
+  const fsTop = document.getElementById('fs-top');
+  const fsBot = document.getElementById('fs-bot');
+  const topH  = inFS ? (fsTop ? fsTop.offsetHeight : 44) : 0;
+  const botH  = inFS ? (fsBot ? fsBot.offsetHeight : 50) : 0;
+  const pad   = inFS ? 0 : 16;
+
+  const sw = stage.clientWidth  - pad * 2;
+  const sh = stage.clientHeight - topH - botH - pad * 2;
+  const scale = Math.min(sw / W, sh / H, 1);
+
+  canvas.style.width           = W + 'px';
+  canvas.style.height          = H + 'px';
+  canvas.style.transform       = 'scale(' + scale + ')';
+  canvas.style.transformOrigin = 'top left';
+
+  // Centre precisely
+  const scaledW = W * scale;
+  const scaledH = H * scale;
+  canvas.style.left   = Math.max(pad, (stage.clientWidth  - scaledW) / 2) + 'px';
+  canvas.style.top    = Math.max(pad, topH + (sh - scaledH) / 2) + 'px';
+  canvas.style.margin = '0';
+}
+
+window.addEventListener('resize', scaleCanvas);
+
+// ── Init ──
+syncUI();
+updateQDots();
+scaleCanvas();
+</script>
+</body>
+</html>
