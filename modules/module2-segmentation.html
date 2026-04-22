@@ -317,6 +317,7 @@ body.fullscreen #fs-bot{display:flex;}
     <div class="sb-item" id="sbi-1" onclick="nav(1)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">What is Tracking Segmentation?</div></div></div>
     <div class="sb-item" id="sbi-1b" onclick="nav(2)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Who Books</div></div></div>
     <div class="sb-item" id="sbi-1c" onclick="nav(3)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Who Stays</div></div></div>
+    <div class="sb-item" id="sbi-1d" onclick="nav(19)" style="background:rgba(201,168,76,0.08);border-color:rgba(201,168,76,0.2);"><div class="sb-dot" style="background:var(--gold);"></div><div class="sb-text"><div class="sb-stitle" style="color:var(--gold);">Who Books · Editorial (1d)</div></div></div>
     <div class="sb-item" id="sbi-2" onclick="nav(4)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Market Segment — Overview</div></div></div>
     <div class="sb-item" id="sbi-3" onclick="nav(3)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">FIT Segments</div></div></div>
     <div class="sb-item" id="sbi-4" onclick="nav(4)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Group Segments</div></div></div>
@@ -772,6 +773,79 @@ body.fullscreen #fs-bot{display:flex;}
             </div>
             <div style="margin-top:14px;background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:9px 16px;font-size:10px;color:var(--b800);line-height:1.6;max-width:520px;text-align:center;">
               <b>Every guest type has a different profile — and the right tracking fields ensure the hotel's data reflects the real mix of business on any given night.</b>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 1d: EXPERIMENTAL — editorial / typographic treatment of slide 1b -->
+      <!-- Same pedagogical content as slide 1b, rendered with zero character illustrations.
+           Purpose: test a purely CSS-token-based visual language that stays 100% consistent
+           across all 24 modules. Compare directly against slide 1b. -->
+      <div class="slide s-white" id="s-1d">
+        <div style="display:grid;grid-template-columns:300px 1fr;height:100%;">
+          <!-- Left panel -->
+          <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--b800);">
+            <span style="display:inline-block;background:var(--gold);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;padding:4px 9px;border-radius:3px;margin-bottom:16px;align-self:flex-start;">Experimental · 1d</span>
+            <span style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.75;margin-bottom:10px;display:block;">Editorial treatment</span>
+            <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Who books the room?</h2>
+            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:14px;">Same story as slide 1b, told through editorial typography and geometry instead of character illustration.</p>
+            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;">A brand language built from Dusit design tokens — so every module stays visually identical, without AI drift.</p>
+          </div>
+
+          <!-- Right content -->
+          <div style="display:flex;flex-direction:column;justify-content:center;padding:32px 40px;background:var(--white);">
+            <!-- Header strip -->
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:26px;">
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);"></div>
+              <span style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b600);letter-spacing:0.14em;text-transform:uppercase;">Three ways the same room gets booked</span>
+              <div style="flex:1;height:1px;background:linear-gradient(to right,var(--g100),transparent);"></div>
+            </div>
+
+            <!-- Three editorial cards -->
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;">
+
+              <!-- Card 1 -->
+              <div style="padding:26px 22px;border:1px solid var(--g100);border-radius:6px;background:var(--white);position:relative;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:54px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">01</div>
+                <div style="width:22px;height:2px;background:var(--gold);margin:12px 0 18px;"></div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Travel Agent</div>
+                <p style="font-size:11px;color:var(--g700);line-height:1.65;margin-bottom:22px;min-height:60px;">Books on behalf of the guest via GDS or phone. Commissions apply. Part of the negotiated corporate ladder.</p>
+                <div style="display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:1px solid var(--g100);">
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b800);letter-spacing:0.04em;">CORPP · CORGL</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b800);letter-spacing:0.04em;">AMD · GAL</span></div>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div style="padding:26px 22px;border:1px solid var(--g100);border-radius:6px;background:var(--white);position:relative;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:54px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">02</div>
+                <div style="width:22px;height:2px;background:var(--gold);margin:12px 0 18px;"></div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Corporate Booker</div>
+                <p style="font-size:11px;color:var(--g700);line-height:1.65;margin-bottom:22px;min-height:60px;">A company travel desk books on behalf of an employee. Direct negotiated rate — no intermediary.</p>
+                <div style="display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:1px solid var(--g100);">
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b800);letter-spacing:0.04em;">CORPK · CORPL</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b800);letter-spacing:0.04em;">DIR · EAC</span></div>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div style="padding:26px 22px;border:1px solid var(--g100);border-radius:6px;background:var(--white);position:relative;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:54px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">03</div>
+                <div style="width:22px;height:2px;background:var(--gold);margin:12px 0 18px;"></div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">OTA &middot; Online</div>
+                <p style="font-size:11px;color:var(--g700);line-height:1.65;margin-bottom:22px;min-height:60px;">Guest books directly through Booking.com, Agoda, or Expedia. Pays the retail rate at the time of stay.</p>
+                <div style="display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:1px solid var(--g100);">
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b800);letter-spacing:0.04em;">ECOMM (seq 45)</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b800);letter-spacing:0.04em;">CCT · AUTO</span></div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Footer caption -->
+            <div style="margin-top:28px;padding-top:16px;border-top:1px solid var(--g100);text-align:center;font-size:10.5px;color:var(--g500);line-height:1.7;max-width:640px;margin-left:auto;margin-right:auto;">
+              The <b style="color:var(--b800);font-weight:700;">market code</b> tells you who is booking and why. The <b style="color:var(--b800);font-weight:700;">source code</b> tells you exactly how they got there.
             </div>
           </div>
         </div>
@@ -1390,10 +1464,11 @@ body.fullscreen #fs-bot{display:flex;}
 <script>
 // ── NAVIGATION MODEL ──
 // Uses an ordered ID array so non-sequential IDs (s-1b, s-1c) work cleanly
-const SLIDE_IDS = ['s-0','s-1','s-1b','s-1c','s-2','s-3','s-4','s-5','s-6','s-7','s-8','s-9','s-10','s-11','s-12','s-13','s-14','s-15','s-16'];
-const N = SLIDE_IDS.length; // 19
+const SLIDE_IDS = ['s-0','s-1','s-1b','s-1c','s-2','s-3','s-4','s-5','s-6','s-7','s-8','s-9','s-10','s-11','s-12','s-13','s-14','s-15','s-16','s-1d'];
+const N = SLIDE_IDS.length; // 20 (s-1d appended at end as experimental preview — does not shift existing indexes)
 const CONTENT_END = 13; // index of checklist slide (s-11)
 const QUIZ_START  = 14; // index of Q1 (s-12)
+const EXPERIMENTAL = 19; // index of s-1d — reachable bypassing quiz lock
 
 const SIDEBAR_IDS = ['sbi-0','sbi-1','sbi-1b','sbi-1c','sbi-2','sbi-3','sbi-4','sbi-5','sbi-6','sbi-7','sbi-8','sbi-9','sbi-10','sbi-11'];
 
@@ -1412,7 +1487,8 @@ const TITLES = [
   'Golden Rules',
   'Do / Don\'t',
   'Checklist',
-  'Quiz · Q1','Quiz · Q2','Quiz · Q3','Quiz · Q4','Quiz · Q5'
+  'Quiz · Q1','Quiz · Q2','Quiz · Q3','Quiz · Q4','Quiz · Q5',
+  'Who Books · Editorial (1d)'
 ];
 
 let cur = 0;
@@ -1438,8 +1514,9 @@ let quizDone = false;
 
 function nav(n) {
   if(n < 0 || n >= N) return;
-  if(n >= QUIZ_START && !quizUnlocked){ flashLock(); return; }
-  if(n >= QUIZ_START && quizDone && n < N-1){ n = N-1; }
+  if(n === EXPERIMENTAL){ /* allow slide 1d through even when quiz is locked */ }
+  else if(n >= QUIZ_START && !quizUnlocked){ flashLock(); return; }
+  else if(n >= QUIZ_START && quizDone && n < N-1){ n = N-1; }
 
   slideEl(cur).classList.remove('on');
   visited[cur] = true;
