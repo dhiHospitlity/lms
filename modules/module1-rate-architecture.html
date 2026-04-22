@@ -1125,7 +1125,9 @@ function scaleCanvas() {
 
   const sw = stage.clientWidth  - pad * 2;
   const sh = stage.clientHeight - topH - botH - pad * 2;
-  const scale = Math.min(sw / W, sh / H, 1);
+  // In fullscreen: let the canvas upscale to fill the viewport.
+  // In normal (windowed) view: keep the 1:1 cap so text stays crisp.
+  const scale = inFS ? Math.min(sw / W, sh / H) : Math.min(sw / W, sh / H, 1);
 
   canvas.style.width           = W + 'px';
   canvas.style.height          = H + 'px';

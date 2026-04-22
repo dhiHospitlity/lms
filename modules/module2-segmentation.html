@@ -1801,7 +1801,8 @@ function scaleCanvas(){
   const pad=inFS?0:16;
   const sw=stage.clientWidth-pad*2;
   const sh=stage.clientHeight-topH-botH-pad*2;
-  const scale=Math.min(sw/W,sh/H,1);
+  // Fullscreen: allow upscaling so the canvas fills the viewport. Windowed: cap at 1:1.
+  const scale=inFS?Math.min(sw/W,sh/H):Math.min(sw/W,sh/H,1);
   canvas.style.width=W+'px';
   canvas.style.height=H+'px';
   canvas.style.transform='scale('+scale+')';
