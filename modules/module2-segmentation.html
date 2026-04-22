@@ -131,36 +131,99 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .seg-sub:last-child{border-bottom:none;}
 .seg-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
 
-/* MARKET SEGMENT HIERARCHY — 3-column cascade (Miller columns) */
-.hc-wrap{display:grid;grid-template-columns:220px 240px 1fr;gap:12px;margin-top:14px;height:360px;}
-.hc-col{display:flex;flex-direction:column;min-height:0;}
-.hc-col-title{font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;padding:0 2px;}
-.hc-list{flex:1;overflow-y:auto;border:1px solid var(--g100);border-radius:var(--rs);background:var(--white);padding:6px;}
-.hc-node{
-  padding:10px 12px;border-radius:var(--rs);cursor:pointer;transition:all 0.15s;
-  display:flex;align-items:center;gap:8px;margin-bottom:3px;border:1px solid transparent;
+/* MARKET SEGMENT — progressive state-machine hierarchy */
+.hv-wrap{display:flex;flex-direction:column;height:100%;}
+.hv-crumb{display:flex;align-items:center;gap:8px;min-height:28px;margin-bottom:14px;flex-wrap:wrap;}
+.hv-crumb:empty{margin-bottom:0;min-height:0;}
+.hv-crumb-item{cursor:pointer;color:var(--g700);font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border-radius:16px;border:1px solid var(--g100);background:var(--white);transition:all 0.18s;animation:hvCrumbIn 0.3s cubic-bezier(.4,0,.2,1);}
+.hv-crumb-item:hover{border-color:var(--gold);color:var(--b900);background:var(--gold-l);}
+.hv-crumb-item.current{background:var(--gold-l);color:var(--b900);border-color:var(--gold);cursor:default;}
+.hv-crumb-sep{color:var(--g300);font-size:12px;font-family:'DusitDisplay',sans-serif;}
+@keyframes hvCrumbIn{from{opacity:0;transform:translateX(-6px);}to{opacity:1;transform:translateX(0);}}
+
+.hv-stage{flex:1;position:relative;min-height:0;}
+.hv-hint{text-align:center;font-size:11px;color:var(--g500);padding-top:10px;font-style:italic;font-family:'DusitText',sans-serif;min-height:24px;}
+
+/* Level 0 — Root hero */
+.hv-hero{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:var(--white);border:1px solid var(--g100);border-radius:14px;cursor:pointer;
+  transition:transform 0.3s cubic-bezier(.4,0,.2,1),box-shadow 0.3s,border-color 0.3s;
+  animation:hvHeroIn 0.45s cubic-bezier(.4,0,.2,1);
+  overflow:hidden;
 }
-.hc-node:hover{background:var(--g50);}
-.hc-node.active{background:var(--gold-l);border-color:var(--gold);}
-.hc-node-body{flex:1;min-width:0;}
-.hc-node-name{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--b900);letter-spacing:0.02em;line-height:1.2;}
-.hc-node-sub{font-size:10px;color:var(--g500);margin-top:2px;line-height:1.3;}
-.hc-node-meta{font-size:9px;color:var(--g500);font-family:'DusitDisplay',sans-serif;font-weight:700;letter-spacing:0.08em;margin-top:3px;}
-.hc-node.active .hc-node-name{color:var(--b900);}
-.hc-node.active .hc-node-sub,.hc-node.active .hc-node-meta{color:var(--g700);}
-.hc-node-arrow{font-family:'DusitDisplay',sans-serif;font-size:14px;color:var(--g300);line-height:1;transition:all 0.15s;}
-.hc-node:hover .hc-node-arrow,.hc-node.active .hc-node-arrow{color:var(--gold);}
-/* Column 3 — code detail pane */
-.hc-codes{flex:1;overflow-y:auto;border:1px solid var(--g100);border-radius:var(--rs);background:var(--white);padding:10px 14px;}
-.hc-code{display:grid;grid-template-columns:68px 1fr;gap:12px;padding:8px 0;align-items:baseline;font-size:10.5px;border-bottom:1px dashed var(--g100);}
-.hc-code:last-child{border-bottom:none;}
-.hc-code-badge{font-family:'DusitDisplay',sans-serif;font-weight:800;font-size:10px;color:var(--b900);letter-spacing:0.05em;background:var(--gold-l);padding:3px 6px;border-radius:3px;text-align:center;align-self:flex-start;}
-.hc-code-body{min-width:0;}
-.hc-code-label{font-family:'DusitDisplay',sans-serif;font-weight:700;font-size:10.5px;color:var(--b900);letter-spacing:0.02em;margin-bottom:2px;}
-.hc-code-desc{color:var(--g700);line-height:1.55;font-size:10.5px;}
-.hc-code-desc b{color:var(--b900);font-weight:700;}
-.hc-empty{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;flex:1;color:var(--g300);font-size:11px;text-align:center;padding:24px;}
-.hc-empty-arrow{font-size:22px;color:var(--gold);opacity:0.5;}
+.hv-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:center;transition:transform 0.4s cubic-bezier(.4,0,.2,1);}
+.hv-hero:hover{transform:translateY(-3px);box-shadow:0 20px 50px rgba(0,0,0,0.1);border-color:var(--gold);}
+.hv-hero:hover::before{transform:scaleX(1);}
+@keyframes hvHeroIn{from{opacity:0;transform:scale(0.96);}to{opacity:1;transform:scale(1);}}
+
+.hv-hero-eyebrow{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:14px;}
+.hv-hero-title{font-family:'DusitDisplay',sans-serif;font-size:56px;font-weight:700;color:var(--b900);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
+.hv-hero-divider{width:56px;height:2px;background:var(--gold);margin:16px 0 18px;}
+.hv-hero-stats{display:flex;gap:36px;margin-bottom:22px;}
+.hv-hero-stat{text-align:center;}
+.hv-hero-stat b{font-family:'DusitDisplay',sans-serif;font-size:30px;font-weight:700;color:var(--gold);line-height:1;display:block;margin-bottom:4px;letter-spacing:-0.02em;}
+.hv-hero-stat span{font-size:9.5px;color:var(--g500);letter-spacing:0.12em;text-transform:uppercase;font-family:'DusitDisplay',sans-serif;font-weight:700;}
+.hv-hero-cta{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--b900);letter-spacing:0.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px;padding:10px 22px;background:var(--gold);border-radius:24px;margin-top:6px;transition:all 0.25s;}
+.hv-hero:hover .hv-hero-cta{background:#B8972F;padding-right:26px;}
+.hv-hero-cta-arrow{font-size:14px;display:inline-block;animation:hvCtaArrow 1.4s infinite;}
+@keyframes hvCtaArrow{0%,100%{transform:translateX(0);}50%{transform:translateX(4px);}}
+
+/* Levels 1 & 2 — Card grids */
+.hv-grid{position:absolute;inset:0;display:grid;gap:16px;}
+.hv-grid.cols-2{grid-template-columns:1fr 1fr;}
+.hv-grid.cols-3{grid-template-columns:1fr 1fr 1fr;}
+.hv-grid.cols-4{grid-template-columns:1fr 1fr 1fr 1fr;}
+
+.hv-card{
+  background:var(--white);border:1px solid var(--g100);border-radius:10px;padding:22px 20px;
+  cursor:pointer;display:flex;flex-direction:column;position:relative;overflow:hidden;
+  transition:all 0.25s cubic-bezier(.4,0,.2,1);
+  opacity:0;transform:translateY(20px);
+  animation:hvCardIn 0.5s cubic-bezier(.4,0,.2,1) forwards;
+}
+.hv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.3s cubic-bezier(.4,0,.2,1);}
+.hv-card:nth-child(1){animation-delay:0.06s;}
+.hv-card:nth-child(2){animation-delay:0.14s;}
+.hv-card:nth-child(3){animation-delay:0.22s;}
+.hv-card:nth-child(4){animation-delay:0.30s;}
+.hv-card:nth-child(5){animation-delay:0.38s;}
+.hv-card:hover{border-color:var(--gold);transform:translateY(-5px);box-shadow:0 14px 36px rgba(0,0,0,0.08);}
+.hv-card:hover::before{transform:scaleX(1);}
+@keyframes hvCardIn{to{opacity:1;transform:translateY(0);}}
+
+.hv-card-num{font-family:'DusitDisplay',sans-serif;font-size:42px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;margin-bottom:12px;}
+.hv-card-rule{width:22px;height:2px;background:var(--gold);margin-bottom:12px;}
+.hv-card-title{font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--b900);letter-spacing:0.02em;margin-bottom:6px;line-height:1.25;}
+.hv-card-sub{font-size:11px;color:var(--g500);line-height:1.5;margin-bottom:14px;}
+.hv-card-foot{margin-top:auto;padding-top:12px;border-top:1px solid var(--g100);display:flex;justify-content:space-between;align-items:center;}
+.hv-card-meta{font-family:'DusitDisplay',sans-serif;font-size:9.5px;font-weight:700;color:var(--g500);letter-spacing:0.12em;}
+.hv-card-arrow{font-family:'DusitDisplay',sans-serif;font-size:18px;color:var(--gold);transition:transform 0.2s;line-height:1;}
+.hv-card:hover .hv-card-arrow{transform:translateX(6px);}
+
+/* Level 3 — Code rows */
+.hv-codes-wrap{position:absolute;inset:0;overflow-y:auto;padding-right:4px;}
+.hv-codes{display:flex;flex-direction:column;gap:6px;}
+.hv-code-row{
+  display:grid;grid-template-columns:72px 160px 1fr;gap:14px;align-items:baseline;
+  padding:11px 16px;background:var(--white);border:1px solid var(--g100);border-radius:8px;
+  opacity:0;transform:translateX(-12px);
+  animation:hvRowIn 0.4s cubic-bezier(.4,0,.2,1) forwards;
+  transition:border-color 0.15s,background 0.15s;
+}
+.hv-code-row:nth-child(1){animation-delay:0.04s;}
+.hv-code-row:nth-child(2){animation-delay:0.10s;}
+.hv-code-row:nth-child(3){animation-delay:0.16s;}
+.hv-code-row:nth-child(4){animation-delay:0.22s;}
+.hv-code-row:nth-child(5){animation-delay:0.28s;}
+.hv-code-row:nth-child(6){animation-delay:0.34s;}
+.hv-code-row:hover{border-color:var(--gold);background:var(--g50);}
+@keyframes hvRowIn{to{opacity:1;transform:translateX(0);}}
+
+.hv-code-badge{font-family:'DusitDisplay',sans-serif;font-weight:800;font-size:10px;color:var(--b900);letter-spacing:0.05em;background:var(--gold-l);padding:4px 8px;border-radius:4px;text-align:center;align-self:flex-start;}
+.hv-code-label{font-family:'DusitDisplay',sans-serif;font-weight:700;font-size:11px;color:var(--b900);letter-spacing:0.02em;}
+.hv-code-desc{color:var(--g700);line-height:1.55;font-size:10.5px;}
+.hv-code-desc b{color:var(--b900);font-weight:700;}
 
 /* segment group colors */
 .sg-fit{background:var(--gold-l);border-color:var(--gold);}.sg-fit .seg-group-name{color:var(--b900);}
@@ -643,142 +706,12 @@ body.fullscreen #fs-bot{display:flex;}
         </div>
       </div>
 
-      <!-- SLIDE 2: MARKET SEGMENT OVERVIEW -->
+      <!-- SLIDE 2: MARKET SEGMENT — progressive state-machine drill-down -->
       <div class="slide s-white" id="s-2">
-        <div class="s-inner s-centre">
-          <span class="eye">Market Segment</span>
-          <h2 class="sh" style="margin-bottom:4px;">6 groups · 13 segments · 40 codes</h2>
-          <p class="body-text" style="margin-bottom:10px;">Correct market segmentation allows a hotel to price and apply inventory controls to maximise revenue from various lines of business. The market code is set at time of booking and <b>never changes</b> — even for groups.</p>
-          <div class="hc-wrap">
-
-            <!-- ── COLUMN 1: Groups ── -->
-            <div class="hc-col">
-              <div class="hc-col-title">Group</div>
-              <div class="hc-list">
-                <div class="hc-node active" onclick="selectGrp('fit')">
-                  <div class="hc-node-body">
-                    <div class="hc-node-name">FIT</div>
-                    <div class="hc-node-sub">Free Individual Traveller</div>
-                    <div class="hc-node-meta">4 SUBS · 14 CODES</div>
-                  </div>
-                  <span class="hc-node-arrow">›</span>
-                </div>
-                <div class="hc-node" onclick="selectGrp('group')">
-                  <div class="hc-node-body">
-                    <div class="hc-node-name">Group</div>
-                    <div class="hc-node-sub">Group bookings &amp; blocks</div>
-                    <div class="hc-node-meta">2 SUBS · 9 CODES</div>
-                  </div>
-                  <span class="hc-node-arrow">›</span>
-                </div>
-                <div class="hc-node" onclick="selectGrp('other')">
-                  <div class="hc-node-body">
-                    <div class="hc-node-name">Other</div>
-                    <div class="hc-node-sub">Crew, comp &amp; house use</div>
-                    <div class="hc-node-meta">3 SUBS · 12 CODES</div>
-                  </div>
-                  <span class="hc-node-arrow">›</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- ── COLUMN 2: Sub-segments (one list per group, switched by JS) ── -->
-            <div class="hc-col">
-              <div class="hc-col-title" id="hc-col2-title">FIT sub-segments</div>
-              <div class="hc-list">
-                <!-- FIT subs -->
-                <div class="hc-sublist" data-grp="fit">
-                  <div class="hc-node" onclick="selectSub(this,'fit-nq')"><div class="hc-node-body"><div class="hc-node-name">Retail Non-Qualified</div><div class="hc-node-meta">4 CODES</div></div><span class="hc-node-arrow">›</span></div>
-                  <div class="hc-node" onclick="selectSub(this,'fit-q')"><div class="hc-node-body"><div class="hc-node-name">Retail Qualified / Loyalty</div><div class="hc-node-meta">5 CODES</div></div><span class="hc-node-arrow">›</span></div>
-                  <div class="hc-node" onclick="selectSub(this,'fit-corp')"><div class="hc-node-body"><div class="hc-node-name">Negotiated Corporate</div><div class="hc-node-meta">5 CODES</div></div><span class="hc-node-arrow">›</span></div>
-                  <div class="hc-node" onclick="selectSub(this,'fit-wh')"><div class="hc-node-body"><div class="hc-node-name">Negotiated Wholesale</div><div class="hc-node-meta">4 CODES</div></div><span class="hc-node-arrow">›</span></div>
-                </div>
-                <!-- Group subs -->
-                <div class="hc-sublist" data-grp="group" style="display:none;">
-                  <div class="hc-node" onclick="selectSub(this,'grp-biz')"><div class="hc-node-body"><div class="hc-node-name">Business Groups</div><div class="hc-node-meta">4 CODES</div></div><span class="hc-node-arrow">›</span></div>
-                  <div class="hc-node" onclick="selectSub(this,'grp-leis')"><div class="hc-node-body"><div class="hc-node-name">Leisure Groups</div><div class="hc-node-meta">5 CODES</div></div><span class="hc-node-arrow">›</span></div>
-                </div>
-                <!-- Other subs -->
-                <div class="hc-sublist" data-grp="other" style="display:none;">
-                  <div class="hc-node" onclick="selectSub(this,'oth-crew')"><div class="hc-node-body"><div class="hc-node-name">Crew &amp; Contracted</div><div class="hc-node-meta">5 CODES</div></div><span class="hc-node-arrow">›</span></div>
-                  <div class="hc-node" onclick="selectSub(this,'oth-comp')"><div class="hc-node-body"><div class="hc-node-name">Complimentary &amp; Day Use</div><div class="hc-node-meta">4 CODES</div></div><span class="hc-node-arrow">›</span></div>
-                  <div class="hc-node" onclick="selectSub(this,'oth-house')"><div class="hc-node-body"><div class="hc-node-name">House Use &amp; Adjustment</div><div class="hc-node-meta">3 CODES</div></div><span class="hc-node-arrow">›</span></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- ── COLUMN 3: Codes ── -->
-            <div class="hc-col">
-              <div class="hc-col-title" id="hc-col3-title">Codes</div>
-              <div class="hc-codes">
-                <div class="hc-empty" id="hc-empty">
-                  <div class="hc-empty-arrow">←</div>
-                  <div>Select a sub-segment to see its codes</div>
-                </div>
-                <!-- FIT code lists -->
-                <div class="hc-codelist" data-sub="fit-nq" style="display:none;">
-                  <div class="hc-code"><span class="hc-code-badge">DBRRT</span><div class="hc-code-body"><div class="hc-code-label">Best Flexible Rate</div><div class="hc-code-desc">Highest publicly available rate. <b>BAR equivalent in the PMS.</b></div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">ADVPC</span><div class="hc-code-body"><div class="hc-code-label">Advance Purchase</div><div class="hc-code-desc">Discounted, less flexible — prepaid, minimum length of stay.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">HTPCK</span><div class="hc-code-body"><div class="hc-code-label">Package</div><div class="hc-code-desc">Room + value-added inclusions (breakfast, spa, transfers).</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">ECOMM</span><div class="hc-code-body"><div class="hc-code-label">E-Commerce / OTA</div><div class="hc-code-desc"><b>All OTA bookings. No exceptions.</b></div></div></div>
-                </div>
-                <div class="hc-codelist" data-sub="fit-q" style="display:none;">
-                  <div class="hc-code"><span class="hc-code-badge">DLOYAL</span><div class="hc-code-body"><div class="hc-code-label">Loyalty Program</div><div class="hc-code-desc"><b>Dusit Gold members only.</b> Private sales and free-night redemptions.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">PROMO</span><div class="hc-code-body"><div class="hc-code-label">Promotion &amp; Partnership</div><div class="hc-code-desc">Short-term promos and airline / credit card partnerships.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">AIRLP</span><div class="hc-code-body"><div class="hc-code-label">Airline Programs</div><div class="hc-code-desc">Airline stopover programs (Royal Orchid, Emirates).</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">INTLN</span><div class="hc-code-body"><div class="hc-code-label">Industry Discounts</div><div class="hc-code-desc">Travel agent and airline employee discounted rates.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">DUSIT</span><div class="hc-code-body"><div class="hc-code-label">Dusit Internal Rate</div><div class="hc-code-desc">Dusit employees, family &amp; friends, inter-company.</div></div></div>
-                </div>
-                <div class="hc-codelist" data-sub="fit-corp" style="display:none;">
-                  <div class="hc-code"><span class="hc-code-badge">CORPP</span><div class="hc-code-body"><div class="hc-code-label">Consortia / TMC</div><div class="hc-code-desc">RFP programs for travel management companies. Commissionable.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">CORGL</span><div class="hc-code-body"><div class="hc-code-label">Corporate Global</div><div class="hc-code-desc">Large multi-property accounts (Corporate Sales Office).</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">CORPK</span><div class="hc-code-body"><div class="hc-code-label">Corporate Key</div><div class="hc-code-desc">Static-rate corporate contracts (Corporate Sales Office).</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">CORPL</span><div class="hc-code-body"><div class="hc-code-label">Corporate Local</div><div class="hc-code-desc">Static-rate contracts managed by Hotel Sales Office.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">GOVMT</span><div class="hc-code-body"><div class="hc-code-label">Government / Military</div><div class="hc-code-desc">Government and diplomatic rates. ID required at check-in.</div></div></div>
-                </div>
-                <div class="hc-codelist" data-sub="fit-wh" style="display:none;">
-                  <div class="hc-code"><span class="hc-code-badge">WHODM</span><div class="hc-code-body"><div class="hc-code-label">Wholesale Dynamic</div><div class="hc-code-desc">Dynamic / margin XML (Expedia, Trip.com package plans).</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">WHOLS</span><div class="hc-code-body"><div class="hc-code-label">Wholesale Web Portal</div><div class="hc-code-desc">Standard rate, 10–20% below BAR. No production commitment.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">WHOLN</span><div class="hc-code-body"><div class="hc-code-label">Wholesale Static</div><div class="hc-code-desc">Signed static contract with a specific wholesaler.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">WHOPM</span><div class="hc-code-body"><div class="hc-code-label">Wholesale Promotion</div><div class="hc-code-desc">Tactical short-term campaigns with wholesale partners.</div></div></div>
-                </div>
-                <!-- Group code lists -->
-                <div class="hc-codelist" data-sub="grp-biz" style="display:none;">
-                  <div class="hc-code"><span class="hc-code-badge">GCORP</span><div class="hc-code-body"><div class="hc-code-label">Corporate Group</div><div class="hc-code-desc">Company or organisation group staying for business.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">GASSO</span><div class="hc-code-body"><div class="hc-code-label">Associations / Conference</div><div class="hc-code-desc">Group attending conferences or exhibitions.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">GINCT</span><div class="hc-code-body"><div class="hc-code-label">Incentives</div><div class="hc-code-desc">Incentive trip, sales reward, or recognition program.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">GGOVT</span><div class="hc-code-body"><div class="hc-code-label">Government Group</div><div class="hc-code-desc">Government entity for official meetings or events.</div></div></div>
-                </div>
-                <div class="hc-codelist" data-sub="grp-leis" style="display:none;">
-                  <div class="hc-code"><span class="hc-code-badge">GSOCI</span><div class="hc-code-body"><div class="hc-code-label">Social Group</div><div class="hc-code-desc">Alumni, birthday, or other social occasions.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">GWEDD</span><div class="hc-code-body"><div class="hc-code-label">Wedding Group</div><div class="hc-code-desc">Group associated with a wedding hosted at the hotel.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">GSERI</span><div class="hc-code-body"><div class="hc-code-label">Tour Series</div><div class="hc-code-desc">Regular recurring groups (weekly / fortnightly).</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">GTOUR</span><div class="hc-code-body"><div class="hc-code-label">Tour Group</div><div class="hc-code-desc">One-time group from a wholesaler or agent.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">GOTHR</span><div class="hc-code-body"><div class="hc-code-label">Other Group</div><div class="hc-code-desc">Last-resort classification.</div></div></div>
-                </div>
-                <!-- Other code lists -->
-                <div class="hc-codelist" data-sub="oth-crew" style="display:none;">
-                  <div class="hc-code"><span class="hc-code-badge">LTERM</span><div class="hc-code-body"><div class="hc-code-label">Long Term Stay</div><div class="hc-code-desc"><b>Not Residence brand.</b> 14+ consecutive nights direct with hotel.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">RESDA</span><div class="hc-code-body"><div class="hc-code-label">Residence Contract A2</div><div class="hc-code-desc"><b>Residence brand only.</b> 30–365 consecutive nights.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">RESDB</span><div class="hc-code-body"><div class="hc-code-label">Residence Contract B2</div><div class="hc-code-desc"><b>Residence brand only.</b> 366+ nights.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">AIRCW</span><div class="hc-code-body"><div class="hc-code-label">Airline Crew</div><div class="hc-code-desc">Long-term back-to-back airline crew contract.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">DELAYF</span><div class="hc-code-body"><div class="hc-code-label">Delayed Flights</div><div class="hc-code-desc">Ad-hoc stays booked for delayed flights.</div></div></div>
-                </div>
-                <div class="hc-codelist" data-sub="oth-comp" style="display:none;">
-                  <div class="hc-code"><span class="hc-code-badge">DAY</span><div class="hc-code-body"><div class="hc-code-label">Day Use</div><div class="hc-code-desc">Same-day arrival and departure. No overnight stay.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">COMOS</span><div class="hc-code-body"><div class="hc-code-label">Complimentary on Sales</div><div class="hc-code-desc">Part of catering/event contract (e.g. wedding couple).</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">COMBU</span><div class="hc-code-body"><div class="hc-code-label">Complimentary Business</div><div class="hc-code-desc">Inspection visits, agency trials, sales promotions.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">COMNB</span><div class="hc-code-body"><div class="hc-code-label">Complimentary Non-Business</div><div class="hc-code-desc">Revenue Officer, Govt. Officer, Shareholder rooms.</div></div></div>
-                </div>
-                <div class="hc-codelist" data-sub="oth-house" style="display:none;">
-                  <div class="hc-code"><span class="hc-code-badge">HOUSP</span><div class="hc-code-body"><div class="hc-code-label">House Use Permanent</div><div class="hc-code-desc">Long-term staff housing (GM), part of employment.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">HOUST</span><div class="hc-code-body"><div class="hc-code-label">House Use Temporary</div><div class="hc-code-desc">Short-term staff, vendor, or contractor accommodation.</div></div></div>
-                  <div class="hc-code"><span class="hc-code-badge">ACT</span><div class="hc-code-body"><div class="hc-code-label">Adjustment</div><div class="hc-code-desc"><b>Finance Dept. only.</b> PM room + ACTINT rate code.</div></div></div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+        <div class="s-inner" style="padding:22px 30px 16px;display:flex;flex-direction:column;">
+          <nav class="hv-crumb" id="hv-crumb"></nav>
+          <div class="hv-stage" id="hv-stage"></div>
+          <div class="hv-hint" id="hv-hint"></div>
         </div>
       </div>
 
@@ -1517,32 +1450,178 @@ function toggleSeg(hdr){
   body.classList.toggle('open');
 }
 
-// Hierarchy cascade on slide 2 (Market Segment)
-const HC_GRP_TITLES = { fit: 'FIT sub-segments', group: 'Group sub-segments', other: 'Other sub-segments' };
-function selectGrp(id){
-  // highlight the active group in column 1
-  document.querySelectorAll('.hc-wrap > .hc-col:nth-child(1) .hc-node').forEach((n,i) => {
-    n.classList.toggle('active', ['fit','group','other'][i] === id);
-  });
-  // show only the matching sub-list in column 2
-  document.querySelectorAll('.hc-sublist').forEach(s => {
-    s.style.display = s.dataset.grp === id ? 'flex' : 'none';
-    // reset any active sub when switching groups
-    s.querySelectorAll('.hc-node').forEach(n => n.classList.remove('active'));
-  });
-  document.getElementById('hc-col2-title').textContent = HC_GRP_TITLES[id];
-  // reset column 3
-  document.querySelectorAll('.hc-codelist').forEach(c => c.style.display = 'none');
-  document.getElementById('hc-empty').style.display = 'flex';
-  document.getElementById('hc-col3-title').textContent = 'Codes';
+// ──────────────────────────────────────────────────────────────
+// Slide 2 — Market Segment progressive hierarchy (state machine)
+// States: root → groups → sub → codes
+// ──────────────────────────────────────────────────────────────
+const HV_DATA = {
+  fit:   { num:'01', name:'FIT',   sub:'Free Individual Traveller',   meta:'4 SUBS · 14 CODES',
+           subs:[
+             {id:'fit-nq',   num:'01', name:'Retail Non-Qualified', meta:'4 CODES',
+              codes:[
+                {b:'DBRRT',  l:'Best Flexible Rate',     d:'Highest publicly available rate. <b>BAR equivalent in the PMS.</b>'},
+                {b:'ADVPC',  l:'Advance Purchase',        d:'Discounted, less flexible — prepaid, minimum length of stay.'},
+                {b:'HTPCK',  l:'Package',                 d:'Room + value-added inclusions (breakfast, spa, transfers).'},
+                {b:'ECOMM',  l:'E-Commerce / OTA',        d:'<b>All OTA bookings. No exceptions.</b>'}
+              ]},
+             {id:'fit-q',    num:'02', name:'Retail Qualified / Loyalty', meta:'5 CODES',
+              codes:[
+                {b:'DLOYAL', l:'Loyalty Program',         d:'<b>Dusit Gold members only.</b> Private sales and free-night redemptions.'},
+                {b:'PROMO',  l:'Promotion & Partnership', d:'Short-term promos and airline / credit card partnerships.'},
+                {b:'AIRLP',  l:'Airline Programs',        d:'Airline stopover programs (Royal Orchid, Emirates).'},
+                {b:'INTLN',  l:'Industry Discounts',      d:'Travel agent and airline employee discounted rates.'},
+                {b:'DUSIT',  l:'Dusit Internal Rate',     d:'Dusit employees, family &amp; friends, inter-company.'}
+              ]},
+             {id:'fit-corp', num:'03', name:'Negotiated Corporate', meta:'5 CODES',
+              codes:[
+                {b:'CORPP',  l:'Consortia / TMC',         d:'RFP programs for travel management companies. Commissionable.'},
+                {b:'CORGL',  l:'Corporate Global',        d:'Large multi-property accounts (Corporate Sales Office).'},
+                {b:'CORPK',  l:'Corporate Key',           d:'Static-rate corporate contracts (Corporate Sales Office).'},
+                {b:'CORPL',  l:'Corporate Local',         d:'Static-rate contracts managed by Hotel Sales Office.'},
+                {b:'GOVMT',  l:'Government / Military',   d:'Government and diplomatic rates. ID required at check-in.'}
+              ]},
+             {id:'fit-wh',   num:'04', name:'Negotiated Wholesale', meta:'4 CODES',
+              codes:[
+                {b:'WHODM',  l:'Wholesale Dynamic',       d:'Dynamic / margin XML (Expedia, Trip.com package plans).'},
+                {b:'WHOLS',  l:'Wholesale Web Portal',    d:'Standard rate, 10–20% below BAR. No production commitment.'},
+                {b:'WHOLN',  l:'Wholesale Static',        d:'Signed static contract with a specific wholesaler.'},
+                {b:'WHOPM',  l:'Wholesale Promotion',     d:'Tactical short-term campaigns with wholesale partners.'}
+              ]}
+           ]},
+  group: { num:'02', name:'Group', sub:'Group bookings &amp; blocks', meta:'2 SUBS · 9 CODES',
+           subs:[
+             {id:'grp-biz',  num:'01', name:'Business Groups', meta:'4 CODES',
+              codes:[
+                {b:'GCORP',  l:'Corporate Group',             d:'Company or organisation group staying for business.'},
+                {b:'GASSO',  l:'Associations / Conference',   d:'Group attending conferences or exhibitions.'},
+                {b:'GINCT',  l:'Incentives',                  d:'Incentive trip, sales reward, or recognition program.'},
+                {b:'GGOVT',  l:'Government Group',            d:'Government entity for official meetings or events.'}
+              ]},
+             {id:'grp-leis', num:'02', name:'Leisure Groups', meta:'5 CODES',
+              codes:[
+                {b:'GSOCI',  l:'Social Group',    d:'Alumni, birthday, or other social occasions.'},
+                {b:'GWEDD',  l:'Wedding Group',   d:'Group associated with a wedding hosted at the hotel.'},
+                {b:'GSERI',  l:'Tour Series',     d:'Regular recurring groups (weekly / fortnightly).'},
+                {b:'GTOUR',  l:'Tour Group',      d:'One-time group from a wholesaler or agent.'},
+                {b:'GOTHR',  l:'Other Group',     d:'Last-resort classification.'}
+              ]}
+           ]},
+  other: { num:'03', name:'Other', sub:'Crew, comp &amp; house use', meta:'3 SUBS · 12 CODES',
+           subs:[
+             {id:'oth-crew',  num:'01', name:'Crew & Contracted', meta:'5 CODES',
+              codes:[
+                {b:'LTERM',  l:'Long Term Stay',         d:'<b>Not Residence brand.</b> 14+ consecutive nights direct with hotel.'},
+                {b:'RESDA',  l:'Residence Contract A2',  d:'<b>Residence brand only.</b> 30–365 consecutive nights.'},
+                {b:'RESDB',  l:'Residence Contract B2',  d:'<b>Residence brand only.</b> 366+ nights.'},
+                {b:'AIRCW',  l:'Airline Crew',           d:'Long-term back-to-back airline crew contract.'},
+                {b:'DELAYF', l:'Delayed Flights',        d:'Ad-hoc stays booked for delayed flights.'}
+              ]},
+             {id:'oth-comp',  num:'02', name:'Complimentary & Day Use', meta:'4 CODES',
+              codes:[
+                {b:'DAY',    l:'Day Use',                    d:'Same-day arrival and departure. No overnight stay.'},
+                {b:'COMOS',  l:'Complimentary on Sales',     d:'Part of catering/event contract (e.g. wedding couple).'},
+                {b:'COMBU',  l:'Complimentary Business',     d:'Inspection visits, agency trials, sales promotions.'},
+                {b:'COMNB',  l:'Complimentary Non-Business', d:'Revenue Officer, Govt. Officer, Shareholder rooms.'}
+              ]},
+             {id:'oth-house', num:'03', name:'House Use & Adjustment', meta:'3 CODES',
+              codes:[
+                {b:'HOUSP',  l:'House Use Permanent', d:'Long-term staff housing (GM), part of employment.'},
+                {b:'HOUST',  l:'House Use Temporary', d:'Short-term staff, vendor, or contractor accommodation.'},
+                {b:'ACT',    l:'Adjustment',          d:'<b>Finance Dept. only.</b> PM room + ACTINT rate code.'}
+              ]}
+           ]}
+};
+
+let hvState = { level:'root', groupId:null, subId:null };
+
+function hvGo(level, id){
+  if(level === 'root')    hvState = { level:'root',   groupId:null,            subId:null };
+  else if(level === 'groups') hvState = { level:'groups', groupId:null,        subId:null };
+  else if(level === 'sub')    hvState = { level:'sub',    groupId:id,           subId:null };
+  else if(level === 'codes')  hvState = { level:'codes',  groupId:hvState.groupId, subId:id };
+  hvRender();
 }
-function selectSub(el, id){
-  // highlight the clicked sub
-  el.parentElement.querySelectorAll('.hc-node').forEach(n => n.classList.toggle('active', n === el));
-  // show matching code-list in column 3
-  document.querySelectorAll('.hc-codelist').forEach(c => c.style.display = c.dataset.sub === id ? 'block' : 'none');
-  document.getElementById('hc-empty').style.display = 'none';
-  document.getElementById('hc-col3-title').textContent = el.querySelector('.hc-node-name').textContent + ' · codes';
+
+function hvRender(){
+  const stage = document.getElementById('hv-stage');
+  const crumb = document.getElementById('hv-crumb');
+  const hint  = document.getElementById('hv-hint');
+  if(!stage || !crumb || !hint) return;
+
+  // Build breadcrumb (empty on root, builds up as we descend)
+  let crumbHtml = '';
+  if(hvState.level !== 'root'){
+    const marketCurrent = hvState.level === 'groups' ? ' current' : '';
+    crumbHtml += `<span class="hv-crumb-item${marketCurrent}" onclick="hvGo('root')">Market Segment</span>`;
+    if(hvState.groupId){
+      const grpCurrent = hvState.level === 'sub' ? ' current' : '';
+      crumbHtml += `<span class="hv-crumb-sep">›</span><span class="hv-crumb-item${grpCurrent}" onclick="hvGo('sub','${hvState.groupId}')">${HV_DATA[hvState.groupId].name}</span>`;
+    }
+    if(hvState.subId){
+      const sub = HV_DATA[hvState.groupId].subs.find(s => s.id === hvState.subId);
+      crumbHtml += `<span class="hv-crumb-sep">›</span><span class="hv-crumb-item current">${sub.name}</span>`;
+    }
+  }
+  crumb.innerHTML = crumbHtml;
+
+  // Render stage + hint
+  if(hvState.level === 'root'){
+    stage.innerHTML = `
+      <div class="hv-hero" onclick="hvGo('groups')">
+        <div class="hv-hero-eyebrow">Module 2 · Overview</div>
+        <h1 class="hv-hero-title">Market Segment</h1>
+        <div class="hv-hero-divider"></div>
+        <div class="hv-hero-stats">
+          <div class="hv-hero-stat"><b>3</b><span>Groups</span></div>
+          <div class="hv-hero-stat"><b>9</b><span>Sub-segments</span></div>
+          <div class="hv-hero-stat"><b>35</b><span>Codes</span></div>
+        </div>
+        <div class="hv-hero-cta">Explore hierarchy <span class="hv-hero-cta-arrow">→</span></div>
+      </div>`;
+    hint.textContent = 'The market code is set at time of booking and never changes — even for groups.';
+  }
+  else if(hvState.level === 'groups'){
+    const cards = Object.keys(HV_DATA).map(gid => {
+      const g = HV_DATA[gid];
+      return `<div class="hv-card" onclick="hvGo('sub','${gid}')">
+        <div class="hv-card-num">${g.num}</div>
+        <div class="hv-card-rule"></div>
+        <div class="hv-card-title">${g.name}</div>
+        <div class="hv-card-sub">${g.sub}</div>
+        <div class="hv-card-foot"><span class="hv-card-meta">${g.meta}</span><span class="hv-card-arrow">›</span></div>
+      </div>`;
+    }).join('');
+    stage.innerHTML = `<div class="hv-grid cols-3">${cards}</div>`;
+    hint.textContent = 'Click a group to see its sub-segments';
+  }
+  else if(hvState.level === 'sub'){
+    const g = HV_DATA[hvState.groupId];
+    const n = g.subs.length;
+    const colClass = n <= 2 ? 'cols-2' : (n === 3 ? 'cols-3' : 'cols-4');
+    const cards = g.subs.map(s =>
+      `<div class="hv-card" onclick="hvGo('codes','${s.id}')">
+        <div class="hv-card-num">${s.num}</div>
+        <div class="hv-card-rule"></div>
+        <div class="hv-card-title">${s.name}</div>
+        <div class="hv-card-foot"><span class="hv-card-meta">${s.meta}</span><span class="hv-card-arrow">›</span></div>
+      </div>`
+    ).join('');
+    stage.innerHTML = `<div class="hv-grid ${colClass}">${cards}</div>`;
+    hint.textContent = 'Click a sub-segment to reveal its codes';
+  }
+  else if(hvState.level === 'codes'){
+    const g = HV_DATA[hvState.groupId];
+    const sub = g.subs.find(s => s.id === hvState.subId);
+    const rows = sub.codes.map(c =>
+      `<div class="hv-code-row">
+        <span class="hv-code-badge">${c.b}</span>
+        <span class="hv-code-label">${c.l}</span>
+        <span class="hv-code-desc">${c.d}</span>
+      </div>`
+    ).join('');
+    stage.innerHTML = `<div class="hv-codes-wrap"><div class="hv-codes">${rows}</div></div>`;
+    hint.textContent = 'Click a breadcrumb above to go back';
+  }
 }
 
 // ── CODE CARDS ──
@@ -1733,6 +1812,7 @@ document.querySelectorAll('.code-grid').forEach(g=>g.style.display='flex');
 syncUI();
 updateQDots();
 scaleCanvas();
+hvRender();
 </script>
 </body>
 </html>
