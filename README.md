@@ -2,7 +2,7 @@
 
 **Live:** https://lmsdusit.dhihospitality.com/
 **LMS:** dusitlearning.com (Moodle)
-**Last updated:** April 2026
+**Last updated:** 22 April 2026
 
 ## Modules
 
