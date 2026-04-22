@@ -25,8 +25,8 @@ html,body{height:100%;overflow:hidden;font-family:'DusitText',sans-serif;backgro
   display:flex;flex-direction:column;height:100%;overflow-y:auto;overflow-x:hidden;
   z-index:200;transition:transform 0.28s ease;
 }
-.sb-top{padding:22px 18px 18px;border-bottom:1px solid var(--g100);flex-shrink:0;}
-.sb-logo img{height:34px;width:auto;opacity:0.95;}
+.sb-top{padding:26px 20px 20px;border-bottom:1px solid var(--g100);flex-shrink:0;}
+.sb-logo img{height:56px;width:auto;opacity:1;}
 .sb-series{font-family:'DusitDisplay',sans-serif;font-size:10px;color:var(--gold);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-top:12px;}
 
 /* Sidebar progress — just a clean bar, no number */
@@ -101,7 +101,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 /* left white / right white split — unified white canvas */
 .split-left{
   width:336px;min-width:336px;flex-shrink:0;
-  background:var(--b800);padding:28px 26px;
+  background:var(--dark);padding:28px 26px;
   display:flex;flex-direction:column;justify-content:center;overflow:hidden;
 }
 .split-right{
@@ -214,7 +214,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 /* Results panel — overlaid inside the quiz slide when complete */
 .results-overlay{
   display:none;position:absolute;inset:0;
-  background:var(--b800);
+  background:var(--dark);
   flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:32px;
 }
@@ -327,8 +327,6 @@ body.fullscreen #fs-bot{display:flex;}
   <div class="topbar">
     <div class="tb-left">
       <button id="menuToggle" onclick="document.getElementById('sidebar').classList.toggle('open')">&#9776;</button>
-      <div class="tb-logo"><img src="../assets/DHR-white.png" alt="Dusit"></div>
-      <span class="tb-pipe">|</span>
       <span class="tb-mod">MODULE 1</span>
       <span class="tb-pipe" style="font-size:10px;padding:0 2px;">›</span>
       <span class="tb-crumb" id="tbCrumb">Overview</span>
@@ -444,7 +442,7 @@ body.fullscreen #fs-bot{display:flex;}
         <div style="display:grid;grid-template-columns:268px 1fr;height:100%;">
 
           <!-- LEFT: context panel -->
-          <div style="padding:28px 22px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--b800);">
+          <div style="padding:28px 22px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
             <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.7;margin-bottom:8px;display:block;">The connected system</span>
             <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">One change.<br>Every rate.<br>Automatic.</h2>
             <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:18px;">BAR is the single source of truth. Every channel rate is a fixed percentage of BAR. When the RM moves BAR — all derived rates update instantly, with zero manual work.</p>

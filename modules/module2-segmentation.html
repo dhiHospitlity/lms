@@ -25,8 +25,8 @@ html,body{height:100%;overflow:hidden;font-family:'DusitText',sans-serif;backgro
   display:flex;flex-direction:column;height:100%;overflow-y:auto;overflow-x:hidden;
   z-index:200;transition:transform 0.28s ease;
 }
-.sb-top{padding:22px 18px 18px;border-bottom:1px solid var(--g100);flex-shrink:0;}
-.sb-logo img{height:34px;width:auto;opacity:0.95;}
+.sb-top{padding:26px 20px 20px;border-bottom:1px solid var(--g100);flex-shrink:0;}
+.sb-logo img{height:56px;width:auto;opacity:1;}
 .sb-series{font-family:'DusitDisplay',sans-serif;font-size:10px;color:var(--gold);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-top:12px;}
 .sb-prog{padding:12px 18px;border-bottom:1px solid var(--g100);flex-shrink:0;}
 .sb-prog-bar{height:3px;background:var(--g100);border-radius:2px;overflow:hidden;}
@@ -87,7 +87,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 
 .split-left{
   width:300px;min-width:300px;flex-shrink:0;
-  background:var(--b800);padding:28px 26px;
+  background:var(--dark);padding:28px 26px;
   display:flex;flex-direction:column;justify-content:center;overflow:hidden;
 }
 .split-right{
@@ -229,7 +229,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .quiz-foot-left{font-size:10px;color:var(--g300);font-family:'DusitDisplay',sans-serif;font-weight:700;letter-spacing:0.05em;}
 
 /* RESULTS */
-.results-overlay{display:none;position:absolute;inset:0;background:var(--b800);flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;}
+.results-overlay{display:none;position:absolute;inset:0;background:var(--dark);flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;}
 .results-overlay.on{display:flex;}
 .res-n{font-family:'DusitDisplay',sans-serif;font-size:64px;font-weight:800;color:white;line-height:1;}
 .res-l{font-size:11px;color:rgba(255,255,255,0.38);margin-top:4px;letter-spacing:0.06em;text-transform:uppercase;}
@@ -344,8 +344,6 @@ body.fullscreen #fs-bot{display:flex;}
   <div class="topbar">
     <div class="tb-left">
       <button id="menuToggle" onclick="document.getElementById('sidebar').classList.toggle('open')">&#9776;</button>
-      <div class="tb-logo"><img src="../assets/DHR-white.png" alt="Dusit"></div>
-      <span class="tb-pipe">|</span>
       <span class="tb-mod">MODULE 2</span>
       <span class="tb-pipe" style="font-size:10px;padding:0 2px;">›</span>
       <span class="tb-crumb" id="tbCrumb">Overview</span>
@@ -391,7 +389,7 @@ body.fullscreen #fs-bot{display:flex;}
         <div style="display:grid;grid-template-columns:340px 1fr;height:100%;">
 
           <!-- LEFT: narrative -->
-          <div style="padding:28px 26px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--b800);">
+          <div style="padding:28px 26px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
             <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.7;margin-bottom:8px;display:block;">What is tracking segmentation?</span>
             <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Every booking has a story.<br>Tracking makes sure<br>we record it correctly.</h2>
             <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">When a reservation comes in, two things happen — someone books a room, and someone stays in it. These are often different people. A travel agent books for a corporate guest. A parent books for their family. An OTA books on behalf of a tourist.<br><br>Tracking segmentation records <b style="color:var(--b200);">both sides of that story</b> — who booked and who stayed — so the hotel can analyse demand, set the right rates, and report accurately.</p>
@@ -466,7 +464,7 @@ body.fullscreen #fs-bot{display:flex;}
       <!-- SLIDE 1b: WHO BOOKS -->
       <div class="slide s-white" id="s-1b">
         <div style="display:grid;grid-template-columns:300px 1fr;height:100%;">
-          <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--b800);">
+          <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
             <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.7;margin-bottom:8px;display:block;">Tracking segmentation</span>
             <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Who books the room?</h2>
             <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">The person who makes the booking is not always the person who stays. A travel agent books for a tourist. A corporate travel desk books for an executive. An OTA books on behalf of anyone.</p>
@@ -604,7 +602,7 @@ body.fullscreen #fs-bot{display:flex;}
       <!-- SLIDE 1c: WHO STAYS -->
       <div class="slide s-white" id="s-1c">
         <div style="display:grid;grid-template-columns:300px 1fr;height:100%;">
-          <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--b800);">
+          <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
             <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.7;margin-bottom:8px;display:block;">Tracking segmentation</span>
             <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Who actually stays in the room?</h2>
             <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">Once we know who booked, we need to understand who is actually checking in. This tells us about source markets, demand patterns, and which guest profiles drive our revenue.</p>
@@ -785,7 +783,7 @@ body.fullscreen #fs-bot{display:flex;}
       <div class="slide s-white" id="s-1d">
         <div style="display:grid;grid-template-columns:300px 1fr;height:100%;">
           <!-- Left panel -->
-          <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--b800);">
+          <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
             <span style="display:inline-block;background:var(--gold);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;padding:4px 9px;border-radius:3px;margin-bottom:16px;align-self:flex-start;">Experimental · 1d</span>
             <span style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.75;margin-bottom:10px;display:block;">Editorial treatment</span>
             <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Who books the room?</h2>
