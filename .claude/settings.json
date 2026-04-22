@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "bash",
+            "command": "cd \"c:/Users/Prakash K/Downloads/dusit-learning/dusit-learning\" && status=$(git status --porcelain 2>/dev/null); if [ -n \"$status\" ]; then git add -A && git -c user.email=\"dhihospitalitysolutions@gmail.com\" -c user.name=\"Prakash K\" commit -m \"auto: $(date '+%Y-%m-%d %H:%M:%S')\" -q && git push origin main -q && echo '{\"systemMessage\":\"✓ Changes pushed — live at https://lmsdusit.dhihospitality.com in ~30s\"}'; fi",
+            "timeout": 60,
+            "statusMessage": "Auto-deploying to GitHub Pages..."
+          }
+        ]
+      }
+    ]
+  }
+}

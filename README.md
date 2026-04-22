@@ -17,9 +17,9 @@ Root `/` redirects to Module 1.
 
 **Local preview** — install the *Live Server* VS Code extension, right-click any `.html` file, pick **Open with Live Server**. Browser auto-reloads on save.
 
-**Auto deploy** — double-click `start-auto-deploy.bat`. A terminal window opens and every change you save to any file is auto-committed and pushed to GitHub within ~5 seconds. Leave the window open while you work. Live site updates ~30s after each push.
+**Auto deploy** — configured via a Claude Code Stop hook in `.claude/settings.json`. Every time Claude finishes a turn in which files changed, the hook automatically runs `git add -A && git commit && git push`. No manual command, no extra terminal window. Live site updates ~30s after each push.
 
-Manual push (if you prefer):
+Manual push (for edits made outside Claude):
 ```
 git add .
 git commit -m "<message>"
@@ -34,8 +34,7 @@ git push
 ├── CNAME                       lmsdusit.dhihospitality.com
 ├── modules/                    module HTML files
 ├── assets/                     fonts, logos, fonts.css
-├── auto-deploy.ps1             file watcher + git push
-└── start-auto-deploy.bat       double-click to run the watcher
+└── .claude/settings.json       Stop hook for auto-deploy
 ```
 
 ## Notes
