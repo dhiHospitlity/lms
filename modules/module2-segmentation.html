@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 2 — Revenue Tracking Segmentation · Dusit Learning</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+:root{
+  --b900:#001F3F;--b800:#003570;--b700:#004B94;--b600:#1A6DC0;--b400:#5B9FD4;
+  --b200:#B5D4F4;--b100:#D8EAFB;--b50:#EEF6FD;
+  --dark:#0A0A1A;--dark2:#12122A;
+  --g700:#374151;--g500:#6B7280;--g300:#9CA3AF;--g100:#E5E7EB;--g50:#F8F9FA;
+  --white:#FFFFFF;--gold:#C9A84C;--gold-l:#F5EDD8;
+  --r:12px;--rs:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;font-family:'DusitText',sans-serif;background:var(--g50);color:var(--dark);line-height:1.6;}
+#shell{display:flex;height:100vh;width:100%;overflow:hidden;}
+
+/* SIDEBAR */
+#sidebar{
+  width:234px;min-width:234px;flex-shrink:0;
+  background:var(--dark);border-right:1px solid rgba(255,255,255,0.06);
+  display:flex;flex-direction:column;height:100%;overflow-y:auto;overflow-x:hidden;
+  z-index:200;transition:transform 0.28s ease;
+}
+.sb-top{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;}
+.sb-logo img{height:24px;width:auto;filter:brightness(0) invert(1);opacity:0.88;}
+.sb-series{font-size:9px;color:rgba(255,255,255,0.28);letter-spacing:0.12em;text-transform:uppercase;margin-top:8px;}
+.sb-prog{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;}
+.sb-prog-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;}
+.sb-prog-fill{height:100%;background:var(--gold);border-radius:2px;transition:width 0.4s;}
+.sb-nav{padding:10px 10px;flex:1;}
+.sb-section{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);padding:0 8px;margin:8px 0 5px;}
+.sb-item{display:flex;align-items:center;gap:8px;padding:8px 8px;border-radius:6px;cursor:pointer;transition:background 0.15s;border:1px solid transparent;margin-bottom:2px;}
+.sb-item:hover:not(.locked):not(.active){background:rgba(255,255,255,0.04);}
+.sb-item.active{background:rgba(29,95,180,0.2);border-color:rgba(29,95,180,0.35);}
+.sb-item.visited .sb-dot{background:var(--gold);}
+.sb-item.locked{cursor:not-allowed;opacity:0.32;}
+.sb-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.14);flex-shrink:0;transition:background 0.2s;}
+.sb-item.active .sb-dot{background:var(--b400);}
+.sb-text{flex:1;}
+.sb-stitle{font-size:11px;font-weight:500;color:rgba(255,255,255,0.42);line-height:1.3;}
+.sb-item.active .sb-stitle{color:white;font-weight:600;}
+.sb-lock{font-size:9px;color:rgba(255,255,255,0.22);flex-shrink:0;}
+.sb-divider{height:1px;background:rgba(255,255,255,0.05);margin:6px 8px;}
+.sb-footer{padding:12px 16px;border-top:1px solid rgba(255,255,255,0.06);font-size:9px;color:rgba(255,255,255,0.15);line-height:1.55;flex-shrink:0;}
+
+/* CONTENT */
+#content{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;overflow:hidden;}
+
+/* TOPBAR */
+.topbar{
+  background:var(--dark);height:50px;padding:0 18px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.tb-left{display:flex;align-items:center;gap:10px;min-width:0;}
+.tb-logo img{height:19px;filter:brightness(0) invert(1);opacity:0.82;}
+.tb-pipe{color:rgba(255,255,255,0.1);font-size:14px;flex-shrink:0;}
+.tb-mod{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b400);letter-spacing:0.06em;white-space:nowrap;}
+.tb-crumb{font-size:10px;color:rgba(255,255,255,0.28);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tb-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.btn-icon{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.45);padding:5px 9px;border-radius:5px;cursor:pointer;font-size:13px;transition:all 0.14s;line-height:1;}
+.btn-icon:hover{background:rgba(255,255,255,0.11);color:white;}
+#menuToggle{display:none;background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.5);font-size:18px;padding:4px;}
+
+/* STAGE */
+#stage{flex:1;position:relative;overflow:hidden;background:var(--g100);display:flex;align-items:center;justify-content:center;}
+
+/* CANVAS */
+#canvas{
+  width:900px;height:540px;background:var(--white);border-radius:10px;
+  box-shadow:0 8px 40px rgba(0,0,0,0.45);position:absolute;overflow:hidden;transform-origin:top left;
+}
+body.fullscreen #canvas{border-radius:0;box-shadow:none;}
+
+/* SLIDES */
+.slide{display:none;position:absolute;inset:0;overflow:hidden;}
+.slide.on{display:flex;flex-direction:column;}
+.slide.s-white{background:var(--white);}
+.slide.s-off{background:var(--g50);}
+.slide.s-quiz{background:var(--g50);}
+.slide.s-split{display:none;flex-direction:row;}
+.slide.s-split.on{display:flex;}
+
+.split-left{
+  width:300px;min-width:300px;flex-shrink:0;
+  background:var(--b800);padding:28px 26px;
+  display:flex;flex-direction:column;justify-content:center;overflow:hidden;
+}
+.split-right{
+  flex:1;background:var(--white);padding:20px 22px;
+  display:flex;flex-direction:column;justify-content:center;
+  overflow-y:auto;overflow-x:hidden;
+}
+.s-inner{padding:26px 30px;height:100%;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;}
+.s-centre{justify-content:center;}
+
+/* TYPOGRAPHY */
+.eye{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b600);margin-bottom:6px;display:block;}
+.eye-lt{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.8;margin-bottom:6px;display:block;}
+.sh{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--dark);line-height:1.25;margin-bottom:10px;}
+.sh-lt{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--white);line-height:1.25;margin-bottom:10px;}
+.body-text{font-size:12px;color:var(--g700);line-height:1.78;margin-bottom:12px;}
+.body-text b{color:var(--b700);font-weight:700;}
+.deep-n{font-family:'DusitDisplay',sans-serif;font-size:38px;font-weight:800;color:var(--b200);line-height:1;margin-bottom:2px;}
+.deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);margin-bottom:8px;opacity:0.7;}
+.deep-title{font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--white);line-height:1.2;margin-bottom:10px;}
+.deep-why{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.78;}
+.deep-why b{color:var(--b200);font-weight:600;}
+
+/* TRACKING FIELDS */
+.tracking-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
+.tf-card{border-radius:var(--rs);padding:14px 16px;border:1.5px solid var(--b100);background:var(--b50);}
+.tf-icon{font-size:18px;margin-bottom:6px;}
+.tf-title{font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;color:var(--b800);margin-bottom:3px;}
+.tf-desc{font-size:10px;color:var(--g500);line-height:1.5;}
+
+/* SEGMENT HIERARCHY */
+.seg-hierarchy{display:flex;flex-direction:column;gap:6px;margin:10px 0;}
+.seg-group{border-radius:var(--rs);overflow:hidden;border:1px solid var(--g100);}
+.seg-group-hdr{padding:9px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background 0.15s;}
+.seg-group-hdr:hover{filter:brightness(0.95);}
+.seg-group-name{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.04em;}
+.seg-group-meta{font-size:10px;opacity:0.7;}
+.seg-group-body{display:none;padding:8px 14px;background:var(--white);border-top:1px solid var(--g100);}
+.seg-group-body.open{display:block;}
+.seg-sub{font-size:10px;color:var(--g700);padding:3px 0;border-bottom:1px solid var(--g50);display:flex;align-items:center;gap:6px;}
+.seg-sub:last-child{border-bottom:none;}
+.seg-dot{width:5px;height:5px;border-radius:50%;background:var(--b400);flex-shrink:0;}
+
+/* segment group colors */
+.sg-fit{background:#EEF6FD;border-color:#B5D4F4;}.sg-fit .seg-group-name{color:#003570;}
+.sg-grp{background:#EAF3DE;border-color:#C0DD97;}.sg-grp .seg-group-name{color:#27500A;}
+.sg-oth{background:#F1EFE8;border-color:#D3D1C7;}.sg-oth .seg-group-name{color:#444441;}
+
+/* CODE CARDS */
+.code-grid{display:flex;flex-direction:column;gap:6px;margin-top:8px;}
+.code-card{border-radius:var(--rs);border:1px solid var(--g100);overflow:hidden;cursor:pointer;transition:all 0.15s;}
+.code-card:hover{border-color:var(--b400);}
+.code-card-hdr{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--white);}
+.code-badge{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;background:var(--b50);color:var(--b700);letter-spacing:0.06em;white-space:nowrap;flex-shrink:0;}
+.code-label{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--dark);flex:1;}
+.code-seq{font-size:10px;color:var(--g300);flex-shrink:0;}
+.code-card-body{display:none;padding:8px 12px 10px;background:var(--g50);border-top:1px solid var(--g100);font-size:10px;color:var(--g700);line-height:1.6;}
+.code-card-body.open{display:block;}
+.code-card-body b{color:var(--b700);}
+
+/* SOURCE TABLE */
+.source-table{width:100%;border-collapse:collapse;font-size:10px;margin-top:8px;}
+.source-table th{background:var(--b800);color:white;padding:7px 10px;text-align:left;font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.05em;}
+.source-table td{padding:6px 10px;border-bottom:1px solid var(--g100);color:var(--g700);vertical-align:top;line-height:1.4;}
+.source-table tr:last-child td{border-bottom:none;}
+.source-table tr:nth-child(even) td{background:var(--g50);}
+.src-code{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--b700);}
+.src-group-row td{background:var(--b50);font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--b800);letter-spacing:0.04em;}
+
+/* ORIGIN */
+.origin-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.origin-card{border-radius:var(--r);padding:20px;border:2px solid var(--b100);}
+.origin-card.dir{background:var(--b50);border-color:var(--b200);}
+.origin-card.ind{background:var(--g50);border-color:var(--g100);}
+.origin-code{font-family:'DusitDisplay',sans-serif;font-size:28px;font-weight:800;margin-bottom:4px;}
+.origin-card.dir .origin-code{color:var(--b700);}
+.origin-card.ind .origin-code{color:var(--g500);}
+.origin-name{font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;margin-bottom:8px;}
+.origin-card.dir .origin-name{color:var(--b800);}
+.origin-card.ind .origin-name{color:var(--g700);}
+.origin-q{font-size:10px;font-weight:700;color:var(--g500);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em;}
+.origin-desc{font-size:11px;color:var(--g700);line-height:1.6;}
+.origin-examples{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;}
+.origin-tag{font-size:9px;padding:2px 7px;border-radius:4px;font-weight:600;}
+.origin-card.dir .origin-tag{background:var(--b100);color:var(--b800);}
+.origin-card.ind .origin-tag{background:var(--g100);color:var(--g700);}
+
+/* GOLDEN RULES */
+.rules-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;}
+.rule-card{border-radius:var(--rs);padding:14px;border:1.5px solid var(--b100);background:var(--b50);opacity:0;transform:translateY(10px);transition:opacity 0.35s ease,transform 0.35s ease;}
+.rule-card.revealed{opacity:1;transform:translateY(0);}
+.rule-num{font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:var(--b200);line-height:1;margin-bottom:6px;}
+.rule-text{font-size:11px;color:var(--b800);line-height:1.5;font-weight:500;}
+.rule-card.highlighted{border-color:var(--b400);background:var(--b700);}
+.rule-card.highlighted .rule-num{color:rgba(255,255,255,0.4);}
+.rule-card.highlighted .rule-text{color:white;}
+
+/* DO / DONT */
+.dodont{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.do-box{background:var(--b50);border:1px solid var(--b100);border-radius:var(--r);padding:18px;}
+.dont-box{background:var(--g50);border:1px solid var(--g100);border-radius:var(--r);padding:18px;}
+.dd-lbl{font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:11px;}
+.do-box .dd-lbl{color:var(--b700);}.dont-box .dd-lbl{color:var(--g500);}
+.ddi{font-size:11px;padding:5px 0;border-bottom:1px solid rgba(0,0,0,0.05);display:flex;gap:7px;align-items:flex-start;line-height:1.45;color:var(--dark);}
+.ddi:last-child{border-bottom:none;}
+.ddi-ic{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;flex-shrink:0;margin-top:1px;}
+.do-box .ddi-ic{background:var(--b700);color:white;}.dont-box .ddi-ic{background:var(--g300);color:white;}
+
+/* CHECKLIST */
+.chklist{list-style:none;margin-top:6px;}
+.chi{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px solid var(--g100);font-size:12px;color:var(--dark);cursor:pointer;}
+.chi:last-child{border-bottom:none;}
+.chbox{width:18px;height:18px;border:2px solid var(--g100);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:all 0.15s;background:white;}
+.chi.done .chbox{background:var(--b700);border-color:var(--b700);}
+.chi.done .chbox::after{content:'';display:block;width:4px;height:7px;border:2px solid white;border-top:none;border-left:none;transform:rotate(45deg) translate(-1px,-1px);}
+.chi.done{color:var(--g300);text-decoration:line-through;}
+
+/* QUIZ */
+.quiz-wrap{display:flex;flex-direction:column;height:100%;}
+.quiz-header{padding:20px 24px 0;flex-shrink:0;}
+.q-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.q-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--b600);}
+.q-dots{display:flex;gap:5px;}
+.q-dot{width:9px;height:9px;border-radius:50%;background:var(--g100);transition:all 0.2s;}
+.q-dot.current{background:var(--b700);transform:scale(1.2);}
+.q-dot.ok{background:var(--b400);}
+.q-dot.wrong{background:var(--g300);}
+.q-text{font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:700;color:var(--dark);line-height:1.5;}
+.quiz-opts{padding:12px 24px;display:flex;flex-direction:column;gap:7px;flex:1;overflow-y:auto;}
+.qopt{padding:10px 14px;border:1.5px solid var(--g100);border-radius:var(--rs);font-size:11px;color:var(--dark);cursor:pointer;background:var(--white);text-align:left;line-height:1.45;transition:all 0.12s;font-family:'DusitText',sans-serif;}
+.qopt:hover:not([disabled]){border-color:var(--b600);background:var(--b50);color:var(--b800);}
+.qopt.correct{background:var(--b50);border-color:var(--b400);color:var(--b800);font-weight:600;}
+.qopt.wrong{background:var(--g50);border-color:var(--g300);color:var(--g700);}
+.qopt.reveal{border-color:var(--b400);border-style:dashed;}
+.q-fb{margin:0 24px;padding:9px 12px;border-radius:var(--rs);font-size:11px;line-height:1.65;display:none;flex-shrink:0;}
+.q-fb.correct{background:var(--b50);color:var(--b800);border-left:3px solid var(--b700);}
+.q-fb.wrong{background:var(--g50);color:var(--g700);border-left:3px solid var(--g300);}
+.quiz-foot{padding:10px 24px;background:var(--white);border-top:1px solid var(--g100);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.quiz-foot-left{font-size:10px;color:var(--g300);font-family:'DusitDisplay',sans-serif;font-weight:700;letter-spacing:0.05em;}
+
+/* RESULTS */
+.results-overlay{display:none;position:absolute;inset:0;background:var(--b800);flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;}
+.results-overlay.on{display:flex;}
+.res-n{font-family:'DusitDisplay',sans-serif;font-size:64px;font-weight:800;color:white;line-height:1;}
+.res-l{font-size:11px;color:rgba(255,255,255,0.38);margin-top:4px;letter-spacing:0.06em;text-transform:uppercase;}
+.res-msg{font-size:13px;color:rgba(255,255,255,0.65);font-weight:500;margin-top:14px;max-width:380px;line-height:1.7;}
+.res-actions{display:flex;gap:10px;margin-top:22px;}
+.res-btn{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;padding:9px 20px;border-radius:var(--rs);cursor:pointer;letter-spacing:0.03em;transition:all 0.15s;border:none;}
+.res-btn.retry{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.65);border:1.5px solid rgba(255,255,255,0.18);}
+.res-btn.retry:hover{background:rgba(255,255,255,0.18);color:white;}
+.res-btn.back{background:var(--b700);color:white;}
+.res-btn.back:hover{background:var(--b900);}
+
+/* NAV BAR */
+#nav-bar{background:var(--white);border-top:1px solid var(--g100);padding:0 18px;height:48px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:10px;}
+.nav-mid{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.nav-label{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--g300);letter-spacing:0.05em;white-space:nowrap;}
+.nav-dots{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:320px;}
+.ndot{width:6px;height:6px;border-radius:50%;background:var(--g100);cursor:pointer;transition:background 0.18s;flex-shrink:0;}
+.ndot.on{background:var(--b700);}
+.ndot.locked{cursor:not-allowed;opacity:0.28;}
+.ndot.done{background:var(--gold);}
+.btn{font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:8px 18px;border-radius:var(--rs);cursor:pointer;border:none;transition:all 0.14s;letter-spacing:0.02em;white-space:nowrap;}
+.btn-p{background:var(--b700);color:white;}.btn-p:hover{background:var(--b800);}
+.btn-g{background:transparent;color:var(--g500);border:1.5px solid var(--g100);}.btn-g:hover{border-color:var(--b600);color:var(--b700);}
+.btn:disabled{opacity:0.28;cursor:not-allowed;}
+
+/* FULLSCREEN */
+body.fullscreen #sidebar,body.fullscreen .topbar,body.fullscreen #nav-bar{display:none !important;}
+body.fullscreen #stage{background:#000;}
+#fs-top{display:none;position:fixed;top:0;left:0;right:0;height:44px;z-index:1000;background:rgba(10,10,26,0.88);backdrop-filter:blur(10px);padding:0 18px;align-items:center;justify-content:space-between;}
+#fs-bot{display:none;position:fixed;bottom:0;left:0;right:0;height:50px;z-index:1000;background:rgba(10,10,26,0.85);backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,0.07);padding:0 18px;align-items:center;justify-content:space-between;gap:10px;}
+body.fullscreen #fs-top{display:flex;}
+body.fullscreen #fs-bot{display:flex;}
+.fs-info{display:flex;align-items:center;gap:10px;}
+.fs-info img{height:17px;filter:brightness(0) invert(1);opacity:0.75;}
+.fs-mod{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b400);letter-spacing:0.05em;}
+.fs-crumb{font-size:10px;color:rgba(255,255,255,0.28);}
+.fs-exit{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.55);font-size:10px;font-weight:600;padding:5px 12px;border-radius:5px;cursor:pointer;font-family:'DusitDisplay',sans-serif;letter-spacing:0.04em;transition:all 0.14s;}
+.fs-exit:hover{background:rgba(255,255,255,0.13);color:white;}
+.fs-nav-mid{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;}
+.fs-nav-lbl{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,0.28);letter-spacing:0.05em;}
+.fs-ndots{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:280px;}
+.fs-ndot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.12);cursor:pointer;transition:background 0.18s;}
+.fs-ndot.on{background:var(--b400);}
+.fs-ndot.locked{cursor:not-allowed;opacity:0.2;}
+.fs-ndot.done{background:var(--gold);}
+.fs-btn{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;padding:7px 16px;border-radius:var(--rs);cursor:pointer;border:none;transition:all 0.14s;white-space:nowrap;}
+.fs-btn.p{background:var(--b700);color:white;}.fs-btn.p:hover{background:var(--b800);}
+.fs-btn.g{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1.5px solid rgba(255,255,255,0.12);}.fs-btn.g:hover{border-color:var(--b400);color:var(--b200);}
+.fs-btn:disabled{opacity:0.22;cursor:not-allowed;}
+
+/* KEY BOX */
+.key-box{background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:9px 13px;font-size:11px;color:var(--b800);line-height:1.6;margin-top:10px;}
+.key-box strong{color:var(--b700);}
+
+/* BREADCRUMB NAV */
+.bc-nav{display:flex;align-items:center;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
+.bc-item{font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;cursor:pointer;transition:all 0.15s;}
+.bc-item.active{background:var(--b700);color:white;}
+.bc-item:not(.active){background:var(--b50);color:var(--b600);}
+.bc-item:not(.active):hover{background:var(--b100);}
+.bc-sep{font-size:9px;color:var(--g300);}
+
+@media(max-width:800px){
+  #sidebar{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%);}
+  #sidebar.open{transform:translateX(0);}
+  #menuToggle{display:block;}
+}
+</style>
+</head>
+<body>
+<div id="shell">
+
+<!-- SIDEBAR -->
+<div id="sidebar">
+  <div class="sb-top">
+    <div class="sb-logo"><img src="../assets/DHR-white.png" alt="Dusit Hotels &amp; Resorts"></div>
+    <div class="sb-series">Learning &amp; Development · Revenue Series</div>
+  </div>
+  <div class="sb-prog">
+    <div class="sb-prog-bar"><div class="sb-prog-fill" id="sbFill" style="width:5%"></div></div>
+  </div>
+  <div class="sb-nav">
+    <div class="sb-section">Content</div>
+    <div class="sb-item active" id="sbi-0" onclick="nav(0)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Overview</div></div></div>
+    <div class="sb-item" id="sbi-1" onclick="nav(1)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">What is Tracking Segmentation?</div></div></div>
+    <div class="sb-item" id="sbi-1b" onclick="nav(2)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Who Books</div></div></div>
+    <div class="sb-item" id="sbi-1c" onclick="nav(3)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Who Stays</div></div></div>
+    <div class="sb-item" id="sbi-2" onclick="nav(4)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Market Segment — Overview</div></div></div>
+    <div class="sb-item" id="sbi-3" onclick="nav(3)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">FIT Segments</div></div></div>
+    <div class="sb-item" id="sbi-4" onclick="nav(4)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Group Segments</div></div></div>
+    <div class="sb-item" id="sbi-5" onclick="nav(5)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Other Segments</div></div></div>
+    <div class="sb-item" id="sbi-6" onclick="nav(6)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Source Codes</div></div></div>
+    <div class="sb-item" id="sbi-7" onclick="nav(7)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Origin Codes</div></div></div>
+    <div class="sb-item" id="sbi-8" onclick="nav(8)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Country of Residence</div></div></div>
+    <div class="sb-item" id="sbi-9" onclick="nav(9)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Golden Rules</div></div></div>
+    <div class="sb-item" id="sbi-10" onclick="nav(10)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Do / Don't</div></div></div>
+    <div class="sb-item" id="sbi-11" onclick="nav(11)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Checklist</div></div></div>
+    <div class="sb-divider"></div>
+    <div class="sb-section">Quiz</div>
+    <div class="sb-item locked" id="sbi-quiz" onclick="nav(12)">
+      <div class="sb-dot"></div>
+      <div class="sb-text"><div class="sb-stitle">Quiz · 5 Questions</div></div>
+      <div class="sb-lock" id="quizLock">🔒</div>
+    </div>
+  </div>
+  <div class="sb-footer">Complete all content slides and tick the checklist to unlock the quiz.</div>
+</div>
+
+<!-- CONTENT -->
+<div id="content">
+  <div class="topbar">
+    <div class="tb-left">
+      <button id="menuToggle" onclick="document.getElementById('sidebar').classList.toggle('open')">&#9776;</button>
+      <div class="tb-logo"><img src="../assets/DHR-white.png" alt="Dusit"></div>
+      <span class="tb-pipe">|</span>
+      <span class="tb-mod">MODULE 2</span>
+      <span class="tb-pipe" style="font-size:10px;padding:0 2px;">›</span>
+      <span class="tb-crumb" id="tbCrumb">Overview</span>
+    </div>
+    <div class="tb-right">
+      <button class="btn-icon" onclick="toggleFS()" title="Fullscreen">⛶</button>
+    </div>
+  </div>
+
+  <div id="stage">
+    <div id="canvas">
+
+      <!-- SLIDE 0: OVERVIEW -->
+      <div class="slide s-white on" id="s-0">
+        <div class="s-inner s-centre">
+          <span class="eye">Module 2 · Revenue Tracking Segmentation</span>
+          <h2 class="sh">Every booking tells a story — if you track it correctly</h2>
+          <p class="body-text">Tracking segmentation is how Dusit records <b>who books, through which channel, and where they come from</b>. Get it right and every report, every forecast, and every rate decision is built on accurate data. Get it wrong and the whole system breaks down silently.</p>
+          <div class="tracking-fields">
+            <div class="tf-card" onclick="nav(1)">
+              <div class="tf-title">Market Segment</div>
+              <div class="tf-desc">Who is booking and why — the rate type and guest category that drives all pricing logic.</div>
+            </div>
+            <div class="tf-card" onclick="nav(6)">
+              <div class="tf-title">Source Code</div>
+              <div class="tf-desc">The specific channel the booking came through — website, GDS, OTA, phone, walk-in.</div>
+            </div>
+            <div class="tf-card" onclick="nav(7)">
+              <div class="tf-title">Origin Code</div>
+              <div class="tf-desc">Was there an intermediary? Direct booking or through a third party?</div>
+            </div>
+            <div class="tf-card" onclick="nav(8)">
+              <div class="tf-title">Country of Residence</div>
+              <div class="tf-desc">Where the guest lives — mandatory worldwide using the ISO standard.</div>
+            </div>
+          </div>
+          <div class="key-box" style="margin-top:6px;"><strong>Why it matters:</strong> These four fields feed directly into Dusit's DDP reports, RevPAR analysis, and forecasting. A wrong market code in the PMS produces wrong data everywhere — instantly.</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 1: WHAT IS TRACKING SEGMENTATION -->
+      <div class="slide s-white" id="s-1">
+        <div style="display:grid;grid-template-columns:340px 1fr;height:100%;">
+
+          <!-- LEFT: narrative -->
+          <div style="padding:28px 26px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--b800);">
+            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.7;margin-bottom:8px;display:block;">What is tracking segmentation?</span>
+            <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Every booking has a story.<br>Tracking makes sure<br>we record it correctly.</h2>
+            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">When a reservation comes in, two things happen — someone books a room, and someone stays in it. These are often different people. A travel agent books for a corporate guest. A parent books for their family. An OTA books on behalf of a tourist.<br><br>Tracking segmentation records <b style="color:var(--b200);">both sides of that story</b> — who booked and who stayed — so the hotel can analyse demand, set the right rates, and report accurately.</p>
+            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 13px;">
+              <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b200);margin-bottom:6px;">Why it matters</div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.5);line-height:1.65;">A wrong market code in the PMS produces wrong data in every report, every forecast, and every rate decision — immediately and silently. There is no error message. The system just stores what you enter.</div>
+            </div>
+          </div>
+
+          <!-- RIGHT: who books / who stays diagram -->
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 28px;gap:12px;background:var(--white);">
+            <p style="font-size:11px;color:var(--g500);text-align:center;max-width:420px;line-height:1.6;margin-bottom:4px;">Tracking segmentation captures two groups of data fields — one about the <b style="color:var(--b700);">booking</b>, one about the <b style="color:var(--b700);">guest</b>.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%;max-width:480px;">
+
+              <!-- WHO BOOKS -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                <div style="background:var(--b50);border:1.5px solid var(--b100);border-radius:8px;padding:6px 20px;font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--b800);">Who books</div>
+                <div style="position:relative;width:180px;height:180px;">
+                  <!-- diamond background -->
+                  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(45deg);width:90px;height:90px;background:var(--g100);border-radius:6px;"></div>
+                  <!-- Market -->
+                  <div style="position:absolute;top:8px;left:8px;width:78px;height:78px;background:#9E9E9E;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;color:white;text-align:center;">Market</span>
+                  </div>
+                  <!-- Source -->
+                  <div style="position:absolute;top:8px;right:8px;width:78px;height:78px;background:#C9A84C;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;color:white;text-align:center;">Source</span>
+                  </div>
+                  <!-- Agent Name -->
+                  <div style="position:absolute;bottom:8px;left:8px;width:78px;height:78px;background:#5B8C7A;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:white;text-align:center;line-height:1.3;">Agent<br>Name</span>
+                  </div>
+                  <!-- Company Name -->
+                  <div style="position:absolute;bottom:8px;right:8px;width:78px;height:78px;background:#8B4A5A;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:white;text-align:center;line-height:1.3;">Company<br>Name</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- WHO STAYS -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                <div style="background:var(--b50);border:1.5px solid var(--b100);border-radius:8px;padding:6px 20px;font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--b800);">Who stays</div>
+                <div style="position:relative;width:180px;height:180px;">
+                  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(45deg);width:90px;height:90px;background:var(--g100);border-radius:6px;"></div>
+                  <!-- Guest Name -->
+                  <div style="position:absolute;top:8px;left:8px;width:78px;height:78px;background:#9E9E9E;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:white;text-align:center;line-height:1.3;">Guest<br>Name</span>
+                  </div>
+                  <!-- Country -->
+                  <div style="position:absolute;top:8px;right:8px;width:78px;height:78px;background:#C9A84C;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;color:white;text-align:center;">Country</span>
+                  </div>
+                  <!-- Origin -->
+                  <div style="position:absolute;bottom:8px;left:8px;width:78px;height:78px;background:#5B8C7A;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;color:white;text-align:center;">Origin</span>
+                  </div>
+                  <!-- Language -->
+                  <div style="position:absolute;bottom:8px;right:8px;width:78px;height:78px;background:#8B4A5A;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;color:white;text-align:center;">Language</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div style="background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:9px 16px;font-size:10px;color:var(--b800);line-height:1.6;max-width:480px;text-align:center;margin-top:4px;">
+              Together these fields tell the complete story of every reservation — <b>who arranged it, who is staying, where they came from, and how they got here.</b>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 1b: WHO BOOKS -->
+      <div class="slide s-white" id="s-1b">
+        <div style="display:grid;grid-template-columns:300px 1fr;height:100%;">
+          <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--b800);">
+            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.7;margin-bottom:8px;display:block;">Tracking segmentation</span>
+            <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Who books the room?</h2>
+            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">The person who makes the booking is not always the person who stays. A travel agent books for a tourist. A corporate travel desk books for an executive. An OTA books on behalf of anyone.</p>
+            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">These four fields capture who arranged the reservation and through which channel — so the hotel knows exactly where its business is coming from.</p>
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#9E9E9E;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Market — who is booking and at what rate</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#C9A84C;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Source — which channel the booking came through</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#5B8C7A;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Agent Name — the travel agent or booker</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#8B4A5A;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Company Name — the corporate account or organisation</span></div>
+            </div>
+          </div>
+          <!-- SVG illustration: 3 booker scenarios -->
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 24px;background:var(--white);">
+            <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b600);margin-bottom:18px;">Three ways the same room gets booked</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;width:100%;max-width:520px;">
+
+              <!-- Scenario 1: Travel Agent -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                <svg width="110" height="110" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+                  <!-- desk -->
+                  <rect x="10" y="72" width="90" height="8" rx="3" fill="#E5E7EB"/>
+                  <rect x="18" y="80" width="6" height="20" rx="2" fill="#D1D5DB"/>
+                  <rect x="86" y="80" width="6" height="20" rx="2" fill="#D1D5DB"/>
+                  <!-- monitor -->
+                  <rect x="28" y="38" width="54" height="36" rx="4" fill="#003570"/>
+                  <rect x="31" y="41" width="48" height="29" rx="2" fill="#1A6DC0"/>
+                  <!-- screen content lines -->
+                  <rect x="34" y="44" width="28" height="2" rx="1" fill="rgba(255,255,255,0.5)"/>
+                  <rect x="34" y="49" width="20" height="2" rx="1" fill="rgba(255,255,255,0.3)"/>
+                  <rect x="34" y="54" width="24" height="2" rx="1" fill="rgba(255,255,255,0.3)"/>
+                  <rect x="34" y="59" width="16" height="2" rx="1" fill="#C9A84C"/>
+                  <!-- monitor stand -->
+                  <rect x="50" y="74" width="10" height="4" rx="1" fill="#9CA3AF"/>
+                  <rect x="44" y="77" width="22" height="3" rx="1" fill="#9CA3AF"/>
+                  <!-- keyboard -->
+                  <rect x="30" y="68" width="50" height="6" rx="2" fill="#E5E7EB"/>
+                  <!-- person: travel agent -->
+                  <circle cx="55" cy="22" r="10" fill="#9E9E9E"/>
+                  <!-- face -->
+                  <circle cx="52" cy="20" r="1.5" fill="white"/>
+                  <circle cx="58" cy="20" r="1.5" fill="white"/>
+                  <path d="M51 25 Q55 28 59 25" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                  <!-- headset arc -->
+                  <path d="M45 20 Q45 10 55 10 Q65 10 65 20" stroke="#004B94" stroke-width="2" fill="none"/>
+                  <rect x="43" y="19" width="4" height="5" rx="2" fill="#004B94"/>
+                  <rect x="63" y="19" width="4" height="5" rx="2" fill="#004B94"/>
+                </svg>
+                <div style="text-align:center;">
+                  <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--dark);margin-bottom:3px;">Travel Agent</div>
+                  <div style="font-size:9px;color:var(--g500);line-height:1.4;">Books on behalf of the guest via GDS or phone</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:3px;width:100%;">
+                  <div style="font-size:8px;background:#9E9E90;color:white;padding:2px 6px;border-radius:3px;text-align:center;font-weight:700;">CORPP · CORGL</div>
+                  <div style="font-size:8px;background:var(--g100);color:var(--g700);padding:2px 6px;border-radius:3px;text-align:center;">Source: AMD · GAL</div>
+                </div>
+              </div>
+
+              <!-- Scenario 2: Corporate travel desk -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                <svg width="110" height="110" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+                  <!-- building background -->
+                  <rect x="25" y="30" width="60" height="55" rx="3" fill="#EEF6FD"/>
+                  <rect x="25" y="30" width="60" height="8" rx="3" fill="#003570"/>
+                  <text x="55" y="38" text-anchor="middle" font-family="sans-serif" font-size="5" fill="white" font-weight="700">ACME CORP</text>
+                  <!-- windows -->
+                  <rect x="32" y="44" width="12" height="9" rx="1" fill="#B5D4F4"/>
+                  <rect x="49" y="44" width="12" height="9" rx="1" fill="#B5D4F4"/>
+                  <rect x="66" y="44" width="12" height="9" rx="1" fill="#B5D4F4"/>
+                  <rect x="32" y="58" width="12" height="9" rx="1" fill="#B5D4F4"/>
+                  <rect x="49" y="58" width="12" height="9" rx="1" fill="#B5D4F4"/>
+                  <rect x="66" y="58" width="12" height="9" rx="1" fill="#B5D4F4"/>
+                  <!-- door -->
+                  <rect x="47" y="70" width="16" height="15" rx="1" fill="#003570"/>
+                  <circle cx="59" cy="78" r="1.5" fill="#C9A84C"/>
+                  <!-- person in front -->
+                  <circle cx="55" cy="64" r="8" fill="#C9A84C"/>
+                  <circle cx="52.5" cy="62" r="1.2" fill="white"/>
+                  <circle cx="57.5" cy="62" r="1.2" fill="white"/>
+                  <path d="M51.5 67 Q55 69.5 58.5 67" stroke="white" stroke-width="1" fill="none" stroke-linecap="round"/>
+                  <!-- briefcase -->
+                  <rect x="58" y="68" width="10" height="7" rx="1.5" fill="#003570"/>
+                  <path d="M60 68 L60 66 Q60 64 62 64 L64 64 Q66 64 66 66 L66 68" stroke="#003570" stroke-width="1.5" fill="none"/>
+                </svg>
+                <div style="text-align:center;">
+                  <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--dark);margin-bottom:3px;">Corporate Booker</div>
+                  <div style="font-size:9px;color:var(--g500);line-height:1.4;">Company travel desk books for their employee</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:3px;width:100%;">
+                  <div style="font-size:8px;background:#004B94;color:white;padding:2px 6px;border-radius:3px;text-align:center;font-weight:700;">CORPK · CORPL</div>
+                  <div style="font-size:8px;background:var(--g100);color:var(--g700);padding:2px 6px;border-radius:3px;text-align:center;">Source: DIR · EAC</div>
+                </div>
+              </div>
+
+              <!-- Scenario 3: OTA / Online -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                <svg width="110" height="110" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+                  <!-- phone -->
+                  <rect x="30" y="18" width="50" height="80" rx="8" fill="#1A6DC0"/>
+                  <rect x="33" y="25" width="44" height="62" rx="4" fill="white"/>
+                  <!-- home button -->
+                  <circle cx="55" cy="92" r="4" fill="#5B9FD4"/>
+                  <!-- app screen: booking.com style -->
+                  <rect x="36" y="28" width="38" height="10" rx="2" fill="#003570"/>
+                  <text x="55" y="36" text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="white" font-weight="700">Booking.com</text>
+                  <!-- hotel image placeholder -->
+                  <rect x="36" y="41" width="38" height="16" rx="2" fill="#D8EAFB"/>
+                  <rect x="36" y="41" width="38" height="8" rx="2" fill="#5B9FD4"/>
+                  <text x="55" y="53" text-anchor="middle" font-family="sans-serif" font-size="5" fill="var(--g700)">Dusit Hotel ★★★★★</text>
+                  <!-- price -->
+                  <text x="55" y="63" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#003570" font-weight="700">฿3,200/night</text>
+                  <!-- button -->
+                  <rect x="38" y="67" width="34" height="9" rx="3" fill="#C9A84C"/>
+                  <text x="55" y="74" text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="white" font-weight="700">Book Now</text>
+                  <!-- stars -->
+                  <text x="45" y="63" font-family="sans-serif" font-size="5" fill="#C9A84C">★★★★★</text>
+                </svg>
+                <div style="text-align:center;">
+                  <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--dark);margin-bottom:3px;">OTA Booking</div>
+                  <div style="font-size:9px;color:var(--g500);line-height:1.4;">Guest books via Booking.com, Agoda, Expedia</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:3px;width:100%;">
+                  <div style="font-size:8px;background:#C9A84C;color:white;padding:2px 6px;border-radius:3px;text-align:center;font-weight:700;">ECOMM (seq 45)</div>
+                  <div style="font-size:8px;background:var(--g100);color:var(--g700);padding:2px 6px;border-radius:3px;text-align:center;">Source: CCT · Auto</div>
+                </div>
+              </div>
+
+            </div>
+            <div style="margin-top:16px;background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:9px 16px;font-size:10px;color:var(--b800);line-height:1.6;max-width:520px;text-align:center;">
+              <b>The market code tells you who is booking and why. The source code tells you exactly how they got there.</b> Both are captured at the time of booking and never change.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 1c: WHO STAYS -->
+      <div class="slide s-white" id="s-1c">
+        <div style="display:grid;grid-template-columns:300px 1fr;height:100%;">
+          <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--b800);">
+            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.7;margin-bottom:8px;display:block;">Tracking segmentation</span>
+            <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Who actually stays in the room?</h2>
+            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">Once we know who booked, we need to understand who is actually checking in. This tells us about source markets, demand patterns, and which guest profiles drive our revenue.</p>
+            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">These fields help the Revenue Manager understand not just where bookings come from — but who Dusit's guests actually are.</p>
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#9E9E9E;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Guest Name — who is checking in</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#C9A84C;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Country — where the guest lives (ISO standard)</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#5B8C7A;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Origin — direct or through intermediary</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#8B4A5A;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Language — preferred communication language</span></div>
+            </div>
+          </div>
+          <!-- SVG illustration: 4 guest profiles -->
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 24px;background:var(--white);">
+            <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b600);margin-bottom:16px;">Four types of guests — all tracked differently</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;width:100%;">
+
+              <!-- Family -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+                <svg width="88" height="96" viewBox="0 0 88 96" xmlns="http://www.w3.org/2000/svg">
+                  <!-- background blob -->
+                  <ellipse cx="44" cy="72" rx="36" ry="16" fill="#EEF6FD"/>
+                  <!-- dad -->
+                  <circle cx="24" cy="38" r="10" fill="#5B9FD4"/>
+                  <circle cx="21" cy="36" r="1.5" fill="white"/><circle cx="27" cy="36" r="1.5" fill="white"/>
+                  <path d="M20 42 Q24 45 28 42" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                  <rect x="16" y="48" width="16" height="22" rx="4" fill="#1A6DC0"/>
+                  <!-- mom -->
+                  <circle cx="64" cy="38" r="10" fill="#8B4A5A"/>
+                  <circle cx="61" cy="36" r="1.5" fill="white"/><circle cx="67" cy="36" r="1.5" fill="white"/>
+                  <path d="M60 42 Q64 45 68 42" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                  <!-- hair -->
+                  <path d="M54 35 Q57 28 64 29 Q71 28 74 35" stroke="#8B4A5A" stroke-width="3" fill="none"/>
+                  <rect x="56" y="48" width="16" height="22" rx="4" fill="#8B4A5A"/>
+                  <!-- child -->
+                  <circle cx="44" cy="52" r="8" fill="#C9A84C"/>
+                  <circle cx="41.5" cy="50" r="1.2" fill="white"/><circle cx="46.5" cy="50" r="1.2" fill="white"/>
+                  <path d="M41 55 Q44 57 47 55" stroke="white" stroke-width="1" fill="none" stroke-linecap="round"/>
+                  <rect x="37" y="60" width="14" height="16" rx="3" fill="#C9A84C"/>
+                  <!-- luggage -->
+                  <rect x="6" y="62" width="12" height="16" rx="2" fill="#D8EAFB" stroke="#5B9FD4" stroke-width="1"/>
+                  <rect x="10" y="60" width="4" height="3" rx="1" fill="#5B9FD4"/>
+                  <rect x="8" y="66" width="8" height="1.5" fill="#5B9FD4"/>
+                  <rect x="8" y="70" width="8" height="1.5" fill="#5B9FD4"/>
+                </svg>
+                <div style="text-align:center;">
+                  <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--dark);margin-bottom:2px;">Family</div>
+                  <div style="font-size:9px;color:var(--g500);line-height:1.35;">Leisure travel · 3–5 nights · Retail segment</div>
+                </div>
+                <div style="font-size:8px;background:var(--b50);color:var(--b800);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: AU · Lang: EN</div>
+              </div>
+
+              <!-- Business traveller -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+                <svg width="88" height="96" viewBox="0 0 88 96" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="44" cy="78" rx="32" ry="12" fill="#EEF6FD"/>
+                  <!-- person -->
+                  <circle cx="44" cy="28" r="12" fill="#003570"/>
+                  <circle cx="40" cy="26" r="1.8" fill="white"/><circle cx="48" cy="26" r="1.8" fill="white"/>
+                  <path d="M39 33 Q44 37 49 33" stroke="white" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+                  <!-- suit body -->
+                  <rect x="30" y="40" width="28" height="38" rx="5" fill="#1A1A2E"/>
+                  <!-- shirt + tie -->
+                  <rect x="40" y="40" width="8" height="38" fill="#EEF6FD"/>
+                  <polygon points="44,44 42,48 44,62 46,48" fill="#C9A84C"/>
+                  <!-- lapels -->
+                  <path d="M40 40 L33 48 L40 42" fill="#12122A"/>
+                  <path d="M48 40 L55 48 L48 42" fill="#12122A"/>
+                  <!-- briefcase -->
+                  <rect x="54" y="56" width="18" height="14" rx="2" fill="#374151"/>
+                  <path d="M57 56 L57 53 Q57 51 59.5 51 L66.5 51 Q69 51 69 53 L69 56" stroke="#374151" stroke-width="2" fill="none"/>
+                  <rect x="54" y="62" width="18" height="1.5" fill="#4B5563"/>
+                  <!-- name badge -->
+                  <rect x="34" y="46" width="10" height="7" rx="1" fill="white"/>
+                  <rect x="35.5" y="47.5" width="7" height="1" fill="#9CA3AF"/>
+                  <rect x="35.5" y="49.5" width="5" height="1" fill="#9CA3AF"/>
+                  <!-- legs -->
+                  <rect x="34" y="78" width="8" height="12" rx="3" fill="#1A1A2E"/>
+                  <rect x="46" y="78" width="8" height="12" rx="3" fill="#1A1A2E"/>
+                </svg>
+                <div style="text-align:center;">
+                  <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--dark);margin-bottom:2px;">Business Traveller</div>
+                  <div style="font-size:9px;color:var(--g500);line-height:1.35;">Corporate stay · 1–2 nights · Corp segment</div>
+                </div>
+                <div style="font-size:8px;background:var(--b50);color:var(--b800);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: SG · Lang: EN</div>
+              </div>
+
+              <!-- Airline crew -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+                <svg width="88" height="96" viewBox="0 0 88 96" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="44" cy="80" rx="30" ry="11" fill="#EEF6FD"/>
+                  <!-- 2 crew members -->
+                  <!-- person 1 -->
+                  <circle cx="32" cy="30" r="10" fill="#5B8C7A"/>
+                  <circle cx="29" cy="28" r="1.5" fill="white"/><circle cx="35" cy="28" r="1.5" fill="white"/>
+                  <path d="M28 34 Q32 37 36 34" stroke="white" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+                  <!-- cap -->
+                  <rect x="22" y="21" width="20" height="5" rx="2.5" fill="#003570"/>
+                  <rect x="24" y="19" width="16" height="4" rx="2" fill="#004B94"/>
+                  <!-- uniform 1 -->
+                  <rect x="24" y="40" width="16" height="30" rx="4" fill="#003570"/>
+                  <rect x="28" y="40" width="8" height="30" fill="#004B94"/>
+                  <!-- wings badge -->
+                  <path d="M26 44 L22 46 L26 48" stroke="#C9A84C" stroke-width="1" fill="none"/>
+                  <path d="M38 44 L42 46 L38 48" stroke="#C9A84C" stroke-width="1" fill="none"/>
+                  <circle cx="32" cy="46" r="2" fill="#C9A84C"/>
+                  <!-- person 2 -->
+                  <circle cx="58" cy="30" r="10" fill="#5B8C7A"/>
+                  <circle cx="55" cy="28" r="1.5" fill="white"/><circle cx="61" cy="28" r="1.5" fill="white"/>
+                  <path d="M54 34 Q58 37 62 34" stroke="white" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+                  <rect x="48" y="21" width="20" height="5" rx="2.5" fill="#003570"/>
+                  <rect x="50" y="19" width="16" height="4" rx="2" fill="#004B94"/>
+                  <rect x="50" y="40" width="16" height="30" rx="4" fill="#003570"/>
+                  <rect x="54" y="40" width="8" height="30" fill="#004B94"/>
+                  <path d="M52 44 L48 46 L52 48" stroke="#C9A84C" stroke-width="1" fill="none"/>
+                  <path d="M64 44 L68 46 L64 48" stroke="#C9A84C" stroke-width="1" fill="none"/>
+                  <circle cx="58" cy="46" r="2" fill="#C9A84C"/>
+                  <!-- rolling bag between them -->
+                  <rect x="39" y="58" width="10" height="16" rx="2" fill="#9CA3AF"/>
+                  <rect x="41" y="56" width="6" height="4" rx="1" fill="#6B7280"/>
+                  <line x1="44" y1="74" x2="44" y2="80" stroke="#6B7280" stroke-width="1.5"/>
+                  <circle cx="42" cy="80" r="2" fill="#6B7280"/>
+                  <circle cx="46" cy="80" r="2" fill="#6B7280"/>
+                </svg>
+                <div style="text-align:center;">
+                  <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--dark);margin-bottom:2px;">Airline Crew</div>
+                  <div style="font-size:9px;color:var(--g500);line-height:1.35;">Contracted block · Recurring · AIRCW</div>
+                </div>
+                <div style="font-size:8px;background:var(--b50);color:var(--b800);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: TH · Origin: IND</div>
+              </div>
+
+              <!-- Tour group -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+                <svg width="88" height="96" viewBox="0 0 88 96" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="44" cy="80" rx="34" ry="12" fill="#EEF6FD"/>
+                  <!-- 3 people in a group -->
+                  <!-- person left -->
+                  <circle cx="20" cy="36" r="9" fill="#8B4A5A"/>
+                  <circle cx="17.5" cy="34" r="1.3" fill="white"/><circle cx="22.5" cy="34" r="1.3" fill="white"/>
+                  <path d="M17 40 Q20 43 23 40" stroke="white" stroke-width="1" fill="none" stroke-linecap="round"/>
+                  <rect x="13" y="45" width="14" height="28" rx="4" fill="#8B4A5A"/>
+                  <!-- person middle (guide - taller) -->
+                  <circle cx="44" cy="30" r="11" fill="#C9A84C"/>
+                  <circle cx="41" cy="28" r="1.6" fill="white"/><circle cx="47" cy="28" r="1.6" fill="white"/>
+                  <path d="M40 35 Q44 38 48 35" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                  <rect x="35" y="41" width="18" height="32" rx="4" fill="#C9A84C"/>
+                  <!-- guide flag -->
+                  <line x1="52" y1="20" x2="52" y2="38" stroke="#003570" stroke-width="1.5"/>
+                  <polygon points="52,20 62,23 52,26" fill="#003570"/>
+                  <!-- person right -->
+                  <circle cx="68" cy="36" r="9" fill="#5B8C7A"/>
+                  <circle cx="65.5" cy="34" r="1.3" fill="white"/><circle cx="70.5" cy="34" r="1.3" fill="white"/>
+                  <path d="M65 40 Q68 43 71 40" stroke="white" stroke-width="1" fill="none" stroke-linecap="round"/>
+                  <rect x="61" y="45" width="14" height="28" rx="4" fill="#5B8C7A"/>
+                  <!-- camera on middle person -->
+                  <rect x="36" y="47" width="9" height="7" rx="1.5" fill="#374151"/>
+                  <circle cx="40.5" cy="50.5" r="2.5" fill="#6B7280"/>
+                  <circle cx="40.5" cy="50.5" r="1.2" fill="#9CA3AF"/>
+                </svg>
+                <div style="text-align:center;">
+                  <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--dark);margin-bottom:2px;">Tour Group</div>
+                  <div style="font-size:9px;color:var(--g500);line-height:1.35;">Leisure group · via wholesaler · GTOUR</div>
+                </div>
+                <div style="font-size:8px;background:var(--b50);color:var(--b800);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: CN · Lang: ZH</div>
+              </div>
+
+            </div>
+            <div style="margin-top:14px;background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:9px 16px;font-size:10px;color:var(--b800);line-height:1.6;max-width:520px;text-align:center;">
+              <b>Every guest type has a different profile — and the right tracking fields ensure the hotel's data reflects the real mix of business on any given night.</b>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: MARKET SEGMENT OVERVIEW -->
+      <div class="slide s-white" id="s-2">
+        <div class="s-inner s-centre">
+          <span class="eye">Market Segment</span>
+          <h2 class="sh" style="margin-bottom:4px;">6 groups · 13 segments · 40 codes</h2>
+          <p class="body-text" style="margin-bottom:10px;">Correct market segmentation allows a hotel to price and apply inventory controls to maximise revenue from various lines of business. The market code is set at time of booking and <b>never changes</b> — even for groups.</p>
+          <div class="seg-hierarchy" id="segHierarchy">
+            <!-- FIT -->
+            <div class="seg-group">
+              <div class="seg-group-hdr sg-fit" onclick="toggleSeg(this)">
+                <span class="seg-group-name">FIT (Free Individual Traveller)</span>
+                <span class="seg-group-meta">4 sub-segments · 12 codes ›</span>
+              </div>
+              <div class="seg-group-body">
+                <div class="seg-sub"><div class="seg-dot"></div><b>Retail Non-Qualified</b> — DBRRT, ADVPC, HTPCK (internal + external)</div>
+                <div class="seg-sub"><div class="seg-dot"></div><b>Retail Qualified / Loyalty</b> — DLOYAL, PROMO</div>
+                <div class="seg-sub"><div class="seg-dot"></div><b>Negotiated Corporate</b> — CORPP, CORGL, CORPK, CORPL, GOVMT</div>
+                <div class="seg-sub"><div class="seg-dot"></div><b>Negotiated Wholesale</b> — WHODM, WHOLS, WHOLN, WHOPM</div>
+              </div>
+            </div>
+            <!-- GROUP -->
+            <div class="seg-group">
+              <div class="seg-group-hdr sg-grp" onclick="toggleSeg(this)">
+                <span class="seg-group-name">Group</span>
+                <span class="seg-group-meta">2 sub-segments · 9 codes ›</span>
+              </div>
+              <div class="seg-group-body">
+                <div class="seg-sub"><div class="seg-dot"></div><b>Business Groups</b> — GCORP, GASSO, GINCT, GGOVT</div>
+                <div class="seg-sub"><div class="seg-dot"></div><b>Leisure Groups</b> — GSOCI, GWEDD, GSERI, GTOUR, GOTHR</div>
+              </div>
+            </div>
+            <!-- OTHER -->
+            <div class="seg-group">
+              <div class="seg-group-hdr sg-oth" onclick="toggleSeg(this)">
+                <span class="seg-group-name">Other</span>
+                <span class="seg-group-meta">Crew, complimentary, house use ›</span>
+              </div>
+              <div class="seg-group-body">
+                <div class="seg-sub"><div class="seg-dot"></div><b>Crew &amp; Contracted</b> — LTERM, RESDA, RESDB, AIRCW, DELAYF</div>
+                <div class="seg-sub"><div class="seg-dot"></div><b>Day Use, Complimentary, House Use</b> — DAY, COMOS, COMBU, COMNB, HOUSP, HOUST, ACT</div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:10px;color:var(--g300);text-align:center;margin-top:8px;">Click any group to expand · Navigate forward to explore each segment in detail</p>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: FIT SEGMENTS (Retail + Corporate + Wholesale) -->
+      <div class="slide s-split" id="s-3">
+        <div class="split-left">
+          <div class="deep-n">FIT</div>
+          <div class="deep-label">Free Individual Traveller</div>
+          <h2 class="deep-title">Retail, Corporate &amp; Wholesale</h2>
+          <p class="deep-why">FIT covers all individual travellers — from walk-in tourists paying BAR to negotiated corporate accounts and contracted wholesale rates. <b>The sub-segment determines which rate logic applies and which discount band is used.</b></p>
+          <div style="margin-top:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b200);margin-bottom:6px;">Critical distinction</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.6;"><b style="color:var(--b200);">DLOYAL (seq 58)</b> is exclusively for Dusit Gold loyalty members. Do not use it for any other purpose — including Best Rate Guarantee.<br><br><b style="color:var(--b200);">ECOMM (seq 45)</b> must be used for all OTA bookings. No exceptions.</div>
+          </div>
+        </div>
+        <div class="split-right">
+          <div class="bc-nav">
+            <span class="bc-item active">Retail Non-Qualified</span>
+            <span class="bc-sep">·</span>
+            <span class="bc-item" onclick="showFitPanel('qualified')">Retail Qualified</span>
+            <span class="bc-sep">·</span>
+            <span class="bc-item" onclick="showFitPanel('corporate')">Negotiated Corporate</span>
+            <span class="bc-sep">·</span>
+            <span class="bc-item" onclick="showFitPanel('wholesale')">Wholesale</span>
+          </div>
+          <!-- Retail Non-Qualified -->
+          <div id="fit-nonqualified" class="code-grid">
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">DBRRT</span><span class="code-label">Best Flexible Rate</span><span class="code-seq">Internal</span></div>
+              <div class="code-card-body">Highest publicly available rate. Room only (BARRO) or room with breakfast (BARRB). <b>All dynamic rates are indexed from this rate.</b> This is the BAR equivalent in the PMS.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">ADVPC</span><span class="code-label">Advance Purchase / Saver</span><span class="code-seq">seq 50</span></div>
+              <div class="code-card-body">Discounted public rates with less flexibility — prepaid, minimum length of stay. Includes Saver, Early Bird, and Stay Longer offers for room only and room with breakfast.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">HTPCK</span><span class="code-label">Package</span><span class="code-seq">seq 30</span></div>
+              <div class="code-card-body">Room plus value-added extras — breakfast, spa treatments, airport transfers, or other inclusions. Not a discounted rate — it is a bundled offer at a premium.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">ECOMM</span><span class="code-label">E-Commerce / OTA</span><span class="code-seq">seq 45</span></div>
+              <div class="code-card-body"><b>All Online Travel Agency bookings must use this code.</b> Excludes OTA package, wholesale dynamic, margin, and XML model bookings. If it comes from an OTA — it's ECOMM.</div>
+            </div>
+          </div>
+          <!-- Retail Qualified -->
+          <div id="fit-qualified" class="code-grid" style="display:none;">
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">DLOYAL</span><span class="code-label">Loyalty Program</span><span class="code-seq">seq 58</span></div>
+              <div class="code-card-body"><b>Exclusively for Dusit Gold members.</b> Covers regular loyalty discount benefits, Dusit Gold Private Sales, member-exclusive promotions, and Free Night Redemption. Also includes Best Rate Guarantee related rates.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">PROMO</span><span class="code-label">Promotion &amp; Partnership</span><span class="code-seq">seq 57</span></div>
+              <div class="code-card-body">Property or regional short-term promotions to drive room nights or support a campaign (e.g. new opening). Also covers airline partner award redemptions and credit card partnerships.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">AHDIS</span><span class="code-label">Ad Hoc Discount</span><span class="code-seq">seq 51</span></div>
+              <div class="code-card-body">Qualified via vouchers issued by Sales or Marketing. <b>Must be approved by the GM.</b> Examples: trade fair vouchers, Discovery Thailand vouchers.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">AIRLP</span><span class="code-label">Airline Programs</span><span class="code-seq">seq 33</span></div>
+              <div class="code-card-body">Airline stopover programs charged to the airline or agent (e.g. Royal Orchid Holidays, Emirates Holidays). Do not use for aircrew contracts or airline staff discounts — those have separate codes.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">INTLN</span><span class="code-label">Industry Discounts</span><span class="code-seq">seq 55</span></div>
+              <div class="code-card-body">Discounted rates for people working in the hotel and tourism industry — travel agents, airline employees.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">DUSIT</span><span class="code-label">Dusit Internal Rate</span><span class="code-seq">seq 54</span></div>
+              <div class="code-card-body">Dusit employees on leisure, Family &amp; Friends rates, and inter-company rates agreed across all Dusit properties only.</div>
+            </div>
+          </div>
+          <!-- Negotiated Corporate -->
+          <div id="fit-corporate" class="code-grid" style="display:none;">
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">CORPP</span><span class="code-label">Consortia / TMC</span><span class="code-seq">seq 23</span></div>
+              <div class="code-card-body">Rates offered to Consortia and Travel Management Companies — usually part of RFP programs and commissionable.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">CORGL</span><span class="code-label">Corporate Global Accounts</span><span class="code-seq">seq 21</span></div>
+              <div class="code-card-body">Large corporate accounts staying across multiple Dusit properties, serviced by Corporate Sales Office (PHR). Includes Dusit staff business travel.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">CORPK</span><span class="code-label">Corporate Key Accounts</span><span class="code-seq">seq 20</span></div>
+              <div class="code-card-body">Global or local corporate contract with static rates — managed by Corporate Sales Office.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">CORPL</span><span class="code-label">Corporate Local Accounts</span><span class="code-seq">seq 22</span></div>
+              <div class="code-card-body">Global or local corporate contract with static rates — managed by Hotel Sales Office (not Corporate Sales).</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">GOVMT</span><span class="code-label">Government / Military</span><span class="code-seq">seq 25</span></div>
+              <div class="code-card-body">Rates for all government and diplomatic missions. Reservations must be made directly from such offices, or ID is required at check-in.</div>
+            </div>
+          </div>
+          <!-- Wholesale -->
+          <div id="fit-wholesale" class="code-grid" style="display:none;">
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">WHODM</span><span class="code-label">Wholesale Dynamic</span><span class="code-seq">seq 36</span></div>
+              <div class="code-card-body">Dynamic or margin-based XML contracted rate agreement. Includes Expedia and Trip.com package plans.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">WHOLS</span><span class="code-label">Wholesale Web Portal</span><span class="code-seq">seq 35</span></div>
+              <div class="code-card-body">Standard wholesale rate offered to any wholesaler with no production commitment. Usually 10–20% below Dusit BAR. Includes all rates on the Dusit Wholesale Web Portal.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">WHOLN</span><span class="code-label">Wholesale Static</span><span class="code-seq">seq 34</span></div>
+              <div class="code-card-body">Static contracted rate agreed and signed by both the property and the wholesaler.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">WHOPM</span><span class="code-label">Wholesale Promotion</span><span class="code-seq">seq 37</span></div>
+              <div class="code-card-body">Tactical promotional offers outside the static contracted rate — used for short-term campaigns with wholesale partners.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: GROUP SEGMENTS -->
+      <div class="slide s-split" id="s-4">
+        <div class="split-left">
+          <div class="deep-n">GRP</div>
+          <div class="deep-label">Group Segments</div>
+          <h2 class="deep-title">Business Groups &amp; Leisure Groups</h2>
+          <p class="deep-why">Group bookings have their own segment codes separate from FIT. <b>The key rule: any free-of-charge rooms that are part of a group contract carry the same market code as the core group business.</b> Do not reclassify complimentary rooms within a group booking.</p>
+          <div style="margin-top:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b200);margin-bottom:4px;">Remember</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.6;">The market code is set at the time of booking and does not change — even for groups. If the group is corporate, every room in that block is GCORP, including complimentary rooms.</div>
+          </div>
+        </div>
+        <div class="split-right">
+          <div class="bc-nav">
+            <span class="bc-item active" onclick="showGrpPanel('business')">Business Groups</span>
+            <span class="bc-sep">·</span>
+            <span class="bc-item" onclick="showGrpPanel('leisure')">Leisure Groups</span>
+          </div>
+          <div id="grp-business" class="code-grid">
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">GCORP</span><span class="code-label">Corporate Group</span><span class="code-seq">seq 62</span></div>
+              <div class="code-card-body">A group from a company or organisation staying for business-related activities.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">GASSO</span><span class="code-label">Conference / Associations / Exhibition</span><span class="code-seq">seq 60</span></div>
+              <div class="code-card-body">Associated with conferences, associations, or exhibitions. Group is attending or participating in related events at or near the hotel.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">GINCT</span><span class="code-label">Incentives</span><span class="code-seq">seq 61</span></div>
+              <div class="code-card-body">A group from a company staying as part of an incentive program — reward trips, sales incentives, or recognition events.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">GGOVT</span><span class="code-label">Government Group</span><span class="code-seq">seq 63</span></div>
+              <div class="code-card-body">Representing a government entity for official purposes, meetings, or events related to government initiatives.</div>
+            </div>
+          </div>
+          <div id="grp-leisure" class="code-grid" style="display:none;">
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">GSOCI</span><span class="code-label">Social Group</span><span class="code-seq">seq 65</span></div>
+              <div class="code-card-body">Social events — alumni gatherings, birthday celebrations, or other social occasions.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">GWEDD</span><span class="code-label">Wedding Group</span><span class="code-seq">seq 66</span></div>
+              <div class="code-card-body">Groups associated with a wedding hosted at the hotel.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">GSERI</span><span class="code-label">Tour Series</span><span class="code-seq">seq 67</span></div>
+              <div class="code-card-body">Groups committed by the same wholesaler or travel agent on a regular pattern — weekly or fortnightly bookings.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">GTOUR</span><span class="code-label">Tour Group</span><span class="code-seq">seq 68</span></div>
+              <div class="code-card-body">Individual or infrequent groups booked by wholesalers and travel agencies for a one-time or irregular stay.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">GOTHR</span><span class="code-label">Other Group</span><span class="code-seq">seq 69</span></div>
+              <div class="code-card-body">Any group that does not fit any other corporate or leisure group classification. Use as a last resort.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5: OTHER SEGMENTS -->
+      <div class="slide s-split" id="s-5">
+        <div class="split-left">
+          <div class="deep-n">OTH</div>
+          <div class="deep-label">Other Segments</div>
+          <h2 class="deep-title">Crew, Contracted &amp; Internal</h2>
+          <p class="deep-why">The Other category covers everything that does not fit FIT or Group — airline crew, long-stay contracts, complimentary rooms, and house use. <b>These codes exist to keep operational rooms separate from revenue-generating rooms in all reporting.</b></p>
+          <div style="margin-top:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b200);margin-bottom:4px;">Finance note</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.6;">The ACT segment is <b>Finance Department use only</b>. It must always be used with a PM room and the ACTINT rate code. No other department should use this code under any circumstances.</div>
+          </div>
+        </div>
+        <div class="split-right">
+          <div class="bc-nav">
+            <span class="bc-item active" onclick="showOthPanel('crew')">Crew &amp; Contracted</span>
+            <span class="bc-sep">·</span>
+            <span class="bc-item" onclick="showOthPanel('comp')">Complimentary</span>
+            <span class="bc-sep">·</span>
+            <span class="bc-item" onclick="showOthPanel('house')">House Use</span>
+          </div>
+          <div id="oth-crew" class="code-grid">
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">LTERM</span><span class="code-label">Long Term Stay</span><span class="code-seq">seq 56</span></div>
+              <div class="code-card-body"><b>Does not apply to Residence brand.</b> Extended stay of 14 consecutive nights or more, negotiated directly with the hotel.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">RESDA</span><span class="code-label">Residence Contract A2</span><span class="code-seq">seq 77</span></div>
+              <div class="code-card-body"><b>Residence brand only.</b> Extended stay of 30–365 consecutive nights booked directly using long stay rates set by the hotel.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">RESDB</span><span class="code-label">Residence Contract B2</span><span class="code-seq">seq 78</span></div>
+              <div class="code-card-body"><b>Residence brand only.</b> Extended stay of 366 nights and above booked directly using long stay rates.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">AIRCW</span><span class="code-label">Airline Crew</span><span class="code-seq">seq 75</span></div>
+              <div class="code-card-body">Long-term contract for airline crew accommodation. Usually back-to-back room blocks.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">DELAYF</span><span class="code-label">Delayed Flights</span><span class="code-seq">seq 76</span></div>
+              <div class="code-card-body">Ad hoc stays due to delayed flights. Usually booked directly by the airline or a local agent.</div>
+            </div>
+          </div>
+          <div id="oth-comp" class="code-grid" style="display:none;">
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">DAY</span><span class="code-label">Day Use</span><span class="code-seq">seq 85</span></div>
+              <div class="code-card-body">Same-day arrival and departure. Guest does not stay overnight.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">COMOS</span><span class="code-label">Complimentary on Sales</span><span class="code-seq">seq 84</span></div>
+              <div class="code-card-body">Zero room revenue given as part of a catering or event contract — e.g. complimentary room for a wedding couple as part of a catering package.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">COMBU</span><span class="code-label">Complimentary Business</span><span class="code-seq">seq 82</span></div>
+              <div class="code-card-body">Zero room revenue given with potential to generate more business — inspection visits, trial stays for agencies, rooms given in Sales Promotion Programs.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">COMNB</span><span class="code-label">Complimentary Non-Business</span><span class="code-seq">seq 83</span></div>
+              <div class="code-card-body">Zero room revenue given with no direct business potential — Revenue Dept. Officer, Government Officer, Shareholder accommodation.</div>
+            </div>
+          </div>
+          <div id="oth-house" class="code-grid" style="display:none;">
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">HOUSP</span><span class="code-label">House Use Permanent</span><span class="code-seq">seq 90</span></div>
+              <div class="code-card-body">Long-term accommodation with no room revenue for hotel staff (e.g. GM) as part of their employment package.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">HOUST</span><span class="code-label">House Use Temporary</span><span class="code-seq">seq 80</span></div>
+              <div class="code-card-body">Short-term accommodation for hotel staff, vendors, or contractors — e.g. external staff during a PMS installation.</div>
+            </div>
+            <div class="code-card" onclick="toggleCode(this)">
+              <div class="code-card-hdr"><span class="code-badge">ACT</span><span class="code-label">Adjustment</span><span class="code-seq">seq 81</span></div>
+              <div class="code-card-body"><b>Internal use by Finance Dept. only.</b> Must be used with a PM room and ACTINT rate code exclusively.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 6: SOURCE CODES -->
+      <div class="slide s-white" id="s-6">
+        <div class="s-inner">
+          <span class="eye">Source Codes</span>
+          <h2 class="sh" style="margin-bottom:4px;">Track the source of business</h2>
+          <p class="body-text" style="margin-bottom:10px;">Source codes are more specific than market codes — they identify exactly <b>which channel or platform the booking came through</b>. More relevant to hotel reporting and channel performance analysis.</p>
+          <div style="overflow-x:auto;">
+            <table class="source-table">
+              <thead><tr><th>Code</th><th>Description</th><th>Allocation</th><th>How it works</th></tr></thead>
+              <tbody>
+                <tr class="src-group-row"><td colspan="4">Property Direct (PPD)</td></tr>
+                <tr><td class="src-code">DIR</td><td>Property Direct — email / fax</td><td>Manual</td><td>Client emails the hotel directly</td></tr>
+                <tr><td class="src-code">TEL</td><td>Property Direct — phone</td><td>Manual</td><td>Client calls the hotel directly</td></tr>
+                <tr><td class="src-code">WLK</td><td>Walk-in</td><td>Manual</td><td>Client approaches the hotel in person</td></tr>
+                <tr class="src-group-row"><td colspan="4">Customer Engagement Centre (CEC)</td></tr>
+                <tr><td class="src-code">EAC</td><td>Central Reservation — email</td><td>Auto via SynXis</td><td>Client emails the CEC</td></tr>
+                <tr><td class="src-code">VAC</td><td>Central Reservation — voice</td><td>Auto via SynXis</td><td>Client calls the CEC</td></tr>
+                <tr><td class="src-code">CAC</td><td>Central Reservation — live chat</td><td>Auto via SynXis</td><td>Client messages the CEC</td></tr>
+                <tr class="src-group-row"><td colspan="4">Internet Booking Engine (IBE)</td></tr>
+                <tr><td class="src-code">BKG</td><td>Booking Engine</td><td>Auto via SynXis</td><td>Guest books via dusit.com</td></tr>
+                <tr><td class="src-code">TMG</td><td>Tour Manager</td><td>Auto via SynXis</td><td>TA books via Dusit web</td></tr>
+                <tr><td class="src-code">SHP</td><td>Dusit Shop</td><td>Auto via SynXis</td><td>Guest books via Dusit Shop</td></tr>
+                <tr class="src-group-row"><td colspan="4">GDS / Distribution</td></tr>
+                <tr><td class="src-code">AMD</td><td>Amadeus / System One</td><td>Auto via SynXis</td><td>TA books via GDS</td></tr>
+                <tr><td class="src-code">SAB</td><td>Sabre / Abacus / Axess</td><td>Auto via SynXis</td><td>TA books via GDS</td></tr>
+                <tr><td class="src-code">GAL</td><td>Galileo / Apollo</td><td>Auto via SynXis</td><td>TA books via GDS</td></tr>
+                <tr><td class="src-code">WOS</td><td>Worldspan</td><td>Auto via SynXis</td><td>TA books via GDS</td></tr>
+                <tr class="src-group-row"><td colspan="4">Channel Manager</td></tr>
+                <tr><td class="src-code">CCT</td><td>Channel Manager</td><td>Auto via SynXis</td><td>Reservation via Dusit Corporate Channel Manager</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 7: ORIGIN CODES -->
+      <div class="slide s-white" id="s-7">
+        <div class="s-inner s-centre">
+          <span class="eye">Origin Codes</span>
+          <h2 class="sh" style="margin-bottom:4px;">Track the origin of business</h2>
+          <p class="body-text">Origin codes identify whether a reservation was made directly by the guest or through an intermediary. There are only <b>two origin codes</b> and both are set automatically via SynXis. The key question is simple: <b>is there an intermediary between the guest and the hotel?</b></p>
+          <div class="origin-cards">
+            <div class="origin-card dir">
+              <div class="origin-code">DIR</div>
+              <div class="origin-name">Direct</div>
+              <div class="origin-q">No intermediary</div>
+              <div class="origin-desc">The reservation was made directly by the guest who will check in and check out. No third party is involved in the booking process.</div>
+              <div class="origin-examples">
+                <span class="origin-tag">Guest books dusit.com</span>
+                <span class="origin-tag">Guest calls hotel</span>
+                <span class="origin-tag">Walk-in</span>
+              </div>
+            </div>
+            <div class="origin-card ind">
+              <div class="origin-code">IND</div>
+              <div class="origin-name">Indirect</div>
+              <div class="origin-q">Intermediary present</div>
+              <div class="origin-desc">The reservation was made through an intermediary — a third party sits between the guest and the hotel in the booking chain.</div>
+              <div class="origin-examples">
+                <span class="origin-tag">OTA</span>
+                <span class="origin-tag">Travel Agency</span>
+                <span class="origin-tag">TMC</span>
+                <span class="origin-tag">GDS</span>
+                <span class="origin-tag">Booker</span>
+              </div>
+            </div>
+          </div>
+          <div class="key-box" style="margin-top:14px;"><strong>Both codes are set automatically by SynXis.</strong> You do not need to enter origin codes manually — but you should understand what they mean when you see them in a report.</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 8: COUNTRY OF RESIDENCE -->
+      <div class="slide s-split" id="s-8">
+        <div class="split-left">
+          <div class="deep-n">COR</div>
+          <div class="deep-label">Country of Residence</div>
+          <h2 class="deep-title">Where does the guest live?</h2>
+          <p class="deep-why">Country of residence is now <b>mandatory worldwide</b> for all Dusit properties. It uses the ISO standard country code system — the same codes used by airlines, governments, and international systems. <b>Always ask yourself: where does this guest live? Not where are they from.</b></p>
+          <div style="margin-top:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b200);margin-bottom:6px;">Common mistakes to avoid</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">Spain</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:#E07A5F;text-decoration:line-through;">SP</span> <span style="color:var(--b200);">ES ✓</span></span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">France</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:#E07A5F;text-decoration:line-through;">F</span> <span style="color:var(--b200);">FR ✓</span></span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">Thailand</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:var(--b200);">TH ✓</span></span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">United Kingdom</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:var(--b200);">GB ✓</span></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="split-right">
+          <span class="eye">Why residence — not nationality</span>
+          <p style="font-size:11px;color:var(--g700);line-height:1.7;margin-bottom:14px;">Country of residence tells us where the guest actually lives and travels from — not their passport. This is what matters for market analysis, source market reporting, and demand forecasting.</p>
+          <div style="background:var(--g50);border-radius:var(--rs);padding:14px;border:1px solid var(--g100);margin-bottom:12px;">
+            <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--dark);margin-bottom:8px;">Scenario</div>
+            <div style="font-size:11px;color:var(--g700);line-height:1.6;">A French national living and working in Singapore books a room. Their passport is French — but their country of residence is <b style="color:var(--b700);">SG (Singapore)</b>, not FR. The hotel's source market report should show Singapore, because that is where the demand is coming from.</div>
+          </div>
+          <div style="background:var(--b50);border-radius:var(--rs);padding:14px;border:1px solid var(--b100);">
+            <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--b800);margin-bottom:8px;">How to fill it in</div>
+            <div style="font-size:11px;color:var(--g700);line-height:1.6;">Ask the guest at time of booking: <b>"What country are you currently based in?"</b> Enter the two-letter ISO code in the Country field of the reservation. If unsure of the code, refer to the ISO 3166-1 alpha-2 reference list.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 9: GOLDEN RULES -->
+      <div class="slide s-white" id="s-9">
+        <div class="s-inner s-centre">
+          <span class="eye">Golden Rules</span>
+          <h2 class="sh" style="margin-bottom:6px;">The 6 golden rules of tracking segmentation</h2>
+          <p class="body-text" style="margin-bottom:10px;">These rules exist to keep Dusit's data clean and consistent across all properties. <b>Click each card to reveal the rule.</b></p>
+          <div class="rules-grid" id="rulesGrid">
+            <div class="rule-card" id="rule-0" onclick="revealRule(0)">
+              <div class="rule-num">01</div>
+              <div class="rule-text">Market code must match in PMS, CRS, and RMS — all three systems, every time.</div>
+            </div>
+            <div class="rule-card" id="rule-1" onclick="revealRule(1)">
+              <div class="rule-num">02</div>
+              <div class="rule-text">DLOYAL (seq 58) is exclusively for the Dusit Gold loyalty programme. No other use.</div>
+            </div>
+            <div class="rule-card" id="rule-2" onclick="revealRule(2)">
+              <div class="rule-num">03</div>
+              <div class="rule-text">All OTA rates must use ECOMM (seq 45). No exceptions.</div>
+            </div>
+            <div class="rule-card highlighted" id="rule-3" onclick="revealRule(3)">
+              <div class="rule-num">04</div>
+              <div class="rule-text">Keep it simple — the main reason defines the motive of the whole stay.</div>
+            </div>
+            <div class="rule-card" id="rule-4" onclick="revealRule(4)">
+              <div class="rule-num">05</div>
+              <div class="rule-text">Free-of-charge rooms in a group or contract take the same code as the core business.</div>
+            </div>
+            <div class="rule-card" id="rule-5" onclick="revealRule(5)">
+              <div class="rule-num">06</div>
+              <div class="rule-text">Market code is set at time of booking and never changes — even for groups.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 10: DO / DON'T -->
+      <div class="slide s-white" id="s-10">
+        <div class="s-inner s-centre">
+          <span class="eye" style="margin-bottom:12px;">On every shift</span>
+          <h2 class="sh" style="margin-bottom:18px;">Do / Don't</h2>
+          <div class="dodont">
+            <div class="do-box">
+              <div class="dd-lbl">Do</div>
+              <div class="ddi"><div class="ddi-ic">✓</div>Set the market code at time of booking and leave it — it never changes once set</div>
+              <div class="ddi"><div class="ddi-ic">✓</div>Use ECOMM for every OTA booking, without exception</div>
+              <div class="ddi"><div class="ddi-ic">✓</div>Ensure the market code matches across PMS, CRS, and RMS</div>
+              <div class="ddi"><div class="ddi-ic">✓</div>Ask where the guest lives — not where they are from — for the country field</div>
+              <div class="ddi"><div class="ddi-ic">✓</div>Apply the same code to complimentary rooms within a group block</div>
+            </div>
+            <div class="dont-box">
+              <div class="dd-lbl">Don't</div>
+              <div class="ddi"><div class="ddi-ic">✗</div>Change the market code after booking — even if the guest's situation changes</div>
+              <div class="ddi"><div class="ddi-ic">✗</div>Use DLOYAL for any booking that is not a Dusit Gold member rate</div>
+              <div class="ddi"><div class="ddi-ic">✗</div>Use ACT — it is Finance Dept. only, with a PM room and ACTINT rate code only</div>
+              <div class="ddi"><div class="ddi-ic">✗</div>Guess the country code — use the ISO reference if you are unsure</div>
+              <div class="ddi"><div class="ddi-ic">✗</div>Leave any tracking field blank — incomplete records corrupt every downstream report</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 11: CHECKLIST -->
+      <div class="slide s-off" id="s-11">
+        <div class="s-inner s-centre">
+          <span class="eye" style="margin-bottom:8px;">Before the quiz</span>
+          <h2 class="sh" style="margin-bottom:6px;">Quick checklist</h2>
+          <p style="font-size:12px;color:var(--g500);margin-bottom:14px;">Tick all five <em>and</em> visit all content slides — then the quiz unlocks.</p>
+          <ul class="chklist" id="checklistItems">
+            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I can name the 4 tracking fields: market segment, source code, origin code, country of residence</li>
+            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I know that DLOYAL is exclusively for Dusit Gold members and ECOMM is for all OTA bookings</li>
+            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I understand that market codes are set at time of booking and never change</li>
+            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I know the difference between DIR and IND origin codes and how they are set</li>
+            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I know to use the ISO standard for country of residence — where the guest lives, not their nationality</li>
+          </ul>
+          <div id="unlockNote" style="display:none;margin-top:14px;background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:10px 14px;font-size:11px;color:var(--b800);">✓ <strong>Quiz unlocked.</strong> Press Next to begin.</div>
+          <div id="visitNote" style="display:none;margin-top:10px;font-size:10px;color:var(--gold);">↑ Visit all slides first — some are still unvisited.</div>
+        </div>
+      </div>
+
+      <!-- QUIZ Q1 -->
+      <div class="slide s-quiz" id="s-12">
+        <div class="quiz-wrap">
+          <div class="quiz-header">
+            <div class="q-meta"><div class="q-label">Quiz · Question 1 of 5</div><div class="q-dots" id="qd-0"></div></div>
+            <div class="q-text">A Dusit Gold member calls the hotel directly to book a room and requests their member discount. Which market code and source code should the reservation use?</div>
+          </div>
+          <div class="quiz-opts">
+            <button class="qopt" onclick="answer(0,0,this)">A. Market: DBRRT / Source: TEL</button>
+            <button class="qopt" onclick="answer(0,1,this)">B. Market: DLOYAL / Source: TEL</button>
+            <button class="qopt" onclick="answer(0,2,this)">C. Market: DLOYAL / Source: BKG</button>
+            <button class="qopt" onclick="answer(0,3,this)">D. Market: PROMO / Source: TEL</button>
+          </div>
+          <div class="q-fb" id="qfb-0"></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q1 / 5</div><button class="btn btn-p" id="qnxt-0" onclick="nav(13)" style="display:none">Next →</button></div>
+        </div>
+      </div>
+      <!-- QUIZ Q2 -->
+      <div class="slide s-quiz" id="s-13">
+        <div class="quiz-wrap">
+          <div class="quiz-header">
+            <div class="q-meta"><div class="q-label">Quiz · Question 2 of 5</div><div class="q-dots" id="qd-1"></div></div>
+            <div class="q-text">A corporate group of 20 rooms books for a conference. As part of the deal, the hotel gives 2 complimentary rooms to the organiser. What market code should the complimentary rooms use?</div>
+          </div>
+          <div class="quiz-opts">
+            <button class="qopt" onclick="answer(1,0,this)">A. COMOS — complimentary on sales</button>
+            <button class="qopt" onclick="answer(1,1,this)">B. COMBU — complimentary business</button>
+            <button class="qopt" onclick="answer(1,2,this)">C. GCORP — the same code as the rest of the group block</button>
+            <button class="qopt" onclick="answer(1,3,this)">D. GASSO — since it is a conference group</button>
+          </div>
+          <div class="q-fb" id="qfb-1"></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q2 / 5</div><button class="btn btn-p" id="qnxt-1" onclick="nav(14)" style="display:none">Next →</button></div>
+        </div>
+      </div>
+      <!-- QUIZ Q3 -->
+      <div class="slide s-quiz" id="s-14">
+        <div class="quiz-wrap">
+          <div class="quiz-header">
+            <div class="q-meta"><div class="q-label">Quiz · Question 3 of 5</div><div class="q-dots" id="qd-2"></div></div>
+            <div class="q-text">A German national who has lived and worked in Singapore for 5 years books a room. What should be entered in the Country of Residence field?</div>
+          </div>
+          <div class="quiz-opts">
+            <button class="qopt" onclick="answer(2,0,this)">A. DE — Germany, because that is their nationality</button>
+            <button class="qopt" onclick="answer(2,1,this)">B. SG — Singapore, because that is where they currently live</button>
+            <button class="qopt" onclick="answer(2,2,this)">C. Either DE or SG — both are acceptable</button>
+            <button class="qopt" onclick="answer(2,3,this)">D. Leave it blank if you are unsure</button>
+          </div>
+          <div class="q-fb" id="qfb-2"></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q3 / 5</div><button class="btn btn-p" id="qnxt-2" onclick="nav(15)" style="display:none">Next →</button></div>
+        </div>
+      </div>
+      <!-- QUIZ Q4 -->
+      <div class="slide s-quiz" id="s-15">
+        <div class="quiz-wrap">
+          <div class="quiz-header">
+            <div class="q-meta"><div class="q-label">Quiz · Question 4 of 5</div><div class="q-dots" id="qd-3"></div></div>
+            <div class="q-text">A reservation comes in through Booking.com for a standard room. The rate code shows a standard BAR rate. What is the correct market code?</div>
+          </div>
+          <div class="quiz-opts">
+            <button class="qopt" onclick="answer(3,0,this)">A. DBRRT — because the guest is paying the best available rate</button>
+            <button class="qopt" onclick="answer(3,1,this)">B. WHODM — because Booking.com is a wholesale partner</button>
+            <button class="qopt" onclick="answer(3,2,this)">C. ECOMM — because all OTA bookings must use this code without exception</button>
+            <button class="qopt" onclick="answer(3,3,this)">D. CORPP — because Booking.com has a corporate agreement with Dusit</button>
+          </div>
+          <div class="q-fb" id="qfb-3"></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q4 / 5</div><button class="btn btn-p" id="qnxt-3" onclick="nav(16)" style="display:none">Next →</button></div>
+        </div>
+      </div>
+      <!-- QUIZ Q5 -->
+      <div class="slide s-quiz" id="s-16">
+        <div class="quiz-wrap">
+          <div class="quiz-header">
+            <div class="q-meta"><div class="q-label">Quiz · Question 5 of 5</div><div class="q-dots" id="qd-4"></div></div>
+            <div class="q-text">A front desk agent notices a reservation where the guest's situation changed after booking — they originally booked as a leisure traveller but are now extending the stay for business. Should the market code be changed?</div>
+          </div>
+          <div class="quiz-opts">
+            <button class="qopt" onclick="answer(4,0,this)">A. Yes — the code should be updated to reflect the new purpose of the stay</button>
+            <button class="qopt" onclick="answer(4,1,this)">B. Yes — but only with approval from the Revenue Manager</button>
+            <button class="qopt" onclick="answer(4,2,this)">C. No — the market code is set at time of booking and never changes</button>
+            <button class="qopt" onclick="answer(4,3,this)">D. No — but a note should be added and the code reviewed at checkout</button>
+          </div>
+          <div class="q-fb" id="qfb-4"></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q5 / 5</div><button class="btn btn-p" id="qnxt-4" onclick="finishQuiz()" style="display:none">See Results →</button></div>
+        </div>
+        <!-- RESULTS -->
+        <div class="results-overlay" id="res-overlay">
+          <div class="res-n" id="res-n">0/5</div>
+          <div class="res-l">Questions Correct</div>
+          <div class="res-msg" id="res-msg"></div>
+          <div class="res-actions">
+            <button class="res-btn retry" onclick="retryQuiz()">↺ Retry Quiz</button>
+            <button class="res-btn back" onclick="nav(0)">← Back to start</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /canvas -->
+  </div><!-- /stage -->
+
+  <!-- FULLSCREEN -->
+  <div id="fs-top">
+    <div class="fs-info">
+      <img src="../assets/DHR-white.png" alt="Dusit">
+      <span style="color:rgba(255,255,255,0.1);font-size:12px;">|</span>
+      <span class="fs-mod">MODULE 2 · REVENUE TRACKING SEGMENTATION</span>
+      <span style="color:rgba(255,255,255,0.12);font-size:10px;">›</span>
+      <span class="fs-crumb" id="fsCrumb">Overview</span>
+    </div>
+    <button class="fs-exit" onclick="toggleFS()">✕ Exit Fullscreen</button>
+  </div>
+  <div id="fs-bot">
+    <button class="fs-btn g" id="fsPrev" onclick="prev()" disabled>← Prev</button>
+    <div class="fs-nav-mid">
+      <div class="fs-nav-lbl" id="fsLabel">Slide 1 of 17</div>
+      <div class="fs-ndots" id="fsNdots"></div>
+    </div>
+    <button class="fs-btn p" id="fsNext" onclick="next()">Next →</button>
+  </div>
+
+  <!-- NAV BAR -->
+  <div id="nav-bar">
+    <button class="btn btn-g" id="prevBtn" onclick="prev()" disabled>← Prev</button>
+    <div class="nav-mid">
+      <div class="nav-label" id="navLabel">Slide 1 of 17</div>
+      <div class="nav-dots" id="navDots"></div>
+    </div>
+    <button class="btn btn-p" id="nextBtn" onclick="next()">Next →</button>
+  </div>
+</div><!-- /content -->
+</div><!-- /shell -->
+
+<script>
+// ── NAVIGATION MODEL ──
+// Uses an ordered ID array so non-sequential IDs (s-1b, s-1c) work cleanly
+const SLIDE_IDS = ['s-0','s-1','s-1b','s-1c','s-2','s-3','s-4','s-5','s-6','s-7','s-8','s-9','s-10','s-11','s-12','s-13','s-14','s-15','s-16'];
+const N = SLIDE_IDS.length; // 19
+const CONTENT_END = 13; // index of checklist slide (s-11)
+const QUIZ_START  = 14; // index of Q1 (s-12)
+
+const SIDEBAR_IDS = ['sbi-0','sbi-1','sbi-1b','sbi-1c','sbi-2','sbi-3','sbi-4','sbi-5','sbi-6','sbi-7','sbi-8','sbi-9','sbi-10','sbi-11'];
+
+const TITLES = [
+  'Overview',
+  'What is Tracking Segmentation?',
+  'Who Books',
+  'Who Stays',
+  'Market Segment — Overview',
+  'FIT Segments',
+  'Group Segments',
+  'Other Segments',
+  'Source Codes',
+  'Origin Codes',
+  'Country of Residence',
+  'Golden Rules',
+  'Do / Don\'t',
+  'Checklist',
+  'Quiz · Q1','Quiz · Q2','Quiz · Q3','Quiz · Q4','Quiz · Q5'
+];
+
+let cur = 0;
+let quizUnlocked = false;
+const visited = Array(N).fill(false);
+visited[0] = true;
+
+function slideEl(idx){ return document.getElementById(SLIDE_IDS[idx]); }
+
+// Quiz
+const QA  = [1,2,1,2,2];
+const QFB = [
+  'DLOYAL is the correct market code for all Dusit Gold member bookings. TEL is the correct source code for a reservation made by phone directly to the hotel.',
+  'Free-of-charge rooms that are part of a group contract always take the same market code as the core group business. Since this is a corporate group, all rooms — including the two complimentary ones — should be coded GCORP.',
+  'Country of residence is based on where the guest currently lives, not their nationality or passport. The German national living in Singapore should be coded SG.',
+  'ECOMM must be used for all OTA bookings without exception — regardless of the rate paid. This is one of the six golden rules of tracking segmentation.',
+  'The market code is set at time of booking and never changes — this is a golden rule. Even if the guest\'s situation changes, the code stays the same as originally entered.'
+];
+const answered = Array(5).fill(false);
+const correct  = Array(5).fill(false);
+let score = 0;
+let quizDone = false;
+
+function nav(n) {
+  if(n < 0 || n >= N) return;
+  if(n >= QUIZ_START && !quizUnlocked){ flashLock(); return; }
+  if(n >= QUIZ_START && quizDone && n < N-1){ n = N-1; }
+
+  slideEl(cur).classList.remove('on');
+  visited[cur] = true;
+  cur = n;
+  visited[cur] = true;
+  slideEl(cur).classList.add('on');
+
+  syncUI();
+  checkUnlock();
+  updateQDots();
+  if(window.innerWidth <= 800) document.getElementById('sidebar').classList.remove('open');
+
+  const el = slideEl(cur);
+  const inner = el.querySelector('.s-inner, .split-right, .quiz-wrap');
+  if(inner) inner.scrollTop = 0;
+
+  if(cur === 11) initRules(); // golden rules is index 11
+}
+
+function prev(){ nav(cur-1); }
+function next(){ nav(cur+1); }
+
+function syncUI(){
+  const title = TITLES[cur] || '';
+  document.getElementById('tbCrumb').textContent = title;
+  document.getElementById('fsCrumb').textContent = title;
+
+  const contentVisited = visited.slice(0, CONTENT_END+1).filter(Boolean).length;
+  const quizVisited    = visited.slice(QUIZ_START).filter(Boolean).length;
+  const total = (CONTENT_END+1) + 5;
+  const pct = Math.round(((contentVisited + quizVisited) / total) * 100);
+  document.getElementById('sbFill').style.width = pct + '%';
+
+  // Update sidebar items
+  SIDEBAR_IDS.forEach((sbId, i) => {
+    const el = document.getElementById(sbId);
+    if(!el) return;
+    el.classList.toggle('active', i === cur);
+    el.classList.toggle('visited', visited[i] && i !== cur);
+  });
+  const qEl = document.getElementById('sbi-quiz');
+  if(qEl) qEl.classList.toggle('active', cur >= QUIZ_START);
+
+  const label = 'Slide '+(cur+1)+' of '+N;
+  document.getElementById('navLabel').textContent = label;
+  document.getElementById('fsLabel').textContent  = label;
+
+  const atStart = cur === 0;
+  const atEnd   = cur === N-1;
+  const nextBlocked = atEnd || (cur === CONTENT_END && !quizUnlocked);
+  ['prevBtn','fsPrev'].forEach(id=>{ const e=document.getElementById(id); if(e) e.disabled=atStart; });
+  ['nextBtn','fsNext'].forEach(id=>{ const e=document.getElementById(id); if(e) e.disabled=nextBlocked; });
+
+  buildDots();
+}
+
+function buildDots(){
+  const sets=[{id:'navDots',cls:'ndot'},{id:'fsNdots',cls:'fs-ndot'}];
+  sets.forEach(({id,cls})=>{
+    const c=document.getElementById(id);
+    if(!c) return;
+    c.innerHTML='';
+    for(let i=0;i<N;i++){
+      const d=document.createElement('div');
+      const locked=i>=QUIZ_START&&!quizUnlocked;
+      let c2=cls;
+      if(i===cur) c2+=' on';
+      else if(locked) c2+=' locked';
+      else if(visited[i]) c2+=' done';
+      d.className=c2;
+      d.onclick=(function(idx,lk){return function(){if(!lk)nav(idx);};})(i,locked);
+      c.appendChild(d);
+    }
+  });
+}
+
+function checkUnlock(){
+  if(quizUnlocked) return;
+  const allContent = visited.slice(0,CONTENT_END+1).every(Boolean);
+  const items = document.querySelectorAll('#checklistItems .chi');
+  const allTicked = Array.from(items).every(el=>el.classList.contains('done'));
+  if(allContent && allTicked){
+    quizUnlocked = true;
+    const qi = document.getElementById('sbi-quiz');
+    if(qi) qi.classList.remove('locked');
+    document.getElementById('quizLock').style.display = 'none';
+    const note = document.getElementById('unlockNote');
+    if(note) note.style.display = 'block';
+    const vn = document.getElementById('visitNote');
+    if(vn) vn.style.display = 'none';
+    if(cur === CONTENT_END){
+      document.getElementById('nextBtn').disabled = false;
+      document.getElementById('fsNext').disabled  = false;
+    }
+    buildDots(); syncUI();
+  }
+}
+
+function flashLock(){
+  const el = document.getElementById('sbi-quiz');
+  if(el){ el.style.outline = '1px solid rgba(201,168,76,0.55)'; setTimeout(()=>el.style.outline='', 700); }
+  if(cur === CONTENT_END){
+    const allContent = visited.slice(0,CONTENT_END+1).every(Boolean);
+    const vn = document.getElementById('visitNote');
+    if(vn) vn.style.display = allContent ? 'none' : 'block';
+  }
+}
+
+function tick(el){
+  el.classList.toggle('done');
+  checkUnlock();
+}
+
+// ── SEGMENT ACCORDION ──
+function toggleSeg(hdr){
+  const body = hdr.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+// ── CODE CARDS ──
+function toggleCode(card){
+  const body = card.querySelector('.code-card-body');
+  const isOpen = body.classList.contains('open');
+  card.closest('.code-grid').querySelectorAll('.code-card-body').forEach(b=>b.classList.remove('open'));
+  if(!isOpen) body.classList.add('open');
+}
+
+// ── FIT PANELS ──
+function showFitPanel(panel){
+  ['nonqualified','qualified','corporate','wholesale'].forEach(p=>{
+    const el = document.getElementById('fit-'+p);
+    if(el) el.style.display = p===panel ? 'flex' : 'none';
+  });
+  document.querySelectorAll('#s-3 .bc-item').forEach((item,i)=>{
+    const panels = ['nonqualified','qualified','corporate','wholesale'];
+    item.classList.toggle('active', panels[i]===panel);
+  });
+}
+
+function showGrpPanel(panel){
+  ['business','leisure'].forEach(p=>{
+    const el = document.getElementById('grp-'+p);
+    if(el) el.style.display = p===panel ? 'flex' : 'none';
+  });
+  document.querySelectorAll('#s-4 .bc-item').forEach((item,i)=>{
+    item.classList.toggle('active', i===(panel==='business'?0:1));
+  });
+}
+
+function showOthPanel(panel){
+  ['crew','comp','house'].forEach(p=>{
+    const el = document.getElementById('oth-'+p);
+    if(el) el.style.display = p===panel ? 'flex' : 'none';
+  });
+  document.querySelectorAll('#s-5 .bc-item').forEach((item,i)=>{
+    const panels=['crew','comp','house'];
+    item.classList.toggle('active', panels[i]===panel);
+  });
+}
+
+// ── GOLDEN RULES ──
+let rulesInitDone = false;
+function initRules(){
+  if(rulesInitDone) return;
+  rulesInitDone = true;
+  for(let i=0;i<6;i++){
+    setTimeout(()=>{
+      const card = document.getElementById('rule-'+i);
+      if(card) card.classList.add('revealed');
+    }, i * 250);
+  }
+}
+
+function revealRule(i){
+  const card = document.getElementById('rule-'+i);
+  if(card){ card.classList.add('revealed'); card.style.transform='scale(1.03)'; setTimeout(()=>card.style.transform='',200); }
+}
+
+// ── QUIZ ──
+function updateQDots(){
+  for(let qi=0;qi<5;qi++){
+    const el=document.getElementById('qd-'+qi);
+    if(!el) continue;
+    el.innerHTML='';
+    for(let k=0;k<5;k++){
+      const d=document.createElement('div');
+      let c='q-dot';
+      if(k===cur-QUIZ_START) c+=' current';
+      if(answered[k]) c+=correct[k]?' ok':' wrong';
+      d.className=c;
+      el.appendChild(d);
+    }
+  }
+}
+
+function answer(qi,chosen,btn){
+  if(answered[qi]) return;
+  answered[qi]=true;
+  const ok=chosen===QA[qi];
+  correct[qi]=ok;
+  if(ok) score++;
+  const slide=btn.closest('.slide');
+  slide.querySelectorAll('.qopt').forEach(o=>o.disabled=true);
+  btn.classList.add(ok?'correct':'wrong');
+  if(!ok) slide.querySelectorAll('.qopt')[QA[qi]].classList.add('reveal');
+  const fb=document.getElementById('qfb-'+qi);
+  fb.className='q-fb '+(ok?'correct':'wrong');
+  fb.textContent=(ok?'Correct — ':'Not quite — ')+QFB[qi];
+  fb.style.display='block';
+  document.getElementById('qnxt-'+qi).style.display='inline-block';
+  updateQDots();
+}
+
+function finishQuiz(){
+  quizDone=true;
+  const s=score;
+  const msgs=[
+    'Go back through the module carefully — accurate segmentation is critical to every report and forecast.',
+    'Go back through the module carefully — accurate segmentation is critical to every report and forecast.',
+    'Good effort — review the golden rules and market code sections before applying on shift.',
+    'Strong result — review any missed questions before your next shift.',
+    'Strong result — review any missed questions before your next shift.',
+    'Perfect score. Outstanding.'
+  ];
+  document.getElementById('res-n').textContent = s+'/5';
+  document.getElementById('res-msg').textContent = msgs[s];
+  document.getElementById('res-overlay').classList.add('on');
+  const qi=document.getElementById('sbi-quiz');
+  if(qi) qi.classList.add('visited');
+  visited[N-1]=true;
+  document.getElementById('sbFill').style.width='100%';
+  syncUI();
+}
+
+function retryQuiz(){
+  score=0; quizDone=false;
+  for(let i=0;i<5;i++){answered[i]=false;correct[i]=false;}
+  // Reset quiz slides by ID
+  ['s-12','s-13','s-14','s-15','s-16'].forEach((sid,qi)=>{
+    const sl=document.getElementById(sid);
+    if(!sl) return;
+    sl.querySelectorAll('.qopt').forEach(o=>{o.disabled=false;o.className='qopt';});
+    const fb=document.getElementById('qfb-'+qi);
+    if(fb){fb.style.display='none';fb.className='q-fb';}
+    const nb=document.getElementById('qnxt-'+qi);
+    if(nb) nb.style.display='none';
+  });
+  document.getElementById('res-overlay').classList.remove('on');
+  nav(QUIZ_START);
+}
+
+// ── FULLSCREEN ──
+function toggleFS(){
+  const inFS=!!(document.fullscreenElement||document.webkitFullscreenElement);
+  if(!inFS){
+    const el=document.documentElement;
+    const p=el.requestFullscreen?el.requestFullscreen():el.webkitRequestFullscreen?el.webkitRequestFullscreen():null;
+    if(!p){document.body.classList.add('fullscreen');scaleCanvas();}
+    else p.then(()=>{document.body.classList.add('fullscreen');scaleCanvas();}).catch(()=>{});
+  } else {
+    const ex=document.exitFullscreen||document.webkitExitFullscreen;
+    if(ex) ex.call(document);
+    else{document.body.classList.remove('fullscreen');scaleCanvas();}
+  }
+}
+
+['fullscreenchange','webkitfullscreenchange'].forEach(ev=>{
+  document.addEventListener(ev,()=>{
+    const inFS=!!(document.fullscreenElement||document.webkitFullscreenElement);
+    document.body.classList.toggle('fullscreen',inFS);
+    scaleCanvas();
+  });
+});
+
+function scaleCanvas(){
+  const stage=document.getElementById('stage');
+  const canvas=document.getElementById('canvas');
+  const W=900,H=540;
+  const inFS=document.body.classList.contains('fullscreen');
+  const fsTop=document.getElementById('fs-top');
+  const fsBot=document.getElementById('fs-bot');
+  const topH=inFS?(fsTop?fsTop.offsetHeight:44):0;
+  const botH=inFS?(fsBot?fsBot.offsetHeight:50):0;
+  const pad=inFS?0:16;
+  const sw=stage.clientWidth-pad*2;
+  const sh=stage.clientHeight-topH-botH-pad*2;
+  const scale=Math.min(sw/W,sh/H,1);
+  canvas.style.width=W+'px';
+  canvas.style.height=H+'px';
+  canvas.style.transform='scale('+scale+')';
+  canvas.style.transformOrigin='top left';
+  const scaledW=W*scale,scaledH=H*scale;
+  canvas.style.left=Math.max(pad,(stage.clientWidth-scaledW)/2)+'px';
+  canvas.style.top=Math.max(pad,topH+(sh-scaledH)/2)+'px';
+  canvas.style.margin='0';
+}
+
+window.addEventListener('resize',scaleCanvas);
+
+// Fix code-grid display
+document.querySelectorAll('.code-grid').forEach(g=>g.style.display='flex');
+
+// Init
+syncUI();
+updateQDots();
+scaleCanvas();
+</script>
+</body>
+</html>
