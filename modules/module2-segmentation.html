@@ -35,11 +35,11 @@ html,body{height:100%;overflow:hidden;font-family:'DusitText',sans-serif;backgro
 .sb-section{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--g300);padding:0 10px;margin:10px 0 6px;}
 .sb-item{display:flex;align-items:center;gap:10px;padding:10px 10px;border-radius:6px;cursor:pointer;transition:background 0.15s;border:1px solid transparent;margin-bottom:2px;}
 .sb-item:hover:not(.locked):not(.active){background:var(--g50);}
-.sb-item.active{background:var(--b50);border-color:var(--b100);}
+.sb-item.active{background:var(--g50);border-color:var(--g100);}
 .sb-item.visited .sb-dot{background:var(--gold);}
 .sb-item.locked{cursor:not-allowed;opacity:0.4;}
 .sb-dot{width:7px;height:7px;border-radius:50%;background:var(--g300);flex-shrink:0;transition:background 0.2s;}
-.sb-item.active .sb-dot{background:var(--b700);}
+.sb-item.active .sb-dot{background:var(--b900);}
 .sb-text{flex:1;}
 .sb-stitle{font-size:13px;font-weight:500;color:var(--g500);line-height:1.35;}
 .sb-item.active .sb-stitle{color:var(--b900);font-weight:700;}
@@ -99,23 +99,23 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .s-centre{justify-content:center;}
 
 /* TYPOGRAPHY */
-.eye{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b600);margin-bottom:6px;display:block;}
-.eye-lt{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.8;margin-bottom:6px;display:block;}
+.eye{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block;}
+.eye-lt{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);opacity:0.8;margin-bottom:6px;display:block;}
 .sh{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--dark);line-height:1.25;margin-bottom:10px;}
 .sh-lt{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--white);line-height:1.25;margin-bottom:10px;}
 .body-text{font-size:12px;color:var(--g700);line-height:1.78;margin-bottom:12px;}
-.body-text b{color:var(--b700);font-weight:700;}
-.deep-n{font-family:'DusitDisplay',sans-serif;font-size:38px;font-weight:800;color:var(--b200);line-height:1;margin-bottom:2px;}
-.deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);margin-bottom:8px;opacity:0.7;}
+.body-text b{color:var(--b900);font-weight:700;}
+.deep-n{font-family:'DusitDisplay',sans-serif;font-size:38px;font-weight:800;color:var(--gold-l);line-height:1;margin-bottom:2px;}
+.deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);margin-bottom:8px;opacity:0.7;}
 .deep-title{font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--white);line-height:1.2;margin-bottom:10px;}
 .deep-why{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.78;}
-.deep-why b{color:var(--b200);font-weight:600;}
+.deep-why b{color:var(--gold-l);font-weight:600;}
 
 /* TRACKING FIELDS */
 .tracking-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
-.tf-card{border-radius:var(--rs);padding:14px 16px;border:1.5px solid var(--b100);background:var(--b50);}
+.tf-card{border-radius:var(--rs);padding:14px 16px;border:1.5px solid var(--g100);background:var(--g50);}
 .tf-icon{font-size:18px;margin-bottom:6px;}
-.tf-title{font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;color:var(--b800);margin-bottom:3px;}
+.tf-title{font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;color:var(--b900);margin-bottom:3px;}
 .tf-desc{font-size:10px;color:var(--g500);line-height:1.5;}
 
 /* SEGMENT HIERARCHY */
@@ -129,79 +129,79 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .seg-group-body.open{display:block;}
 .seg-sub{font-size:10px;color:var(--g700);padding:3px 0;border-bottom:1px solid var(--g50);display:flex;align-items:center;gap:6px;}
 .seg-sub:last-child{border-bottom:none;}
-.seg-dot{width:5px;height:5px;border-radius:50%;background:var(--b400);flex-shrink:0;}
+.seg-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
 
 /* segment group colors */
-.sg-fit{background:#EEF6FD;border-color:#B5D4F4;}.sg-fit .seg-group-name{color:#003570;}
+.sg-fit{background:var(--gold-l);border-color:var(--gold);}.sg-fit .seg-group-name{color:var(--b900);}
 .sg-grp{background:#EAF3DE;border-color:#C0DD97;}.sg-grp .seg-group-name{color:#27500A;}
 .sg-oth{background:#F1EFE8;border-color:#D3D1C7;}.sg-oth .seg-group-name{color:#444441;}
 
 /* CODE CARDS */
 .code-grid{display:flex;flex-direction:column;gap:6px;margin-top:8px;}
 .code-card{border-radius:var(--rs);border:1px solid var(--g100);overflow:hidden;cursor:pointer;transition:all 0.15s;}
-.code-card:hover{border-color:var(--b400);}
+.code-card:hover{border-color:var(--gold);}
 .code-card-hdr{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--white);}
-.code-badge{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;background:var(--b50);color:var(--b700);letter-spacing:0.06em;white-space:nowrap;flex-shrink:0;}
+.code-badge{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;background:var(--g50);color:var(--b900);letter-spacing:0.06em;white-space:nowrap;flex-shrink:0;}
 .code-label{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--dark);flex:1;}
 .code-seq{font-size:10px;color:var(--g300);flex-shrink:0;}
 .code-card-body{display:none;padding:8px 12px 10px;background:var(--g50);border-top:1px solid var(--g100);font-size:10px;color:var(--g700);line-height:1.6;}
 .code-card-body.open{display:block;}
-.code-card-body b{color:var(--b700);}
+.code-card-body b{color:var(--b900);}
 
 /* SOURCE TABLE */
 .source-table{width:100%;border-collapse:collapse;font-size:10px;margin-top:8px;}
-.source-table th{background:var(--b800);color:white;padding:7px 10px;text-align:left;font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.05em;}
+.source-table th{background:var(--b900);color:white;padding:7px 10px;text-align:left;font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.05em;}
 .source-table td{padding:6px 10px;border-bottom:1px solid var(--g100);color:var(--g700);vertical-align:top;line-height:1.4;}
 .source-table tr:last-child td{border-bottom:none;}
 .source-table tr:nth-child(even) td{background:var(--g50);}
-.src-code{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--b700);}
-.src-group-row td{background:var(--b50);font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--b800);letter-spacing:0.04em;}
+.src-code{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--b900);}
+.src-group-row td{background:var(--g50);font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--b900);letter-spacing:0.04em;}
 
 /* ORIGIN */
 .origin-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
-.origin-card{border-radius:var(--r);padding:20px;border:2px solid var(--b100);}
-.origin-card.dir{background:var(--b50);border-color:var(--b200);}
+.origin-card{border-radius:var(--r);padding:20px;border:2px solid var(--g100);}
+.origin-card.dir{background:var(--g50);border-color:var(--gold-l);}
 .origin-card.ind{background:var(--g50);border-color:var(--g100);}
 .origin-code{font-family:'DusitDisplay',sans-serif;font-size:28px;font-weight:800;margin-bottom:4px;}
-.origin-card.dir .origin-code{color:var(--b700);}
+.origin-card.dir .origin-code{color:var(--b900);}
 .origin-card.ind .origin-code{color:var(--g500);}
 .origin-name{font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;margin-bottom:8px;}
-.origin-card.dir .origin-name{color:var(--b800);}
+.origin-card.dir .origin-name{color:var(--b900);}
 .origin-card.ind .origin-name{color:var(--g700);}
 .origin-q{font-size:10px;font-weight:700;color:var(--g500);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em;}
 .origin-desc{font-size:11px;color:var(--g700);line-height:1.6;}
 .origin-examples{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;}
 .origin-tag{font-size:9px;padding:2px 7px;border-radius:4px;font-weight:600;}
-.origin-card.dir .origin-tag{background:var(--b100);color:var(--b800);}
+.origin-card.dir .origin-tag{background:var(--g100);color:var(--b900);}
 .origin-card.ind .origin-tag{background:var(--g100);color:var(--g700);}
 
 /* GOLDEN RULES */
 .rules-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;}
-.rule-card{border-radius:var(--rs);padding:14px;border:1.5px solid var(--b100);background:var(--b50);opacity:0;transform:translateY(10px);transition:opacity 0.35s ease,transform 0.35s ease;}
+.rule-card{border-radius:var(--rs);padding:14px;border:1.5px solid var(--g100);background:var(--g50);opacity:0;transform:translateY(10px);transition:opacity 0.35s ease,transform 0.35s ease;}
 .rule-card.revealed{opacity:1;transform:translateY(0);}
-.rule-num{font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:var(--b200);line-height:1;margin-bottom:6px;}
-.rule-text{font-size:11px;color:var(--b800);line-height:1.5;font-weight:500;}
-.rule-card.highlighted{border-color:var(--b400);background:var(--b700);}
+.rule-num{font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:var(--gold-l);line-height:1;margin-bottom:6px;}
+.rule-text{font-size:11px;color:var(--b900);line-height:1.5;font-weight:500;}
+.rule-card.highlighted{border-color:var(--gold);background:var(--b900);}
 .rule-card.highlighted .rule-num{color:rgba(255,255,255,0.4);}
 .rule-card.highlighted .rule-text{color:white;}
 
 /* DO / DONT */
 .dodont{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.do-box{background:var(--b50);border:1px solid var(--b100);border-radius:var(--r);padding:18px;}
+.do-box{background:var(--g50);border:1px solid var(--g100);border-radius:var(--r);padding:18px;}
 .dont-box{background:var(--g50);border:1px solid var(--g100);border-radius:var(--r);padding:18px;}
 .dd-lbl{font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:11px;}
-.do-box .dd-lbl{color:var(--b700);}.dont-box .dd-lbl{color:var(--g500);}
+.do-box .dd-lbl{color:var(--b900);}.dont-box .dd-lbl{color:var(--g500);}
 .ddi{font-size:11px;padding:5px 0;border-bottom:1px solid rgba(0,0,0,0.05);display:flex;gap:7px;align-items:flex-start;line-height:1.45;color:var(--dark);}
 .ddi:last-child{border-bottom:none;}
 .ddi-ic{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;flex-shrink:0;margin-top:1px;}
-.do-box .ddi-ic{background:var(--b700);color:white;}.dont-box .ddi-ic{background:var(--g300);color:white;}
+.do-box .ddi-ic{background:var(--b900);color:white;}.dont-box .ddi-ic{background:var(--g300);color:white;}
 
 /* CHECKLIST */
 .chklist{list-style:none;margin-top:6px;}
 .chi{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px solid var(--g100);font-size:12px;color:var(--dark);cursor:pointer;}
 .chi:last-child{border-bottom:none;}
 .chbox{width:18px;height:18px;border:2px solid var(--g100);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:all 0.15s;background:white;}
-.chi.done .chbox{background:var(--b700);border-color:var(--b700);}
+.chi.done .chbox{background:var(--b900);border-color:var(--b900);}
 .chi.done .chbox::after{content:'';display:block;width:4px;height:7px;border:2px solid white;border-top:none;border-left:none;transform:rotate(45deg) translate(-1px,-1px);}
 .chi.done{color:var(--g300);text-decoration:line-through;}
 
@@ -209,21 +209,21 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .quiz-wrap{display:flex;flex-direction:column;height:100%;}
 .quiz-header{padding:20px 24px 0;flex-shrink:0;}
 .q-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.q-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--b600);}
+.q-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
 .q-dots{display:flex;gap:5px;}
 .q-dot{width:9px;height:9px;border-radius:50%;background:var(--g100);transition:all 0.2s;}
-.q-dot.current{background:var(--b700);transform:scale(1.2);}
-.q-dot.ok{background:var(--b400);}
+.q-dot.current{background:var(--b900);transform:scale(1.2);}
+.q-dot.ok{background:var(--gold);}
 .q-dot.wrong{background:var(--g300);}
 .q-text{font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:700;color:var(--dark);line-height:1.5;}
 .quiz-opts{padding:12px 24px;display:flex;flex-direction:column;gap:7px;flex:1;overflow-y:auto;}
 .qopt{padding:10px 14px;border:1.5px solid var(--g100);border-radius:var(--rs);font-size:11px;color:var(--dark);cursor:pointer;background:var(--white);text-align:left;line-height:1.45;transition:all 0.12s;font-family:'DusitText',sans-serif;}
-.qopt:hover:not([disabled]){border-color:var(--b600);background:var(--b50);color:var(--b800);}
-.qopt.correct{background:var(--b50);border-color:var(--b400);color:var(--b800);font-weight:600;}
+.qopt:hover:not([disabled]){border-color:var(--gold);background:var(--g50);color:var(--b900);}
+.qopt.correct{background:var(--g50);border-color:var(--gold);color:var(--b900);font-weight:600;}
 .qopt.wrong{background:var(--g50);border-color:var(--g300);color:var(--g700);}
-.qopt.reveal{border-color:var(--b400);border-style:dashed;}
+.qopt.reveal{border-color:var(--gold);border-style:dashed;}
 .q-fb{margin:0 24px;padding:9px 12px;border-radius:var(--rs);font-size:11px;line-height:1.65;display:none;flex-shrink:0;}
-.q-fb.correct{background:var(--b50);color:var(--b800);border-left:3px solid var(--b700);}
+.q-fb.correct{background:var(--g50);color:var(--b900);border-left:3px solid var(--b900);}
 .q-fb.wrong{background:var(--g50);color:var(--g700);border-left:3px solid var(--g300);}
 .quiz-foot{padding:10px 24px;background:var(--white);border-top:1px solid var(--g100);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
 .quiz-foot-left{font-size:10px;color:var(--g300);font-family:'DusitDisplay',sans-serif;font-weight:700;letter-spacing:0.05em;}
@@ -238,7 +238,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .res-btn{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;padding:9px 20px;border-radius:var(--rs);cursor:pointer;letter-spacing:0.03em;transition:all 0.15s;border:none;}
 .res-btn.retry{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.65);border:1.5px solid rgba(255,255,255,0.18);}
 .res-btn.retry:hover{background:rgba(255,255,255,0.18);color:white;}
-.res-btn.back{background:var(--b700);color:white;}
+.res-btn.back{background:var(--gold);color:var(--b900);font-weight:700;}
 .res-btn.back:hover{background:var(--b900);}
 
 /* NAV BAR */
@@ -247,12 +247,12 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .nav-label{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--g300);letter-spacing:0.05em;white-space:nowrap;}
 .nav-dots{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:320px;}
 .ndot{width:6px;height:6px;border-radius:50%;background:var(--g100);cursor:pointer;transition:background 0.18s;flex-shrink:0;}
-.ndot.on{background:var(--b700);}
+.ndot.on{background:var(--b900);}
 .ndot.locked{cursor:not-allowed;opacity:0.28;}
 .ndot.done{background:var(--gold);}
 .btn{font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:8px 18px;border-radius:var(--rs);cursor:pointer;border:none;transition:all 0.14s;letter-spacing:0.02em;white-space:nowrap;}
-.btn-p{background:var(--b700);color:white;}.btn-p:hover{background:var(--b800);}
-.btn-g{background:transparent;color:var(--g500);border:1.5px solid var(--g100);}.btn-g:hover{border-color:var(--b600);color:var(--b700);}
+.btn-p{background:var(--gold);color:var(--b900);font-weight:700;}.btn-p:hover{background:#B8972F;}
+.btn-g{background:transparent;color:var(--g500);border:1.5px solid var(--g100);}.btn-g:hover{border-color:var(--gold);color:var(--b900);}
 .btn:disabled{opacity:0.28;cursor:not-allowed;}
 
 /* FULLSCREEN */
@@ -264,7 +264,7 @@ body.fullscreen #fs-top{display:flex;}
 body.fullscreen #fs-bot{display:flex;}
 .fs-info{display:flex;align-items:center;gap:10px;}
 .fs-info img{height:17px;filter:brightness(0) invert(1);opacity:0.75;}
-.fs-mod{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b400);letter-spacing:0.05em;}
+.fs-mod{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.05em;}
 .fs-crumb{font-size:10px;color:rgba(255,255,255,0.28);}
 .fs-exit{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.55);font-size:10px;font-weight:600;padding:5px 12px;border-radius:5px;cursor:pointer;font-family:'DusitDisplay',sans-serif;letter-spacing:0.04em;transition:all 0.14s;}
 .fs-exit:hover{background:rgba(255,255,255,0.13);color:white;}
@@ -272,24 +272,24 @@ body.fullscreen #fs-bot{display:flex;}
 .fs-nav-lbl{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,0.28);letter-spacing:0.05em;}
 .fs-ndots{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:280px;}
 .fs-ndot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.12);cursor:pointer;transition:background 0.18s;}
-.fs-ndot.on{background:var(--b400);}
+.fs-ndot.on{background:var(--gold);}
 .fs-ndot.locked{cursor:not-allowed;opacity:0.2;}
 .fs-ndot.done{background:var(--gold);}
 .fs-btn{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;padding:7px 16px;border-radius:var(--rs);cursor:pointer;border:none;transition:all 0.14s;white-space:nowrap;}
-.fs-btn.p{background:var(--b700);color:white;}.fs-btn.p:hover{background:var(--b800);}
-.fs-btn.g{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1.5px solid rgba(255,255,255,0.12);}.fs-btn.g:hover{border-color:var(--b400);color:var(--b200);}
+.fs-btn.p{background:var(--gold);color:var(--b900);font-weight:700;}.fs-btn.p:hover{background:#B8972F;}
+.fs-btn.g{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1.5px solid rgba(255,255,255,0.12);}.fs-btn.g:hover{border-color:var(--gold);color:var(--gold-l);}
 .fs-btn:disabled{opacity:0.22;cursor:not-allowed;}
 
 /* KEY BOX */
-.key-box{background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:9px 13px;font-size:11px;color:var(--b800);line-height:1.6;margin-top:10px;}
-.key-box strong{color:var(--b700);}
+.key-box{background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 13px;font-size:11px;color:var(--b900);line-height:1.6;margin-top:10px;}
+.key-box strong{color:var(--b900);}
 
 /* BREADCRUMB NAV */
 .bc-nav{display:flex;align-items:center;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
 .bc-item{font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;cursor:pointer;transition:all 0.15s;}
-.bc-item.active{background:var(--b700);color:white;}
-.bc-item:not(.active){background:var(--b50);color:var(--b600);}
-.bc-item:not(.active):hover{background:var(--b100);}
+.bc-item.active{background:var(--b900);color:white;}
+.bc-item:not(.active){background:var(--g50);color:var(--gold);}
+.bc-item:not(.active):hover{background:var(--g100);}
 .bc-sep{font-size:9px;color:var(--g300);}
 
 @media(max-width:800px){
@@ -390,23 +390,23 @@ body.fullscreen #fs-bot{display:flex;}
 
           <!-- LEFT: narrative -->
           <div style="padding:28px 26px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
-            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.7;margin-bottom:8px;display:block;">What is tracking segmentation?</span>
+            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);opacity:0.7;margin-bottom:8px;display:block;">What is tracking segmentation?</span>
             <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Every booking has a story.<br>Tracking makes sure<br>we record it correctly.</h2>
-            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">When a reservation comes in, two things happen — someone books a room, and someone stays in it. These are often different people. A travel agent books for a corporate guest. A parent books for their family. An OTA books on behalf of a tourist.<br><br>Tracking segmentation records <b style="color:var(--b200);">both sides of that story</b> — who booked and who stayed — so the hotel can analyse demand, set the right rates, and report accurately.</p>
+            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">When a reservation comes in, two things happen — someone books a room, and someone stays in it. These are often different people. A travel agent books for a corporate guest. A parent books for their family. An OTA books on behalf of a tourist.<br><br>Tracking segmentation records <b style="color:var(--gold-l);">both sides of that story</b> — who booked and who stayed — so the hotel can analyse demand, set the right rates, and report accurately.</p>
             <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 13px;">
-              <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b200);margin-bottom:6px;">Why it matters</div>
+              <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-l);margin-bottom:6px;">Why it matters</div>
               <div style="font-size:10px;color:rgba(255,255,255,0.5);line-height:1.65;">A wrong market code in the PMS produces wrong data in every report, every forecast, and every rate decision — immediately and silently. There is no error message. The system just stores what you enter.</div>
             </div>
           </div>
 
           <!-- RIGHT: who books / who stays diagram -->
           <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 28px;gap:12px;background:var(--white);">
-            <p style="font-size:11px;color:var(--g500);text-align:center;max-width:420px;line-height:1.6;margin-bottom:4px;">Tracking segmentation captures two groups of data fields — one about the <b style="color:var(--b700);">booking</b>, one about the <b style="color:var(--b700);">guest</b>.</p>
+            <p style="font-size:11px;color:var(--g500);text-align:center;max-width:420px;line-height:1.6;margin-bottom:4px;">Tracking segmentation captures two groups of data fields — one about the <b style="color:var(--b900);">booking</b>, one about the <b style="color:var(--b900);">guest</b>.</p>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%;max-width:480px;">
 
               <!-- WHO BOOKS -->
               <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-                <div style="background:var(--b50);border:1.5px solid var(--b100);border-radius:8px;padding:6px 20px;font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--b800);">Who books</div>
+                <div style="background:var(--g50);border:1.5px solid var(--g100);border-radius:8px;padding:6px 20px;font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--b900);">Who books</div>
                 <div style="position:relative;width:180px;height:180px;">
                   <!-- diamond background -->
                   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(45deg);width:90px;height:90px;background:var(--g100);border-radius:6px;"></div>
@@ -431,7 +431,7 @@ body.fullscreen #fs-bot{display:flex;}
 
               <!-- WHO STAYS -->
               <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-                <div style="background:var(--b50);border:1.5px solid var(--b100);border-radius:8px;padding:6px 20px;font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--b800);">Who stays</div>
+                <div style="background:var(--g50);border:1.5px solid var(--g100);border-radius:8px;padding:6px 20px;font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--b900);">Who stays</div>
                 <div style="position:relative;width:180px;height:180px;">
                   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(45deg);width:90px;height:90px;background:var(--g100);border-radius:6px;"></div>
                   <!-- Guest Name -->
@@ -454,7 +454,7 @@ body.fullscreen #fs-bot{display:flex;}
               </div>
 
             </div>
-            <div style="background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:9px 16px;font-size:10px;color:var(--b800);line-height:1.6;max-width:480px;text-align:center;margin-top:4px;">
+            <div style="background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 16px;font-size:10px;color:var(--b900);line-height:1.6;max-width:480px;text-align:center;margin-top:4px;">
               Together these fields tell the complete story of every reservation — <b>who arranged it, who is staying, where they came from, and how they got here.</b>
             </div>
           </div>
@@ -465,7 +465,7 @@ body.fullscreen #fs-bot{display:flex;}
       <div class="slide s-white" id="s-1b">
         <div style="display:grid;grid-template-columns:300px 1fr;height:100%;">
           <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
-            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.7;margin-bottom:8px;display:block;">Tracking segmentation</span>
+            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);opacity:0.7;margin-bottom:8px;display:block;">Tracking segmentation</span>
             <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Who books the room?</h2>
             <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">The person who makes the booking is not always the person who stays. A travel agent books for a tourist. A corporate travel desk books for an executive. An OTA books on behalf of anyone.</p>
             <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">These four fields capture who arranged the reservation and through which channel — so the hotel knows exactly where its business is coming from.</p>
@@ -478,7 +478,7 @@ body.fullscreen #fs-bot{display:flex;}
           </div>
           <!-- SVG illustration: 3 booker scenarios -->
           <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 24px;background:var(--white);">
-            <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b600);margin-bottom:18px;">Three ways the same room gets booked</p>
+            <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">Three ways the same room gets booked</p>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;width:100%;max-width:520px;">
 
               <!-- Scenario 1: Travel Agent -->
@@ -592,7 +592,7 @@ body.fullscreen #fs-bot{display:flex;}
               </div>
 
             </div>
-            <div style="margin-top:16px;background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:9px 16px;font-size:10px;color:var(--b800);line-height:1.6;max-width:520px;text-align:center;">
+            <div style="margin-top:16px;background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 16px;font-size:10px;color:var(--b900);line-height:1.6;max-width:520px;text-align:center;">
               <b>The market code tells you who is booking and why. The source code tells you exactly how they got there.</b> Both are captured at the time of booking and never change.
             </div>
           </div>
@@ -603,7 +603,7 @@ body.fullscreen #fs-bot{display:flex;}
       <div class="slide s-white" id="s-1c">
         <div style="display:grid;grid-template-columns:300px 1fr;height:100%;">
           <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
-            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.7;margin-bottom:8px;display:block;">Tracking segmentation</span>
+            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);opacity:0.7;margin-bottom:8px;display:block;">Tracking segmentation</span>
             <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Who actually stays in the room?</h2>
             <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">Once we know who booked, we need to understand who is actually checking in. This tells us about source markets, demand patterns, and which guest profiles drive our revenue.</p>
             <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">These fields help the Revenue Manager understand not just where bookings come from — but who Dusit's guests actually are.</p>
@@ -616,7 +616,7 @@ body.fullscreen #fs-bot{display:flex;}
           </div>
           <!-- SVG illustration: 4 guest profiles -->
           <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 24px;background:var(--white);">
-            <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b600);margin-bottom:16px;">Four types of guests — all tracked differently</p>
+            <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Four types of guests — all tracked differently</p>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;width:100%;">
 
               <!-- Family -->
@@ -651,7 +651,7 @@ body.fullscreen #fs-bot{display:flex;}
                   <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--dark);margin-bottom:2px;">Family</div>
                   <div style="font-size:9px;color:var(--g500);line-height:1.35;">Leisure travel · 3–5 nights · Retail segment</div>
                 </div>
-                <div style="font-size:8px;background:var(--b50);color:var(--b800);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: AU · Lang: EN</div>
+                <div style="font-size:8px;background:var(--g50);color:var(--b900);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: AU · Lang: EN</div>
               </div>
 
               <!-- Business traveller -->
@@ -686,7 +686,7 @@ body.fullscreen #fs-bot{display:flex;}
                   <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--dark);margin-bottom:2px;">Business Traveller</div>
                   <div style="font-size:9px;color:var(--g500);line-height:1.35;">Corporate stay · 1–2 nights · Corp segment</div>
                 </div>
-                <div style="font-size:8px;background:var(--b50);color:var(--b800);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: SG · Lang: EN</div>
+                <div style="font-size:8px;background:var(--g50);color:var(--b900);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: SG · Lang: EN</div>
               </div>
 
               <!-- Airline crew -->
@@ -730,7 +730,7 @@ body.fullscreen #fs-bot{display:flex;}
                   <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--dark);margin-bottom:2px;">Airline Crew</div>
                   <div style="font-size:9px;color:var(--g500);line-height:1.35;">Contracted block · Recurring · AIRCW</div>
                 </div>
-                <div style="font-size:8px;background:var(--b50);color:var(--b800);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: TH · Origin: IND</div>
+                <div style="font-size:8px;background:var(--g50);color:var(--b900);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: TH · Origin: IND</div>
               </div>
 
               <!-- Tour group -->
@@ -765,11 +765,11 @@ body.fullscreen #fs-bot{display:flex;}
                   <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--dark);margin-bottom:2px;">Tour Group</div>
                   <div style="font-size:9px;color:var(--g500);line-height:1.35;">Leisure group · via wholesaler · GTOUR</div>
                 </div>
-                <div style="font-size:8px;background:var(--b50);color:var(--b800);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: CN · Lang: ZH</div>
+                <div style="font-size:8px;background:var(--g50);color:var(--b900);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: CN · Lang: ZH</div>
               </div>
 
             </div>
-            <div style="margin-top:14px;background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:9px 16px;font-size:10px;color:var(--b800);line-height:1.6;max-width:520px;text-align:center;">
+            <div style="margin-top:14px;background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 16px;font-size:10px;color:var(--b900);line-height:1.6;max-width:520px;text-align:center;">
               <b>Every guest type has a different profile — and the right tracking fields ensure the hotel's data reflects the real mix of business on any given night.</b>
             </div>
           </div>
@@ -785,7 +785,7 @@ body.fullscreen #fs-bot{display:flex;}
           <!-- Left panel -->
           <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
             <span style="display:inline-block;background:var(--gold);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;padding:4px 9px;border-radius:3px;margin-bottom:16px;align-self:flex-start;">Experimental · 1d</span>
-            <span style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.75;margin-bottom:10px;display:block;">Editorial treatment</span>
+            <span style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);opacity:0.75;margin-bottom:10px;display:block;">Editorial treatment</span>
             <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Who books the room?</h2>
             <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:14px;">Same story as slide 1b, told through editorial typography and geometry instead of character illustration.</p>
             <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;">A brand language built from Dusit design tokens — so every module stays visually identical, without AI drift.</p>
@@ -796,7 +796,7 @@ body.fullscreen #fs-bot{display:flex;}
             <!-- Header strip -->
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:26px;">
               <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);"></div>
-              <span style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b600);letter-spacing:0.14em;text-transform:uppercase;">Three ways the same room gets booked</span>
+              <span style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;">Three ways the same room gets booked</span>
               <div style="flex:1;height:1px;background:linear-gradient(to right,var(--g100),transparent);"></div>
             </div>
 
@@ -810,8 +810,8 @@ body.fullscreen #fs-bot{display:flex;}
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Travel Agent</div>
                 <p style="font-size:11px;color:var(--g700);line-height:1.65;margin-bottom:22px;min-height:60px;">Books on behalf of the guest via GDS or phone. Commissions apply. Part of the negotiated corporate ladder.</p>
                 <div style="display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:1px solid var(--g100);">
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b800);letter-spacing:0.04em;">CORPP · CORGL</span></div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b800);letter-spacing:0.04em;">AMD · GAL</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);letter-spacing:0.04em;">CORPP · CORGL</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);letter-spacing:0.04em;">AMD · GAL</span></div>
                 </div>
               </div>
 
@@ -822,8 +822,8 @@ body.fullscreen #fs-bot{display:flex;}
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Corporate Booker</div>
                 <p style="font-size:11px;color:var(--g700);line-height:1.65;margin-bottom:22px;min-height:60px;">A company travel desk books on behalf of an employee. Direct negotiated rate — no intermediary.</p>
                 <div style="display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:1px solid var(--g100);">
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b800);letter-spacing:0.04em;">CORPK · CORPL</span></div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b800);letter-spacing:0.04em;">DIR · EAC</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);letter-spacing:0.04em;">CORPK · CORPL</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);letter-spacing:0.04em;">DIR · EAC</span></div>
                 </div>
               </div>
 
@@ -834,8 +834,8 @@ body.fullscreen #fs-bot{display:flex;}
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">OTA &middot; Online</div>
                 <p style="font-size:11px;color:var(--g700);line-height:1.65;margin-bottom:22px;min-height:60px;">Guest books directly through Booking.com, Agoda, or Expedia. Pays the retail rate at the time of stay.</p>
                 <div style="display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:1px solid var(--g100);">
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b800);letter-spacing:0.04em;">ECOMM (seq 45)</span></div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b800);letter-spacing:0.04em;">CCT · AUTO</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);letter-spacing:0.04em;">ECOMM (seq 45)</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);letter-spacing:0.04em;">CCT · AUTO</span></div>
                 </div>
               </div>
 
@@ -843,7 +843,7 @@ body.fullscreen #fs-bot{display:flex;}
 
             <!-- Footer caption -->
             <div style="margin-top:28px;padding-top:16px;border-top:1px solid var(--g100);text-align:center;font-size:10.5px;color:var(--g500);line-height:1.7;max-width:640px;margin-left:auto;margin-right:auto;">
-              The <b style="color:var(--b800);font-weight:700;">market code</b> tells you who is booking and why. The <b style="color:var(--b800);font-weight:700;">source code</b> tells you exactly how they got there.
+              The <b style="color:var(--b900);font-weight:700;">market code</b> tells you who is booking and why. The <b style="color:var(--b900);font-weight:700;">source code</b> tells you exactly how they got there.
             </div>
           </div>
         </div>
@@ -904,8 +904,8 @@ body.fullscreen #fs-bot{display:flex;}
           <h2 class="deep-title">Retail, Corporate &amp; Wholesale</h2>
           <p class="deep-why">FIT covers all individual travellers — from walk-in tourists paying BAR to negotiated corporate accounts and contracted wholesale rates. <b>The sub-segment determines which rate logic applies and which discount band is used.</b></p>
           <div style="margin-top:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b200);margin-bottom:6px;">Critical distinction</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.6;"><b style="color:var(--b200);">DLOYAL (seq 58)</b> is exclusively for Dusit Gold loyalty members. Do not use it for any other purpose — including Best Rate Guarantee.<br><br><b style="color:var(--b200);">ECOMM (seq 45)</b> must be used for all OTA bookings. No exceptions.</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-l);margin-bottom:6px;">Critical distinction</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.6;"><b style="color:var(--gold-l);">DLOYAL (seq 58)</b> is exclusively for Dusit Gold loyalty members. Do not use it for any other purpose — including Best Rate Guarantee.<br><br><b style="color:var(--gold-l);">ECOMM (seq 45)</b> must be used for all OTA bookings. No exceptions.</div>
           </div>
         </div>
         <div class="split-right">
@@ -1017,7 +1017,7 @@ body.fullscreen #fs-bot{display:flex;}
           <h2 class="deep-title">Business Groups &amp; Leisure Groups</h2>
           <p class="deep-why">Group bookings have their own segment codes separate from FIT. <b>The key rule: any free-of-charge rooms that are part of a group contract carry the same market code as the core group business.</b> Do not reclassify complimentary rooms within a group booking.</p>
           <div style="margin-top:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b200);margin-bottom:4px;">Remember</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-l);margin-bottom:4px;">Remember</div>
             <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.6;">The market code is set at the time of booking and does not change — even for groups. If the group is corporate, every room in that block is GCORP, including complimentary rooms.</div>
           </div>
         </div>
@@ -1078,7 +1078,7 @@ body.fullscreen #fs-bot{display:flex;}
           <h2 class="deep-title">Crew, Contracted &amp; Internal</h2>
           <p class="deep-why">The Other category covers everything that does not fit FIT or Group — airline crew, long-stay contracts, complimentary rooms, and house use. <b>These codes exist to keep operational rooms separate from revenue-generating rooms in all reporting.</b></p>
           <div style="margin-top:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b200);margin-bottom:4px;">Finance note</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-l);margin-bottom:4px;">Finance note</div>
             <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.6;">The ACT segment is <b>Finance Department use only</b>. It must always be used with a PM room and the ACTINT rate code. No other department should use this code under any circumstances.</div>
           </div>
         </div>
@@ -1226,12 +1226,12 @@ body.fullscreen #fs-bot{display:flex;}
           <h2 class="deep-title">Where does the guest live?</h2>
           <p class="deep-why">Country of residence is now <b>mandatory worldwide</b> for all Dusit properties. It uses the ISO standard country code system — the same codes used by airlines, governments, and international systems. <b>Always ask yourself: where does this guest live? Not where are they from.</b></p>
           <div style="margin-top:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b200);margin-bottom:6px;">Common mistakes to avoid</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-l);margin-bottom:6px;">Common mistakes to avoid</div>
             <div style="display:flex;flex-direction:column;gap:6px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">Spain</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:#E07A5F;text-decoration:line-through;">SP</span> <span style="color:var(--b200);">ES ✓</span></span></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">France</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:#E07A5F;text-decoration:line-through;">F</span> <span style="color:var(--b200);">FR ✓</span></span></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">Thailand</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:var(--b200);">TH ✓</span></span></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">United Kingdom</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:var(--b200);">GB ✓</span></span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">Spain</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:#E07A5F;text-decoration:line-through;">SP</span> <span style="color:var(--gold-l);">ES ✓</span></span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">France</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:#E07A5F;text-decoration:line-through;">F</span> <span style="color:var(--gold-l);">FR ✓</span></span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">Thailand</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:var(--gold-l);">TH ✓</span></span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">United Kingdom</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:var(--gold-l);">GB ✓</span></span></div>
             </div>
           </div>
         </div>
@@ -1240,10 +1240,10 @@ body.fullscreen #fs-bot{display:flex;}
           <p style="font-size:11px;color:var(--g700);line-height:1.7;margin-bottom:14px;">Country of residence tells us where the guest actually lives and travels from — not their passport. This is what matters for market analysis, source market reporting, and demand forecasting.</p>
           <div style="background:var(--g50);border-radius:var(--rs);padding:14px;border:1px solid var(--g100);margin-bottom:12px;">
             <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--dark);margin-bottom:8px;">Scenario</div>
-            <div style="font-size:11px;color:var(--g700);line-height:1.6;">A French national living and working in Singapore books a room. Their passport is French — but their country of residence is <b style="color:var(--b700);">SG (Singapore)</b>, not FR. The hotel's source market report should show Singapore, because that is where the demand is coming from.</div>
+            <div style="font-size:11px;color:var(--g700);line-height:1.6;">A French national living and working in Singapore books a room. Their passport is French — but their country of residence is <b style="color:var(--b900);">SG (Singapore)</b>, not FR. The hotel's source market report should show Singapore, because that is where the demand is coming from.</div>
           </div>
-          <div style="background:var(--b50);border-radius:var(--rs);padding:14px;border:1px solid var(--b100);">
-            <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--b800);margin-bottom:8px;">How to fill it in</div>
+          <div style="background:var(--g50);border-radius:var(--rs);padding:14px;border:1px solid var(--g100);">
+            <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--b900);margin-bottom:8px;">How to fill it in</div>
             <div style="font-size:11px;color:var(--g700);line-height:1.6;">Ask the guest at time of booking: <b>"What country are you currently based in?"</b> Enter the two-letter ISO code in the Country field of the reservation. If unsure of the code, refer to the ISO 3166-1 alpha-2 reference list.</div>
           </div>
         </div>
@@ -1323,7 +1323,7 @@ body.fullscreen #fs-bot{display:flex;}
             <li class="chi" onclick="tick(this)"><div class="chbox"></div>I know the difference between DIR and IND origin codes and how they are set</li>
             <li class="chi" onclick="tick(this)"><div class="chbox"></div>I know to use the ISO standard for country of residence — where the guest lives, not their nationality</li>
           </ul>
-          <div id="unlockNote" style="display:none;margin-top:14px;background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:10px 14px;font-size:11px;color:var(--b800);">✓ <strong>Quiz unlocked.</strong> Press Next to begin.</div>
+          <div id="unlockNote" style="display:none;margin-top:14px;background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:10px 14px;font-size:11px;color:var(--b900);">✓ <strong>Quiz unlocked.</strong> Press Next to begin.</div>
           <div id="visitNote" style="display:none;margin-top:10px;font-size:10px;color:var(--gold);">↑ Visit all slides first — some are still unvisited.</div>
         </div>
       </div>

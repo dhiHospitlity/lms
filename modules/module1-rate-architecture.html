@@ -38,11 +38,11 @@ html,body{height:100%;overflow:hidden;font-family:'DusitText',sans-serif;backgro
 .sb-section{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--g300);padding:0 10px;margin:10px 0 6px;}
 .sb-item{display:flex;align-items:center;gap:10px;padding:10px 10px;border-radius:6px;cursor:pointer;transition:background 0.15s;border:1px solid transparent;margin-bottom:2px;}
 .sb-item:hover:not(.locked):not(.active){background:var(--g50);}
-.sb-item.active{background:var(--b50);border-color:var(--b100);}
+.sb-item.active{background:var(--g50);border-color:var(--g100);}
 .sb-item.visited .sb-dot{background:var(--gold);}
 .sb-item.locked{cursor:not-allowed;opacity:0.4;}
 .sb-dot{width:7px;height:7px;border-radius:50%;background:var(--g300);flex-shrink:0;transition:background 0.2s;}
-.sb-item.active .sb-dot{background:var(--b700);}
+.sb-item.active .sb-dot{background:var(--b900);}
 .sb-text{flex:1;}
 .sb-stitle{font-size:13px;font-weight:500;color:var(--g500);line-height:1.35;}
 .sb-item.active .sb-stitle{color:var(--b900);font-weight:700;}
@@ -117,74 +117,74 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .s-centre{justify-content:center;}
 
 /* ── TYPOGRAPHY ── */
-.eye-lt{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b600);margin-bottom:6px;display:block;}
-.eye{font-size:9px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--b600);margin-bottom:6px;display:block;}
+.eye-lt{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block;}
+.eye{font-size:9px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block;}
 .sh-lt{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--dark);line-height:1.25;margin-bottom:10px;}
 .sh{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--dark);line-height:1.25;margin-bottom:10px;}
 .why-lt{font-size:12px;color:var(--g700);line-height:1.78;margin-bottom:14px;}
-.why-lt b{color:var(--b700);font-weight:700;}
+.why-lt b{color:var(--b900);font-weight:700;}
 .why-lt i{font-style:italic;color:var(--g500);}
 .sp{font-size:12px;color:var(--g500);line-height:1.7;}
-.deep-n{font-family:'DusitDisplay',sans-serif;font-size:38px;font-weight:800;color:var(--b200);line-height:1;margin-bottom:2px;}
-.deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);margin-bottom:8px;opacity:0.7;}
+.deep-n{font-family:'DusitDisplay',sans-serif;font-size:38px;font-weight:800;color:var(--gold-l);line-height:1;margin-bottom:2px;}
+.deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);margin-bottom:8px;opacity:0.7;}
 .deep-title{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--white);line-height:1.2;margin-bottom:10px;}
 .deep-why{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.78;}
-.deep-why b{color:var(--b200);font-weight:600;}
+.deep-why b{color:var(--gold-l);font-weight:600;}
 .deep-why em{font-style:italic;color:rgba(255,255,255,0.8);}
 
 /* ── OVERVIEW GRID ── */
 .ov-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px;}
-.ov-card{border-radius:var(--rs);border:1.5px solid var(--b100);background:var(--b50);padding:14px 10px;cursor:pointer;transition:all 0.15s;text-align:center;}
-.ov-card:hover{border-color:var(--b400);background:var(--b100);transform:translateY(-2px);}
-.ov-num{font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:var(--b700);line-height:1;margin-bottom:4px;}
-.ov-label{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b800);margin-bottom:3px;}
+.ov-card{border-radius:var(--rs);border:1.5px solid var(--g100);background:var(--g50);padding:14px 10px;cursor:pointer;transition:all 0.15s;text-align:center;}
+.ov-card:hover{border-color:var(--gold);background:var(--g100);transform:translateY(-2px);}
+.ov-num{font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:var(--b900);line-height:1;margin-bottom:4px;}
+.ov-label{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b900);margin-bottom:3px;}
 .ov-desc{font-size:10px;color:var(--g500);line-height:1.45;}
 
 /* ── VS CARDS ── */
 .vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
 .vs-card{border-radius:var(--rs);overflow:hidden;border:1px solid var(--g100);}
 .vs-hdr{padding:7px 12px;font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
-.vs-hdr.a{background:var(--b50);color:var(--b800);}.vs-hdr.b{background:var(--g50);color:var(--g500);}
+.vs-hdr.a{background:var(--g50);color:var(--b900);}.vs-hdr.b{background:var(--g50);color:var(--g500);}
 .vs-body{background:var(--white);padding:11px;}
 .vs-price{font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;margin-bottom:6px;}
-.vs-price.a{color:var(--b800);}.vs-price.b{color:var(--g500);}
+.vs-price.a{color:var(--b900);}.vs-price.b{color:var(--g500);}
 .vs-facts{list-style:none;}
 .vs-fact{font-size:11px;color:var(--g500);padding:3px 0;border-bottom:1px solid var(--g100);display:flex;gap:6px;line-height:1.35;}
 .vs-fact:last-child{border-bottom:none;}
-.vfi{color:var(--b400);font-size:9px;margin-top:2px;flex-shrink:0;}
-.key-box{background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:9px 13px;font-size:11px;color:var(--b800);line-height:1.6;}
-.key-box strong{color:var(--b700);}
+.vfi{color:var(--gold);font-size:9px;margin-top:2px;flex-shrink:0;}
+.key-box{background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 13px;font-size:11px;color:var(--b900);line-height:1.6;}
+.key-box strong{color:var(--b900);}
 
 /* ── ROOM LADDER ── */
 .room-ladder{display:flex;flex-direction:column;gap:7px;margin-bottom:10px;}
 .room-rung{border-radius:var(--rs);padding:11px 14px;display:flex;justify-content:space-between;align-items:center;}
 .room-rung.std{background:var(--g50);border:1px solid var(--g100);}
-.room-rung.dlx{background:var(--b50);border:1px solid var(--b100);}
-.room-rung.ste{background:var(--b800);border:1px solid var(--b700);}
+.room-rung.dlx{background:var(--g50);border:1px solid var(--g100);}
+.room-rung.ste{background:var(--b900);border:1px solid var(--b900);}
 .rr-name{font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;}
-.room-rung.std .rr-name{color:var(--dark);}.room-rung.dlx .rr-name{color:var(--b800);}.room-rung.ste .rr-name{color:white;}
+.room-rung.std .rr-name{color:var(--dark);}.room-rung.dlx .rr-name{color:var(--b900);}.room-rung.ste .rr-name{color:white;}
 .rr-sup{font-size:10px;margin-top:1px;}
-.room-rung.std .rr-sup{color:var(--g300);}.room-rung.dlx .rr-sup{color:var(--b400);}.room-rung.ste .rr-sup{color:rgba(91,159,212,0.7);}
+.room-rung.std .rr-sup{color:var(--g300);}.room-rung.dlx .rr-sup{color:var(--gold);}.room-rung.ste .rr-sup{color:rgba(201,168,76,0.8);}
 .rr-price{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;}
-.room-rung.std .rr-price{color:var(--dark);}.room-rung.dlx .rr-price{color:var(--b800);}.room-rung.ste .rr-price{color:white;}
+.room-rung.std .rr-price{color:var(--dark);}.room-rung.dlx .rr-price{color:var(--b900);}.room-rung.ste .rr-price{color:white;}
 
 /* ── DO / DON'T ── */
 .dodont{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.do-box{background:var(--b50);border:1px solid var(--b100);border-radius:var(--r);padding:18px;}
+.do-box{background:var(--g50);border:1px solid var(--g100);border-radius:var(--r);padding:18px;}
 .dont-box{background:var(--g50);border:1px solid var(--g100);border-radius:var(--r);padding:18px;}
 .dd-lbl{font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:11px;}
-.do-box .dd-lbl{color:var(--b700);}.dont-box .dd-lbl{color:var(--g500);}
+.do-box .dd-lbl{color:var(--b900);}.dont-box .dd-lbl{color:var(--g500);}
 .ddi{font-size:12px;padding:5px 0;border-bottom:1px solid rgba(0,0,0,0.05);display:flex;gap:7px;align-items:flex-start;line-height:1.45;color:var(--dark);}
 .ddi:last-child{border-bottom:none;}
 .ddi-ic{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;flex-shrink:0;margin-top:1px;}
-.do-box .ddi-ic{background:var(--b700);color:white;}.dont-box .ddi-ic{background:var(--g300);color:white;}
+.do-box .ddi-ic{background:var(--b900);color:white;}.dont-box .ddi-ic{background:var(--g300);color:white;}
 
 /* ── CHECKLIST ── */
 .chklist{list-style:none;margin-top:6px;}
 .chi{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px solid var(--g100);font-size:12px;color:var(--dark);cursor:pointer;}
 .chi:last-child{border-bottom:none;}
 .chbox{width:18px;height:18px;border:2px solid var(--g100);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:all 0.15s;background:white;}
-.chi.done .chbox{background:var(--b700);border-color:var(--b700);}
+.chi.done .chbox{background:var(--b900);border-color:var(--b900);}
 .chi.done .chbox::after{content:'';display:block;width:4px;height:7px;border:2px solid white;border-top:none;border-left:none;transform:rotate(45deg) translate(-1px,-1px);}
 .chi.done{color:var(--g300);text-decoration:line-through;}
 
@@ -192,21 +192,21 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .quiz-wrap{display:flex;flex-direction:column;height:100%;}
 .quiz-header{padding:20px 24px 0;flex-shrink:0;}
 .q-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.q-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--b600);}
+.q-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
 .q-dots{display:flex;gap:5px;}
 .q-dot{width:9px;height:9px;border-radius:50%;background:var(--g100);transition:all 0.2s;}
-.q-dot.current{background:var(--b700);transform:scale(1.2);}
-.q-dot.ok{background:var(--b400);}
+.q-dot.current{background:var(--b900);transform:scale(1.2);}
+.q-dot.ok{background:var(--gold);}
 .q-dot.wrong{background:var(--g300);}
 .q-text{font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:700;color:var(--dark);line-height:1.5;margin-bottom:0;}
 .quiz-opts{padding:12px 24px;display:flex;flex-direction:column;gap:7px;flex:1;overflow-y:auto;}
 .qopt{padding:10px 14px;border:1.5px solid var(--g100);border-radius:var(--rs);font-size:12px;color:var(--dark);cursor:pointer;background:var(--white);text-align:left;line-height:1.45;transition:all 0.12s;font-family:'DusitText',sans-serif;}
-.qopt:hover:not([disabled]){border-color:var(--b600);background:var(--b50);color:var(--b800);}
-.qopt.correct{background:var(--b50);border-color:var(--b400);color:var(--b800);font-weight:600;}
+.qopt:hover:not([disabled]){border-color:var(--gold);background:var(--g50);color:var(--b900);}
+.qopt.correct{background:var(--g50);border-color:var(--gold);color:var(--b900);font-weight:600;}
 .qopt.wrong{background:var(--g50);border-color:var(--g300);color:var(--g700);}
-.qopt.reveal{border-color:var(--b400);border-style:dashed;}
+.qopt.reveal{border-color:var(--gold);border-style:dashed;}
 .q-fb{margin:0 24px;padding:9px 12px;border-radius:var(--rs);font-size:11px;line-height:1.65;display:none;flex-shrink:0;}
-.q-fb.correct{background:var(--b50);color:var(--b800);border-left:3px solid var(--b700);}
+.q-fb.correct{background:var(--g50);color:var(--b900);border-left:3px solid var(--b900);}
 .q-fb.wrong{background:var(--g50);color:var(--g700);border-left:3px solid var(--g300);}
 .quiz-foot{padding:10px 24px;background:var(--white);border-top:1px solid var(--g100);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
 .quiz-foot-left{font-size:10px;color:var(--g300);font-family:'DusitDisplay',sans-serif;font-weight:700;letter-spacing:0.05em;}
@@ -226,7 +226,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .res-btn{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;padding:9px 20px;border-radius:var(--rs);cursor:pointer;letter-spacing:0.03em;transition:all 0.15s;border:none;}
 .res-btn.retry{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.65);border:1.5px solid rgba(255,255,255,0.18);}
 .res-btn.retry:hover{background:rgba(255,255,255,0.18);color:white;}
-.res-btn.back{background:var(--b700);color:white;}
+.res-btn.back{background:var(--gold);color:var(--b900);font-weight:700;}
 .res-btn.back:hover{background:var(--b900);}
 
 /* ── NAV BAR ── */
@@ -240,12 +240,12 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .nav-label{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--g300);letter-spacing:0.05em;white-space:nowrap;}
 .nav-dots{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:320px;}
 .ndot{width:6px;height:6px;border-radius:50%;background:var(--g100);cursor:pointer;transition:background 0.18s;flex-shrink:0;}
-.ndot.on{background:var(--b700);}
+.ndot.on{background:var(--b900);}
 .ndot.locked{cursor:not-allowed;opacity:0.28;}
 .ndot.done{background:var(--gold);}
 .btn{font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:8px 18px;border-radius:var(--rs);cursor:pointer;border:none;transition:all 0.14s;letter-spacing:0.02em;white-space:nowrap;}
-.btn-p{background:var(--b700);color:white;}.btn-p:hover{background:var(--b800);}
-.btn-g{background:transparent;color:var(--g500);border:1.5px solid var(--g100);}.btn-g:hover{border-color:var(--b600);color:var(--b700);}
+.btn-p{background:var(--gold);color:var(--b900);font-weight:700;}.btn-p:hover{background:#B8972F;}
+.btn-g{background:transparent;color:var(--g500);border:1.5px solid var(--g100);}.btn-g:hover{border-color:var(--gold);color:var(--b900);}
 .btn:disabled{opacity:0.28;cursor:not-allowed;}
 
 /* ── FULLSCREEN ── */
@@ -264,7 +264,7 @@ body.fullscreen #fs-top{display:flex;}
 body.fullscreen #fs-bot{display:flex;}
 .fs-info{display:flex;align-items:center;gap:10px;}
 .fs-info img{height:17px;filter:brightness(0) invert(1);opacity:0.75;}
-.fs-mod{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b400);letter-spacing:0.05em;}
+.fs-mod{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.05em;}
 .fs-crumb{font-size:10px;color:rgba(255,255,255,0.28);}
 .fs-exit{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.55);font-size:10px;font-weight:600;padding:5px 12px;border-radius:5px;cursor:pointer;font-family:'DusitDisplay',sans-serif;letter-spacing:0.04em;transition:all 0.14s;}
 .fs-exit:hover{background:rgba(255,255,255,0.13);color:white;}
@@ -272,12 +272,12 @@ body.fullscreen #fs-bot{display:flex;}
 .fs-nav-lbl{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,0.28);letter-spacing:0.05em;}
 .fs-ndots{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:280px;}
 .fs-ndot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.12);cursor:pointer;transition:background 0.18s;}
-.fs-ndot.on{background:var(--b400);}
+.fs-ndot.on{background:var(--gold);}
 .fs-ndot.locked{cursor:not-allowed;opacity:0.2;}
 .fs-ndot.done{background:var(--gold);}
 .fs-btn{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;padding:7px 16px;border-radius:var(--rs);cursor:pointer;border:none;transition:all 0.14s;white-space:nowrap;}
-.fs-btn.p{background:var(--b700);color:white;}.fs-btn.p:hover{background:var(--b800);}
-.fs-btn.g{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1.5px solid rgba(255,255,255,0.12);}.fs-btn.g:hover{border-color:var(--b400);color:var(--b200);}
+.fs-btn.p{background:var(--gold);color:var(--b900);font-weight:700;}.fs-btn.p:hover{background:#B8972F;}
+.fs-btn.g{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1.5px solid rgba(255,255,255,0.12);}.fs-btn.g:hover{border-color:var(--gold);color:var(--gold-l);}
 .fs-btn:disabled{opacity:0.22;cursor:not-allowed;}
 
 @media(max-width:800px){
@@ -381,7 +381,7 @@ body.fullscreen #fs-bot{display:flex;}
         <div class="split-right">
           <div class="vs-grid">
             <div class="vs-card"><div class="vs-hdr a">Tuesday in February</div><div class="vs-body"><div class="vs-price a">$110</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>Low demand period</li><li class="vs-fact"><span class="vfi">●</span>Hotel needs to fill rooms</li><li class="vs-fact"><span class="vfi">●</span>Rate set to attract bookings</li><li class="vs-fact"><span class="vfi">●</span>BAR calibrated to demand signal</li></ul></div></div>
-            <div class="vs-card"><div class="vs-hdr b">New Year's Eve</div><div class="vs-body"><div class="vs-price b" style="color:var(--b800)">$280</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>Peak demand — hotel near sold out</li><li class="vs-fact"><span class="vfi">●</span>Rate rises to reflect demand</li><li class="vs-fact"><span class="vfi">●</span>BAR adjusted by Revenue Manager</li><li class="vs-fact"><span class="vfi">●</span>All linked rates follow automatically</li></ul></div></div>
+            <div class="vs-card"><div class="vs-hdr b">New Year's Eve</div><div class="vs-body"><div class="vs-price b" style="color:var(--b900)">$280</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>Peak demand — hotel near sold out</li><li class="vs-fact"><span class="vfi">●</span>Rate rises to reflect demand</li><li class="vs-fact"><span class="vfi">●</span>BAR adjusted by Revenue Manager</li><li class="vs-fact"><span class="vfi">●</span>All linked rates follow automatically</li></ul></div></div>
           </div>
           <div class="key-box"><strong>Key principle:</strong> BAR is not a fixed price. When the RM moves BAR, every linked rate — corporate, OTA, member — automatically follows. Same room. Very different nights.</div>
         </div>
@@ -427,7 +427,7 @@ body.fullscreen #fs-bot{display:flex;}
           <p class="deep-why">A Standard room and a Suite are not the same product. The room ladder ensures every room type is priced relative to the one below. <b>Each type carries a fixed supplement added on top of the derived rate</b> — applied <em>after</em> the segment discount, not before. <b>This is the order that matters.</b></p>
         </div>
         <div class="split-right">
-          <p style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--b600);margin-bottom:10px;">Room ladder — BAR $133 base</p>
+          <p style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Room ladder — BAR $133 base</p>
           <div class="room-ladder">
             <div class="room-rung std"><div><div class="rr-name">Standard Room</div><div class="rr-sup">No supplement — base derived rate</div></div><div class="rr-price">$133</div></div>
             <div class="room-rung dlx"><div><div class="rr-name">Deluxe Room</div><div class="rr-sup">+ $17 fixed supplement</div></div><div class="rr-price">$150</div></div>
@@ -443,16 +443,16 @@ body.fullscreen #fs-bot{display:flex;}
 
           <!-- LEFT: context panel -->
           <div style="padding:28px 22px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
-            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b200);opacity:0.7;margin-bottom:8px;display:block;">The connected system</span>
+            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);opacity:0.7;margin-bottom:8px;display:block;">The connected system</span>
             <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">One change.<br>Every rate.<br>Automatic.</h2>
             <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:18px;">BAR is the single source of truth. Every channel rate is a fixed percentage of BAR. When the RM moves BAR — all derived rates update instantly, with zero manual work.</p>
             <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:11px 13px;">
-              <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--b200);margin-bottom:8px;">Watch BAR move: ฿4,000 → ฿5,000</div>
+              <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-l);margin-bottom:8px;">Watch BAR move: ฿4,000 → ฿5,000</div>
               <div style="display:flex;flex-direction:column;gap:5px;">
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Corporate −15%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b200);">฿3,400 → ฿4,250</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">OTA −20%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b200);">฿3,200 → ฿4,000</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Member −10%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b200);">฿3,600 → ฿4,500</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Direct BAR</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b200);">฿4,000 → ฿5,000</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Corporate −15%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">฿3,400 → ฿4,250</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">OTA −20%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">฿3,200 → ฿4,000</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Member −10%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">฿3,600 → ฿4,500</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Direct BAR</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">฿4,000 → ฿5,000</span></div>
               </div>
               <div style="margin-top:8px;padding-top:7px;border-top:1px solid rgba(255,255,255,0.08);font-size:9px;color:rgba(255,255,255,0.28);text-align:center;">All updated automatically · No manual work</div>
             </div>
@@ -461,7 +461,7 @@ body.fullscreen #fs-bot{display:flex;}
           <!-- RIGHT: animated diagram -->
           <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 16px;background:var(--white);position:relative;">
 
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--b600);margin-bottom:16px;">Live rate propagation</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Live rate propagation</div>
 
             <!-- The animation canvas -->
             <div id="sys-anim" style="width:100%;max-width:540px;position:relative;height:280px;">
@@ -471,12 +471,12 @@ body.fullscreen #fs-bot{display:flex;}
                 <!-- Lines from BAR hub to each channel — drawn with stroke-dasharray animation -->
                 <!-- BAR hub centre: x=270, y=140 -->
                 <!-- Channels: TL, ML, BL, TR, MR, BR -->
-                <line id="ln-0" x1="270" y1="140" x2="80"  y2="52"  stroke="var(--b400)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
-                <line id="ln-1" x1="270" y1="140" x2="72"  y2="140" stroke="var(--b400)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
-                <line id="ln-2" x1="270" y1="140" x2="80"  y2="228" stroke="var(--b400)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
-                <line id="ln-3" x1="270" y1="140" x2="460" y2="52"  stroke="var(--b400)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
-                <line id="ln-4" x1="270" y1="140" x2="468" y2="140" stroke="var(--b400)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
-                <line id="ln-5" x1="270" y1="140" x2="460" y2="228" stroke="var(--b400)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
+                <line id="ln-0" x1="270" y1="140" x2="80"  y2="52"  stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
+                <line id="ln-1" x1="270" y1="140" x2="72"  y2="140" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
+                <line id="ln-2" x1="270" y1="140" x2="80"  y2="228" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
+                <line id="ln-3" x1="270" y1="140" x2="460" y2="52"  stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
+                <line id="ln-4" x1="270" y1="140" x2="468" y2="140" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
+                <line id="ln-5" x1="270" y1="140" x2="460" y2="228" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
                 <!-- Pulse dots travelling along each spoke -->
                 <circle id="pulse-0" r="4" fill="var(--b500,#2B78D4)" opacity="0"><animateMotion id="am-0" dur="0.6s" fill="freeze" begin="indefinite" path="M270,140 L80,52"/></circle>
                 <circle id="pulse-1" r="4" fill="var(--b500,#2B78D4)" opacity="0"><animateMotion id="am-1" dur="0.6s" fill="freeze" begin="indefinite" path="M270,140 L72,140"/></circle>
@@ -487,8 +487,8 @@ body.fullscreen #fs-bot{display:flex;}
               </svg>
 
               <!-- BAR HUB (centre) -->
-              <div id="bar-hub" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:var(--b700);border:3px solid var(--b400);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:10;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;" onclick="triggerAnim()">
-                <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--b200);margin-bottom:2px;">BAR</div>
+              <div id="bar-hub" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:var(--b900);border:3px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:10;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;" onclick="triggerAnim()">
+                <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--gold-l);margin-bottom:2px;">BAR</div>
                 <div id="bar-val" style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;transition:all 0.3s;">฿4,000</div>
                 <div style="font-size:8px;color:rgba(255,255,255,0.45);margin-top:1px;">tap to update</div>
               </div>
@@ -540,23 +540,23 @@ body.fullscreen #fs-bot{display:flex;}
 
       <style>
         .ch-card{
-          background:var(--white);border:1.5px solid var(--b100);border-radius:8px;
+          background:var(--white);border:1.5px solid var(--g100);border-radius:8px;
           padding:8px 10px;text-align:center;
           transition:border-color 0.3s,background 0.3s,transform 0.2s;
           box-shadow:0 1px 6px rgba(0,60,150,0.07);
         }
-        .ch-card.updated{border-color:var(--b600);background:var(--b50);}
+        .ch-card.updated{border-color:var(--gold);background:var(--g50);}
         .ch-card.flash{animation:cardflash 0.5s ease;}
-        @keyframes cardflash{0%{background:var(--b100);}100%{background:var(--b50);}}
-        .ch-label{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b800);margin-bottom:2px;}
+        @keyframes cardflash{0%{background:var(--g100);}100%{background:var(--g50);}}
+        .ch-label{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b900);margin-bottom:2px;}
         .ch-disc{font-size:9px;color:var(--g500);margin-bottom:4px;}
-        .ch-rate{font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b700);transition:color 0.3s;}
-        .ch-card.updated .ch-rate{color:var(--b700);}
+        .ch-rate{font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);transition:color 0.3s;}
+        .ch-card.updated .ch-rate{color:var(--b900);}
         /* Active line state */
-        .ln-active{opacity:0.9 !important;stroke:var(--b600);stroke-dasharray:none;}
+        .ln-active{opacity:0.9 !important;stroke:var(--gold);stroke-dasharray:none;}
         .ln-idle{opacity:0.2;}
         /* Hub pulse ring */
-        @keyframes hubpulse{0%{box-shadow:0 0 0 0 rgba(29,95,180,0.6);}70%{box-shadow:0 0 0 18px rgba(29,95,180,0);}100%{box-shadow:0 0 0 0 rgba(29,95,180,0);}}
+        @keyframes hubpulse{0%{box-shadow:0 0 0 0 rgba(201,168,76,0.6);}70%{box-shadow:0 0 0 18px rgba(201,168,76,0);}100%{box-shadow:0 0 0 0 rgba(201,168,76,0);}}
         .hub-firing{animation:hubpulse 0.6s ease-out;}
       </style>
 
@@ -691,7 +691,7 @@ body.fullscreen #fs-bot{display:flex;}
             <li class="chi" onclick="tick(this)"><div class="chbox"></div>I know who to call immediately if I spot a rate discrepancy between channels</li>
             <li class="chi" onclick="tick(this)"><div class="chbox"></div>I know the 3 rate levels: Flexible, Saver (10%), Stay Longer (15%)</li>
           </ul>
-          <div id="unlockNote" style="display:none;margin-top:14px;background:var(--b50);border:1px solid var(--b100);border-radius:var(--rs);padding:10px 14px;font-size:11px;color:var(--b800);">✓ <strong>Quiz unlocked.</strong> Press Next to begin.</div>
+          <div id="unlockNote" style="display:none;margin-top:14px;background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:10px 14px;font-size:11px;color:var(--b900);">✓ <strong>Quiz unlocked.</strong> Press Next to begin.</div>
           <div id="visitNote" style="display:none;margin-top:10px;font-size:10px;color:var(--gold);">↑ Visit all slides first — some are still unvisited.</div>
         </div>
       </div>
