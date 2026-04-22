@@ -317,7 +317,6 @@ body.fullscreen #fs-bot{display:flex;}
     <div class="sb-item" id="sbi-1" onclick="nav(1)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">What is Tracking Segmentation?</div></div></div>
     <div class="sb-item" id="sbi-1b" onclick="nav(2)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Who Books</div></div></div>
     <div class="sb-item" id="sbi-1c" onclick="nav(3)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Who Stays</div></div></div>
-    <div class="sb-item" id="sbi-1d" onclick="nav(19)" style="background:rgba(201,168,76,0.08);border-color:rgba(201,168,76,0.2);"><div class="sb-dot" style="background:var(--gold);"></div><div class="sb-text"><div class="sb-stitle" style="color:var(--gold);">Who Books · Editorial (1d)</div></div></div>
     <div class="sb-item" id="sbi-2" onclick="nav(4)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Market Segment — Overview</div></div></div>
     <div class="sb-item" id="sbi-3" onclick="nav(3)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">FIT Segments</div></div></div>
     <div class="sb-item" id="sbi-4" onclick="nav(4)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Group Segments</div></div></div>
@@ -476,124 +475,56 @@ body.fullscreen #fs-bot{display:flex;}
               <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#8B4A5A;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Company Name — the corporate account or organisation</span></div>
             </div>
           </div>
-          <!-- SVG illustration: 3 booker scenarios -->
-          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 24px;background:var(--white);">
-            <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">Three ways the same room gets booked</p>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;width:100%;max-width:520px;">
+          <!-- Right content — editorial treatment (replaces former character SVGs) -->
+          <div style="display:flex;flex-direction:column;justify-content:center;padding:32px 36px;background:var(--white);">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:26px;">
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);"></div>
+              <span style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b900);letter-spacing:0.14em;text-transform:uppercase;">Three ways the same room gets booked</span>
+              <div style="flex:1;height:1px;background:linear-gradient(to right,var(--g100),transparent);"></div>
+            </div>
 
-              <!-- Scenario 1: Travel Agent -->
-              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-                <svg width="110" height="110" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
-                  <!-- desk -->
-                  <rect x="10" y="72" width="90" height="8" rx="3" fill="#E5E7EB"/>
-                  <rect x="18" y="80" width="6" height="20" rx="2" fill="#D1D5DB"/>
-                  <rect x="86" y="80" width="6" height="20" rx="2" fill="#D1D5DB"/>
-                  <!-- monitor -->
-                  <rect x="28" y="38" width="54" height="36" rx="4" fill="#003570"/>
-                  <rect x="31" y="41" width="48" height="29" rx="2" fill="#1A6DC0"/>
-                  <!-- screen content lines -->
-                  <rect x="34" y="44" width="28" height="2" rx="1" fill="rgba(255,255,255,0.5)"/>
-                  <rect x="34" y="49" width="20" height="2" rx="1" fill="rgba(255,255,255,0.3)"/>
-                  <rect x="34" y="54" width="24" height="2" rx="1" fill="rgba(255,255,255,0.3)"/>
-                  <rect x="34" y="59" width="16" height="2" rx="1" fill="#C9A84C"/>
-                  <!-- monitor stand -->
-                  <rect x="50" y="74" width="10" height="4" rx="1" fill="#9CA3AF"/>
-                  <rect x="44" y="77" width="22" height="3" rx="1" fill="#9CA3AF"/>
-                  <!-- keyboard -->
-                  <rect x="30" y="68" width="50" height="6" rx="2" fill="#E5E7EB"/>
-                  <!-- person: travel agent -->
-                  <circle cx="55" cy="22" r="10" fill="#9E9E9E"/>
-                  <!-- face -->
-                  <circle cx="52" cy="20" r="1.5" fill="white"/>
-                  <circle cx="58" cy="20" r="1.5" fill="white"/>
-                  <path d="M51 25 Q55 28 59 25" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                  <!-- headset arc -->
-                  <path d="M45 20 Q45 10 55 10 Q65 10 65 20" stroke="#004B94" stroke-width="2" fill="none"/>
-                  <rect x="43" y="19" width="4" height="5" rx="2" fill="#004B94"/>
-                  <rect x="63" y="19" width="4" height="5" rx="2" fill="#004B94"/>
-                </svg>
-                <div style="text-align:center;">
-                  <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--dark);margin-bottom:3px;">Travel Agent</div>
-                  <div style="font-size:9px;color:var(--g500);line-height:1.4;">Books on behalf of the guest via GDS or phone</div>
-                </div>
-                <div style="display:flex;flex-direction:column;gap:3px;width:100%;">
-                  <div style="font-size:8px;background:#9E9E90;color:white;padding:2px 6px;border-radius:3px;text-align:center;font-weight:700;">CORPP · CORGL</div>
-                  <div style="font-size:8px;background:var(--g100);color:var(--g700);padding:2px 6px;border-radius:3px;text-align:center;">Source: AMD · GAL</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
+
+              <!-- Card 1 -->
+              <div style="padding:24px 20px;border:1px solid var(--g100);border-radius:6px;background:var(--white);">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:48px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">01</div>
+                <div style="width:22px;height:2px;background:var(--gold);margin:12px 0 16px;"></div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Travel Agent</div>
+                <p style="font-size:10.5px;color:var(--g700);line-height:1.6;margin-bottom:18px;min-height:50px;">Books on behalf of the guest via GDS or phone. Commissions apply.</p>
+                <div style="display:flex;flex-direction:column;gap:5px;padding-top:12px;border-top:1px solid var(--g100);">
+                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">CORPP · CORGL</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">AMD · GAL</span></div>
                 </div>
               </div>
 
-              <!-- Scenario 2: Corporate travel desk -->
-              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-                <svg width="110" height="110" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
-                  <!-- building background -->
-                  <rect x="25" y="30" width="60" height="55" rx="3" fill="#EEF6FD"/>
-                  <rect x="25" y="30" width="60" height="8" rx="3" fill="#003570"/>
-                  <text x="55" y="38" text-anchor="middle" font-family="sans-serif" font-size="5" fill="white" font-weight="700">ACME CORP</text>
-                  <!-- windows -->
-                  <rect x="32" y="44" width="12" height="9" rx="1" fill="#B5D4F4"/>
-                  <rect x="49" y="44" width="12" height="9" rx="1" fill="#B5D4F4"/>
-                  <rect x="66" y="44" width="12" height="9" rx="1" fill="#B5D4F4"/>
-                  <rect x="32" y="58" width="12" height="9" rx="1" fill="#B5D4F4"/>
-                  <rect x="49" y="58" width="12" height="9" rx="1" fill="#B5D4F4"/>
-                  <rect x="66" y="58" width="12" height="9" rx="1" fill="#B5D4F4"/>
-                  <!-- door -->
-                  <rect x="47" y="70" width="16" height="15" rx="1" fill="#003570"/>
-                  <circle cx="59" cy="78" r="1.5" fill="#C9A84C"/>
-                  <!-- person in front -->
-                  <circle cx="55" cy="64" r="8" fill="#C9A84C"/>
-                  <circle cx="52.5" cy="62" r="1.2" fill="white"/>
-                  <circle cx="57.5" cy="62" r="1.2" fill="white"/>
-                  <path d="M51.5 67 Q55 69.5 58.5 67" stroke="white" stroke-width="1" fill="none" stroke-linecap="round"/>
-                  <!-- briefcase -->
-                  <rect x="58" y="68" width="10" height="7" rx="1.5" fill="#003570"/>
-                  <path d="M60 68 L60 66 Q60 64 62 64 L64 64 Q66 64 66 66 L66 68" stroke="#003570" stroke-width="1.5" fill="none"/>
-                </svg>
-                <div style="text-align:center;">
-                  <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--dark);margin-bottom:3px;">Corporate Booker</div>
-                  <div style="font-size:9px;color:var(--g500);line-height:1.4;">Company travel desk books for their employee</div>
-                </div>
-                <div style="display:flex;flex-direction:column;gap:3px;width:100%;">
-                  <div style="font-size:8px;background:#004B94;color:white;padding:2px 6px;border-radius:3px;text-align:center;font-weight:700;">CORPK · CORPL</div>
-                  <div style="font-size:8px;background:var(--g100);color:var(--g700);padding:2px 6px;border-radius:3px;text-align:center;">Source: DIR · EAC</div>
+              <!-- Card 2 -->
+              <div style="padding:24px 20px;border:1px solid var(--g100);border-radius:6px;background:var(--white);">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:48px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">02</div>
+                <div style="width:22px;height:2px;background:var(--gold);margin:12px 0 16px;"></div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Corporate Booker</div>
+                <p style="font-size:10.5px;color:var(--g700);line-height:1.6;margin-bottom:18px;min-height:50px;">A company travel desk books on behalf of an employee. Negotiated direct rate.</p>
+                <div style="display:flex;flex-direction:column;gap:5px;padding-top:12px;border-top:1px solid var(--g100);">
+                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">CORPK · CORPL</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">DIR · EAC</span></div>
                 </div>
               </div>
 
-              <!-- Scenario 3: OTA / Online -->
-              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-                <svg width="110" height="110" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
-                  <!-- phone -->
-                  <rect x="30" y="18" width="50" height="80" rx="8" fill="#1A6DC0"/>
-                  <rect x="33" y="25" width="44" height="62" rx="4" fill="white"/>
-                  <!-- home button -->
-                  <circle cx="55" cy="92" r="4" fill="#5B9FD4"/>
-                  <!-- app screen: booking.com style -->
-                  <rect x="36" y="28" width="38" height="10" rx="2" fill="#003570"/>
-                  <text x="55" y="36" text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="white" font-weight="700">Booking.com</text>
-                  <!-- hotel image placeholder -->
-                  <rect x="36" y="41" width="38" height="16" rx="2" fill="#D8EAFB"/>
-                  <rect x="36" y="41" width="38" height="8" rx="2" fill="#5B9FD4"/>
-                  <text x="55" y="53" text-anchor="middle" font-family="sans-serif" font-size="5" fill="var(--g700)">Dusit Hotel ★★★★★</text>
-                  <!-- price -->
-                  <text x="55" y="63" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#003570" font-weight="700">฿3,200/night</text>
-                  <!-- button -->
-                  <rect x="38" y="67" width="34" height="9" rx="3" fill="#C9A84C"/>
-                  <text x="55" y="74" text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="white" font-weight="700">Book Now</text>
-                  <!-- stars -->
-                  <text x="45" y="63" font-family="sans-serif" font-size="5" fill="#C9A84C">★★★★★</text>
-                </svg>
-                <div style="text-align:center;">
-                  <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--dark);margin-bottom:3px;">OTA Booking</div>
-                  <div style="font-size:9px;color:var(--g500);line-height:1.4;">Guest books via Booking.com, Agoda, Expedia</div>
-                </div>
-                <div style="display:flex;flex-direction:column;gap:3px;width:100%;">
-                  <div style="font-size:8px;background:#C9A84C;color:white;padding:2px 6px;border-radius:3px;text-align:center;font-weight:700;">ECOMM (seq 45)</div>
-                  <div style="font-size:8px;background:var(--g100);color:var(--g700);padding:2px 6px;border-radius:3px;text-align:center;">Source: CCT · Auto</div>
+              <!-- Card 3 -->
+              <div style="padding:24px 20px;border:1px solid var(--g100);border-radius:6px;background:var(--white);">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:48px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">03</div>
+                <div style="width:22px;height:2px;background:var(--gold);margin:12px 0 16px;"></div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">OTA &middot; Online</div>
+                <p style="font-size:10.5px;color:var(--g700);line-height:1.6;margin-bottom:18px;min-height:50px;">Guest books directly through Booking.com, Agoda, or Expedia. Retail rate.</p>
+                <div style="display:flex;flex-direction:column;gap:5px;padding-top:12px;border-top:1px solid var(--g100);">
+                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">ECOMM (seq 45)</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">CCT · AUTO</span></div>
                 </div>
               </div>
 
             </div>
-            <div style="margin-top:16px;background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 16px;font-size:10px;color:var(--b900);line-height:1.6;max-width:520px;text-align:center;">
-              <b>The market code tells you who is booking and why. The source code tells you exactly how they got there.</b> Both are captured at the time of booking and never change.
+
+            <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--g100);text-align:center;font-size:10.5px;color:var(--g500);line-height:1.7;">
+              The <b style="color:var(--b900);font-weight:700;">market code</b> tells you who is booking and why. The <b style="color:var(--b900);font-weight:700;">source code</b> tells you exactly how they got there.
             </div>
           </div>
         </div>
@@ -614,236 +545,68 @@ body.fullscreen #fs-bot{display:flex;}
               <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#8B4A5A;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Language — preferred communication language</span></div>
             </div>
           </div>
-          <!-- SVG illustration: 4 guest profiles -->
-          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 24px;background:var(--white);">
-            <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Four types of guests — all tracked differently</p>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;width:100%;">
-
-              <!-- Family -->
-              <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-                <svg width="88" height="96" viewBox="0 0 88 96" xmlns="http://www.w3.org/2000/svg">
-                  <!-- background blob -->
-                  <ellipse cx="44" cy="72" rx="36" ry="16" fill="#EEF6FD"/>
-                  <!-- dad -->
-                  <circle cx="24" cy="38" r="10" fill="#5B9FD4"/>
-                  <circle cx="21" cy="36" r="1.5" fill="white"/><circle cx="27" cy="36" r="1.5" fill="white"/>
-                  <path d="M20 42 Q24 45 28 42" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                  <rect x="16" y="48" width="16" height="22" rx="4" fill="#1A6DC0"/>
-                  <!-- mom -->
-                  <circle cx="64" cy="38" r="10" fill="#8B4A5A"/>
-                  <circle cx="61" cy="36" r="1.5" fill="white"/><circle cx="67" cy="36" r="1.5" fill="white"/>
-                  <path d="M60 42 Q64 45 68 42" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                  <!-- hair -->
-                  <path d="M54 35 Q57 28 64 29 Q71 28 74 35" stroke="#8B4A5A" stroke-width="3" fill="none"/>
-                  <rect x="56" y="48" width="16" height="22" rx="4" fill="#8B4A5A"/>
-                  <!-- child -->
-                  <circle cx="44" cy="52" r="8" fill="#C9A84C"/>
-                  <circle cx="41.5" cy="50" r="1.2" fill="white"/><circle cx="46.5" cy="50" r="1.2" fill="white"/>
-                  <path d="M41 55 Q44 57 47 55" stroke="white" stroke-width="1" fill="none" stroke-linecap="round"/>
-                  <rect x="37" y="60" width="14" height="16" rx="3" fill="#C9A84C"/>
-                  <!-- luggage -->
-                  <rect x="6" y="62" width="12" height="16" rx="2" fill="#D8EAFB" stroke="#5B9FD4" stroke-width="1"/>
-                  <rect x="10" y="60" width="4" height="3" rx="1" fill="#5B9FD4"/>
-                  <rect x="8" y="66" width="8" height="1.5" fill="#5B9FD4"/>
-                  <rect x="8" y="70" width="8" height="1.5" fill="#5B9FD4"/>
-                </svg>
-                <div style="text-align:center;">
-                  <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--dark);margin-bottom:2px;">Family</div>
-                  <div style="font-size:9px;color:var(--g500);line-height:1.35;">Leisure travel · 3–5 nights · Retail segment</div>
-                </div>
-                <div style="font-size:8px;background:var(--g50);color:var(--b900);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: AU · Lang: EN</div>
-              </div>
-
-              <!-- Business traveller -->
-              <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-                <svg width="88" height="96" viewBox="0 0 88 96" xmlns="http://www.w3.org/2000/svg">
-                  <ellipse cx="44" cy="78" rx="32" ry="12" fill="#EEF6FD"/>
-                  <!-- person -->
-                  <circle cx="44" cy="28" r="12" fill="#003570"/>
-                  <circle cx="40" cy="26" r="1.8" fill="white"/><circle cx="48" cy="26" r="1.8" fill="white"/>
-                  <path d="M39 33 Q44 37 49 33" stroke="white" stroke-width="1.3" fill="none" stroke-linecap="round"/>
-                  <!-- suit body -->
-                  <rect x="30" y="40" width="28" height="38" rx="5" fill="#1A1A2E"/>
-                  <!-- shirt + tie -->
-                  <rect x="40" y="40" width="8" height="38" fill="#EEF6FD"/>
-                  <polygon points="44,44 42,48 44,62 46,48" fill="#C9A84C"/>
-                  <!-- lapels -->
-                  <path d="M40 40 L33 48 L40 42" fill="#12122A"/>
-                  <path d="M48 40 L55 48 L48 42" fill="#12122A"/>
-                  <!-- briefcase -->
-                  <rect x="54" y="56" width="18" height="14" rx="2" fill="#374151"/>
-                  <path d="M57 56 L57 53 Q57 51 59.5 51 L66.5 51 Q69 51 69 53 L69 56" stroke="#374151" stroke-width="2" fill="none"/>
-                  <rect x="54" y="62" width="18" height="1.5" fill="#4B5563"/>
-                  <!-- name badge -->
-                  <rect x="34" y="46" width="10" height="7" rx="1" fill="white"/>
-                  <rect x="35.5" y="47.5" width="7" height="1" fill="#9CA3AF"/>
-                  <rect x="35.5" y="49.5" width="5" height="1" fill="#9CA3AF"/>
-                  <!-- legs -->
-                  <rect x="34" y="78" width="8" height="12" rx="3" fill="#1A1A2E"/>
-                  <rect x="46" y="78" width="8" height="12" rx="3" fill="#1A1A2E"/>
-                </svg>
-                <div style="text-align:center;">
-                  <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--dark);margin-bottom:2px;">Business Traveller</div>
-                  <div style="font-size:9px;color:var(--g500);line-height:1.35;">Corporate stay · 1–2 nights · Corp segment</div>
-                </div>
-                <div style="font-size:8px;background:var(--g50);color:var(--b900);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: SG · Lang: EN</div>
-              </div>
-
-              <!-- Airline crew -->
-              <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-                <svg width="88" height="96" viewBox="0 0 88 96" xmlns="http://www.w3.org/2000/svg">
-                  <ellipse cx="44" cy="80" rx="30" ry="11" fill="#EEF6FD"/>
-                  <!-- 2 crew members -->
-                  <!-- person 1 -->
-                  <circle cx="32" cy="30" r="10" fill="#5B8C7A"/>
-                  <circle cx="29" cy="28" r="1.5" fill="white"/><circle cx="35" cy="28" r="1.5" fill="white"/>
-                  <path d="M28 34 Q32 37 36 34" stroke="white" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-                  <!-- cap -->
-                  <rect x="22" y="21" width="20" height="5" rx="2.5" fill="#003570"/>
-                  <rect x="24" y="19" width="16" height="4" rx="2" fill="#004B94"/>
-                  <!-- uniform 1 -->
-                  <rect x="24" y="40" width="16" height="30" rx="4" fill="#003570"/>
-                  <rect x="28" y="40" width="8" height="30" fill="#004B94"/>
-                  <!-- wings badge -->
-                  <path d="M26 44 L22 46 L26 48" stroke="#C9A84C" stroke-width="1" fill="none"/>
-                  <path d="M38 44 L42 46 L38 48" stroke="#C9A84C" stroke-width="1" fill="none"/>
-                  <circle cx="32" cy="46" r="2" fill="#C9A84C"/>
-                  <!-- person 2 -->
-                  <circle cx="58" cy="30" r="10" fill="#5B8C7A"/>
-                  <circle cx="55" cy="28" r="1.5" fill="white"/><circle cx="61" cy="28" r="1.5" fill="white"/>
-                  <path d="M54 34 Q58 37 62 34" stroke="white" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-                  <rect x="48" y="21" width="20" height="5" rx="2.5" fill="#003570"/>
-                  <rect x="50" y="19" width="16" height="4" rx="2" fill="#004B94"/>
-                  <rect x="50" y="40" width="16" height="30" rx="4" fill="#003570"/>
-                  <rect x="54" y="40" width="8" height="30" fill="#004B94"/>
-                  <path d="M52 44 L48 46 L52 48" stroke="#C9A84C" stroke-width="1" fill="none"/>
-                  <path d="M64 44 L68 46 L64 48" stroke="#C9A84C" stroke-width="1" fill="none"/>
-                  <circle cx="58" cy="46" r="2" fill="#C9A84C"/>
-                  <!-- rolling bag between them -->
-                  <rect x="39" y="58" width="10" height="16" rx="2" fill="#9CA3AF"/>
-                  <rect x="41" y="56" width="6" height="4" rx="1" fill="#6B7280"/>
-                  <line x1="44" y1="74" x2="44" y2="80" stroke="#6B7280" stroke-width="1.5"/>
-                  <circle cx="42" cy="80" r="2" fill="#6B7280"/>
-                  <circle cx="46" cy="80" r="2" fill="#6B7280"/>
-                </svg>
-                <div style="text-align:center;">
-                  <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--dark);margin-bottom:2px;">Airline Crew</div>
-                  <div style="font-size:9px;color:var(--g500);line-height:1.35;">Contracted block · Recurring · AIRCW</div>
-                </div>
-                <div style="font-size:8px;background:var(--g50);color:var(--b900);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: TH · Origin: IND</div>
-              </div>
-
-              <!-- Tour group -->
-              <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-                <svg width="88" height="96" viewBox="0 0 88 96" xmlns="http://www.w3.org/2000/svg">
-                  <ellipse cx="44" cy="80" rx="34" ry="12" fill="#EEF6FD"/>
-                  <!-- 3 people in a group -->
-                  <!-- person left -->
-                  <circle cx="20" cy="36" r="9" fill="#8B4A5A"/>
-                  <circle cx="17.5" cy="34" r="1.3" fill="white"/><circle cx="22.5" cy="34" r="1.3" fill="white"/>
-                  <path d="M17 40 Q20 43 23 40" stroke="white" stroke-width="1" fill="none" stroke-linecap="round"/>
-                  <rect x="13" y="45" width="14" height="28" rx="4" fill="#8B4A5A"/>
-                  <!-- person middle (guide - taller) -->
-                  <circle cx="44" cy="30" r="11" fill="#C9A84C"/>
-                  <circle cx="41" cy="28" r="1.6" fill="white"/><circle cx="47" cy="28" r="1.6" fill="white"/>
-                  <path d="M40 35 Q44 38 48 35" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                  <rect x="35" y="41" width="18" height="32" rx="4" fill="#C9A84C"/>
-                  <!-- guide flag -->
-                  <line x1="52" y1="20" x2="52" y2="38" stroke="#003570" stroke-width="1.5"/>
-                  <polygon points="52,20 62,23 52,26" fill="#003570"/>
-                  <!-- person right -->
-                  <circle cx="68" cy="36" r="9" fill="#5B8C7A"/>
-                  <circle cx="65.5" cy="34" r="1.3" fill="white"/><circle cx="70.5" cy="34" r="1.3" fill="white"/>
-                  <path d="M65 40 Q68 43 71 40" stroke="white" stroke-width="1" fill="none" stroke-linecap="round"/>
-                  <rect x="61" y="45" width="14" height="28" rx="4" fill="#5B8C7A"/>
-                  <!-- camera on middle person -->
-                  <rect x="36" y="47" width="9" height="7" rx="1.5" fill="#374151"/>
-                  <circle cx="40.5" cy="50.5" r="2.5" fill="#6B7280"/>
-                  <circle cx="40.5" cy="50.5" r="1.2" fill="#9CA3AF"/>
-                </svg>
-                <div style="text-align:center;">
-                  <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--dark);margin-bottom:2px;">Tour Group</div>
-                  <div style="font-size:9px;color:var(--g500);line-height:1.35;">Leisure group · via wholesaler · GTOUR</div>
-                </div>
-                <div style="font-size:8px;background:var(--g50);color:var(--b900);padding:2px 6px;border-radius:3px;text-align:center;width:100%;font-weight:600;">Country: CN · Lang: ZH</div>
-              </div>
-
-            </div>
-            <div style="margin-top:14px;background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 16px;font-size:10px;color:var(--b900);line-height:1.6;max-width:520px;text-align:center;">
-              <b>Every guest type has a different profile — and the right tracking fields ensure the hotel's data reflects the real mix of business on any given night.</b>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SLIDE 1d: EXPERIMENTAL — editorial / typographic treatment of slide 1b -->
-      <!-- Same pedagogical content as slide 1b, rendered with zero character illustrations.
-           Purpose: test a purely CSS-token-based visual language that stays 100% consistent
-           across all 24 modules. Compare directly against slide 1b. -->
-      <div class="slide s-white" id="s-1d">
-        <div style="display:grid;grid-template-columns:300px 1fr;height:100%;">
-          <!-- Left panel -->
-          <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
-            <span style="display:inline-block;background:var(--gold);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;padding:4px 9px;border-radius:3px;margin-bottom:16px;align-self:flex-start;">Experimental · 1d</span>
-            <span style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);opacity:0.75;margin-bottom:10px;display:block;">Editorial treatment</span>
-            <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Who books the room?</h2>
-            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:14px;">Same story as slide 1b, told through editorial typography and geometry instead of character illustration.</p>
-            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;">A brand language built from Dusit design tokens — so every module stays visually identical, without AI drift.</p>
-          </div>
-
-          <!-- Right content -->
-          <div style="display:flex;flex-direction:column;justify-content:center;padding:32px 40px;background:var(--white);">
-            <!-- Header strip -->
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:26px;">
+          <!-- Right content — editorial treatment (replaces former character SVGs) -->
+          <div style="display:flex;flex-direction:column;justify-content:center;padding:28px 32px;background:var(--white);">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
               <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);"></div>
-              <span style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;">Three ways the same room gets booked</span>
+              <span style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b900);letter-spacing:0.14em;text-transform:uppercase;">Four types of guests — all tracked differently</span>
               <div style="flex:1;height:1px;background:linear-gradient(to right,var(--g100),transparent);"></div>
             </div>
 
-            <!-- Three editorial cards -->
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;">
 
-              <!-- Card 1 -->
-              <div style="padding:26px 22px;border:1px solid var(--g100);border-radius:6px;background:var(--white);position:relative;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:54px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">01</div>
-                <div style="width:22px;height:2px;background:var(--gold);margin:12px 0 18px;"></div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Travel Agent</div>
-                <p style="font-size:11px;color:var(--g700);line-height:1.65;margin-bottom:22px;min-height:60px;">Books on behalf of the guest via GDS or phone. Commissions apply. Part of the negotiated corporate ladder.</p>
-                <div style="display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:1px solid var(--g100);">
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);letter-spacing:0.04em;">CORPP · CORGL</span></div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);letter-spacing:0.04em;">AMD · GAL</span></div>
+              <!-- Card 1: Family -->
+              <div style="padding:20px 16px;border:1px solid var(--g100);border-radius:6px;background:var(--white);">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:42px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">01</div>
+                <div style="width:20px;height:2px;background:var(--gold);margin:10px 0 14px;"></div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Family</div>
+                <p style="font-size:10px;color:var(--g700);line-height:1.6;margin-bottom:14px;min-height:48px;">Leisure travel · 3–5 nights · Retail segment.</p>
+                <div style="display:flex;flex-direction:column;gap:4px;padding-top:10px;border-top:1px solid var(--g100);">
+                  <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">COUNTRY</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">AU</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">LANG</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">EN</span></div>
                 </div>
               </div>
 
-              <!-- Card 2 -->
-              <div style="padding:26px 22px;border:1px solid var(--g100);border-radius:6px;background:var(--white);position:relative;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:54px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">02</div>
-                <div style="width:22px;height:2px;background:var(--gold);margin:12px 0 18px;"></div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Corporate Booker</div>
-                <p style="font-size:11px;color:var(--g700);line-height:1.65;margin-bottom:22px;min-height:60px;">A company travel desk books on behalf of an employee. Direct negotiated rate — no intermediary.</p>
-                <div style="display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:1px solid var(--g100);">
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);letter-spacing:0.04em;">CORPK · CORPL</span></div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);letter-spacing:0.04em;">DIR · EAC</span></div>
+              <!-- Card 2: Business Traveller -->
+              <div style="padding:20px 16px;border:1px solid var(--g100);border-radius:6px;background:var(--white);">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:42px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">02</div>
+                <div style="width:20px;height:2px;background:var(--gold);margin:10px 0 14px;"></div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Business</div>
+                <p style="font-size:10px;color:var(--g700);line-height:1.6;margin-bottom:14px;min-height:48px;">Corporate stay · 1–2 nights · Corp segment.</p>
+                <div style="display:flex;flex-direction:column;gap:4px;padding-top:10px;border-top:1px solid var(--g100);">
+                  <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">COUNTRY</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">SG</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">LANG</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">EN</span></div>
                 </div>
               </div>
 
-              <!-- Card 3 -->
-              <div style="padding:26px 22px;border:1px solid var(--g100);border-radius:6px;background:var(--white);position:relative;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:54px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">03</div>
-                <div style="width:22px;height:2px;background:var(--gold);margin:12px 0 18px;"></div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">OTA &middot; Online</div>
-                <p style="font-size:11px;color:var(--g700);line-height:1.65;margin-bottom:22px;min-height:60px;">Guest books directly through Booking.com, Agoda, or Expedia. Pays the retail rate at the time of stay.</p>
-                <div style="display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:1px solid var(--g100);">
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);letter-spacing:0.04em;">ECOMM (seq 45)</span></div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.12em;font-weight:500;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);letter-spacing:0.04em;">CCT · AUTO</span></div>
+              <!-- Card 3: Airline Crew -->
+              <div style="padding:20px 16px;border:1px solid var(--g100);border-radius:6px;background:var(--white);">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:42px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">03</div>
+                <div style="width:20px;height:2px;background:var(--gold);margin:10px 0 14px;"></div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Airline Crew</div>
+                <p style="font-size:10px;color:var(--g700);line-height:1.6;margin-bottom:14px;min-height:48px;">Contracted block · Recurring stay · AIRCW.</p>
+                <div style="display:flex;flex-direction:column;gap:4px;padding-top:10px;border-top:1px solid var(--g100);">
+                  <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">COUNTRY</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">TH</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">ORIGIN</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">IND</span></div>
+                </div>
+              </div>
+
+              <!-- Card 4: Tour Group -->
+              <div style="padding:20px 16px;border:1px solid var(--g100);border-radius:6px;background:var(--white);">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:42px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">04</div>
+                <div style="width:20px;height:2px;background:var(--gold);margin:10px 0 14px;"></div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Tour Group</div>
+                <p style="font-size:10px;color:var(--g700);line-height:1.6;margin-bottom:14px;min-height:48px;">Leisure group · via wholesaler · GTOUR.</p>
+                <div style="display:flex;flex-direction:column;gap:4px;padding-top:10px;border-top:1px solid var(--g100);">
+                  <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">COUNTRY</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">CN</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">LANG</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">ZH</span></div>
                 </div>
               </div>
 
             </div>
 
-            <!-- Footer caption -->
-            <div style="margin-top:28px;padding-top:16px;border-top:1px solid var(--g100);text-align:center;font-size:10.5px;color:var(--g500);line-height:1.7;max-width:640px;margin-left:auto;margin-right:auto;">
-              The <b style="color:var(--b900);font-weight:700;">market code</b> tells you who is booking and why. The <b style="color:var(--b900);font-weight:700;">source code</b> tells you exactly how they got there.
+            <div style="margin-top:22px;padding-top:14px;border-top:1px solid var(--g100);text-align:center;font-size:10.5px;color:var(--g500);line-height:1.7;">
+              Every guest type has a different profile — and the right <b style="color:var(--b900);font-weight:700;">tracking fields</b> ensure the hotel's data reflects the real mix of business on any given night.
             </div>
           </div>
         </div>
@@ -1462,11 +1225,10 @@ body.fullscreen #fs-bot{display:flex;}
 <script>
 // ── NAVIGATION MODEL ──
 // Uses an ordered ID array so non-sequential IDs (s-1b, s-1c) work cleanly
-const SLIDE_IDS = ['s-0','s-1','s-1b','s-1c','s-2','s-3','s-4','s-5','s-6','s-7','s-8','s-9','s-10','s-11','s-12','s-13','s-14','s-15','s-16','s-1d'];
-const N = SLIDE_IDS.length; // 20 (s-1d appended at end as experimental preview — does not shift existing indexes)
+const SLIDE_IDS = ['s-0','s-1','s-1b','s-1c','s-2','s-3','s-4','s-5','s-6','s-7','s-8','s-9','s-10','s-11','s-12','s-13','s-14','s-15','s-16'];
+const N = SLIDE_IDS.length; // 19
 const CONTENT_END = 13; // index of checklist slide (s-11)
 const QUIZ_START  = 14; // index of Q1 (s-12)
-const EXPERIMENTAL = 19; // index of s-1d — reachable bypassing quiz lock
 
 const SIDEBAR_IDS = ['sbi-0','sbi-1','sbi-1b','sbi-1c','sbi-2','sbi-3','sbi-4','sbi-5','sbi-6','sbi-7','sbi-8','sbi-9','sbi-10','sbi-11'];
 
@@ -1485,8 +1247,7 @@ const TITLES = [
   'Golden Rules',
   'Do / Don\'t',
   'Checklist',
-  'Quiz · Q1','Quiz · Q2','Quiz · Q3','Quiz · Q4','Quiz · Q5',
-  'Who Books · Editorial (1d)'
+  'Quiz · Q1','Quiz · Q2','Quiz · Q3','Quiz · Q4','Quiz · Q5'
 ];
 
 let cur = 0;
@@ -1512,9 +1273,8 @@ let quizDone = false;
 
 function nav(n) {
   if(n < 0 || n >= N) return;
-  if(n === EXPERIMENTAL){ /* allow slide 1d through even when quiz is locked */ }
-  else if(n >= QUIZ_START && !quizUnlocked){ flashLock(); return; }
-  else if(n >= QUIZ_START && quizDone && n < N-1){ n = N-1; }
+  if(n >= QUIZ_START && !quizUnlocked){ flashLock(); return; }
+  if(n >= QUIZ_START && quizDone && n < N-1){ n = N-1; }
 
   slideEl(cur).classList.remove('on');
   visited[cur] = true;
