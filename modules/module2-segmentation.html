@@ -159,7 +159,9 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 
 .hv-hero-eyebrow{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:14px;}
 .hv-hero-title{font-family:'DusitDisplay',sans-serif;font-size:56px;font-weight:700;color:var(--b900);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
-.hv-hero-divider{width:56px;height:2px;background:var(--gold);margin:16px 0 18px;}
+.hv-hero-divider{width:56px;height:2px;background:var(--gold);margin:16px 0 14px;}
+.hv-hero-intro{font-size:12px;color:var(--g700);line-height:1.75;max-width:560px;text-align:center;margin:0 auto 20px;}
+.hv-hero-intro b{color:var(--b900);font-weight:700;}
 .hv-hero-stats{display:flex;gap:36px;margin-bottom:22px;}
 .hv-hero-stat{text-align:center;}
 .hv-hero-stat b{font-family:'DusitDisplay',sans-serif;font-size:30px;font-weight:700;color:var(--gold);line-height:1;display:block;margin-bottom:4px;letter-spacing:-0.02em;}
@@ -205,12 +207,25 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .hv-codes-wrap{position:absolute;inset:0;overflow-y:auto;padding-right:4px;}
 .hv-codes{display:flex;flex-direction:column;gap:6px;}
 .hv-code-row{
-  display:grid;grid-template-columns:72px 160px 1fr;gap:14px;align-items:baseline;
+  display:grid;grid-template-columns:72px 160px 1fr auto;gap:14px;align-items:baseline;
   padding:11px 16px;background:var(--white);border:1px solid var(--g100);border-radius:8px;
   opacity:0;transform:translateX(-12px);
   animation:hvRowIn 0.4s cubic-bezier(.4,0,.2,1) forwards;
   transition:border-color 0.15s,background 0.15s;
+  cursor:pointer;
 }
+.hv-code-row-toggle{font-family:'DusitDisplay',sans-serif;font-size:14px;color:var(--gold);transition:transform 0.2s;line-height:1;padding:0 4px;}
+.hv-code-row.open .hv-code-row-toggle{transform:rotate(90deg);}
+.hv-code-ex{
+  grid-column:1 / -1;margin-top:0;max-height:0;overflow:hidden;
+  transition:max-height 0.35s cubic-bezier(.4,0,.2,1),margin-top 0.35s;
+}
+.hv-code-row.open .hv-code-ex{max-height:240px;margin-top:10px;}
+.hv-code-ex-inner{
+  padding:12px 14px;background:var(--g50);border-left:3px solid var(--gold);border-radius:4px;
+  font-size:10.5px;color:var(--g700);line-height:1.65;
+}
+.hv-code-ex-lbl{font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;display:block;}
 .hv-code-row:nth-child(1){animation-delay:0.04s;}
 .hv-code-row:nth-child(2){animation-delay:0.10s;}
 .hv-code-row:nth-child(3){animation-delay:0.16s;}
@@ -1452,94 +1467,160 @@ function toggleSeg(hdr){
 
 // ──────────────────────────────────────────────────────────────
 // Slide 2 — Market Segment progressive hierarchy (state machine)
-// States: root → groups → sub → codes
+// 6 major groups → 13 market segments → 40 market codes
+// Click any code row to expand an example of how it's used
 // ──────────────────────────────────────────────────────────────
 const HV_DATA = {
-  fit:   { num:'01', name:'FIT',   sub:'Free Individual Traveller',   meta:'4 SUBS · 14 CODES',
-           subs:[
-             {id:'fit-nq',   num:'01', name:'Retail Non-Qualified', meta:'4 CODES',
-              codes:[
-                {b:'DBRRT',  l:'Best Flexible Rate',     d:'Highest publicly available rate. <b>BAR equivalent in the PMS.</b>'},
-                {b:'ADVPC',  l:'Advance Purchase',        d:'Discounted, less flexible — prepaid, minimum length of stay.'},
-                {b:'HTPCK',  l:'Package',                 d:'Room + value-added inclusions (breakfast, spa, transfers).'},
-                {b:'ECOMM',  l:'E-Commerce / OTA',        d:'<b>All OTA bookings. No exceptions.</b>'}
-              ]},
-             {id:'fit-q',    num:'02', name:'Retail Qualified / Loyalty', meta:'5 CODES',
-              codes:[
-                {b:'DLOYAL', l:'Loyalty Program',         d:'<b>Dusit Gold members only.</b> Private sales and free-night redemptions.'},
-                {b:'PROMO',  l:'Promotion & Partnership', d:'Short-term promos and airline / credit card partnerships.'},
-                {b:'AIRLP',  l:'Airline Programs',        d:'Airline stopover programs (Royal Orchid, Emirates).'},
-                {b:'INTLN',  l:'Industry Discounts',      d:'Travel agent and airline employee discounted rates.'},
-                {b:'DUSIT',  l:'Dusit Internal Rate',     d:'Dusit employees, family &amp; friends, inter-company.'}
-              ]},
-             {id:'fit-corp', num:'03', name:'Negotiated Corporate', meta:'5 CODES',
-              codes:[
-                {b:'CORPP',  l:'Consortia / TMC',         d:'RFP programs for travel management companies. Commissionable.'},
-                {b:'CORGL',  l:'Corporate Global',        d:'Large multi-property accounts (Corporate Sales Office).'},
-                {b:'CORPK',  l:'Corporate Key',           d:'Static-rate corporate contracts (Corporate Sales Office).'},
-                {b:'CORPL',  l:'Corporate Local',         d:'Static-rate contracts managed by Hotel Sales Office.'},
-                {b:'GOVMT',  l:'Government / Military',   d:'Government and diplomatic rates. ID required at check-in.'}
-              ]},
-             {id:'fit-wh',   num:'04', name:'Negotiated Wholesale', meta:'4 CODES',
-              codes:[
-                {b:'WHODM',  l:'Wholesale Dynamic',       d:'Dynamic / margin XML (Expedia, Trip.com package plans).'},
-                {b:'WHOLS',  l:'Wholesale Web Portal',    d:'Standard rate, 10–20% below BAR. No production commitment.'},
-                {b:'WHOLN',  l:'Wholesale Static',        d:'Signed static contract with a specific wholesaler.'},
-                {b:'WHOPM',  l:'Wholesale Promotion',     d:'Tactical short-term campaigns with wholesale partners.'}
-              ]}
-           ]},
-  group: { num:'02', name:'Group', sub:'Group bookings &amp; blocks', meta:'2 SUBS · 9 CODES',
-           subs:[
-             {id:'grp-biz',  num:'01', name:'Business Groups', meta:'4 CODES',
-              codes:[
-                {b:'GCORP',  l:'Corporate Group',             d:'Company or organisation group staying for business.'},
-                {b:'GASSO',  l:'Associations / Conference',   d:'Group attending conferences or exhibitions.'},
-                {b:'GINCT',  l:'Incentives',                  d:'Incentive trip, sales reward, or recognition program.'},
-                {b:'GGOVT',  l:'Government Group',            d:'Government entity for official meetings or events.'}
-              ]},
-             {id:'grp-leis', num:'02', name:'Leisure Groups', meta:'5 CODES',
-              codes:[
-                {b:'GSOCI',  l:'Social Group',    d:'Alumni, birthday, or other social occasions.'},
-                {b:'GWEDD',  l:'Wedding Group',   d:'Group associated with a wedding hosted at the hotel.'},
-                {b:'GSERI',  l:'Tour Series',     d:'Regular recurring groups (weekly / fortnightly).'},
-                {b:'GTOUR',  l:'Tour Group',      d:'One-time group from a wholesaler or agent.'},
-                {b:'GOTHR',  l:'Other Group',     d:'Last-resort classification.'}
-              ]}
-           ]},
-  other: { num:'03', name:'Other', sub:'Crew, comp &amp; house use', meta:'3 SUBS · 12 CODES',
-           subs:[
-             {id:'oth-crew',  num:'01', name:'Crew & Contracted', meta:'5 CODES',
-              codes:[
-                {b:'LTERM',  l:'Long Term Stay',         d:'<b>Not Residence brand.</b> 14+ consecutive nights direct with hotel.'},
-                {b:'RESDA',  l:'Residence Contract A2',  d:'<b>Residence brand only.</b> 30–365 consecutive nights.'},
-                {b:'RESDB',  l:'Residence Contract B2',  d:'<b>Residence brand only.</b> 366+ nights.'},
-                {b:'AIRCW',  l:'Airline Crew',           d:'Long-term back-to-back airline crew contract.'},
-                {b:'DELAYF', l:'Delayed Flights',        d:'Ad-hoc stays booked for delayed flights.'}
-              ]},
-             {id:'oth-comp',  num:'02', name:'Complimentary & Day Use', meta:'4 CODES',
-              codes:[
-                {b:'DAY',    l:'Day Use',                    d:'Same-day arrival and departure. No overnight stay.'},
-                {b:'COMOS',  l:'Complimentary on Sales',     d:'Part of catering/event contract (e.g. wedding couple).'},
-                {b:'COMBU',  l:'Complimentary Business',     d:'Inspection visits, agency trials, sales promotions.'},
-                {b:'COMNB',  l:'Complimentary Non-Business', d:'Revenue Officer, Govt. Officer, Shareholder rooms.'}
-              ]},
-             {id:'oth-house', num:'03', name:'House Use & Adjustment', meta:'3 CODES',
-              codes:[
-                {b:'HOUSP',  l:'House Use Permanent', d:'Long-term staff housing (GM), part of employment.'},
-                {b:'HOUST',  l:'House Use Temporary', d:'Short-term staff, vendor, or contractor accommodation.'},
-                {b:'ACT',    l:'Adjustment',          d:'<b>Finance Dept. only.</b> PM room + ACTINT rate code.'}
-              ]}
-           ]}
+  'retail-nq': { num:'01', name:'Retail Non-Qualified', sub:'Public rates — internal and external',
+    segs:[
+      {id:'retail-int', num:'01', name:'Retail Internal', meta:'3 CODES',
+       codes:[
+         {b:'DBRRT',l:'Best Flexible Rate',d:'Highest publicly available rate. <b>BAR equivalent in the PMS.</b>',
+          ex:'A couple books a Deluxe room for their anniversary weekend directly through dusit.com at ฿4,500/night. No discounts applied — paying the Best Available Rate.'},
+         {b:'ADVPC',l:'Advance Purchase',d:'Discounted, less flexible — prepaid, minimum length of stay.',
+          ex:'A business traveller books 30 days ahead on dusit.com. Prepaid, non-refundable, 2-night minimum. Qualifies for 15% Advance Purchase discount vs BAR.'},
+         {b:'HTPCK',l:'Package',d:'Room + value-added inclusions (breakfast, spa, transfers).',
+          ex:'Guest books the "Spa Escape Package" at ฿6,500/night including room, two spa treatments, and daily breakfast. Priced as a bundle, not a discount.'}
+       ]},
+      {id:'retail-ext', num:'02', name:'Retail External', meta:'1 CODE',
+       codes:[
+         {b:'ECOMM',l:'E-Commerce / OTA',d:'<b>All OTA bookings. No exceptions.</b>',
+          ex:'Family books via Booking.com at ฿3,200/night for 2 nights. Regardless of rate or promo, every OTA reservation is tagged ECOMM.'}
+       ]}
+    ]},
+  'retail-q': { num:'02', name:'Retail Qualified', sub:'Rates requiring membership or eligibility',
+    segs:[
+      {id:'loyalty', num:'03', name:'Loyalty &amp; Partnership', meta:'3 CODES',
+       codes:[
+         {b:'DLOYAL',l:'Loyalty Program',d:'<b>Dusit Gold members only.</b> Private sales, free-night redemptions, BRG.',
+          ex:'A Dusit Gold member redeems 20,000 points for one free night in a Standard room. Membership verified at check-in. Coded DLOYAL.'},
+         {b:'PROMO',l:'Promotion &amp; Partnership',d:'Short-term promos, airline and credit-card partnerships.',
+          ex:'Guest books a limited-time "Songkran Splash" rate during the April festival. Campaign-specific promo code — coded PROMO.'},
+         {b:'AIRLP',l:'Airline Programs',d:'Airline stopover programs (Royal Orchid, Emirates Holidays).',
+          ex:'Thai Airways stopover guest books a 1-night transit stay charged to Royal Orchid Holidays. Coded AIRLP — not AIRCW.'}
+       ]},
+      {id:'discount', num:'04', name:'Discount &amp; Industry', meta:'2 CODES',
+       codes:[
+         {b:'INTLN',l:'Industry Discounts',d:'Travel agent and airline employee discounted rates.',
+          ex:'An IATA-accredited travel agent books a personal holiday at 40% off BAR. ID required at check-in. Coded INTLN.'},
+         {b:'DUSIT',l:'Dusit Internal Rate',d:'Dusit staff leisure, family &amp; friends, inter-company.',
+          ex:'A Dusit Hua Hin employee books a leisure stay at Dusit Pattaya using the F&amp;F rate. Coded DUSIT.'}
+       ]}
+    ]},
+  'neg-corp': { num:'03', name:'Negotiated Corporate', sub:'Contracted corporate accounts',
+    segs:[
+      {id:'corp-dyn', num:'05', name:'Corporate Dynamic', meta:'2 CODES',
+       codes:[
+         {b:'CORPP',l:'Consortia / TMC',d:'RFP programs for travel management companies. Commissionable.',
+          ex:'An American Express GBT client books for a trade show — Consortia RFP rate applies, commission goes to the TMC.'},
+         {b:'CORGL',l:'Corporate Global',d:'Large multi-property accounts (Corporate Sales Office).',
+          ex:'A Nestlé executive books via the company’s global travel desk. Account managed by Dusit Corporate Sales Office.'}
+       ]},
+      {id:'corp-stat', num:'06', name:'Corporate Static', meta:'2 CODES',
+       codes:[
+         {b:'CORPK',l:'Corporate Key Account',d:'Static-rate corporate contracts (Corporate Sales Office).',
+          ex:'A Siemens engineer books a 5-day project stay at the pre-agreed Key Account static rate.'},
+         {b:'CORPL',l:'Corporate Local',d:'Static-rate contracts managed by Hotel Sales (not Corporate Sales).',
+          ex:'A local Bangkok consulting firm books for a client visit on the hotel-level corporate contract.'}
+       ]},
+      {id:'govt', num:'07', name:'Government / Military', meta:'1 CODE',
+       codes:[
+         {b:'GOVMT',l:'Government / Military',d:'All government and diplomatic rates. ID required at check-in.',
+          ex:'A Thai Ministry of Commerce official books for a trade delegation meeting. Government ID verified at check-in.'}
+       ]}
+    ]},
+  'neg-whole': { num:'04', name:'Negotiated Wholesale', sub:'Wholesaler contracts and XML feeds',
+    segs:[
+      {id:'whole-dyn', num:'08', name:'Wholesale Dynamic', meta:'1 CODE',
+       codes:[
+         {b:'WHODM',l:'Wholesale Dynamic',d:'Dynamic / margin XML (Expedia, Trip.com package plans).',
+          ex:'Guest books "flight + hotel" through Expedia Package. Margin-based dynamic XML rate — coded WHODM.'}
+       ]},
+      {id:'whole-stat', num:'09', name:'Wholesale Static', meta:'3 CODES',
+       codes:[
+         {b:'WHOLS',l:'Wholesale Web Portal',d:'Standard rate, 10–20% below BAR. No production commitment.',
+          ex:'A European wholesaler books 50 room-nights for May via the Dusit Wholesale Portal at 15% below BAR.'},
+         {b:'WHOLN',l:'Wholesale Static Contract',d:'Signed static-rate contract with a specific wholesaler.',
+          ex:'A Japanese wholesaler has a signed contract for 100 rooms/month at an agreed static rate.'},
+         {b:'WHOPM',l:'Wholesale Promotion',d:'Tactical short-term campaigns with wholesale partners.',
+          ex:'A 48-hour flash sale with Agoda wholesale offering 25% off — coded WHOPM for the campaign period.'}
+       ]}
+    ]},
+  'group': { num:'05', name:'Group', sub:'Block bookings — business and leisure',
+    segs:[
+      {id:'biz-grp', num:'10', name:'Business Groups', meta:'4 CODES',
+       codes:[
+         {b:'GCORP',l:'Corporate Group',d:'Company or organisation group staying for business.',
+          ex:'Samsung sales team books a block of 20 rooms for a 3-day sales kick-off meeting.'},
+         {b:'GASSO',l:'Associations / Conference',d:'Group attending conferences or exhibitions.',
+          ex:'Asian Orthopaedic Association books 150 rooms for their annual conference hosted at the hotel.'},
+         {b:'GINCT',l:'Incentives',d:'Incentive trip, sales reward, or recognition program.',
+          ex:'Nestlé rewards top 30 sales performers with a 4-day incentive trip. Entire block coded GINCT.'},
+         {b:'GGOVT',l:'Government Group',d:'Government entity for official meetings or events.',
+          ex:'Thai Ministry of Commerce books a block for a trade delegation summit.'}
+       ]},
+      {id:'leis-grp', num:'11', name:'Leisure Groups', meta:'5 CODES',
+       codes:[
+         {b:'GSOCI',l:'Social Group',d:'Alumni, birthday, or other social occasions.',
+          ex:'Chulalongkorn University alumni book 40 rooms for their 25th reunion weekend.'},
+         {b:'GWEDD',l:'Wedding Group',d:'Group associated with a wedding hosted at the hotel.',
+          ex:'Wedding couple books 25 guest rooms plus honeymoon suite for their wedding weekend.'},
+         {b:'GSERI',l:'Tour Series',d:'Regular recurring groups (weekly / fortnightly).',
+          ex:'Thai Airways Holidays books every Friday for 20 consecutive weeks — recurring tour series.'},
+         {b:'GTOUR',l:'Tour Group',d:'One-time or irregular group from a wholesaler or agent.',
+          ex:'A European wholesaler books a one-time 60-pax tour group for a 10-day Thailand itinerary.'},
+         {b:'GOTHR',l:'Other Group',d:'Last-resort classification when no other group type fits.',
+          ex:'A mixed-purpose group with no clear category — classified GOTHR only after other options exhausted.'}
+       ]}
+    ]},
+  'other': { num:'06', name:'Other', sub:'Crew, contracted, complimentary, house use',
+    segs:[
+      {id:'crew', num:'12', name:'Crew &amp; Contracted', meta:'5 CODES',
+       codes:[
+         {b:'LTERM',l:'Long Term Stay',d:'<b>Not Residence brand.</b> 14+ consecutive nights direct with hotel.',
+          ex:'An expat consultant books 45 consecutive nights during a project relocation — direct contract at long-stay rate.'},
+         {b:'RESDA',l:'Residence Contract A2',d:'<b>Residence brand only.</b> 30–365 consecutive nights.',
+          ex:'A Dusit Residence tenant signs a 90-night contract at the Residence long-stay rate.'},
+         {b:'RESDB',l:'Residence Contract B2',d:'<b>Residence brand only.</b> 366+ consecutive nights.',
+          ex:'A permanent Dusit Residence tenant on a 2-year contract — coded RESDB for all nights.'},
+         {b:'AIRCW',l:'Airline Crew',d:'Long-term back-to-back airline crew contract.',
+          ex:'Emirates cabin crew occupies an allocated 10-room block each night for scheduled layovers.'},
+         {b:'DELAYF',l:'Delayed Flights',d:'Ad-hoc stays booked by airline for delayed/cancelled flights.',
+          ex:'Flight cancellation — airline books 40 emergency rooms for stranded passengers, ad-hoc.'}
+       ]},
+      {id:'others', num:'13', name:'Others (Comp &amp; House)', meta:'7 CODES',
+       codes:[
+         {b:'DAY',l:'Day Use',d:'Same-day arrival and departure. No overnight.',
+          ex:'Transit guest needs a room for 6 hours between flights — Day Use rate applied.'},
+         {b:'COMOS',l:'Complimentary on Sales',d:'Zero room revenue as part of a catering / event contract.',
+          ex:'Wedding couple receives a complimentary honeymoon suite as part of the wedding catering package.'},
+         {b:'COMBU',l:'Complimentary Business',d:'Inspection visits, agency trials, sales promotions.',
+          ex:'A major travel agency does a 1-night site inspection before a 500-room group booking.'},
+         {b:'COMNB',l:'Complimentary Non-Business',d:'Revenue Dept. Officer, Govt. Officer, Shareholder rooms.',
+          ex:'Revenue Department officer visits for a scheduled property audit — complimentary, no business potential.'},
+         {b:'HOUSP',l:'House Use Permanent',d:'Long-term staff housing (e.g. GM), part of employment package.',
+          ex:'The General Manager occupies a permanent on-property suite as part of their employment contract.'},
+         {b:'HOUST',l:'House Use Temporary',d:'Short-term staff, vendor, or contractor accommodation.',
+          ex:'An external IT consultant stays 5 nights during a PMS upgrade — coded HOUST.'},
+         {b:'ACT',l:'Adjustment',d:'<b>Finance Dept. only.</b> PM room + ACTINT rate code exclusively.',
+          ex:'Finance uses a PM room with the ACTINT rate code to post an adjustment — ACT is never used for a real guest.'}
+       ]}
+    ]}
 };
 
-let hvState = { level:'root', groupId:null, subId:null };
+let hvState = { level:'root', groupId:null, segId:null };
 
 function hvGo(level, id){
-  if(level === 'root')    hvState = { level:'root',   groupId:null,            subId:null };
-  else if(level === 'groups') hvState = { level:'groups', groupId:null,        subId:null };
-  else if(level === 'sub')    hvState = { level:'sub',    groupId:id,           subId:null };
-  else if(level === 'codes')  hvState = { level:'codes',  groupId:hvState.groupId, subId:id };
+  if(level === 'root')        hvState = { level:'root',   groupId:null,           segId:null };
+  else if(level === 'groups') hvState = { level:'groups', groupId:null,           segId:null };
+  else if(level === 'segs')   hvState = { level:'segs',   groupId:id,             segId:null };
+  else if(level === 'codes')  hvState = { level:'codes',  groupId:hvState.groupId, segId:id };
   hvRender();
+}
+
+// Toggle the inline example panel under a code row
+function hvToggleCode(row){
+  row.classList.toggle('open');
 }
 
 function hvRender(){
@@ -1548,57 +1629,60 @@ function hvRender(){
   const hint  = document.getElementById('hv-hint');
   if(!stage || !crumb || !hint) return;
 
-  // Build breadcrumb (empty on root, builds up as we descend)
+  // Breadcrumb
   let crumbHtml = '';
   if(hvState.level !== 'root'){
     const marketCurrent = hvState.level === 'groups' ? ' current' : '';
     crumbHtml += `<span class="hv-crumb-item${marketCurrent}" onclick="hvGo('root')">Market Segment</span>`;
     if(hvState.groupId){
-      const grpCurrent = hvState.level === 'sub' ? ' current' : '';
-      crumbHtml += `<span class="hv-crumb-sep">›</span><span class="hv-crumb-item${grpCurrent}" onclick="hvGo('sub','${hvState.groupId}')">${HV_DATA[hvState.groupId].name}</span>`;
+      const grpCurrent = hvState.level === 'segs' ? ' current' : '';
+      crumbHtml += `<span class="hv-crumb-sep">›</span><span class="hv-crumb-item${grpCurrent}" onclick="hvGo('segs','${hvState.groupId}')">${HV_DATA[hvState.groupId].name}</span>`;
     }
-    if(hvState.subId){
-      const sub = HV_DATA[hvState.groupId].subs.find(s => s.id === hvState.subId);
-      crumbHtml += `<span class="hv-crumb-sep">›</span><span class="hv-crumb-item current">${sub.name}</span>`;
+    if(hvState.segId){
+      const seg = HV_DATA[hvState.groupId].segs.find(s => s.id === hvState.segId);
+      crumbHtml += `<span class="hv-crumb-sep">›</span><span class="hv-crumb-item current">${seg.name}</span>`;
     }
   }
   crumb.innerHTML = crumbHtml;
 
-  // Render stage + hint
+  // Stage
   if(hvState.level === 'root'){
     stage.innerHTML = `
       <div class="hv-hero" onclick="hvGo('groups')">
         <div class="hv-hero-eyebrow">Module 2 · Overview</div>
         <h1 class="hv-hero-title">Market Segment</h1>
         <div class="hv-hero-divider"></div>
+        <p class="hv-hero-intro">Every reservation is tagged with one <b>market code</b> that identifies <b>who</b> is booking and <b>why</b>. The code is set at the time of booking and <b>never changes</b> — even for groups or complimentary rooms.</p>
         <div class="hv-hero-stats">
-          <div class="hv-hero-stat"><b>3</b><span>Groups</span></div>
-          <div class="hv-hero-stat"><b>9</b><span>Sub-segments</span></div>
-          <div class="hv-hero-stat"><b>35</b><span>Codes</span></div>
+          <div class="hv-hero-stat"><b>6</b><span>Major Groups</span></div>
+          <div class="hv-hero-stat"><b>13</b><span>Market Segments</span></div>
+          <div class="hv-hero-stat"><b>40</b><span>Market Codes</span></div>
         </div>
         <div class="hv-hero-cta">Explore hierarchy <span class="hv-hero-cta-arrow">→</span></div>
       </div>`;
-    hint.textContent = 'The market code is set at time of booking and never changes — even for groups.';
+    hint.textContent = 'Click the card to begin';
   }
   else if(hvState.level === 'groups'){
     const cards = Object.keys(HV_DATA).map(gid => {
       const g = HV_DATA[gid];
-      return `<div class="hv-card" onclick="hvGo('sub','${gid}')">
+      const segCount = g.segs.length;
+      const codeCount = g.segs.reduce((n,s)=>n+s.codes.length,0);
+      return `<div class="hv-card" onclick="hvGo('segs','${gid}')">
         <div class="hv-card-num">${g.num}</div>
         <div class="hv-card-rule"></div>
         <div class="hv-card-title">${g.name}</div>
         <div class="hv-card-sub">${g.sub}</div>
-        <div class="hv-card-foot"><span class="hv-card-meta">${g.meta}</span><span class="hv-card-arrow">›</span></div>
+        <div class="hv-card-foot"><span class="hv-card-meta">${segCount} SEG · ${codeCount} CODE${codeCount>1?'S':''}</span><span class="hv-card-arrow">›</span></div>
       </div>`;
     }).join('');
     stage.innerHTML = `<div class="hv-grid cols-3">${cards}</div>`;
-    hint.textContent = 'Click a group to see its sub-segments';
+    hint.textContent = 'Click a major group to see its market segments';
   }
-  else if(hvState.level === 'sub'){
+  else if(hvState.level === 'segs'){
     const g = HV_DATA[hvState.groupId];
-    const n = g.subs.length;
+    const n = g.segs.length;
     const colClass = n <= 2 ? 'cols-2' : (n === 3 ? 'cols-3' : 'cols-4');
-    const cards = g.subs.map(s =>
+    const cards = g.segs.map(s =>
       `<div class="hv-card" onclick="hvGo('codes','${s.id}')">
         <div class="hv-card-num">${s.num}</div>
         <div class="hv-card-rule"></div>
@@ -1607,20 +1691,22 @@ function hvRender(){
       </div>`
     ).join('');
     stage.innerHTML = `<div class="hv-grid ${colClass}">${cards}</div>`;
-    hint.textContent = 'Click a sub-segment to reveal its codes';
+    hint.textContent = 'Click a market segment to reveal its codes';
   }
   else if(hvState.level === 'codes'){
     const g = HV_DATA[hvState.groupId];
-    const sub = g.subs.find(s => s.id === hvState.subId);
-    const rows = sub.codes.map(c =>
-      `<div class="hv-code-row">
+    const seg = g.segs.find(s => s.id === hvState.segId);
+    const rows = seg.codes.map(c =>
+      `<div class="hv-code-row" onclick="hvToggleCode(this)">
         <span class="hv-code-badge">${c.b}</span>
         <span class="hv-code-label">${c.l}</span>
         <span class="hv-code-desc">${c.d}</span>
+        <span class="hv-code-row-toggle">›</span>
+        <div class="hv-code-ex"><div class="hv-code-ex-inner"><span class="hv-code-ex-lbl">Example</span>${c.ex}</div></div>
       </div>`
     ).join('');
     stage.innerHTML = `<div class="hv-codes-wrap"><div class="hv-codes">${rows}</div></div>`;
-    hint.textContent = 'Click a breadcrumb above to go back';
+    hint.textContent = 'Click any code to see a real-world example';
   }
 }
 
