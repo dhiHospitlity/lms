@@ -18,34 +18,34 @@
 html,body{height:100%;overflow:hidden;font-family:'DusitText',sans-serif;background:var(--g50);color:var(--dark);line-height:1.6;}
 #shell{display:flex;height:100vh;width:100%;overflow:hidden;}
 
-/* SIDEBAR — light editorial theme (matches landing dashboard) */
+/* SIDEBAR — dark panel with gold + white accents */
 #sidebar{
   width:234px;min-width:234px;flex-shrink:0;
-  background:var(--white);border-right:1px solid var(--g100);
+  background:var(--dark);border-right:1px solid rgba(255,255,255,0.06);
   display:flex;flex-direction:column;height:100%;overflow-y:auto;overflow-x:hidden;
   z-index:200;transition:transform 0.28s ease;
 }
-.sb-top{padding:26px 20px 20px;border-bottom:1px solid var(--g100);flex-shrink:0;}
-.sb-logo img{height:56px;width:auto;opacity:1;}
-.sb-series{font-family:'DusitDisplay',sans-serif;font-size:10px;color:var(--gold);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-top:12px;}
-.sb-prog{padding:12px 18px;border-bottom:1px solid var(--g100);flex-shrink:0;}
-.sb-prog-bar{height:3px;background:var(--g100);border-radius:2px;overflow:hidden;}
+.sb-top{padding:28px 20px 22px;border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;}
+.sb-logo img{height:72px;width:auto;opacity:1;}
+.sb-series{font-family:'DusitDisplay',sans-serif;font-size:10px;color:var(--gold);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-top:14px;}
+.sb-prog{padding:12px 18px;border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;}
+.sb-prog-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;}
 .sb-prog-fill{height:100%;background:var(--gold);border-radius:2px;transition:width 0.4s;}
 .sb-nav{padding:12px 12px;flex:1;}
-.sb-section{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--g300);padding:0 10px;margin:10px 0 6px;}
+.sb-section{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);padding:0 10px;margin:10px 0 6px;}
 .sb-item{display:flex;align-items:center;gap:10px;padding:10px 10px;border-radius:6px;cursor:pointer;transition:background 0.15s;border:1px solid transparent;margin-bottom:2px;}
-.sb-item:hover:not(.locked):not(.active){background:var(--g50);}
-.sb-item.active{background:var(--g50);border-color:var(--g100);}
+.sb-item:hover:not(.locked):not(.active){background:rgba(255,255,255,0.04);}
+.sb-item.active{background:rgba(201,168,76,0.12);border-color:rgba(201,168,76,0.28);}
 .sb-item.visited .sb-dot{background:var(--gold);}
 .sb-item.locked{cursor:not-allowed;opacity:0.4;}
-.sb-dot{width:7px;height:7px;border-radius:50%;background:var(--g300);flex-shrink:0;transition:background 0.2s;}
-.sb-item.active .sb-dot{background:var(--b900);}
+.sb-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.18);flex-shrink:0;transition:background 0.2s;}
+.sb-item.active .sb-dot{background:var(--gold);}
 .sb-text{flex:1;}
-.sb-stitle{font-size:13px;font-weight:500;color:var(--g500);line-height:1.35;}
-.sb-item.active .sb-stitle{color:var(--b900);font-weight:700;}
-.sb-lock{font-size:11px;color:var(--g300);flex-shrink:0;}
-.sb-divider{height:1px;background:var(--g100);margin:8px 10px;}
-.sb-footer{padding:16px 18px;border-top:1px solid var(--g100);font-size:11px;color:var(--g500);line-height:1.55;flex-shrink:0;}
+.sb-stitle{font-size:13px;font-weight:500;color:rgba(255,255,255,0.55);line-height:1.35;}
+.sb-item.active .sb-stitle{color:white;font-weight:700;}
+.sb-lock{font-size:11px;color:rgba(255,255,255,0.25);flex-shrink:0;}
+.sb-divider{height:1px;background:rgba(255,255,255,0.05);margin:8px 10px;}
+.sb-footer{padding:16px 18px;border-top:1px solid rgba(255,255,255,0.06);font-size:11px;color:rgba(255,255,255,0.35);line-height:1.55;flex-shrink:0;}
 
 /* CONTENT */
 #content{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;overflow:hidden;}
@@ -305,7 +305,7 @@ body.fullscreen #fs-bot{display:flex;}
 <!-- SIDEBAR -->
 <div id="sidebar">
   <div class="sb-top">
-    <div class="sb-logo"><img src="../assets/DHR-blue.png" alt="Dusit Hotels &amp; Resorts"></div>
+    <div class="sb-logo"><img src="../assets/DHR-white.png" alt="Dusit Hotels &amp; Resorts"></div>
     <div class="sb-series">Learning &amp; Development · Revenue Series</div>
   </div>
   <div class="sb-prog">
