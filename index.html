@@ -2,11 +2,256 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Dusit Learning</title>
-<meta http-equiv="refresh" content="0; url=modules/module1-rate-architecture.html">
-<link rel="canonical" href="modules/module1-rate-architecture.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dusit Learning — Revenue Training Portal</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{
+  --b900:#001F3F;--b800:#003570;--b700:#004B94;--b600:#1A6DC0;--b400:#5B9FD4;
+  --b200:#B5D4F4;--b100:#D8EAFB;--b50:#EEF6FD;
+  --dark:#0A0A1A;--dark2:#12122A;
+  --g700:#374151;--g500:#6B7280;--g300:#9CA3AF;--g100:#E5E7EB;--g50:#F8F9FA;
+  --white:#FFFFFF;--gold:#C9A84C;--gold-l:#F5EDD8;
+  --ok:#16A34A;--wip:#D97706;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:'DusitText',sans-serif;background:var(--g50);color:var(--dark);line-height:1.55;min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+
+/* ── TOP BAR ── */
+.top{background:var(--dark);padding:16px 32px;display:flex;align-items:center;gap:14px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.top img{height:22px;filter:brightness(0) invert(1);opacity:0.9;}
+.top .pipe{color:rgba(255,255,255,0.15);}
+.top .series{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;}
+
+/* ── STAGE ── */
+main{max-width:1180px;margin:0 auto;padding:56px 32px 80px;}
+
+/* ── VIEW TRANSITIONS ── */
+.view{display:none;animation:fadeIn 0.35s ease;}
+.view.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+/* ── HERO ── */
+.hero{text-align:center;margin-bottom:56px;}
+.hero .eyebrow{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:12px;}
+.hero h1{font-family:'DusitDisplay',sans-serif;font-weight:700;font-size:44px;color:var(--b900);letter-spacing:-0.015em;line-height:1.1;margin-bottom:14px;}
+.hero p{max-width:620px;margin:0 auto;font-size:16px;color:var(--g500);line-height:1.65;}
+.hero .divider{width:48px;height:2px;background:var(--gold);margin:22px auto;}
+
+/* ── CATEGORY CARDS ── */
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.cat{
+  display:block;background:var(--white);border:1px solid var(--g100);border-radius:14px;
+  padding:42px 36px 36px;position:relative;overflow:hidden;
+  transition:transform 0.22s ease,box-shadow 0.22s ease,border-color 0.22s ease;
+  cursor:pointer;
+}
+.cat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease;}
+.cat:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,31,63,0.12);border-color:var(--b200);}
+.cat:hover::before{transform:scaleX(1);}
+.cat-num{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:0.16em;margin-bottom:18px;}
+.cat-title{font-family:'DusitDisplay',sans-serif;font-weight:700;font-size:26px;color:var(--b900);line-height:1.2;margin-bottom:10px;}
+.cat-desc{font-size:14px;color:var(--g500);line-height:1.6;margin-bottom:26px;min-height:66px;}
+.cat-meta{display:flex;align-items:center;gap:16px;padding-top:20px;border-top:1px solid var(--g100);font-size:13px;color:var(--g700);}
+.cat-meta strong{font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b800);margin-right:4px;}
+.cat-meta .sep{width:3px;height:3px;background:var(--g300);border-radius:50%;}
+.cat-cta{position:absolute;top:36px;right:36px;width:36px;height:36px;border-radius:50%;background:var(--g50);display:flex;align-items:center;justify-content:center;color:var(--b700);font-size:16px;transition:all 0.2s;}
+.cat:hover .cat-cta{background:var(--b800);color:var(--white);}
+
+/* ── MODULE LIST VIEW ── */
+.back{display:inline-flex;align-items:center;gap:8px;color:var(--g500);font-size:13px;margin-bottom:28px;padding:6px 12px;border-radius:6px;transition:all 0.15s;}
+.back:hover{background:var(--g100);color:var(--b800);}
+
+.list-head{margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--g100);}
+.list-head .eyebrow{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:10px;}
+.list-head h1{font-family:'DusitDisplay',sans-serif;font-weight:700;font-size:34px;color:var(--b900);line-height:1.15;margin-bottom:10px;letter-spacing:-0.01em;}
+.list-head p{font-size:15px;color:var(--g500);max-width:680px;}
+
+.mods{display:flex;flex-direction:column;gap:8px;}
+.mod{
+  display:flex;align-items:center;gap:20px;padding:18px 22px;
+  background:var(--white);border:1px solid var(--g100);border-radius:10px;
+  transition:all 0.18s ease;
+}
+.mod.live,.mod.wip{cursor:pointer;}
+.mod.live:hover,.mod.wip:hover{border-color:var(--b200);box-shadow:0 6px 20px rgba(0,31,63,0.06);transform:translateX(3px);}
+.mod.soon{opacity:0.55;cursor:not-allowed;}
+.mod-num{font-family:'DusitDisplay',sans-serif;font-weight:700;font-size:18px;color:var(--gold);min-width:36px;letter-spacing:-0.01em;}
+.mod-body{flex:1;min-width:0;}
+.mod-title{font-family:'DusitDisplay',sans-serif;font-weight:700;font-size:16px;color:var(--b900);line-height:1.3;margin-bottom:3px;}
+.mod-sub{font-size:13px;color:var(--g500);line-height:1.5;}
+.mod-meta{display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.mod-dur{font-size:12px;color:var(--g500);font-variant-numeric:tabular-nums;}
+.badge{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 9px;border-radius:4px;}
+.badge.live{background:rgba(22,163,74,0.1);color:var(--ok);}
+.badge.wip{background:rgba(217,119,6,0.12);color:var(--wip);}
+.badge.soon{background:var(--g100);color:var(--g500);}
+
+/* ── FOOTER ── */
+footer{max-width:1180px;margin:0 auto;padding:24px 32px 48px;color:var(--g300);font-size:12px;text-align:center;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:720px){
+  .cats{grid-template-columns:1fr;}
+  .hero h1{font-size:32px;}
+  .list-head h1{font-size:26px;}
+  main{padding:36px 20px 56px;}
+  .cat{padding:32px 26px 28px;}
+  .cat-cta{top:28px;right:24px;}
+  .mod{padding:16px;gap:14px;}
+  .mod-meta{flex-direction:column;align-items:flex-end;gap:6px;}
+}
+</style>
 </head>
 <body>
-<p>Redirecting to <a href="modules/module1-rate-architecture.html">Module 1 — Rate Architecture</a>.</p>
+
+<header class="top">
+  <img src="assets/DHR-white.png" alt="Dusit Hotels & Resorts">
+  <span class="pipe">|</span>
+  <span class="series">Revenue Training</span>
+</header>
+
+<main>
+
+  <!-- ── CATEGORY VIEW ── -->
+  <section id="view-cats" class="view active">
+    <div class="hero">
+      <div class="eyebrow">Dusit Learning</div>
+      <h1>Interactive Revenue Training</h1>
+      <div class="divider"></div>
+      <p>A modular, self-paced programme for GMs, Directors of Sales, Revenue, and Marketing across the Dusit estate. Choose a track below.</p>
+    </div>
+
+    <div class="cats">
+      <a class="cat" href="#/revenue-management">
+        <div class="cat-num">TRACK 01</div>
+        <div class="cat-title">Revenue Management</div>
+        <div class="cat-desc">Rate architecture, pricing strategy, segmentation, forecasting, market indices, and revenue systems.</div>
+        <div class="cat-meta">
+          <span><strong>12</strong> modules</span>
+          <span class="sep"></span>
+          <span><strong>~8</strong> hours</span>
+        </div>
+        <div class="cat-cta">→</div>
+      </a>
+
+      <a class="cat" href="#/distribution">
+        <div class="cat-num">TRACK 02</div>
+        <div class="cat-title">Distribution &amp; OTAs</div>
+        <div class="cat-desc">OTA commercial management, parity, visibility &amp; conversion, rate shopping, and paid media.</div>
+        <div class="cat-meta">
+          <span><strong>12</strong> modules</span>
+          <span class="sep"></span>
+          <span><strong>~4.5</strong> hours</span>
+        </div>
+        <div class="cat-cta">→</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── MODULE LIST VIEW ── -->
+  <section id="view-mods" class="view">
+    <a class="back" href="#/">← All tracks</a>
+    <div class="list-head">
+      <div class="eyebrow" id="cat-eyebrow"></div>
+      <h1 id="cat-title"></h1>
+      <p id="cat-desc"></p>
+    </div>
+    <div class="mods" id="mod-list"></div>
+  </section>
+
+</main>
+
+<footer>
+  © Dusit Hotels &amp; Resorts · Revenue Training Portal
+</footer>
+
+<script>
+const TRACKS = {
+  'revenue-management': {
+    eyebrow: 'Track 01',
+    title: 'Revenue Management',
+    desc: 'Rate architecture, pricing, segmentation, forecasting, market indices, and revenue systems.',
+    modules: [
+      { id:'01', title:'Dusit Rate Architecture', sub:'Rationale and structure of the Dusit rate ladder', dur:'45 min', status:'live', path:'modules/module1-rate-architecture.html' },
+      { id:'02', title:'Revenue Tracking Segmentation', sub:'Golden rules of segmentation tracking', dur:'30 min', status:'wip', path:'modules/module2-segmentation.html' },
+      { id:'03', title:'Pricing Strategy', sub:'Dusit pricing methods and rationale', dur:'45 min', status:'soon' },
+      { id:'04', title:'Rate Loading & Channel Management', sub:'Synxis and D-Edge workflows', dur:'30 min', status:'soon' },
+      { id:'05', title:'Understanding your Market', sub:'Defining a competitive set', dur:'30 min', status:'soon' },
+      { id:'06', title:'Driving RGI', sub:'Reading and acting on your market index', dur:'30 min', status:'soon' },
+      { id:'07', title:'DDP Reports', sub:'The Dusit data pipeline — what to use when', dur:'60 min', status:'soon' },
+      { id:'08', title:'Amadeus Tools', sub:'Agency360 and Demand360', dur:'45 min', status:'soon' },
+      { id:'09', title:'Duetto RMS', sub:'Setup, rules, and reporting', dur:'60 min', status:'soon' },
+      { id:'10', title:'Total Commercial Mindset', sub:'Segment-wise forecasting discipline', dur:'60 min', status:'soon' },
+      { id:'11', title:'Dusit Reports', sub:'Budget preparation and MPR', dur:'45 min', status:'soon' },
+      { id:'12', title:'Dusit BI Report', sub:'Snapshot and DDP walkthrough', dur:'15 min', status:'soon' }
+    ]
+  },
+  'distribution': {
+    eyebrow: 'Track 02',
+    title: 'Distribution & OTAs',
+    desc: 'OTA commercial management, parity, visibility, rate shopping, and paid media.',
+    modules: [
+      { id:'01', title:'Contracted OTAs', sub:'Commission structures and agreements', dur:'30 min', status:'soon' },
+      { id:'02', title:'Endorsed Promotions', sub:'Rate products and campaign offers', dur:'30 min', status:'soon' },
+      { id:'03', title:'OTA Extranet', sub:'Mapping, restrictions, and availability', dur:'30 min', status:'soon' },
+      { id:'04', title:'Visibility & Conversion', sub:'Performance levers across major OTAs', dur:'15 min', status:'soon' },
+      { id:'05', title:'Competitors & Fairshare', sub:'Market share analysis', dur:'15 min', status:'soon' },
+      { id:'06', title:'OTA Reports', sub:'Partner-level performance reporting', dur:'15 min', status:'soon' },
+      { id:'07', title:'Rate Parity Tools', sub:'Fornova and Lighthouse', dur:'15 min', status:'soon' },
+      { id:'08', title:'Parity Score', sub:'Target tracking and escalation', dur:'15 min', status:'soon' },
+      { id:'09', title:'Fornova Deep-Dive', sub:'Rate-shopping workflows', dur:'15 min', status:'soon' },
+      { id:'10', title:'Test Booking', sub:'Manual and automated booking tests', dur:'15 min', status:'soon' },
+      { id:'11', title:'Media & Advertising', sub:'Paid-acquisition fundamentals', dur:'15 min', status:'soon' },
+      { id:'12', title:'Content Management', sub:'ICE Portal and new-OTA setup', dur:'60 min', status:'soon' }
+    ]
+  }
+};
+
+const STATUS_LABEL = { live:'Live', wip:'In Progress', soon:'Soon' };
+
+function render(key){
+  const t = TRACKS[key];
+  document.getElementById('cat-eyebrow').textContent = t.eyebrow;
+  document.getElementById('cat-title').textContent = t.title;
+  document.getElementById('cat-desc').textContent = t.desc;
+  const list = document.getElementById('mod-list');
+  list.innerHTML = t.modules.map(m => {
+    const tag = (m.status === 'live' || m.status === 'wip') ? 'a' : 'div';
+    const href = m.path ? ` href="${m.path}"` : '';
+    return `<${tag} class="mod ${m.status}"${href}>
+      <div class="mod-num">${m.id}</div>
+      <div class="mod-body">
+        <div class="mod-title">${m.title}</div>
+        <div class="mod-sub">${m.sub}</div>
+      </div>
+      <div class="mod-meta">
+        <span class="mod-dur">${m.dur}</span>
+        <span class="badge ${m.status}">${STATUS_LABEL[m.status]}</span>
+      </div>
+    </${tag}>`;
+  }).join('');
+}
+
+function route(){
+  const hash = window.location.hash.replace(/^#\/?/, '');
+  const cats = document.getElementById('view-cats');
+  const mods = document.getElementById('view-mods');
+  if (TRACKS[hash]) {
+    render(hash);
+    cats.classList.remove('active');
+    mods.classList.add('active');
+    window.scrollTo({ top:0, behavior:'instant' });
+  } else {
+    mods.classList.remove('active');
+    cats.classList.add('active');
+  }
+}
+
+window.addEventListener('hashchange', route);
+route();
+</script>
+
 </body>
 </html>
