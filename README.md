@@ -1,5 +1,7 @@
 # Dusit Learning — Interactive Revenue Training
 
+> A modular, self-paced revenue management training programme for Dusit Hotels & Resorts. Built for GMs, Directors of Sales, Revenue, and Marketing across the Dusit estate.
+
 **Live:** https://lmsdusit.dhihospitality.com/
 **LMS:** dusitlearning.com (Moodle)
 **Last updated:** 22 April 2026
