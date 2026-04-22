@@ -727,104 +727,73 @@ body.fullscreen #fs-bot{display:flex;}
         </div>
       </div>
 
-      <!-- SLIDE 6: SOURCE CODES -->
+      <!-- SLIDE 6: SOURCE CODES — state-machine drill-down -->
       <div class="slide s-white" id="s-6">
-        <div class="s-inner">
-          <span class="eye">Source Codes</span>
-          <h2 class="sh" style="margin-bottom:4px;">Track the source of business</h2>
-          <p class="body-text" style="margin-bottom:10px;">Source codes are more specific than market codes — they identify exactly <b>which channel or platform the booking came through</b>. More relevant to hotel reporting and channel performance analysis.</p>
-          <div style="overflow-x:auto;">
-            <table class="source-table">
-              <thead><tr><th>Code</th><th>Description</th><th>Allocation</th><th>How it works</th></tr></thead>
-              <tbody>
-                <tr class="src-group-row"><td colspan="4">Property Direct (PPD)</td></tr>
-                <tr><td class="src-code">DIR</td><td>Property Direct — email / fax</td><td>Manual</td><td>Client emails the hotel directly</td></tr>
-                <tr><td class="src-code">TEL</td><td>Property Direct — phone</td><td>Manual</td><td>Client calls the hotel directly</td></tr>
-                <tr><td class="src-code">WLK</td><td>Walk-in</td><td>Manual</td><td>Client approaches the hotel in person</td></tr>
-                <tr class="src-group-row"><td colspan="4">Customer Engagement Centre (CEC)</td></tr>
-                <tr><td class="src-code">EAC</td><td>Central Reservation — email</td><td>Auto via SynXis</td><td>Client emails the CEC</td></tr>
-                <tr><td class="src-code">VAC</td><td>Central Reservation — voice</td><td>Auto via SynXis</td><td>Client calls the CEC</td></tr>
-                <tr><td class="src-code">CAC</td><td>Central Reservation — live chat</td><td>Auto via SynXis</td><td>Client messages the CEC</td></tr>
-                <tr class="src-group-row"><td colspan="4">Internet Booking Engine (IBE)</td></tr>
-                <tr><td class="src-code">BKG</td><td>Booking Engine</td><td>Auto via SynXis</td><td>Guest books via dusit.com</td></tr>
-                <tr><td class="src-code">TMG</td><td>Tour Manager</td><td>Auto via SynXis</td><td>TA books via Dusit web</td></tr>
-                <tr><td class="src-code">SHP</td><td>Dusit Shop</td><td>Auto via SynXis</td><td>Guest books via Dusit Shop</td></tr>
-                <tr class="src-group-row"><td colspan="4">GDS / Distribution</td></tr>
-                <tr><td class="src-code">AMD</td><td>Amadeus / System One</td><td>Auto via SynXis</td><td>TA books via GDS</td></tr>
-                <tr><td class="src-code">SAB</td><td>Sabre / Abacus / Axess</td><td>Auto via SynXis</td><td>TA books via GDS</td></tr>
-                <tr><td class="src-code">GAL</td><td>Galileo / Apollo</td><td>Auto via SynXis</td><td>TA books via GDS</td></tr>
-                <tr><td class="src-code">WOS</td><td>Worldspan</td><td>Auto via SynXis</td><td>TA books via GDS</td></tr>
-                <tr class="src-group-row"><td colspan="4">Channel Manager</td></tr>
-                <tr><td class="src-code">CCT</td><td>Channel Manager</td><td>Auto via SynXis</td><td>Reservation via Dusit Corporate Channel Manager</td></tr>
-              </tbody>
-            </table>
-          </div>
+        <div class="s-inner" style="padding:22px 30px 16px;display:flex;flex-direction:column;">
+          <nav class="hv-crumb" id="src-crumb"></nav>
+          <div class="hv-stage" id="src-stage"></div>
+          <div class="hv-hint" id="src-hint"></div>
         </div>
       </div>
 
-      <!-- SLIDE 7: ORIGIN CODES -->
+      <!-- SLIDE 7: ORIGIN CODES — state-machine drill-down -->
       <div class="slide s-white" id="s-7">
-        <div class="s-inner s-centre">
-          <span class="eye">Origin Codes</span>
-          <h2 class="sh" style="margin-bottom:4px;">Track the origin of business</h2>
-          <p class="body-text">Origin codes identify whether a reservation was made directly by the guest or through an intermediary. There are only <b>two origin codes</b> and both are set automatically via SynXis. The key question is simple: <b>is there an intermediary between the guest and the hotel?</b></p>
-          <div class="origin-cards">
-            <div class="origin-card dir">
-              <div class="origin-code">DIR</div>
-              <div class="origin-name">Direct</div>
-              <div class="origin-q">No intermediary</div>
-              <div class="origin-desc">The reservation was made directly by the guest who will check in and check out. No third party is involved in the booking process.</div>
-              <div class="origin-examples">
-                <span class="origin-tag">Guest books dusit.com</span>
-                <span class="origin-tag">Guest calls hotel</span>
-                <span class="origin-tag">Walk-in</span>
-              </div>
-            </div>
-            <div class="origin-card ind">
-              <div class="origin-code">IND</div>
-              <div class="origin-name">Indirect</div>
-              <div class="origin-q">Intermediary present</div>
-              <div class="origin-desc">The reservation was made through an intermediary — a third party sits between the guest and the hotel in the booking chain.</div>
-              <div class="origin-examples">
-                <span class="origin-tag">OTA</span>
-                <span class="origin-tag">Travel Agency</span>
-                <span class="origin-tag">TMC</span>
-                <span class="origin-tag">GDS</span>
-                <span class="origin-tag">Booker</span>
-              </div>
-            </div>
-          </div>
-          <div class="key-box" style="margin-top:14px;"><strong>Both codes are set automatically by SynXis.</strong> You do not need to enter origin codes manually — but you should understand what they mean when you see them in a report.</div>
+        <div class="s-inner" style="padding:22px 30px 16px;display:flex;flex-direction:column;">
+          <nav class="hv-crumb" id="org-crumb"></nav>
+          <div class="hv-stage" id="org-stage"></div>
+          <div class="hv-hint" id="org-hint"></div>
         </div>
       </div>
 
-      <!-- SLIDE 8: COUNTRY OF RESIDENCE -->
-      <div class="slide s-split" id="s-8">
-        <div class="split-left">
-          <div class="deep-n">COR</div>
-          <div class="deep-label">Country of Residence</div>
-          <h2 class="deep-title">Where does the guest live?</h2>
-          <p class="deep-why">Country of residence is now <b>mandatory worldwide</b> for all Dusit properties. It uses the ISO standard country code system — the same codes used by airlines, governments, and international systems. <b>Always ask yourself: where does this guest live? Not where are they from.</b></p>
-          <div style="margin-top:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-l);margin-bottom:6px;">Common mistakes to avoid</div>
-            <div style="display:flex;flex-direction:column;gap:6px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">Spain</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:#E07A5F;text-decoration:line-through;">SP</span> <span style="color:var(--gold-l);">ES ✓</span></span></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">France</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:#E07A5F;text-decoration:line-through;">F</span> <span style="color:var(--gold-l);">FR ✓</span></span></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">Thailand</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:var(--gold-l);">TH ✓</span></span></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:rgba(255,255,255,0.45);">United Kingdom</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;"><span style="color:var(--gold-l);">GB ✓</span></span></div>
+      <!-- SLIDE 8: COUNTRY OF RESIDENCE — editorial redesign -->
+      <div class="slide s-white" id="s-8">
+        <div class="s-inner" style="padding:26px 30px 18px;display:flex;flex-direction:column;justify-content:center;">
+          <div style="text-align:center;margin-bottom:20px;">
+            <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:10px;">Module 2 · Country of Residence</div>
+            <h1 style="font-family:'DusitDisplay',sans-serif;font-size:42px;font-weight:700;color:var(--b900);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;">Where does the guest live?</h1>
+            <div style="width:48px;height:2px;background:var(--gold);margin:14px auto 10px;"></div>
+            <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:400;font-style:italic;color:var(--g700);margin-bottom:14px;">Not where they&rsquo;re from.</div>
+            <p style="max-width:680px;margin:0 auto;font-size:11.5px;color:var(--g700);line-height:1.7;">Country of Residence is <b style="color:var(--b900);">mandatory worldwide</b> and uses the <b style="color:var(--b900);">ISO 3166-1 alpha-2</b> standard (two-letter codes). It identifies where the guest currently lives — which drives source-market analysis and demand forecasting.</p>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+
+            <!-- Card 1 — Scenario -->
+            <div class="hv-card" style="animation:hvCardIn 0.5s cubic-bezier(.4,0,.2,1) 0.08s forwards;cursor:default;">
+              <div class="hv-card-num">01</div>
+              <div class="hv-card-rule"></div>
+              <div class="hv-card-title">Scenario</div>
+              <p style="font-size:11px;color:var(--g700);line-height:1.6;margin-bottom:14px;">A French national living and working in Singapore books a room. Their passport is French — but they currently live in Singapore.</p>
+              <div style="margin-top:auto;padding-top:14px;border-top:1px solid var(--g100);display:flex;justify-content:space-between;align-items:center;font-size:10px;">
+                <span style="color:var(--g500);letter-spacing:0.1em;">ENTER</span>
+                <span style="font-family:'DusitDisplay',sans-serif;font-weight:800;color:var(--b900);font-size:13px;letter-spacing:0.04em;">SG <span style="color:var(--g300);text-decoration:line-through;font-weight:400;margin-left:6px;">FR</span></span>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="split-right">
-          <span class="eye">Why residence — not nationality</span>
-          <p style="font-size:11px;color:var(--g700);line-height:1.7;margin-bottom:14px;">Country of residence tells us where the guest actually lives and travels from — not their passport. This is what matters for market analysis, source market reporting, and demand forecasting.</p>
-          <div style="background:var(--g50);border-radius:var(--rs);padding:14px;border:1px solid var(--g100);margin-bottom:12px;">
-            <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--dark);margin-bottom:8px;">Scenario</div>
-            <div style="font-size:11px;color:var(--g700);line-height:1.6;">A French national living and working in Singapore books a room. Their passport is French — but their country of residence is <b style="color:var(--b900);">SG (Singapore)</b>, not FR. The hotel's source market report should show Singapore, because that is where the demand is coming from.</div>
-          </div>
-          <div style="background:var(--g50);border-radius:var(--rs);padding:14px;border:1px solid var(--g100);">
-            <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--b900);margin-bottom:8px;">How to fill it in</div>
-            <div style="font-size:11px;color:var(--g700);line-height:1.6;">Ask the guest at time of booking: <b>"What country are you currently based in?"</b> Enter the two-letter ISO code in the Country field of the reservation. If unsure of the code, refer to the ISO 3166-1 alpha-2 reference list.</div>
+
+            <!-- Card 2 — Common mistakes -->
+            <div class="hv-card" style="animation:hvCardIn 0.5s cubic-bezier(.4,0,.2,1) 0.16s forwards;cursor:default;">
+              <div class="hv-card-num">02</div>
+              <div class="hv-card-rule"></div>
+              <div class="hv-card-title">Common mistakes</div>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:10.5px;margin-bottom:14px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;"><span style="color:var(--g500);">Spain</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:800;"><span style="color:var(--g300);text-decoration:line-through;font-weight:400;">SP</span> <span style="color:var(--b900);margin-left:6px;">ES</span></span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;"><span style="color:var(--g500);">France</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:800;"><span style="color:var(--g300);text-decoration:line-through;font-weight:400;">F</span> <span style="color:var(--b900);margin-left:6px;">FR</span></span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;"><span style="color:var(--g500);">United Kingdom</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:800;"><span style="color:var(--g300);text-decoration:line-through;font-weight:400;">UK</span> <span style="color:var(--b900);margin-left:6px;">GB</span></span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;"><span style="color:var(--g500);">Thailand</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:800;color:var(--b900);">TH</span></div>
+              </div>
+              <div style="margin-top:auto;padding-top:10px;border-top:1px solid var(--g100);font-size:9.5px;color:var(--g500);letter-spacing:0.1em;font-family:'DusitDisplay',sans-serif;font-weight:700;">ISO 3166-1 ALPHA-2</div>
+            </div>
+
+            <!-- Card 3 — How to ask -->
+            <div class="hv-card" style="animation:hvCardIn 0.5s cubic-bezier(.4,0,.2,1) 0.24s forwards;cursor:default;">
+              <div class="hv-card-num">03</div>
+              <div class="hv-card-rule"></div>
+              <div class="hv-card-title">How to ask</div>
+              <p style="font-size:11px;color:var(--g700);line-height:1.6;margin-bottom:12px;font-style:italic;">&ldquo;What country are you currently based in?&rdquo;</p>
+              <p style="font-size:10.5px;color:var(--g500);line-height:1.6;margin-bottom:14px;">Ask at the time of booking. Enter the two-letter ISO code in the Country field of the reservation.</p>
+              <div style="margin-top:auto;padding-top:10px;border-top:1px solid var(--g100);font-size:9.5px;color:var(--gold);letter-spacing:0.1em;font-family:'DusitDisplay',sans-serif;font-weight:700;">AT THE TIME OF BOOKING</div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -1361,9 +1330,222 @@ function hvGo(level, id){
   hvRender();
 }
 
-// Toggle the inline example panel under a code row
+// Toggle the inline example panel under a code row (shared across all state machines)
 function hvToggleCode(row){
   row.classList.toggle('open');
+}
+
+// ──────────────────────────────────────────────────────────────
+// Slide 6 — Source Codes state machine (5 categories → 14 codes)
+// ──────────────────────────────────────────────────────────────
+const SRC_DATA = {
+  ppd: { num:'01', name:'Property Direct', sub:'Direct to the hotel (manual entry)', alloc:'Manual',
+    codes:[
+      {b:'DIR',l:'Email / Fax',d:'Client emails or faxes the hotel directly.',
+       ex:'A corporate client emails the hotel directly with their stay dates. Reservations desk manually keys in DIR.'},
+      {b:'TEL',l:'Phone',d:'Client calls the hotel directly.',
+       ex:'Guest phones reservations after seeing a Dusit print ad. Reservations manually enters TEL.'},
+      {b:'WLK',l:'Walk-in',d:'Client approaches the hotel in person.',
+       ex:'A traveller walks into the lobby without a booking and asks for a same-night room. Front desk codes the booking WLK.'}
+    ]},
+  cec: { num:'02', name:'Customer Engagement Centre', sub:'Dusit central reservation team (auto via SynXis)', alloc:'Auto',
+    codes:[
+      {b:'EAC',l:'Email',d:'Client emails the Dusit CEC.',
+       ex:'Guest replies to a Dusit marketing email with an enquiry. CEC processes and SynXis auto-codes EAC.'},
+      {b:'VAC',l:'Voice',d:'Client calls the CEC.',
+       ex:'Loyalty member calls the central 1800 number to book. SynXis auto-codes VAC.'},
+      {b:'CAC',l:'Live Chat',d:'Client messages the CEC.',
+       ex:'Guest uses the dusit.com live-chat widget to confirm a booking. Auto-coded CAC.'}
+    ]},
+  ibe: { num:'03', name:'Internet Booking Engine', sub:'dusit.com &amp; Dusit web portals (auto)', alloc:'Auto',
+    codes:[
+      {b:'BKG',l:'Booking Engine',d:'Guest books via dusit.com directly.',
+       ex:'Guest completes a direct booking on dusit.com — the IBE auto-assigns BKG to the reservation.'},
+      {b:'TMG',l:'Tour Manager',d:'Travel agent books via the Dusit agent web portal.',
+       ex:'A travel agent uses the Dusit Agent Portal to book 2 rooms for a client. System auto-codes TMG.'},
+      {b:'SHP',l:'Dusit Shop',d:'Guest purchases via Dusit Shop storefront.',
+       ex:'Guest buys a room voucher on Dusit Shop then redeems it for a stay. Booking coded SHP.'}
+    ]},
+  gds: { num:'04', name:'GDS / Distribution', sub:'Global distribution systems (auto)', alloc:'Auto',
+    codes:[
+      {b:'AMD',l:'Amadeus / System One',d:'Travel agent books via Amadeus GDS.',
+       ex:'A corporate travel agent working in Amadeus searches and books a Dusit property. Auto-coded AMD.'},
+      {b:'SAB',l:'Sabre / Abacus / Axess',d:'Travel agent books via Sabre GDS.',
+       ex:'A North American agency on Sabre books 3 nights at a Dusit property. Auto-coded SAB.'},
+      {b:'GAL',l:'Galileo / Apollo',d:'Travel agent books via Galileo GDS.',
+       ex:'An agent on Galileo books a Dusit corporate rate. System auto-codes GAL.'},
+      {b:'WOS',l:'Worldspan',d:'Travel agent books via Worldspan GDS.',
+       ex:'Agent on Worldspan books for a business traveller. Auto-coded WOS.'}
+    ]},
+  chm: { num:'05', name:'Channel Manager', sub:'Dusit corporate channel aggregator (auto)', alloc:'Auto',
+    codes:[
+      {b:'CCT',l:'Channel Manager',d:'Booking routed through Dusit Corporate Channel Manager.',
+       ex:'A reservation flows in via a third-party aggregator connected through Dusit CCT. System auto-codes CCT.'}
+    ]}
+};
+
+let srcState = { level:'root', catId:null };
+
+function srcGo(level, id){
+  if(level === 'root')        srcState = { level:'root',  catId:null };
+  else if(level === 'cats')   srcState = { level:'cats',  catId:null };
+  else if(level === 'codes')  srcState = { level:'codes', catId:id };
+  srcRender();
+}
+
+function srcRender(){
+  const stage = document.getElementById('src-stage');
+  const crumb = document.getElementById('src-crumb');
+  const hint  = document.getElementById('src-hint');
+  if(!stage) return;
+  let crumbHtml = '';
+  if(srcState.level !== 'root'){
+    const catsCurrent = srcState.level === 'cats' ? ' current' : '';
+    crumbHtml += `<span class="hv-crumb-item${catsCurrent}" onclick="srcGo('root')">Source Codes</span>`;
+    if(srcState.catId){
+      crumbHtml += `<span class="hv-crumb-sep">›</span><span class="hv-crumb-item current">${SRC_DATA[srcState.catId].name}</span>`;
+    }
+  }
+  crumb.innerHTML = crumbHtml;
+
+  if(srcState.level === 'root'){
+    stage.innerHTML = `
+      <div class="hv-hero" onclick="srcGo('cats')">
+        <div class="hv-hero-eyebrow">Module 2 · Source Codes</div>
+        <h1 class="hv-hero-title">Source of Business</h1>
+        <div class="hv-hero-divider"></div>
+        <p class="hv-hero-intro">Source codes identify <b>which channel or platform</b> the booking came through — more specific than the market code. Most are <b>set automatically by SynXis</b>; only property-direct codes (DIR/TEL/WLK) are entered manually.</p>
+        <div class="hv-hero-stats">
+          <div class="hv-hero-stat"><b>5</b><span>Categories</span></div>
+          <div class="hv-hero-stat"><b>14</b><span>Codes</span></div>
+          <div class="hv-hero-stat"><b>11</b><span>Auto-set</span></div>
+        </div>
+        <div class="hv-hero-cta">Explore channels <span class="hv-hero-cta-arrow">→</span></div>
+      </div>`;
+    hint.textContent = 'Click the card to begin';
+  }
+  else if(srcState.level === 'cats'){
+    const cards = Object.keys(SRC_DATA).map(cid => {
+      const c = SRC_DATA[cid];
+      return `<div class="hv-card" onclick="srcGo('codes','${cid}')">
+        <div class="hv-card-num">${c.num}</div>
+        <div class="hv-card-rule"></div>
+        <div class="hv-card-title">${c.name}</div>
+        <div class="hv-card-sub">${c.sub}</div>
+        <div class="hv-card-foot"><span class="hv-card-meta">${c.codes.length} CODE${c.codes.length>1?'S':''} · ${c.alloc.toUpperCase()}</span><span class="hv-card-arrow">›</span></div>
+      </div>`;
+    }).join('');
+    stage.innerHTML = `<div class="hv-grid cols-3" style="grid-template-rows:auto auto;">${cards}</div>`;
+    hint.textContent = 'Click a category to see its codes';
+  }
+  else if(srcState.level === 'codes'){
+    const c = SRC_DATA[srcState.catId];
+    const rows = c.codes.map(k =>
+      `<div class="hv-code-row" onclick="hvToggleCode(this)">
+        <span class="hv-code-badge">${k.b}</span>
+        <span class="hv-code-label">${k.l}</span>
+        <span class="hv-code-desc">${k.d}</span>
+        <span class="hv-code-row-toggle">›</span>
+        <div class="hv-code-ex"><div class="hv-code-ex-inner"><span class="hv-code-ex-lbl">Example</span>${k.ex}</div></div>
+      </div>`
+    ).join('');
+    stage.innerHTML = `<div class="hv-codes-wrap"><div class="hv-codes">${rows}</div></div>`;
+    hint.textContent = 'Click any code to see a real-world example';
+  }
+}
+
+// ──────────────────────────────────────────────────────────────
+// Slide 7 — Origin Codes state machine (2 codes)
+// ──────────────────────────────────────────────────────────────
+const ORG_DATA = {
+  dir: { num:'01', name:'Direct', q:'No intermediary',
+    desc:'The reservation was made directly by the guest who will check in. No third party sits in the booking chain.',
+    examples:['Guest books on dusit.com','Guest calls the hotel','Walk-in','Guest emails the hotel directly'],
+    ex:'A loyalty member logs into dusit.com and books a weekend stay. No OTA, no TMC, no travel agent — origin is <b>DIR</b>.'},
+  ind: { num:'02', name:'Indirect', q:'Intermediary present',
+    desc:'A third party sits between the guest and the hotel — OTA, travel agent, TMC, GDS, or corporate booker.',
+    examples:['OTA (Booking.com, Agoda, Expedia)','Travel Agency','Corporate Booker / TMC','GDS (Amadeus, Sabre…)','Wholesaler'],
+    ex:'A business traveller’s company books their trip via American Express GBT. The TMC sits between the guest and the hotel — origin is <b>IND</b>.'}
+};
+
+let orgState = { level:'root', id:null };
+
+function orgGo(level, id){
+  if(level === 'root')        orgState = { level:'root',  id:null };
+  else if(level === 'cards')  orgState = { level:'cards', id:null };
+  else if(level === 'detail') orgState = { level:'detail', id:id };
+  orgRender();
+}
+
+function orgRender(){
+  const stage = document.getElementById('org-stage');
+  const crumb = document.getElementById('org-crumb');
+  const hint  = document.getElementById('org-hint');
+  if(!stage) return;
+  let crumbHtml = '';
+  if(orgState.level !== 'root'){
+    const cardsCurrent = orgState.level === 'cards' ? ' current' : '';
+    crumbHtml += `<span class="hv-crumb-item${cardsCurrent}" onclick="orgGo('root')">Origin Codes</span>`;
+    if(orgState.id){
+      crumbHtml += `<span class="hv-crumb-sep">›</span><span class="hv-crumb-item current">${ORG_DATA[orgState.id].name}</span>`;
+    }
+  }
+  crumb.innerHTML = crumbHtml;
+
+  if(orgState.level === 'root'){
+    stage.innerHTML = `
+      <div class="hv-hero" onclick="orgGo('cards')">
+        <div class="hv-hero-eyebrow">Module 2 · Origin Codes</div>
+        <h1 class="hv-hero-title">Origin of Business</h1>
+        <div class="hv-hero-divider"></div>
+        <p class="hv-hero-intro">Two codes. One question: <b>is there an intermediary between the guest and the hotel?</b> Both are <b>set automatically by SynXis</b> — but knowing what they mean matters when you read a report.</p>
+        <div class="hv-hero-stats">
+          <div class="hv-hero-stat"><b>2</b><span>Codes</span></div>
+          <div class="hv-hero-stat"><b>Auto</b><span>Via SynXis</span></div>
+        </div>
+        <div class="hv-hero-cta">Compare the two <span class="hv-hero-cta-arrow">→</span></div>
+      </div>`;
+    hint.textContent = 'Click the card to begin';
+  }
+  else if(orgState.level === 'cards'){
+    const cards = Object.keys(ORG_DATA).map(oid => {
+      const o = ORG_DATA[oid];
+      return `<div class="hv-card" onclick="orgGo('detail','${oid}')" style="padding:28px 26px;">
+        <div class="hv-card-num">${o.num}</div>
+        <div class="hv-card-rule"></div>
+        <div class="hv-card-title" style="font-size:22px;">${o.name}</div>
+        <div class="hv-card-sub" style="font-size:12px;">${o.q}</div>
+        <p style="font-size:11.5px;color:var(--g700);line-height:1.65;margin-bottom:16px;flex:1;">${o.desc}</p>
+        <div class="hv-card-foot"><span class="hv-card-meta">CODE &nbsp;·&nbsp; ${o.name.toUpperCase() === 'DIRECT' ? 'DIR' : 'IND'}</span><span class="hv-card-arrow">›</span></div>
+      </div>`;
+    }).join('');
+    stage.innerHTML = `<div class="hv-grid cols-2">${cards}</div>`;
+    hint.textContent = 'Click either code to see when it applies';
+  }
+  else if(orgState.level === 'detail'){
+    const o = ORG_DATA[orgState.id];
+    const badge = o.name === 'Direct' ? 'DIR' : 'IND';
+    const tags = o.examples.map(e => `<span style="display:inline-block;padding:6px 12px;background:var(--g50);border:1px solid var(--g100);border-radius:16px;font-size:10.5px;color:var(--b900);font-family:'DusitDisplay',sans-serif;font-weight:700;letter-spacing:0.02em;margin:0 6px 6px 0;">${e}</span>`).join('');
+    stage.innerHTML = `<div class="hv-codes-wrap" style="padding:6px 2px;">
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;margin-bottom:24px;">
+        <div style="font-family:'DusitDisplay',sans-serif;font-size:64px;font-weight:700;color:var(--gold);line-height:1;letter-spacing:-0.02em;">${badge}</div>
+        <div>
+          <div style="font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:var(--b900);margin-bottom:4px;">${o.name}</div>
+          <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:10px;">${o.q}</div>
+          <p style="font-size:12px;color:var(--g700);line-height:1.65;">${o.desc}</p>
+        </div>
+      </div>
+      <div style="margin-bottom:22px;">
+        <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:10px;">Typical examples</div>
+        <div>${tags}</div>
+      </div>
+      <div style="padding:12px 14px;background:var(--g50);border-left:3px solid var(--gold);border-radius:4px;font-size:11px;color:var(--g700);line-height:1.65;">
+        <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;">Scenario</div>
+        ${o.ex}
+      </div>
+    </div>`;
+    hint.textContent = 'Click a breadcrumb above to go back';
+  }
 }
 
 function hvRender(){
@@ -1610,6 +1792,8 @@ syncUI();
 updateQDots();
 scaleCanvas();
 hvRender();
+srcRender();
+orgRender();
 </script>
 </body>
 </html>
