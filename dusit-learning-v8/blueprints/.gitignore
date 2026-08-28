@@ -1,0 +1,14 @@
+# Corporate Distribution blueprints — Confidential per document headers.
+# Do NOT commit these to the public repo. Keep local-only.
+# Track everything ELSE in dusit-learning-v8/ (build pipeline, narration scripts, tone rubric).
+*.docx
+*.pptx
+*.xlsx
+*.pdf
+
+# Office lock / temp files
+.~lock.*
+~$*
+
+# Allow this .gitignore itself to be tracked so the exclusion is explicit and versioned.
+!.gitignore

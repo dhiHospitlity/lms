@@ -1,6 +1,6 @@
 {
   "text": "When a reservation comes in, two things happen. Someone books a room. Someone stays in it. Often not the same person.",
-  "textHash": "c258e51a0e7f",
+  "textHash": "cbf4989399f6",
   "action": "narrate",
   "target": null,
   "alignment": {

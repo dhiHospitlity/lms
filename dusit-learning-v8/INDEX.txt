@@ -1,0 +1,37 @@
+DUSIT REVENUE TRAINING PROGRAMME — FILE BUNDLE (v8)
+Prepared by DHI Hospitality · June 2026
+
+All files built for the programme to date.
+
+/blueprints — 10 completed module blueprints (Word), all on the v7 editorial standard:
+  module1-blueprint.docx ............ Module 1  — Dusit Rate Architecture (45 min)
+  module2-blueprint.docx ............ Module 2  — Revenue Tracking Segmentation (30 min)
+  module3-blueprint.docx ............ Module 3  — Pricing Strategy (45 min)
+  module5-compset-blueprint.docx .... Module 5  — Defining Your Comp Set (30 min)
+  module6-rgi-blueprint.docx ........ Module 6  — Driving RGI (45 min)
+  module7-ddp-blueprint.docx ........ Module 7  — DDP Reports (60 min)
+  distribution-blueprint.docx ....... OTA 1     — Distribution Overview (30 min)
+  module8a-demand360-blueprint.docx . Module 8a — Amadeus Demand360 (35 min)
+  module8b-agency360-blueprint.docx . Module 8b — Amadeus Agency360 (35 min)
+  module11-budget-blueprint.docx .... Module 11 — Revenue Budget Prep (43 min, 3 resumable parts)
+
+/build-pipeline — Node scripts that generate the blueprints (run: node build_X.js):
+  helpers.js .......... shared v7 rendering primitives (single source of format)
+  port.js ............. porter / transformer for the earlier modules
+  build_demand360.js, build_agency360.js, build_module11.js, build_module7.js
+
+/docs — programme documentation and the tracking register:
+  README.md
+  dusit_lms_handoff.md
+  dusit_module1_rate_architecture.html  (Module 1 interactive demo)
+  dusit-programme-register.xlsx         (full file register + module tracker)
+
+STATUS
+  10 blueprints built
+   3 pending but buildable (Module 10 Total Commercial Mindset, MPR, OTA 2-13)
+   2 blocked on materials (Module 4 SynXis/D-Edge, Module 9 Duetto)
+
+NOTE
+  README.md and dusit_lms_handoff.md in /docs are the existing versions and have
+  not yet been refreshed to describe Modules 8a, 8b and 11. That refresh is a
+  separate step if the formal handoff documents need updating.

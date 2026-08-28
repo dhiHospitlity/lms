@@ -1,6 +1,6 @@
 {
   "text": "Five questions. Every rate at your hotel is an answer to all five. Rate architecture is the system that answers them, automatically, one question at a time.",
-  "textHash": "771277eaacc3",
+  "textHash": "7000c80acf8f",
   "action": "pulse",
   "target": ".ov-grid",
   "alignment": {

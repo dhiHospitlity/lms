@@ -1,6 +1,6 @@
 {
   "text": "You can name the five questions: right guest, right time, right channel, right price, right room.",
-  "textHash": "e7a608282fee",
+  "textHash": "c1fdcd069acd",
   "action": "reveal",
   "target": "chk-1",
   "alignment": {

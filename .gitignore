@@ -22,9 +22,6 @@ __pycache__/
 dist/scorm/*-stage/
 dist/
 
-# Internal build pipeline (narration scripts, ElevenLabs render, SCORM packager)
-dusit-learning-v8/
-
 # Claude Code settings
 .claude/
 

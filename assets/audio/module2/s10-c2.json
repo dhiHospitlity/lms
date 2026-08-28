@@ -1,6 +1,6 @@
 {
   "text": "The don'ts. Never change the market code after booking. Never use the Loyalty code for anything but a Dusit Gold rate. Never use the Finance-only Accounts Transfer code, which is Finance department only. Never guess the country code. Check the I-S-O list. And never leave a tracking field blank. Incomplete records corrupt every downstream report.",
-  "textHash": "f82209900cb2",
+  "textHash": "bce17f82dcb3",
   "action": "reveal",
   "target": "donts",
   "alignment": {

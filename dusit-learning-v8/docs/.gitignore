@@ -1,0 +1,10 @@
+# Internal handoff notes — contain commercial rates and contract structure.
+# Do NOT commit to the public repo.
+README.md
+dusit_lms_handoff.md
+
+# The pre-launch module HTML draft here is superseded by modules/module1-rate-architecture.html at repo root.
+dusit_module1_rate_architecture.html
+
+# Allow this .gitignore itself to be tracked.
+!.gitignore

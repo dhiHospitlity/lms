@@ -1,6 +1,6 @@
 {
   "text": "Now, you might expect the supplement is added to BAR directly. It isn't. And the order matters.",
-  "textHash": "1a08173b3f1f",
+  "textHash": "8b0b540b77bd",
   "action": "narrate",
   "target": ".",
   "alignment": {
