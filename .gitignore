@@ -12,3 +12,29 @@ desktop.ini
 # Python build artifacts
 __pycache__/
 *.pyc
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Build artifacts
+dist/scorm/*-stage/
+dist/
+
+# Internal build pipeline (narration scripts, ElevenLabs render, SCORM packager)
+dusit-learning-v8/
+
+# Claude Code settings
+.claude/
+
+# Source materials (blueprints, trackers, PPTX/PDF/XLSX not for public site)
+Downloads from Dusit/
+*.pptx
+*.pdf
+*.xlsx
+*.docx
+
+# Internal specs
+*-ide-build-spec*.md
+

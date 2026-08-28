@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 2 — Revenue Tracking Segmentation · Dusit Learning</title>
+<title>Module 2. Revenue Tracking Segmentation · Dusit Learning</title>
 <link rel="stylesheet" href="../assets/fonts.css">
 <style>
 :root{
@@ -18,7 +18,7 @@
 html,body{height:100%;overflow:hidden;font-family:'DusitText',sans-serif;background:var(--g50);color:var(--dark);line-height:1.6;}
 #shell{display:flex;height:100vh;width:100%;overflow:hidden;}
 
-/* SIDEBAR — dark panel with gold + white accents */
+/* SIDEBAR.dark panel with gold + white accents */
 #sidebar{
   width:234px;min-width:234px;flex-shrink:0;
   background:var(--dark);border-right:1px solid rgba(255,255,255,0.06);
@@ -131,20 +131,28 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .seg-sub:last-child{border-bottom:none;}
 .seg-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
 
-/* MARKET SEGMENT — progressive state-machine hierarchy */
+/* MARKET SEGMENT.progressive state-machine hierarchy */
 .hv-wrap{display:flex;flex-direction:column;height:100%;}
-.hv-crumb{display:flex;align-items:center;gap:8px;min-height:28px;margin-bottom:14px;flex-wrap:wrap;}
-.hv-crumb:empty{margin-bottom:0;min-height:0;}
+.hv-crumb{display:flex;align-items:center;gap:8px;min-height:28px;margin-bottom:14px;flex-wrap:wrap;position:relative;padding-right:120px;}
+.hv-crumb:empty{margin-bottom:0;min-height:0;padding-right:0;}
 .hv-crumb-item{cursor:pointer;color:var(--g700);font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border-radius:16px;border:1px solid var(--g100);background:var(--white);transition:all 0.18s;animation:hvCrumbIn 0.3s cubic-bezier(.4,0,.2,1);}
 .hv-crumb-item:hover{border-color:var(--gold);color:var(--b900);background:var(--gold-l);}
 .hv-crumb-item.current{background:var(--gold-l);color:var(--b900);border-color:var(--gold);cursor:default;}
 .hv-crumb-sep{color:var(--g300);font-size:12px;font-family:'DusitDisplay',sans-serif;}
+
+/* Back button.positioned at the right edge of the breadcrumb row on any
+   drill-down level deeper than root. Clicking pops one level up the stack.
+   Learners kept telling us they felt lost in the drill-down; this makes the
+   escape hatch obvious even if the breadcrumb chips don't read as clickable. */
+.hv-back{position:absolute;right:0;top:50%;transform:translateY(-50%);cursor:pointer;font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:6px 14px;border-radius:16px;border:1px solid var(--gold);background:var(--white);color:var(--b900);transition:all 0.18s;display:inline-flex;align-items:center;gap:6px;}
+.hv-back:hover{background:var(--gold);color:var(--white);}
+.hv-back::before{content:'←';font-size:12px;}
 @keyframes hvCrumbIn{from{opacity:0;transform:translateX(-6px);}to{opacity:1;transform:translateX(0);}}
 
-.hv-stage{flex:1;position:relative;min-height:0;}
-.hv-hint{text-align:center;font-size:11px;color:var(--g500);padding-top:10px;font-style:italic;font-family:'DusitText',sans-serif;min-height:24px;}
+.hv-stage{flex:1;position:relative;min-height:0;overflow-y:auto;}
+.hv-hint{text-align:center;font-size:12px;color:var(--g500);padding-top:10px;font-family:'DusitText',sans-serif;font-weight:500;min-height:24px;}
 
-/* Level 0 — Root hero */
+/* Level 0. Root hero */
 .hv-hero{
   position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
   background:var(--white);border:1px solid var(--g100);border-radius:14px;cursor:pointer;
@@ -171,8 +179,8 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .hv-hero-cta-arrow{font-size:14px;display:inline-block;animation:hvCtaArrow 1.4s infinite;}
 @keyframes hvCtaArrow{0%,100%{transform:translateX(0);}50%{transform:translateX(4px);}}
 
-/* Levels 1 & 2 — Card grids */
-.hv-grid{position:absolute;inset:0;display:grid;gap:16px;}
+/* Levels 1 & 2. Card grids */
+.hv-grid{display:grid;gap:16px;padding-bottom:8px;}
 .hv-grid.cols-2{grid-template-columns:1fr 1fr;}
 .hv-grid.cols-3{grid-template-columns:1fr 1fr 1fr;}
 .hv-grid.cols-4{grid-template-columns:1fr 1fr 1fr 1fr;}
@@ -203,7 +211,26 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .hv-card-arrow{font-family:'DusitDisplay',sans-serif;font-size:18px;color:var(--gold);transition:transform 0.2s;line-height:1;}
 .hv-card:hover .hv-card-arrow{transform:translateX(6px);}
 
-/* Level 3 — Code rows */
+/* Inline code list on segment cards.full code detail (badge + label + description)
+   shows on the segs level so learners see everything without an extra click.
+   Static card variant removes the hover-lift + arrow that only make sense for clickables.
+   overflow:visible so all codes render regardless of card height. */
+.hv-card-static{cursor:default;overflow:visible;}
+.hv-card-static:hover{transform:none;box-shadow:0 4px 14px rgba(0,0,0,0.05);border-color:var(--g100);}
+.hv-card-static:hover::before{transform:scaleX(0);}
+.hv-seg-codes{display:flex;flex-direction:column;gap:14px;margin-top:16px;}
+.hv-seg-code{display:flex;align-items:flex-start;gap:14px;font-family:'DusitText',sans-serif;}
+.hv-seg-code-badge{font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);letter-spacing:0.08em;background:var(--g50);border:1px solid var(--g100);border-radius:5px;padding:5px 10px;flex-shrink:0;min-width:64px;text-align:center;margin-top:2px;}
+.hv-seg-code-body{flex:1;min-width:0;}
+.hv-seg-code-label{font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:700;color:var(--b900);line-height:1.3;margin-bottom:3px;}
+.hv-seg-code-desc{font-size:12px;color:var(--g500);line-height:1.55;}
+
+/* Per-code cards on the Source Codes layer-3 view.the code badge replaces
+   the big number so learners see the identifier first, then the name and description. */
+.hv-code-detail-badge{font-family:'DusitDisplay',sans-serif;font-size:28px;font-weight:800;color:var(--gold);letter-spacing:0.06em;line-height:1;margin-bottom:12px;}
+.hv-code-detail-desc{font-size:12.5px;color:var(--g700);line-height:1.65;margin-top:10px;}
+
+/* Level 3. Code rows */
 .hv-codes-wrap{position:absolute;inset:0;overflow-y:auto;padding-right:4px;}
 .hv-codes{display:flex;flex-direction:column;gap:6px;}
 .hv-code-row{
@@ -401,6 +428,122 @@ body.fullscreen #fs-bot{display:flex;}
 .bc-item:not(.active):hover{background:var(--g100);}
 .bc-sep{font-size:9px;color:var(--g300);}
 
+/* ═══════════════════════════════════════════
+   CUELINE.narration-synced staging layer (ported from modules/module1-rate-architecture.html)
+   Only active when body.cueline-active is set (JS-controlled).
+   Everything degrades to normal styling if Cueline never boots.
+   ═══════════════════════════════════════════ */
+
+/* Field cards on Overview (s-0).dim by default when armed, light on cue */
+body.cueline-active .tf-card[data-cue]{
+  opacity:0.35;transform:scale(0.97);
+  transition:opacity 0.5s ease, transform 0.5s cubic-bezier(0.22,0.61,0.36,1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+body.cueline-active .tf-card[data-cue].lit{
+  opacity:1;transform:scale(1);border-color:var(--gold);
+  box-shadow:0 6px 22px rgba(201,168,76,0.22);
+}
+
+/* Story cards (Who Books, Who Stays, Country of Residence).visible on load, focus on cue */
+body.cueline-active .hv-card[data-cue]{
+  opacity:1;transform:scale(1);
+  transition:transform 0.45s cubic-bezier(0.22,0.61,0.36,1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+body.cueline-active .hv-card[data-cue].reveal{
+  border-color:var(--gold);transform:scale(1.02);
+  box-shadow:0 8px 26px rgba(201,168,76,0.28);
+}
+
+/* Golden Rules cards.focus on cue */
+body.cueline-active .rule-card[data-cue]{
+  transition:transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+body.cueline-active .rule-card[data-cue].reveal{
+  border-color:var(--gold);transform:translateY(-2px);
+  box-shadow:0 6px 22px rgba(201,168,76,0.22);
+}
+
+/* Do/Don't boxes */
+body.cueline-active .do-box[data-cue],
+body.cueline-active .dont-box[data-cue]{
+  opacity:1;
+  transition:transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+body.cueline-active .do-box[data-cue].reveal,
+body.cueline-active .dont-box[data-cue].reveal{
+  border-color:var(--gold);transform:scale(1.015);
+  box-shadow:0 6px 22px rgba(201,168,76,0.22);
+}
+
+/* Checklist items.focus each as narrator reads it */
+body.cueline-active .chi[data-cue]{
+  opacity:1;padding-left:4px;
+  transition:padding-left 0.3s ease, background 0.3s ease;
+}
+body.cueline-active .chi[data-cue].reveal{
+  background:rgba(201,168,76,0.08);padding-left:10px;border-radius:6px;
+}
+
+/* Hook slide bubbles + headline.hidden until Cueline fires their beat */
+body.cueline-active .hook-bubble[data-cue],
+body.cueline-active .hook-headline[data-cue]{
+  opacity:0;transform:translateY(6px);
+  transition:opacity 0.55s ease, transform 0.55s cubic-bezier(0.22,0.61,0.36,1);
+}
+body.cueline-active .hook-bubble[data-cue].reveal,
+body.cueline-active .hook-headline[data-cue].reveal{opacity:1;transform:translateY(0);}
+
+/* Generic panel/card reveal.content stays visible; cue draws focus with gold border + slight scale */
+body.cueline-active [data-cue][data-cue-panel]{
+  opacity:1;transform:scale(1);
+  transition:transform 0.45s cubic-bezier(0.22,0.61,0.36,1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+body.cueline-active [data-cue][data-cue-panel].reveal{
+  border-color:var(--gold) !important;transform:scale(1.02);
+  box-shadow:0 8px 26px rgba(201,168,76,0.28);
+}
+
+/* ─── CC OVERLAY ─── */
+#cc-overlay{
+  position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+  max-width:680px;min-width:200px;padding:10px 22px;
+  background:rgba(0,0,0,0.82);color:white;
+  font-family:'DusitText',sans-serif;font-size:14px;font-weight:500;line-height:1.45;
+  border-radius:8px;text-align:center;
+  opacity:0;transition:opacity 0.22s ease;
+  pointer-events:none;z-index:80;
+}
+#cc-overlay.visible{opacity:1;}
+body.cc-off #cc-overlay{display:none;}
+
+/* Caption-safe bottom zone.mirrors Module 1's pattern */
+body.cueline-active:not(.cc-off) .s-inner{padding-bottom:70px;}
+
+/* Preview-mode hint.visible when Cueline armed but no audio rendered yet */
+#cue-hint{
+  position:absolute;top:12px;right:14px;z-index:80;
+  background:rgba(201,168,76,0.14);border:1px solid rgba(201,168,76,0.4);
+  color:var(--gold);font-family:'DusitDisplay',sans-serif;
+  font-size:9px;font-weight:700;letter-spacing:0.1em;
+  padding:5px 10px 5px 26px;border-radius:14px;text-transform:uppercase;
+  display:none;
+}
+#cue-hint::before{content:'▶';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:8px;}
+body.cueline-active.preview-mode #cue-hint{display:block;}
+
+/* CC button state */
+#cc-btn.off, #fs-cc-btn.off{opacity:0.5;text-decoration:line-through;}
+
+/* Play button.pulse ring when audio is actively playing */
+#play-btn.is-playing, #fs-play-btn.is-playing{
+  background:rgba(201,168,76,0.22);border-color:rgba(201,168,76,0.55);
+  color:var(--gold-l);animation:cueline-btn-pulse 1.6s ease-in-out infinite;
+}
+@keyframes cueline-btn-pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,0.35);}
+  50%{box-shadow:0 0 0 6px rgba(201,168,76,0);}
+}
+
 @media(max-width:800px){
   #sidebar{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%);}
   #sidebar.open{transform:translateX(0);}
@@ -422,20 +565,21 @@ body.fullscreen #fs-bot{display:flex;}
   </div>
   <div class="sb-nav">
     <div class="sb-section">Content</div>
-    <div class="sb-item active" id="sbi-0" onclick="nav(0)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Overview</div></div></div>
-    <div class="sb-item" id="sbi-1" onclick="nav(1)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">What is Tracking Segmentation?</div></div></div>
-    <div class="sb-item" id="sbi-1b" onclick="nav(2)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Who Books</div></div></div>
-    <div class="sb-item" id="sbi-1c" onclick="nav(3)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Who Stays</div></div></div>
-    <div class="sb-item" id="sbi-2" onclick="nav(4)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Market Segment — Overview</div></div></div>
-    <div class="sb-item" id="sbi-6" onclick="nav(5)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Source Codes</div></div></div>
-    <div class="sb-item" id="sbi-7" onclick="nav(6)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Origin Codes</div></div></div>
-    <div class="sb-item" id="sbi-8" onclick="nav(7)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Country of Residence</div></div></div>
-    <div class="sb-item" id="sbi-9" onclick="nav(8)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Golden Rules</div></div></div>
-    <div class="sb-item" id="sbi-10" onclick="nav(9)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Do / Don't</div></div></div>
-    <div class="sb-item" id="sbi-11" onclick="nav(10)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Checklist</div></div></div>
+    <div class="sb-item active" id="sbi-hook" onclick="nav(0)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">A forecast that lied</div></div></div>
+    <div class="sb-item" id="sbi-0" onclick="nav(1)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Overview</div></div></div>
+    <div class="sb-item" id="sbi-1" onclick="nav(2)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">What is Tracking Segmentation?</div></div></div>
+    <div class="sb-item" id="sbi-1b" onclick="nav(3)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Who Books</div></div></div>
+    <div class="sb-item" id="sbi-1c" onclick="nav(4)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Who Stays</div></div></div>
+    <div class="sb-item" id="sbi-2" onclick="nav(5)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Market Segment. Overview</div></div></div>
+    <div class="sb-item" id="sbi-6" onclick="nav(6)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Source Codes</div></div></div>
+    <div class="sb-item" id="sbi-7" onclick="nav(7)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Origin Codes</div></div></div>
+    <div class="sb-item" id="sbi-8" onclick="nav(8)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Country of Residence</div></div></div>
+    <div class="sb-item" id="sbi-9" onclick="nav(9)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Golden Rules</div></div></div>
+    <div class="sb-item" id="sbi-10" onclick="nav(10)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Do / Don't</div></div></div>
+    <div class="sb-item" id="sbi-11" onclick="nav(11)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Checklist</div></div></div>
     <div class="sb-divider"></div>
     <div class="sb-section">Quiz</div>
-    <div class="sb-item locked" id="sbi-quiz" onclick="nav(12)">
+    <div class="sb-item locked" id="sbi-quiz" onclick="nav(13)">
       <div class="sb-dot"></div>
       <div class="sb-text"><div class="sb-stitle">Quiz · 5 Questions</div></div>
       <div class="sb-lock" id="quizLock">🔒</div>
@@ -454,6 +598,9 @@ body.fullscreen #fs-bot{display:flex;}
       <span class="tb-crumb" id="tbCrumb">Overview</span>
     </div>
     <div class="tb-right">
+      <button class="btn-icon" id="play-btn" onclick="Cueline.toggleTransport()" title="Play / pause narration">▶</button>
+      <button class="btn-icon" id="skip-btn" onclick="Cueline.step()" title="Skip to next beat">⏭</button>
+      <button class="btn-icon" id="cc-btn" onclick="Cueline.toggleCC()" title="Toggle captions">CC</button>
       <button class="btn-icon" onclick="toggleFS()" title="Fullscreen">⛶</button>
     </div>
   </div>
@@ -461,53 +608,69 @@ body.fullscreen #fs-bot{display:flex;}
   <div id="stage">
     <div id="canvas">
 
-      <!-- SLIDE 0: OVERVIEW -->
-      <div class="slide s-white on" id="s-0">
-        <div class="s-inner s-centre">
-          <span class="eye">Module 2 · Revenue Tracking Segmentation</span>
-          <h2 class="sh">Every booking tells a story — if you track it correctly</h2>
-          <p class="body-text">Tracking segmentation is how Dusit records <b>who books, through which channel, and where they come from</b>. Get it right and every report, every forecast, and every rate decision is built on accurate data. Get it wrong and the whole system breaks down silently.</p>
-          <div class="tracking-fields">
-            <div class="tf-card" onclick="nav(1)">
-              <div class="tf-title">Market Segment</div>
-              <div class="tf-desc">Who is booking and why — the rate type and guest category that drives all pricing logic.</div>
-            </div>
-            <div class="tf-card" onclick="nav(6)">
-              <div class="tf-title">Source Code</div>
-              <div class="tf-desc">The specific channel the booking came through — website, GDS, OTA, phone, walk-in.</div>
-            </div>
-            <div class="tf-card" onclick="nav(7)">
-              <div class="tf-title">Origin Code</div>
-              <div class="tf-desc">Was there an intermediary? Direct booking or through a third party?</div>
-            </div>
-            <div class="tf-card" onclick="nav(8)">
-              <div class="tf-title">Country of Residence</div>
-              <div class="tf-desc">Where the guest lives — mandatory worldwide using the ISO standard.</div>
-            </div>
+      <!-- SLIDE 1 (s-hook): HOOK. The forecast that lied. Full-bleed dark. Dialogue-driven, Cueline-revealed. -->
+      <div class="slide on" id="s-hook" style="background:var(--dark);justify-content:space-between;padding:34px 44px 92px;color:white;">
+        <div style="flex:1;display:grid;grid-template-columns:60px 1fr 60px;gap:18px;align-items:center;">
+          <!-- RM silhouette, left -->
+          <div style="align-self:end;color:rgba(201,168,76,0.6);"><svg viewBox="0 0 32 60" width="52" height="90"><circle cx="16" cy="12" r="8" fill="currentColor"/><path d="M16 22 C6 22 3 34 3 56 L29 56 C29 34 26 22 16 22 Z" fill="currentColor"/></svg></div>
+          <!-- Bubbles column -->
+          <div style="display:flex;flex-direction:column;gap:10px;justify-content:center;">
+            <div class="hook-bubble" data-cue="bubble-1" style="align-self:flex-start;max-width:82%;background:var(--white);color:var(--b900);padding:10px 14px;border-radius:12px 12px 12px 3px;font-size:13px;line-height:1.45;box-shadow:0 4px 14px rgba(0,0,0,0.28);"><span style="display:block;font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">Revenue Manager · Monday review</span>"We're behind on groups versus last year."</div>
+            <div class="hook-bubble" data-cue="bubble-2" style="align-self:flex-end;max-width:82%;background:var(--gold-l);color:var(--b900);padding:10px 14px;border-radius:12px 12px 3px 12px;font-size:13px;line-height:1.45;box-shadow:0 4px 14px rgba(0,0,0,0.28);"><span style="display:block;font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--b700);margin-bottom:4px;">Director of Sales</span>"That can't be right. We have two groups on the books this month."</div>
+            <div class="hook-bubble" data-cue="bubble-3" style="align-self:flex-start;max-width:60%;background:var(--white);color:var(--b900);padding:10px 14px;border-radius:12px 12px 12px 3px;font-size:13px;line-height:1.45;box-shadow:0 4px 14px rgba(0,0,0,0.28);"><span style="display:block;font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">Revenue Manager</span>"Let me check."</div>
+            <div class="hook-bubble" data-cue="bubble-4" style="align-self:flex-start;max-width:92%;background:var(--white);color:var(--b900);padding:10px 14px;border-radius:12px 12px 12px 3px;font-size:13px;line-height:1.45;box-shadow:0 4px 14px rgba(0,0,0,0.28);"><span style="display:block;font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">Revenue Manager</span>"Both groups were tracked under Transient Corporate. The group number looks empty. The transient number is inflated."</div>
           </div>
-          <div class="key-box" style="margin-top:6px;"><strong>Why it matters:</strong> These four fields feed directly into Dusit's DDP reports, RevPAR analysis, and forecasting. A wrong market code in the PMS produces wrong data everywhere — instantly.</div>
+          <!-- DOS silhouette, right -->
+          <div style="align-self:end;color:rgba(201,168,76,0.6);"><svg viewBox="0 0 32 60" width="52" height="90"><circle cx="16" cy="12" r="8" fill="currentColor"/><path d="M16 22 C6 22 3 34 3 56 L29 56 C29 34 26 22 16 22 Z" fill="currentColor"/><path d="M13 22 L16 30 L19 22 Z" fill="var(--dark)"/></svg></div>
+        </div>
+        <div class="hook-headline" data-cue="headline" style="text-align:center;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);">
+          <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Module 2 · Tracking Segmentation</div>
+          <h1 style="font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:700;color:var(--white);line-height:1.35;margin:0;max-width:720px;margin-left:auto;margin-right:auto;">By the end of this module, your team will know exactly which code goes where. And why the data has to tell the truth.</h1>
         </div>
       </div>
 
-      <!-- SLIDE 1: WHAT IS TRACKING SEGMENTATION -->
+      <!-- SLIDE 2 (s-0): OVERVIEW.the four tracking fields -->
+      <div class="slide s-white" id="s-0">
+        <div class="s-inner s-centre">
+          <span class="eye">Module 2 · Revenue Tracking Segmentation</span>
+          <h2 class="sh">Every booking tells a story, if you track it correctly</h2>
+          <p class="body-text">How Dusit records <b>who books, who stays, and where they come from</b>.</p>
+          <div class="tracking-fields">
+            <div class="tf-card" data-cue="card-1" onclick="nav(2)">
+              <div class="tf-title">Market Segment</div>
+              <div class="tf-desc">Who is booking and why.</div>
+            </div>
+            <div class="tf-card" data-cue="card-2" onclick="nav(7)">
+              <div class="tf-title">Source Code</div>
+              <div class="tf-desc">Which channel it came through.</div>
+            </div>
+            <div class="tf-card" data-cue="card-3" onclick="nav(8)">
+              <div class="tf-title">Origin Code</div>
+              <div class="tf-desc">Direct or through an intermediary.</div>
+            </div>
+            <div class="tf-card" data-cue="card-4" onclick="nav(9)">
+              <div class="tf-title">Country of Residence</div>
+              <div class="tf-desc">Where the guest lives. ISO code.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 (s-1): WHAT IS TRACKING SEGMENTATION -->
       <div class="slide s-white" id="s-1">
         <div style="display:grid;grid-template-columns:340px 1fr;height:100%;">
 
           <!-- LEFT: narrative -->
           <div style="padding:28px 26px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
-            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);opacity:0.7;margin-bottom:8px;display:block;">What is tracking segmentation?</span>
-            <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Every booking has a story.<br>Tracking makes sure<br>we record it correctly.</h2>
-            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">When a reservation comes in, two things happen — someone books a room, and someone stays in it. These are often different people. A travel agent books for a corporate guest. A parent books for their family. An OTA books on behalf of a tourist.<br><br>Tracking segmentation records <b style="color:var(--gold-l);">both sides of that story</b> — who booked and who stayed — so the hotel can analyse demand, set the right rates, and report accurately.</p>
-            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 13px;">
-              <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-l);margin-bottom:6px;">Why it matters</div>
-              <div style="font-size:10px;color:rgba(255,255,255,0.5);line-height:1.65;">A wrong market code in the PMS produces wrong data in every report, every forecast, and every rate decision — immediately and silently. There is no error message. The system just stores what you enter.</div>
-            </div>
+            <span style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block;">What is tracking segmentation?</span>
+            <h2 style="font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:white;line-height:1.25;margin-bottom:14px;">Every booking has a story.</h2>
+            <p style="font-size:13px;color:rgba(255,255,255,0.72);line-height:1.65;">Tracking records <b style="color:var(--gold);">both sides</b>.who booked and who stayed.</p>
           </div>
 
           <!-- RIGHT: who books / who stays diagram -->
           <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 28px;gap:12px;background:var(--white);">
-            <p style="font-size:11px;color:var(--g500);text-align:center;max-width:420px;line-height:1.6;margin-bottom:4px;">Tracking segmentation captures two groups of data fields — one about the <b style="color:var(--b900);">booking</b>, one about the <b style="color:var(--b900);">guest</b>.</p>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%;max-width:480px;">
+            <p style="font-size:13px;color:var(--g500);text-align:center;max-width:420px;line-height:1.55;margin-bottom:4px;">Two groups of fields, one about the <b style="color:var(--b900);">booking</b>, one about the <b style="color:var(--b900);">guest</b>.</p>
+            <div data-cue="diagram" data-cue-panel style="display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%;max-width:480px;">
 
               <!-- WHO BOOKS -->
               <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
@@ -559,29 +722,27 @@ body.fullscreen #fs-bot{display:flex;}
               </div>
 
             </div>
-            <div style="background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 16px;font-size:10px;color:var(--b900);line-height:1.6;max-width:480px;text-align:center;margin-top:4px;">
-              Together these fields tell the complete story of every reservation — <b>who arranged it, who is staying, where they came from, and how they got here.</b>
+            <div style="background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:10px 16px;font-size:13px;color:var(--b900);line-height:1.55;max-width:480px;text-align:center;margin-top:4px;">
+              <b>Booking-side + guest-side = full story.</b>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SLIDE 1b: WHO BOOKS -->
+      <!-- SLIDE 4 (s-1b): WHO BOOKS -->
       <div class="slide s-white" id="s-1b">
         <div style="display:grid;grid-template-columns:300px 1fr;height:100%;">
           <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
-            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);opacity:0.7;margin-bottom:8px;display:block;">Tracking segmentation</span>
-            <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Who books the room?</h2>
-            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">The person who makes the booking is not always the person who stays. A travel agent books for a tourist. A corporate travel desk books for an executive. An OTA books on behalf of anyone.</p>
-            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">These four fields capture who arranged the reservation and through which channel — so the hotel knows exactly where its business is coming from.</p>
-            <div style="display:flex;flex-direction:column;gap:7px;">
-              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#9E9E9E;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Market — who is booking and at what rate</span></div>
-              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#C9A84C;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Source — which channel the booking came through</span></div>
-              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#5B8C7A;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Agent Name — the travel agent or booker</span></div>
-              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#8B4A5A;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Company Name — the corporate account or organisation</span></div>
+            <span style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block;">Tracking segmentation</span>
+            <h2 style="font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:white;line-height:1.22;margin-bottom:18px;">Who books the room?</h2>
+            <div style="display:flex;flex-direction:column;gap:9px;">
+              <div style="display:flex;align-items:center;gap:10px;"><div style="width:9px;height:9px;border-radius:50%;background:#9E9E9E;flex-shrink:0;"></div><span style="font-size:13px;color:rgba(255,255,255,0.75);"><b style="color:white;">Market</b>.who is booking and at what rate</span></div>
+              <div style="display:flex;align-items:center;gap:10px;"><div style="width:9px;height:9px;border-radius:50%;background:#C9A84C;flex-shrink:0;"></div><span style="font-size:13px;color:rgba(255,255,255,0.75);"><b style="color:white;">Source</b>.which channel</span></div>
+              <div style="display:flex;align-items:center;gap:10px;"><div style="width:9px;height:9px;border-radius:50%;background:#5B8C7A;flex-shrink:0;"></div><span style="font-size:13px;color:rgba(255,255,255,0.75);"><b style="color:white;">Agent Name</b>.the travel agent</span></div>
+              <div style="display:flex;align-items:center;gap:10px;"><div style="width:9px;height:9px;border-radius:50%;background:#8B4A5A;flex-shrink:0;"></div><span style="font-size:13px;color:rgba(255,255,255,0.75);"><b style="color:white;">Company Name</b>.the corporate account</span></div>
             </div>
           </div>
-          <!-- Right content — editorial treatment (replaces former character SVGs) -->
+          <!-- Right content.editorial treatment (replaces former character SVGs) -->
           <div style="display:flex;flex-direction:column;justify-content:center;padding:32px 36px;background:var(--white);">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:26px;">
               <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);"></div>
@@ -592,81 +753,79 @@ body.fullscreen #fs-bot{display:flex;}
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
 
               <!-- Card 1 -->
-              <div style="padding:24px 20px;border:1px solid var(--g100);border-radius:6px;background:var(--white);display:flex;flex-direction:column;">
+              <div data-cue="card-1" data-cue-panel style="padding:24px 20px;border:1px solid var(--g100);border-radius:6px;background:var(--white);display:flex;flex-direction:column;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:48px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">01</div>
                 <div style="width:22px;height:2px;background:var(--gold);margin:12px 0 16px;"></div>
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Travel Agent</div>
-                <p style="font-size:10.5px;color:var(--g700);line-height:1.6;margin-bottom:18px;height:68px;overflow:hidden;">Books on behalf of the guest via GDS or phone. Commissions apply.</p>
+                <p style="font-size:12px;color:var(--g700);line-height:1.55;margin-bottom:18px;min-height:56px;">Books for the guest via GDS. Commissioned.</p>
                 <div style="display:flex;flex-direction:column;gap:5px;padding-top:12px;border-top:1px solid var(--g100);margin-top:auto;">
-                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">CORPP · CORGL</span></div>
-                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">AMD · GAL</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">CORPP</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">GDS</span></div>
                 </div>
               </div>
 
               <!-- Card 2 -->
-              <div style="padding:24px 20px;border:1px solid var(--g100);border-radius:6px;background:var(--white);display:flex;flex-direction:column;">
+              <div data-cue="card-2" data-cue-panel style="padding:24px 20px;border:1px solid var(--g100);border-radius:6px;background:var(--white);display:flex;flex-direction:column;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:48px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">02</div>
                 <div style="width:22px;height:2px;background:var(--gold);margin:12px 0 16px;"></div>
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Corporate Booker</div>
-                <p style="font-size:10.5px;color:var(--g700);line-height:1.6;margin-bottom:18px;height:68px;overflow:hidden;">A company travel desk books on behalf of an employee. Negotiated direct rate.</p>
+                <p style="font-size:12px;color:var(--g700);line-height:1.55;margin-bottom:18px;min-height:56px;">Company travel desk books an employee. Negotiated rate.</p>
                 <div style="display:flex;flex-direction:column;gap:5px;padding-top:12px;border-top:1px solid var(--g100);margin-top:auto;">
-                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">CORPK · CORPL</span></div>
-                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">DIR · EAC</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">CORPK</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">DIR</span></div>
                 </div>
               </div>
 
               <!-- Card 3 -->
-              <div style="padding:24px 20px;border:1px solid var(--g100);border-radius:6px;background:var(--white);display:flex;flex-direction:column;">
+              <div data-cue="card-3" data-cue-panel style="padding:24px 20px;border:1px solid var(--g100);border-radius:6px;background:var(--white);display:flex;flex-direction:column;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:48px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">03</div>
                 <div style="width:22px;height:2px;background:var(--gold);margin:12px 0 16px;"></div>
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">OTA &middot; Online</div>
-                <p style="font-size:10.5px;color:var(--g700);line-height:1.6;margin-bottom:18px;height:68px;overflow:hidden;">Guest books directly through Booking.com, Agoda, or Expedia. Retail rate.</p>
+                <p style="font-size:12px;color:var(--g700);line-height:1.55;margin-bottom:18px;min-height:56px;">Guest books via Booking.com, Agoda or Expedia.</p>
                 <div style="display:flex;flex-direction:column;gap:5px;padding-top:12px;border-top:1px solid var(--g100);margin-top:auto;">
-                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">ECOMM (seq 45)</span></div>
-                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">CCT · AUTO</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">MARKET</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">ECOMM</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:9px;"><span style="color:var(--g500);letter-spacing:0.1em;">SOURCE</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">CCT</span></div>
                 </div>
               </div>
 
             </div>
 
-            <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--g100);text-align:center;font-size:10.5px;color:var(--g500);line-height:1.7;">
-              The <b style="color:var(--b900);font-weight:700;">market code</b> tells you who is booking and why. The <b style="color:var(--b900);font-weight:700;">source code</b> tells you exactly how they got there.
+            <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--g100);text-align:center;font-size:13px;color:var(--g500);line-height:1.6;">
+              The <b style="color:var(--b900);font-weight:700;">market code</b> says who is booking. The <b style="color:var(--b900);font-weight:700;">source code</b> says how they got there.
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SLIDE 1c: WHO STAYS -->
+      <!-- SLIDE 5 (s-1c): WHO STAYS -->
       <div class="slide s-white" id="s-1c">
         <div style="display:grid;grid-template-columns:300px 1fr;height:100%;">
           <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
-            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);opacity:0.7;margin-bottom:8px;display:block;">Tracking segmentation</span>
-            <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:14px;">Who actually stays in the room?</h2>
-            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">Once we know who booked, we need to understand who is actually checking in. This tells us about source markets, demand patterns, and which guest profiles drive our revenue.</p>
-            <p style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:16px;">These fields help the Revenue Manager understand not just where bookings come from — but who Dusit's guests actually are.</p>
-            <div style="display:flex;flex-direction:column;gap:7px;">
-              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#9E9E9E;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Guest Name — who is checking in</span></div>
-              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#C9A84C;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Country — where the guest lives (ISO standard)</span></div>
-              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#5B8C7A;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Origin — direct or through intermediary</span></div>
-              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:#8B4A5A;flex-shrink:0;"></div><span style="font-size:10px;color:rgba(255,255,255,0.55);">Language — preferred communication language</span></div>
+            <span style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block;">Tracking segmentation</span>
+            <h2 style="font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:white;line-height:1.22;margin-bottom:18px;">Who actually stays in the room?</h2>
+            <div style="display:flex;flex-direction:column;gap:9px;">
+              <div style="display:flex;align-items:center;gap:10px;"><div style="width:9px;height:9px;border-radius:50%;background:#9E9E9E;flex-shrink:0;"></div><span style="font-size:13px;color:rgba(255,255,255,0.75);"><b style="color:white;">Guest Name</b>.who is checking in</span></div>
+              <div style="display:flex;align-items:center;gap:10px;"><div style="width:9px;height:9px;border-radius:50%;background:#C9A84C;flex-shrink:0;"></div><span style="font-size:13px;color:rgba(255,255,255,0.75);"><b style="color:white;">Country</b>.where the guest lives</span></div>
+              <div style="display:flex;align-items:center;gap:10px;"><div style="width:9px;height:9px;border-radius:50%;background:#5B8C7A;flex-shrink:0;"></div><span style="font-size:13px;color:rgba(255,255,255,0.75);"><b style="color:white;">Origin</b>.direct or intermediary</span></div>
+              <div style="display:flex;align-items:center;gap:10px;"><div style="width:9px;height:9px;border-radius:50%;background:#8B4A5A;flex-shrink:0;"></div><span style="font-size:13px;color:rgba(255,255,255,0.75);"><b style="color:white;">Language</b>.preferred</span></div>
             </div>
           </div>
-          <!-- Right content — editorial treatment (replaces former character SVGs) -->
+          <!-- Right content.editorial treatment (replaces former character SVGs) -->
           <div style="display:flex;flex-direction:column;justify-content:center;padding:28px 32px;background:var(--white);">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
               <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);"></div>
-              <span style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b900);letter-spacing:0.14em;text-transform:uppercase;">Four types of guests — all tracked differently</span>
+              <span style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b900);letter-spacing:0.14em;text-transform:uppercase;">Four types of guests, all tracked differently</span>
               <div style="flex:1;height:1px;background:linear-gradient(to right,var(--g100),transparent);"></div>
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;">
 
               <!-- Card 1: Family -->
-              <div style="padding:20px 16px;border:1px solid var(--g100);border-radius:6px;background:var(--white);display:flex;flex-direction:column;">
+              <div data-cue="card-1" data-cue-panel style="padding:20px 16px;border:1px solid var(--g100);border-radius:6px;background:var(--white);display:flex;flex-direction:column;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:42px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">01</div>
                 <div style="width:20px;height:2px;background:var(--gold);margin:10px 0 14px;"></div>
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Family</div>
-                <p style="font-size:10px;color:var(--g700);line-height:1.6;margin-bottom:14px;height:52px;overflow:hidden;">Leisure travel · 3–5 nights · Retail segment.</p>
+                <p style="font-size:12px;color:var(--g700);line-height:1.55;margin-bottom:14px;min-height:44px;">Leisure · 3–5 nights.</p>
                 <div style="display:flex;flex-direction:column;gap:4px;padding-top:10px;border-top:1px solid var(--g100);margin-top:auto;">
                   <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">COUNTRY</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">AU</span></div>
                   <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">LANG</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">EN</span></div>
@@ -674,11 +833,11 @@ body.fullscreen #fs-bot{display:flex;}
               </div>
 
               <!-- Card 2: Business Traveller -->
-              <div style="padding:20px 16px;border:1px solid var(--g100);border-radius:6px;background:var(--white);display:flex;flex-direction:column;">
+              <div data-cue="card-2" data-cue-panel style="padding:20px 16px;border:1px solid var(--g100);border-radius:6px;background:var(--white);display:flex;flex-direction:column;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:42px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">02</div>
                 <div style="width:20px;height:2px;background:var(--gold);margin:10px 0 14px;"></div>
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Business</div>
-                <p style="font-size:10px;color:var(--g700);line-height:1.6;margin-bottom:14px;height:52px;overflow:hidden;">Corporate stay · 1–2 nights · Corp segment.</p>
+                <p style="font-size:12px;color:var(--g700);line-height:1.55;margin-bottom:14px;min-height:44px;">Corporate · 1–2 nights.</p>
                 <div style="display:flex;flex-direction:column;gap:4px;padding-top:10px;border-top:1px solid var(--g100);margin-top:auto;">
                   <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">COUNTRY</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">SG</span></div>
                   <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">LANG</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">EN</span></div>
@@ -686,11 +845,11 @@ body.fullscreen #fs-bot{display:flex;}
               </div>
 
               <!-- Card 3: Airline Crew -->
-              <div style="padding:20px 16px;border:1px solid var(--g100);border-radius:6px;background:var(--white);display:flex;flex-direction:column;">
+              <div data-cue="card-3" data-cue-panel style="padding:20px 16px;border:1px solid var(--g100);border-radius:6px;background:var(--white);display:flex;flex-direction:column;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:42px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">03</div>
                 <div style="width:20px;height:2px;background:var(--gold);margin:10px 0 14px;"></div>
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Airline Crew</div>
-                <p style="font-size:10px;color:var(--g700);line-height:1.6;margin-bottom:14px;height:52px;overflow:hidden;">Contracted block · Recurring stay · AIRCW.</p>
+                <p style="font-size:12px;color:var(--g700);line-height:1.55;margin-bottom:14px;min-height:44px;">Contracted block. Recurring.</p>
                 <div style="display:flex;flex-direction:column;gap:4px;padding-top:10px;border-top:1px solid var(--g100);margin-top:auto;">
                   <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">COUNTRY</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">TH</span></div>
                   <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">ORIGIN</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">IND</span></div>
@@ -698,11 +857,11 @@ body.fullscreen #fs-bot{display:flex;}
               </div>
 
               <!-- Card 4: Tour Group -->
-              <div style="padding:20px 16px;border:1px solid var(--g100);border-radius:6px;background:var(--white);display:flex;flex-direction:column;">
+              <div data-cue="card-4" data-cue-panel style="padding:20px 16px;border:1px solid var(--g100);border-radius:6px;background:var(--white);display:flex;flex-direction:column;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:42px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-0.04em;">04</div>
                 <div style="width:20px;height:2px;background:var(--gold);margin:10px 0 14px;"></div>
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Tour Group</div>
-                <p style="font-size:10px;color:var(--g700);line-height:1.6;margin-bottom:14px;height:52px;overflow:hidden;">Leisure group · via wholesaler · GTOUR.</p>
+                <p style="font-size:12px;color:var(--g700);line-height:1.55;margin-bottom:14px;min-height:44px;">Leisure group via wholesaler.</p>
                 <div style="display:flex;flex-direction:column;gap:4px;padding-top:10px;border-top:1px solid var(--g100);margin-top:auto;">
                   <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">COUNTRY</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">CN</span></div>
                   <div style="display:flex;justify-content:space-between;font-size:8.5px;"><span style="color:var(--g500);letter-spacing:0.08em;">LANG</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:700;color:var(--b900);">ZH</span></div>
@@ -711,14 +870,14 @@ body.fullscreen #fs-bot{display:flex;}
 
             </div>
 
-            <div style="margin-top:22px;padding-top:14px;border-top:1px solid var(--g100);text-align:center;font-size:10.5px;color:var(--g500);line-height:1.7;">
-              Every guest type has a different profile — and the right <b style="color:var(--b900);font-weight:700;">tracking fields</b> ensure the hotel's data reflects the real mix of business on any given night.
+            <div style="margin-top:22px;padding-top:14px;border-top:1px solid var(--g100);text-align:center;font-size:13px;color:var(--g500);line-height:1.6;">
+              Different guest, different profile. The right <b style="color:var(--b900);font-weight:700;">tracking fields</b> keep the data honest.
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SLIDE 2: MARKET SEGMENT — progressive state-machine drill-down -->
+      <!-- SLIDE 6 (s-2): MARKET SEGMENT.progressive state-machine drill-down -->
       <div class="slide s-white" id="s-2">
         <div class="s-inner" style="padding:22px 30px 16px;display:flex;flex-direction:column;">
           <nav class="hv-crumb" id="hv-crumb"></nav>
@@ -727,7 +886,7 @@ body.fullscreen #fs-bot{display:flex;}
         </div>
       </div>
 
-      <!-- SLIDE 6: SOURCE CODES — state-machine drill-down -->
+      <!-- SLIDE 7 (s-6): SOURCE CODES.state-machine drill-down -->
       <div class="slide s-white" id="s-6">
         <div class="s-inner" style="padding:22px 30px 16px;display:flex;flex-direction:column;">
           <nav class="hv-crumb" id="src-crumb"></nav>
@@ -736,7 +895,7 @@ body.fullscreen #fs-bot{display:flex;}
         </div>
       </div>
 
-      <!-- SLIDE 7: ORIGIN CODES — state-machine drill-down -->
+      <!-- SLIDE 8 (s-7): ORIGIN CODES.state-machine drill-down -->
       <div class="slide s-white" id="s-7">
         <div class="s-inner" style="padding:22px 30px 16px;display:flex;flex-direction:column;">
           <nav class="hv-crumb" id="org-crumb"></nav>
@@ -745,33 +904,32 @@ body.fullscreen #fs-bot{display:flex;}
         </div>
       </div>
 
-      <!-- SLIDE 8: COUNTRY OF RESIDENCE — editorial redesign -->
+      <!-- SLIDE 9 (s-8): COUNTRY OF RESIDENCE.editorial redesign -->
       <div class="slide s-white" id="s-8">
         <div class="s-inner" style="padding:26px 30px 18px;display:flex;flex-direction:column;justify-content:center;">
-          <div style="text-align:center;margin-bottom:20px;">
-            <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:10px;">Module 2 · Country of Residence</div>
-            <h1 style="font-family:'DusitDisplay',sans-serif;font-size:42px;font-weight:700;color:var(--b900);letter-spacing:-0.02em;line-height:1;margin-bottom:4px;">Where does the guest live?</h1>
-            <div style="width:48px;height:2px;background:var(--gold);margin:14px auto 10px;"></div>
-            <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:400;font-style:italic;color:var(--g700);margin-bottom:14px;">Not where they&rsquo;re from.</div>
-            <p style="max-width:680px;margin:0 auto;font-size:11.5px;color:var(--g700);line-height:1.7;">Country of Residence is <b style="color:var(--b900);">mandatory worldwide</b> and uses the <b style="color:var(--b900);">ISO 3166-1 alpha-2</b> standard (two-letter codes). It identifies where the guest currently lives — which drives source-market analysis and demand forecasting.</p>
+          <div style="text-align:center;margin-bottom:24px;">
+            <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:12px;">Module 2 · Country of Residence</div>
+            <h1 style="font-family:'DusitDisplay',sans-serif;font-size:42px;font-weight:700;color:var(--b900);letter-spacing:-0.02em;line-height:1;margin-bottom:10px;">Where does the guest live?</h1>
+            <div style="width:48px;height:2px;background:var(--gold);margin:14px auto 12px;"></div>
+            <p style="max-width:640px;margin:0 auto;font-size:13px;color:var(--g700);line-height:1.6;"><b style="color:var(--b900);">Not where they're from.</b> Two-letter code following ISO standards. Mandatory worldwide.</p>
           </div>
 
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
 
-            <!-- Card 1 — Scenario -->
-            <div class="hv-card" style="animation:hvCardIn 0.5s cubic-bezier(.4,0,.2,1) 0.08s forwards;cursor:default;">
+            <!-- Card 1. Scenario -->
+            <div class="hv-card" data-cue="card-1" style="animation:hvCardIn 0.5s cubic-bezier(.4,0,.2,1) 0.08s forwards;cursor:default;">
               <div class="hv-card-num">01</div>
               <div class="hv-card-rule"></div>
               <div class="hv-card-title">Scenario</div>
-              <p style="font-size:11px;color:var(--g700);line-height:1.6;margin-bottom:14px;">A French national living and working in Singapore books a room. Their passport is French — but they currently live in Singapore.</p>
+              <p style="font-size:13px;color:var(--g700);line-height:1.55;margin-bottom:14px;">A French national living in Singapore books a room. Passport French. Residence Singapore.</p>
               <div style="margin-top:auto;padding-top:14px;border-top:1px solid var(--g100);display:flex;justify-content:space-between;align-items:center;font-size:10px;">
                 <span style="color:var(--g500);letter-spacing:0.1em;">ENTER</span>
                 <span style="font-family:'DusitDisplay',sans-serif;font-weight:800;color:var(--b900);font-size:13px;letter-spacing:0.04em;">SG <span style="color:var(--g300);text-decoration:line-through;font-weight:400;margin-left:6px;">FR</span></span>
               </div>
             </div>
 
-            <!-- Card 2 — Common mistakes -->
-            <div class="hv-card" style="animation:hvCardIn 0.5s cubic-bezier(.4,0,.2,1) 0.16s forwards;cursor:default;">
+            <!-- Card 2. Common mistakes -->
+            <div class="hv-card" data-cue="card-2" style="animation:hvCardIn 0.5s cubic-bezier(.4,0,.2,1) 0.16s forwards;cursor:default;">
               <div class="hv-card-num">02</div>
               <div class="hv-card-rule"></div>
               <div class="hv-card-title">Common mistakes</div>
@@ -781,16 +939,16 @@ body.fullscreen #fs-bot{display:flex;}
                 <div style="display:flex;justify-content:space-between;align-items:center;"><span style="color:var(--g500);">United Kingdom</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:800;"><span style="color:var(--g300);text-decoration:line-through;font-weight:400;">UK</span> <span style="color:var(--b900);margin-left:6px;">GB</span></span></div>
                 <div style="display:flex;justify-content:space-between;align-items:center;"><span style="color:var(--g500);">Thailand</span><span style="font-family:'DusitDisplay',sans-serif;font-weight:800;color:var(--b900);">TH</span></div>
               </div>
-              <div style="margin-top:auto;padding-top:10px;border-top:1px solid var(--g100);font-size:9.5px;color:var(--g500);letter-spacing:0.1em;font-family:'DusitDisplay',sans-serif;font-weight:700;">ISO 3166-1 ALPHA-2</div>
+              <div style="margin-top:auto;padding-top:10px;border-top:1px solid var(--g100);font-size:9.5px;color:var(--g500);letter-spacing:0.1em;font-family:'DusitDisplay',sans-serif;font-weight:700;">ISO STANDARDS</div>
             </div>
 
-            <!-- Card 3 — How to ask -->
-            <div class="hv-card" style="animation:hvCardIn 0.5s cubic-bezier(.4,0,.2,1) 0.24s forwards;cursor:default;">
+            <!-- Card 3. How to ask -->
+            <div class="hv-card" data-cue="card-3" style="animation:hvCardIn 0.5s cubic-bezier(.4,0,.2,1) 0.24s forwards;cursor:default;">
               <div class="hv-card-num">03</div>
               <div class="hv-card-rule"></div>
               <div class="hv-card-title">How to ask</div>
-              <p style="font-size:11px;color:var(--g700);line-height:1.6;margin-bottom:12px;font-style:italic;">&ldquo;What country are you currently based in?&rdquo;</p>
-              <p style="font-size:10.5px;color:var(--g500);line-height:1.6;margin-bottom:14px;">Ask at the time of booking. Enter the two-letter ISO code in the Country field of the reservation.</p>
+              <p style="font-size:13px;color:var(--b900);line-height:1.55;margin-bottom:12px;font-weight:600;">"What country are you currently based in?"</p>
+              <p style="font-size:12px;color:var(--g500);line-height:1.55;margin-bottom:14px;">Ask at booking. Enter the two-letter ISO code.</p>
               <div style="margin-top:auto;padding-top:10px;border-top:1px solid var(--g100);font-size:9.5px;color:var(--gold);letter-spacing:0.1em;font-family:'DusitDisplay',sans-serif;font-weight:700;">AT THE TIME OF BOOKING</div>
             </div>
 
@@ -798,82 +956,81 @@ body.fullscreen #fs-bot{display:flex;}
         </div>
       </div>
 
-      <!-- SLIDE 9: GOLDEN RULES -->
+      <!-- SLIDE 10 (s-9): GOLDEN RULES -->
       <div class="slide s-white" id="s-9">
         <div class="s-inner s-centre">
           <span class="eye">Golden Rules</span>
-          <h2 class="sh" style="margin-bottom:6px;">The 6 golden rules of tracking segmentation</h2>
-          <p class="body-text" style="margin-bottom:10px;">These rules exist to keep Dusit's data clean and consistent across all properties. <b>Click each card to reveal the rule.</b></p>
+          <h2 class="sh" style="margin-bottom:14px;">The 6 golden rules of tracking segmentation</h2>
           <div class="rules-grid" id="rulesGrid">
-            <div class="rule-card" id="rule-0" onclick="revealRule(0)">
+            <div class="rule-card" id="rule-0" data-cue="rule-0" onclick="revealRule(0)">
               <div class="rule-num">01</div>
-              <div class="rule-text">Market code must match in PMS, CRS, and RMS — all three systems, every time.</div>
+              <div class="rule-text">Market code must match in PMS, CRS, and RMS.all three systems, every time.</div>
             </div>
-            <div class="rule-card" id="rule-1" onclick="revealRule(1)">
+            <div class="rule-card" id="rule-1" data-cue="rule-1" onclick="revealRule(1)">
               <div class="rule-num">02</div>
-              <div class="rule-text">DLOYAL (seq 58) is exclusively for the Dusit Gold loyalty programme. No other use.</div>
+              <div class="rule-text">The Loyalty code is exclusively for the Dusit Gold programme. No other use.</div>
             </div>
-            <div class="rule-card" id="rule-2" onclick="revealRule(2)">
+            <div class="rule-card" id="rule-2" data-cue="rule-2" onclick="revealRule(2)">
               <div class="rule-num">03</div>
-              <div class="rule-text">All OTA rates must use ECOMM (seq 45). No exceptions.</div>
+              <div class="rule-text">All OTA bookings use the E-Commerce code. No exceptions.</div>
             </div>
-            <div class="rule-card highlighted" id="rule-3" onclick="revealRule(3)">
+            <div class="rule-card" id="rule-3" data-cue="rule-3" onclick="revealRule(3)">
               <div class="rule-num">04</div>
-              <div class="rule-text">Keep it simple — the main reason defines the motive of the whole stay.</div>
+              <div class="rule-text">Keep it simple. The main reason defines the motive of the whole stay.</div>
             </div>
-            <div class="rule-card" id="rule-4" onclick="revealRule(4)">
+            <div class="rule-card" id="rule-4" data-cue="rule-4" onclick="revealRule(4)">
               <div class="rule-num">05</div>
               <div class="rule-text">Free-of-charge rooms in a group or contract take the same code as the core business.</div>
             </div>
-            <div class="rule-card" id="rule-5" onclick="revealRule(5)">
+            <div class="rule-card" id="rule-5" data-cue="rule-5" onclick="revealRule(5)">
               <div class="rule-num">06</div>
-              <div class="rule-text">Market code is set at time of booking and never changes — even for groups.</div>
+              <div class="rule-text">Market code is set at time of booking and never changes, even for groups.</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SLIDE 10: DO / DON'T -->
+      <!-- SLIDE 11 (s-10): DO / DON'T -->
       <div class="slide s-white" id="s-10">
         <div class="s-inner s-centre">
           <span class="eye" style="margin-bottom:12px;">On every shift</span>
           <h2 class="sh" style="margin-bottom:18px;">Do / Don't</h2>
           <div class="dodont">
-            <div class="do-box">
+            <div class="do-box" data-cue="dos">
               <div class="dd-lbl">Do</div>
-              <div class="ddi"><div class="ddi-ic">✓</div>Set the market code at time of booking and leave it — it never changes once set</div>
-              <div class="ddi"><div class="ddi-ic">✓</div>Use ECOMM for every OTA booking, without exception</div>
-              <div class="ddi"><div class="ddi-ic">✓</div>Ensure the market code matches across PMS, CRS, and RMS</div>
-              <div class="ddi"><div class="ddi-ic">✓</div>Ask where the guest lives — not where they are from — for the country field</div>
-              <div class="ddi"><div class="ddi-ic">✓</div>Apply the same code to complimentary rooms within a group block</div>
+              <div class="ddi"><div class="ddi-ic">✓</div>Set the market code at booking. It never changes.</div>
+              <div class="ddi"><div class="ddi-ic">✓</div>Use the E-Commerce code for every OTA booking.</div>
+              <div class="ddi"><div class="ddi-ic">✓</div>Same market code in PMS, CRS, RMS.</div>
+              <div class="ddi"><div class="ddi-ic">✓</div>Ask where the guest lives, not where they're from.</div>
+              <div class="ddi"><div class="ddi-ic">✓</div>Complimentary rooms take the group's code.</div>
             </div>
-            <div class="dont-box">
+            <div class="dont-box" data-cue="donts">
               <div class="dd-lbl">Don't</div>
-              <div class="ddi"><div class="ddi-ic">✗</div>Change the market code after booking — even if the guest's situation changes</div>
-              <div class="ddi"><div class="ddi-ic">✗</div>Use DLOYAL for any booking that is not a Dusit Gold member rate</div>
-              <div class="ddi"><div class="ddi-ic">✗</div>Use ACT — it is Finance Dept. only, with a PM room and ACTINT rate code only</div>
-              <div class="ddi"><div class="ddi-ic">✗</div>Guess the country code — use the ISO reference if you are unsure</div>
-              <div class="ddi"><div class="ddi-ic">✗</div>Leave any tracking field blank — incomplete records corrupt every downstream report</div>
+              <div class="ddi"><div class="ddi-ic">✗</div>Change the market code after booking.</div>
+              <div class="ddi"><div class="ddi-ic">✗</div>Use the Loyalty code for anything but a Dusit Gold rate.</div>
+              <div class="ddi"><div class="ddi-ic">✗</div>Use the Accounts Transfer code. Finance Dept. only.</div>
+              <div class="ddi"><div class="ddi-ic">✗</div>Guess the country code. Check the ISO list.</div>
+              <div class="ddi"><div class="ddi-ic">✗</div>Leave any tracking field blank.</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SLIDE 11: CHECKLIST -->
+      <!-- SLIDE 12 (s-11): CHECKLIST -->
       <div class="slide s-off" id="s-11">
         <div class="s-inner s-centre">
           <span class="eye" style="margin-bottom:8px;">Before the quiz</span>
           <h2 class="sh" style="margin-bottom:6px;">Quick checklist</h2>
-          <p style="font-size:12px;color:var(--g500);margin-bottom:14px;">Tick all five <em>and</em> visit all content slides — then the quiz unlocks.</p>
+          <p style="font-size:13px;color:var(--g500);margin-bottom:16px;line-height:1.55;">Tick all five, <b style="color:var(--b900);">and</b> visit every content slide. Then the quiz unlocks.</p>
           <ul class="chklist" id="checklistItems">
-            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I can name the 4 tracking fields: market segment, source code, origin code, country of residence</li>
-            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I know that DLOYAL is exclusively for Dusit Gold members and ECOMM is for all OTA bookings</li>
-            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I understand that market codes are set at time of booking and never change</li>
-            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I know the difference between DIR and IND origin codes and how they are set</li>
-            <li class="chi" onclick="tick(this)"><div class="chbox"></div>I know to use the ISO standard for country of residence — where the guest lives, not their nationality</li>
+            <li class="chi" data-cue="chk-1" onclick="tick(this)"><div class="chbox"></div>I can name the 4 tracking fields.</li>
+            <li class="chi" data-cue="chk-2" onclick="tick(this)"><div class="chbox"></div>Loyalty code = Gold members. E-Commerce code = all OTAs.</li>
+            <li class="chi" data-cue="chk-3" onclick="tick(this)"><div class="chbox"></div>Market codes are set at booking. They never change.</li>
+            <li class="chi" data-cue="chk-4" onclick="tick(this)"><div class="chbox"></div>I know the difference between Direct and Indirect origin codes.</li>
+            <li class="chi" data-cue="chk-5" onclick="tick(this)"><div class="chbox"></div>Country of residence uses ISO codes. Where the guest lives.</li>
           </ul>
           <div id="unlockNote" style="display:none;margin-top:14px;background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:10px 14px;font-size:11px;color:var(--b900);">✓ <strong>Quiz unlocked.</strong> Press Next to begin.</div>
-          <div id="visitNote" style="display:none;margin-top:10px;font-size:10px;color:var(--gold);">↑ Visit all slides first — some are still unvisited.</div>
+          <div id="visitNote" style="display:none;margin-top:10px;font-size:10px;color:var(--gold);">↑ Visit all slides first. Some are still unvisited.</div>
         </div>
       </div>
 
@@ -891,7 +1048,7 @@ body.fullscreen #fs-bot{display:flex;}
             <button class="qopt" onclick="answer(0,3,this)">D. Market: PROMO / Source: TEL</button>
           </div>
           <div class="q-fb" id="qfb-0"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q1 / 5</div><button class="btn btn-p" id="qnxt-0" onclick="nav(12)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q1 / 5</div><button class="btn btn-p" id="qnxt-0" onclick="nav(13)" style="display:none">Next →</button></div>
         </div>
       </div>
       <!-- QUIZ Q2 -->
@@ -908,7 +1065,7 @@ body.fullscreen #fs-bot{display:flex;}
             <button class="qopt" onclick="answer(1,3,this)">D. GASSO — since it is a conference group</button>
           </div>
           <div class="q-fb" id="qfb-1"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q2 / 5</div><button class="btn btn-p" id="qnxt-1" onclick="nav(13)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q2 / 5</div><button class="btn btn-p" id="qnxt-1" onclick="nav(14)" style="display:none">Next →</button></div>
         </div>
       </div>
       <!-- QUIZ Q3 -->
@@ -925,7 +1082,7 @@ body.fullscreen #fs-bot{display:flex;}
             <button class="qopt" onclick="answer(2,3,this)">D. Leave it blank if you are unsure</button>
           </div>
           <div class="q-fb" id="qfb-2"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q3 / 5</div><button class="btn btn-p" id="qnxt-2" onclick="nav(14)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q3 / 5</div><button class="btn btn-p" id="qnxt-2" onclick="nav(15)" style="display:none">Next →</button></div>
         </div>
       </div>
       <!-- QUIZ Q4 -->
@@ -942,7 +1099,7 @@ body.fullscreen #fs-bot{display:flex;}
             <button class="qopt" onclick="answer(3,3,this)">D. CORPP — because Booking.com has a corporate agreement with Dusit</button>
           </div>
           <div class="q-fb" id="qfb-3"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q4 / 5</div><button class="btn btn-p" id="qnxt-3" onclick="nav(15)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q4 / 5</div><button class="btn btn-p" id="qnxt-3" onclick="nav(16)" style="display:none">Next →</button></div>
         </div>
       </div>
       <!-- QUIZ Q5 -->
@@ -950,13 +1107,13 @@ body.fullscreen #fs-bot{display:flex;}
         <div class="quiz-wrap">
           <div class="quiz-header">
             <div class="q-meta"><div class="q-label">Quiz · Question 5 of 5</div><div class="q-dots" id="qd-4"></div></div>
-            <div class="q-text">A front desk agent notices a reservation where the guest's situation changed after booking — they originally booked as a leisure traveller but are now extending the stay for business. Should the market code be changed?</div>
+            <div class="q-text">A front desk agent notices a reservation where the guest's situation changed after booking. They originally booked as a leisure traveller but are now extending the stay for business. Should the market code be changed?</div>
           </div>
           <div class="quiz-opts">
             <button class="qopt" onclick="answer(4,0,this)">A. Yes — the code should be updated to reflect the new purpose of the stay</button>
-            <button class="qopt" onclick="answer(4,1,this)">B. Yes — but only with approval from the Revenue Manager</button>
+            <button class="qopt" onclick="answer(4,1,this)">B. Yes, but only with approval from the Revenue Manager</button>
             <button class="qopt" onclick="answer(4,2,this)">C. No — the market code is set at time of booking and never changes</button>
-            <button class="qopt" onclick="answer(4,3,this)">D. No — but a note should be added and the code reviewed at checkout</button>
+            <button class="qopt" onclick="answer(4,3,this)">D. No, but a note should be added and the code reviewed at checkout</button>
           </div>
           <div class="q-fb" id="qfb-4"></div>
           <div class="quiz-foot"><div class="quiz-foot-left">Q5 / 5</div><button class="btn btn-p" id="qnxt-4" onclick="finishQuiz()" style="display:none">See Results →</button></div>
@@ -973,6 +1130,11 @@ body.fullscreen #fs-bot{display:flex;}
         </div>
       </div>
 
+      <!-- Cueline overlays live inside the canvas so they scale with the fixed 900×540 stage.
+           cc-overlay populated by Cueline._showCaption(); cue-hint only visible in preview mode. -->
+      <div id="cc-overlay"></div>
+      <div id="cue-hint">Preview mode · press Space</div>
+
     </div><!-- /canvas -->
   </div><!-- /stage -->
 
@@ -985,7 +1147,12 @@ body.fullscreen #fs-bot{display:flex;}
       <span style="color:rgba(255,255,255,0.12);font-size:10px;">›</span>
       <span class="fs-crumb" id="fsCrumb">Overview</span>
     </div>
-    <button class="fs-exit" onclick="toggleFS()">✕ Exit Fullscreen</button>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <button class="fs-exit" id="fs-play-btn" onclick="Cueline.toggleTransport()" title="Play / pause narration">▶</button>
+      <button class="fs-exit" id="fs-skip-btn" onclick="Cueline.step()" title="Skip to next beat">⏭</button>
+      <button class="fs-exit" id="fs-cc-btn" onclick="Cueline.toggleCC()" title="Toggle captions">CC</button>
+      <button class="fs-exit" onclick="toggleFS()">✕ Exit Fullscreen</button>
+    </div>
   </div>
   <div id="fs-bot">
     <button class="fs-btn g" id="fsPrev" onclick="prev()" disabled>← Prev</button>
@@ -1011,19 +1178,20 @@ body.fullscreen #fs-bot{display:flex;}
 <script>
 // ── NAVIGATION MODEL ──
 // Uses an ordered ID array so non-sequential IDs (s-1b, s-1c) work cleanly
-const SLIDE_IDS = ['s-0','s-1','s-1b','s-1c','s-2','s-6','s-7','s-8','s-9','s-10','s-11','s-12','s-13','s-14','s-15','s-16'];
-const N = SLIDE_IDS.length; // 16 (slides 3/4/5 deep-dives removed — content now lives inside slide 2 drill-down)
-const CONTENT_END = 10; // index of checklist slide (s-11)
-const QUIZ_START  = 11; // index of Q1 (s-12)
+const SLIDE_IDS = ['s-hook','s-0','s-1','s-1b','s-1c','s-2','s-6','s-7','s-8','s-9','s-10','s-11','s-12','s-13','s-14','s-15','s-16'];
+const N = SLIDE_IDS.length; // 17 (hook + 10 content + 5 quiz + 1 quiz-results reuse of s-16)
+const CONTENT_END = 11; // index of checklist slide (s-11), shifted +1 for hook
+const QUIZ_START  = 12; // index of Q1 (s-12), shifted +1 for hook
 
-const SIDEBAR_IDS = ['sbi-0','sbi-1','sbi-1b','sbi-1c','sbi-2','sbi-6','sbi-7','sbi-8','sbi-9','sbi-10','sbi-11'];
+const SIDEBAR_IDS = ['sbi-hook','sbi-0','sbi-1','sbi-1b','sbi-1c','sbi-2','sbi-6','sbi-7','sbi-8','sbi-9','sbi-10','sbi-11'];
 
 const TITLES = [
+  'A forecast that lied',
   'Overview',
   'What is Tracking Segmentation?',
   'Who Books',
   'Who Stays',
-  'Market Segment — Overview',
+  'Market Segment. Overview',
   'Source Codes',
   'Origin Codes',
   'Country of Residence',
@@ -1046,7 +1214,7 @@ const QFB = [
   'DLOYAL is the correct market code for all Dusit Gold member bookings. TEL is the correct source code for a reservation made by phone directly to the hotel.',
   'Free-of-charge rooms that are part of a group contract always take the same market code as the core group business. Since this is a corporate group, all rooms — including the two complimentary ones — should be coded GCORP.',
   'Country of residence is based on where the guest currently lives, not their nationality or passport. The German national living in Singapore should be coded SG.',
-  'ECOMM must be used for all OTA bookings without exception — regardless of the rate paid. This is one of the six golden rules of tracking segmentation.',
+  'ECOMM must be used for all OTA bookings without exception, regardless of the rate paid. This is one of the six golden rules of tracking segmentation.',
   'The market code is set at time of booking and never changes — this is a golden rule. Even if the guest\'s situation changes, the code stays the same as originally entered.'
 ];
 const answered = Array(5).fill(false);
@@ -1074,7 +1242,11 @@ function nav(n) {
   const inner = el.querySelector('.s-inner, .split-right, .quiz-wrap');
   if(inner) inner.scrollTop = 0;
 
-  if(cur === 8) initRules(); // golden rules is index 8
+  if(cur === 9) initRules(); // golden rules is index 9 (shifted +1 for hook)
+
+  // Re-arm narration engine for this slide. Cues fire on Space; audio (if
+  // available) auto-chains via Cueline.playAll() after first user gesture.
+  if(typeof Cueline !== 'undefined' && Cueline.arm) Cueline.arm(cur);
 }
 
 function prev(){ nav(cur-1); }
@@ -1178,18 +1350,18 @@ function toggleSeg(hdr){
 }
 
 // ──────────────────────────────────────────────────────────────
-// Slide 2 — Market Segment progressive hierarchy (state machine)
+// Slide 2. Market Segment progressive hierarchy (state machine)
 // 6 major groups → 13 market segments → 40 market codes
 // Click any code row to expand an example of how it's used
 // ──────────────────────────────────────────────────────────────
 const HV_DATA = {
-  'retail-nq': { num:'01', name:'Retail Non-Qualified', sub:'Public rates — internal and external',
+  'retail-nq': { num:'01', name:'Retail Non-Qualified', sub:'Public rates.internal and external',
     segs:[
       {id:'retail-int', num:'01', name:'Retail Internal', meta:'3 CODES',
        codes:[
          {b:'DBRRT',l:'Best Flexible Rate',d:'Highest publicly available rate. <b>BAR equivalent in the PMS.</b>',
-          ex:'A couple books a Deluxe room for their anniversary weekend directly through dusit.com at ฿4,500/night. No discounts applied — paying the Best Available Rate.'},
-         {b:'ADVPC',l:'Advance Purchase',d:'Discounted, less flexible — prepaid, minimum length of stay.',
+          ex:'A couple books a Deluxe room for their anniversary weekend directly through dusit.com at ฿4,500/night. No discounts applied.paying the Best Available Rate.'},
+         {b:'ADVPC',l:'Advance Purchase',d:'Discounted, less flexible.prepaid, minimum length of stay.',
           ex:'A business traveller books 30 days ahead on dusit.com. Prepaid, non-refundable, 2-night minimum. Qualifies for 15% Advance Purchase discount vs BAR.'},
          {b:'HTPCK',l:'Package',d:'Room + value-added inclusions (breakfast, spa, transfers).',
           ex:'Guest books the "Spa Escape Package" at ฿6,500/night including room, two spa treatments, and daily breakfast. Priced as a bundle, not a discount.'}
@@ -1207,9 +1379,9 @@ const HV_DATA = {
          {b:'DLOYAL',l:'Loyalty Program',d:'<b>Dusit Gold members only.</b> Private sales, free-night redemptions, BRG.',
           ex:'A Dusit Gold member redeems 20,000 points for one free night in a Standard room. Membership verified at check-in. Coded DLOYAL.'},
          {b:'PROMO',l:'Promotion &amp; Partnership',d:'Short-term promos, airline and credit-card partnerships.',
-          ex:'Guest books a limited-time "Songkran Splash" rate during the April festival. Campaign-specific promo code — coded PROMO.'},
+          ex:'Guest books a limited-time "Songkran Splash" rate during the April festival. Campaign-specific promo code.coded PROMO.'},
          {b:'AIRLP',l:'Airline Programs',d:'Airline stopover programs (Royal Orchid, Emirates Holidays).',
-          ex:'Thai Airways stopover guest books a 1-night transit stay charged to Royal Orchid Holidays. Coded AIRLP — not AIRCW.'}
+          ex:'Thai Airways stopover guest books a 1-night transit stay charged to Royal Orchid Holidays. Coded AIRLP.not AIRCW.'}
        ]},
       {id:'discount', num:'04', name:'Discount &amp; Industry', meta:'2 CODES',
        codes:[
@@ -1224,7 +1396,7 @@ const HV_DATA = {
       {id:'corp-dyn', num:'05', name:'Corporate Dynamic', meta:'2 CODES',
        codes:[
          {b:'CORPP',l:'Consortia / TMC',d:'RFP programs for travel management companies. Commissionable.',
-          ex:'An American Express GBT client books for a trade show — Consortia RFP rate applies, commission goes to the TMC.'},
+          ex:'An American Express GBT client books for a trade show. Consortia RFP rate applies, commission goes to the TMC.'},
          {b:'CORGL',l:'Corporate Global',d:'Large multi-property accounts (Corporate Sales Office).',
           ex:'A Nestlé executive books via the company’s global travel desk. Account managed by Dusit Corporate Sales Office.'}
        ]},
@@ -1246,7 +1418,7 @@ const HV_DATA = {
       {id:'whole-dyn', num:'08', name:'Wholesale Dynamic', meta:'1 CODE',
        codes:[
          {b:'WHODM',l:'Wholesale Dynamic',d:'Dynamic / margin XML (Expedia, Trip.com package plans).',
-          ex:'Guest books "flight + hotel" through Expedia Package. Margin-based dynamic XML rate — coded WHODM.'}
+          ex:'Guest books "flight + hotel" through Expedia Package. Margin-based dynamic XML rate.coded WHODM.'}
        ]},
       {id:'whole-stat', num:'09', name:'Wholesale Static', meta:'3 CODES',
        codes:[
@@ -1255,10 +1427,10 @@ const HV_DATA = {
          {b:'WHOLN',l:'Wholesale Static Contract',d:'Signed static-rate contract with a specific wholesaler.',
           ex:'A Japanese wholesaler has a signed contract for 100 rooms/month at an agreed static rate.'},
          {b:'WHOPM',l:'Wholesale Promotion',d:'Tactical short-term campaigns with wholesale partners.',
-          ex:'A 48-hour flash sale with Agoda wholesale offering 25% off — coded WHOPM for the campaign period.'}
+          ex:'A 48-hour flash sale with Agoda wholesale offering 25% off.coded WHOPM for the campaign period.'}
        ]}
     ]},
-  'group': { num:'05', name:'Group', sub:'Block bookings — business and leisure',
+  'group': { num:'05', name:'Group', sub:'Block bookings.business and leisure',
     segs:[
       {id:'biz-grp', num:'10', name:'Business Groups', meta:'4 CODES',
        codes:[
@@ -1278,11 +1450,11 @@ const HV_DATA = {
          {b:'GWEDD',l:'Wedding Group',d:'Group associated with a wedding hosted at the hotel.',
           ex:'Wedding couple books 25 guest rooms plus honeymoon suite for their wedding weekend.'},
          {b:'GSERI',l:'Tour Series',d:'Regular recurring groups (weekly / fortnightly).',
-          ex:'Thai Airways Holidays books every Friday for 20 consecutive weeks — recurring tour series.'},
+          ex:'Thai Airways Holidays books every Friday for 20 consecutive weeks.recurring tour series.'},
          {b:'GTOUR',l:'Tour Group',d:'One-time or irregular group from a wholesaler or agent.',
           ex:'A European wholesaler books a one-time 60-pax tour group for a 10-day Thailand itinerary.'},
          {b:'GOTHR',l:'Other Group',d:'Last-resort classification when no other group type fits.',
-          ex:'A mixed-purpose group with no clear category — classified GOTHR only after other options exhausted.'}
+          ex:'A mixed-purpose group with no clear category.classified GOTHR only after other options exhausted.'}
        ]}
     ]},
   'other': { num:'06', name:'Other', sub:'Crew, contracted, complimentary, house use',
@@ -1290,32 +1462,32 @@ const HV_DATA = {
       {id:'crew', num:'12', name:'Crew &amp; Contracted', meta:'5 CODES',
        codes:[
          {b:'LTERM',l:'Long Term Stay',d:'<b>Not Residence brand.</b> 14+ consecutive nights direct with hotel.',
-          ex:'An expat consultant books 45 consecutive nights during a project relocation — direct contract at long-stay rate.'},
+          ex:'An expat consultant books 45 consecutive nights during a project relocation.direct contract at long-stay rate.'},
          {b:'RESDA',l:'Residence Contract A2',d:'<b>Residence brand only.</b> 30–365 consecutive nights.',
           ex:'A Dusit Residence tenant signs a 90-night contract at the Residence long-stay rate.'},
          {b:'RESDB',l:'Residence Contract B2',d:'<b>Residence brand only.</b> 366+ consecutive nights.',
-          ex:'A permanent Dusit Residence tenant on a 2-year contract — coded RESDB for all nights.'},
+          ex:'A permanent Dusit Residence tenant on a 2-year contract.coded RESDB for all nights.'},
          {b:'AIRCW',l:'Airline Crew',d:'Long-term back-to-back airline crew contract.',
           ex:'Emirates cabin crew occupies an allocated 10-room block each night for scheduled layovers.'},
          {b:'DELAYF',l:'Delayed Flights',d:'Ad-hoc stays booked by airline for delayed/cancelled flights.',
-          ex:'Flight cancellation — airline books 40 emergency rooms for stranded passengers, ad-hoc.'}
+          ex:'Flight cancellation.airline books 40 emergency rooms for stranded passengers, ad-hoc.'}
        ]},
       {id:'others', num:'13', name:'Others (Comp &amp; House)', meta:'7 CODES',
        codes:[
          {b:'DAY',l:'Day Use',d:'Same-day arrival and departure. No overnight.',
-          ex:'Transit guest needs a room for 6 hours between flights — Day Use rate applied.'},
+          ex:'Transit guest needs a room for 6 hours between flights. Day Use rate applied.'},
          {b:'COMOS',l:'Complimentary on Sales',d:'Zero room revenue as part of a catering / event contract.',
           ex:'Wedding couple receives a complimentary honeymoon suite as part of the wedding catering package.'},
          {b:'COMBU',l:'Complimentary Business',d:'Inspection visits, agency trials, sales promotions.',
           ex:'A major travel agency does a 1-night site inspection before a 500-room group booking.'},
          {b:'COMNB',l:'Complimentary Non-Business',d:'Revenue Dept. Officer, Govt. Officer, Shareholder rooms.',
-          ex:'Revenue Department officer visits for a scheduled property audit — complimentary, no business potential.'},
+          ex:'Revenue Department officer visits for a scheduled property audit.complimentary, no business potential.'},
          {b:'HOUSP',l:'House Use Permanent',d:'Long-term staff housing (e.g. GM), part of employment package.',
           ex:'The General Manager occupies a permanent on-property suite as part of their employment contract.'},
          {b:'HOUST',l:'House Use Temporary',d:'Short-term staff, vendor, or contractor accommodation.',
-          ex:'An external IT consultant stays 5 nights during a PMS upgrade — coded HOUST.'},
+          ex:'An external IT consultant stays 5 nights during a PMS upgrade.coded HOUST.'},
          {b:'ACT',l:'Adjustment',d:'<b>Finance Dept. only.</b> PM room + ACTINT rate code exclusively.',
-          ex:'Finance uses a PM room with the ACTINT rate code to post an adjustment — ACT is never used for a real guest.'}
+          ex:'Finance uses a PM room with the ACTINT rate code to post an adjustment. ACT is never used for a real guest.'}
        ]}
     ]}
 };
@@ -1336,7 +1508,7 @@ function hvToggleCode(row){
 }
 
 // ──────────────────────────────────────────────────────────────
-// Slide 6 — Source Codes state machine (5 categories → 14 codes)
+// Slide 6. Source Codes state machine (5 categories → 14 codes)
 // ──────────────────────────────────────────────────────────────
 const SRC_DATA = {
   ppd: { num:'01', name:'Property Direct', sub:'Direct to the hotel (manual entry)', alloc:'Manual',
@@ -1360,7 +1532,7 @@ const SRC_DATA = {
   ibe: { num:'03', name:'Internet Booking Engine', sub:'dusit.com &amp; Dusit web portals (auto)', alloc:'Auto',
     codes:[
       {b:'BKG',l:'Booking Engine',d:'Guest books via dusit.com directly.',
-       ex:'Guest completes a direct booking on dusit.com — the IBE auto-assigns BKG to the reservation.'},
+       ex:'Guest completes a direct booking on dusit.com.the IBE auto-assigns BKG to the reservation.'},
       {b:'TMG',l:'Tour Manager',d:'Travel agent books via the Dusit agent web portal.',
        ex:'A travel agent uses the Dusit Agent Portal to book 2 rooms for a client. System auto-codes TMG.'},
       {b:'SHP',l:'Dusit Shop',d:'Guest purchases via Dusit Shop storefront.',
@@ -1405,6 +1577,9 @@ function srcRender(){
     if(srcState.catId){
       crumbHtml += `<span class="hv-crumb-sep">›</span><span class="hv-crumb-item current">${SRC_DATA[srcState.catId].name}</span>`;
     }
+    // Back button.pops one level at a time. At cats → root. At codes → cats.
+    if(srcState.level === 'cats')       crumbHtml += `<button class="hv-back" onclick="srcGo('root')">Back</button>`;
+    else if(srcState.level === 'codes') crumbHtml += `<button class="hv-back" onclick="srcGo('cats')">Back</button>`;
   }
   crumb.innerHTML = crumbHtml;
 
@@ -1414,7 +1589,7 @@ function srcRender(){
         <div class="hv-hero-eyebrow">Module 2 · Source Codes</div>
         <h1 class="hv-hero-title">Source of Business</h1>
         <div class="hv-hero-divider"></div>
-        <p class="hv-hero-intro">Source codes identify <b>which channel or platform</b> the booking came through — more specific than the market code. Most are <b>set automatically by SynXis</b>; only property-direct codes (DIR/TEL/WLK) are entered manually.</p>
+        <p class="hv-hero-intro">Source codes identify <b>which channel or platform</b> the booking came through, more specific than the market code. Most are <b>set automatically by SynXis</b>; only property-direct codes (DIR/TEL/WLK) are entered manually.</p>
         <div class="hv-hero-stats">
           <div class="hv-hero-stat"><b>5</b><span>Categories</span></div>
           <div class="hv-hero-stat"><b>14</b><span>Codes</span></div>
@@ -1425,18 +1600,36 @@ function srcRender(){
     hint.textContent = 'Click the card to begin';
   }
   else if(srcState.level === 'cats'){
+    // Compact category cards. Click any to see its codes on the next level.
     const cards = Object.keys(SRC_DATA).map(cid => {
       const c = SRC_DATA[cid];
+      const codeCount = c.codes.length;
       return `<div class="hv-card" onclick="srcGo('codes','${cid}')">
         <div class="hv-card-num">${c.num}</div>
         <div class="hv-card-rule"></div>
         <div class="hv-card-title">${c.name}</div>
         <div class="hv-card-sub">${c.sub}</div>
-        <div class="hv-card-foot"><span class="hv-card-meta">${c.codes.length} CODE${c.codes.length>1?'S':''} · ${c.alloc.toUpperCase()}</span><span class="hv-card-arrow">›</span></div>
+        <div class="hv-card-foot"><span class="hv-card-meta">${codeCount} CODE${codeCount>1?'S':''} · ${c.alloc.toUpperCase()}</span><span class="hv-card-arrow">›</span></div>
       </div>`;
     }).join('');
-    stage.innerHTML = `<div class="hv-grid cols-3" style="grid-template-rows:auto auto;">${cards}</div>`;
+    stage.innerHTML = `<div class="hv-grid cols-3">${cards}</div>`;
     hint.textContent = 'Click a category to see its codes';
+  }
+  else if(srcState.level === 'codes'){
+    // Rich per-code cards. Matches the segs-inline-codes pattern from Market Segment.
+    const c = SRC_DATA[srcState.catId];
+    const n = c.codes.length;
+    const colClass = n === 1 ? 'cols-2' : (n === 2 ? 'cols-2' : (n === 3 ? 'cols-3' : 'cols-4'));
+    const cards = c.codes.map(k =>
+      `<div class="hv-card hv-card-static">
+        <div class="hv-code-detail-badge">${k.b}</div>
+        <div class="hv-card-rule"></div>
+        <div class="hv-card-title">${k.l}</div>
+        <p class="hv-code-detail-desc">${k.d}</p>
+      </div>`
+    ).join('');
+    stage.innerHTML = `<div class="hv-grid ${colClass}">${cards}</div>`;
+    hint.textContent = '';
   }
   else if(srcState.level === 'codes'){
     const c = SRC_DATA[srcState.catId];
@@ -1455,17 +1648,17 @@ function srcRender(){
 }
 
 // ──────────────────────────────────────────────────────────────
-// Slide 7 — Origin Codes state machine (2 codes)
+// Slide 7. Origin Codes state machine (2 codes)
 // ──────────────────────────────────────────────────────────────
 const ORG_DATA = {
   dir: { num:'01', name:'Direct', q:'No intermediary',
     desc:'The reservation was made directly by the guest who will check in. No third party sits in the booking chain.',
     examples:['Guest books on dusit.com','Guest calls the hotel','Walk-in','Guest emails the hotel directly'],
-    ex:'A loyalty member logs into dusit.com and books a weekend stay. No OTA, no TMC, no travel agent — origin is <b>DIR</b>.'},
+    ex:'A loyalty member logs into dusit.com and books a weekend stay. No OTA, no TMC, no travel agent.origin is <b>DIR</b>.'},
   ind: { num:'02', name:'Indirect', q:'Intermediary present',
-    desc:'A third party sits between the guest and the hotel — OTA, travel agent, TMC, GDS, or corporate booker.',
+    desc:'A third party sits between the guest and the hotel. OTA, travel agent, TMC, GDS, or corporate booker.',
     examples:['OTA (Booking.com, Agoda, Expedia)','Travel Agency','Corporate Booker / TMC','GDS (Amadeus, Sabre…)','Wholesaler'],
-    ex:'A business traveller’s company books their trip via American Express GBT. The TMC sits between the guest and the hotel — origin is <b>IND</b>.'}
+    ex:'A business traveller’s company books their trip via American Express GBT. The TMC sits between the guest and the hotel.origin is <b>IND</b>.'}
 };
 
 let orgState = { level:'root', id:null };
@@ -1489,6 +1682,8 @@ function orgRender(){
     if(orgState.id){
       crumbHtml += `<span class="hv-crumb-sep">›</span><span class="hv-crumb-item current">${ORG_DATA[orgState.id].name}</span>`;
     }
+    // Back button.always pops to root.
+    crumbHtml += `<button class="hv-back" onclick="orgGo('root')">Back</button>`;
   }
   crumb.innerHTML = crumbHtml;
 
@@ -1498,7 +1693,7 @@ function orgRender(){
         <div class="hv-hero-eyebrow">Module 2 · Origin Codes</div>
         <h1 class="hv-hero-title">Origin of Business</h1>
         <div class="hv-hero-divider"></div>
-        <p class="hv-hero-intro">Two codes. One question: <b>is there an intermediary between the guest and the hotel?</b> Both are <b>set automatically by SynXis</b> — but knowing what they mean matters when you read a report.</p>
+        <p class="hv-hero-intro">Two codes. One question: <b>is there an intermediary between the guest and the hotel?</b> Both are <b>set automatically by SynXis</b>.but knowing what they mean matters when you read a report.</p>
         <div class="hv-hero-stats">
           <div class="hv-hero-stat"><b>2</b><span>Codes</span></div>
           <div class="hv-hero-stat"><b>Auto</b><span>Via SynXis</span></div>
@@ -1508,19 +1703,26 @@ function orgRender(){
     hint.textContent = 'Click the card to begin';
   }
   else if(orgState.level === 'cards'){
+    // Description + typical examples + code badge inline. No click-through to detail.
     const cards = Object.keys(ORG_DATA).map(oid => {
       const o = ORG_DATA[oid];
-      return `<div class="hv-card" onclick="orgGo('detail','${oid}')" style="padding:28px 26px;">
+      const badge = o.name === 'Direct' ? 'DIR' : 'IND';
+      const tags = o.examples.map(e =>
+        `<span style="display:inline-block;padding:5px 11px;background:var(--g50);border:1px solid var(--g100);border-radius:16px;font-size:10.5px;color:var(--b900);font-family:'DusitDisplay',sans-serif;font-weight:700;letter-spacing:0.02em;margin:0 6px 6px 0;">${e}</span>`
+      ).join('');
+      return `<div class="hv-card hv-card-static" style="padding:28px 26px;">
         <div class="hv-card-num">${o.num}</div>
         <div class="hv-card-rule"></div>
         <div class="hv-card-title" style="font-size:22px;">${o.name}</div>
         <div class="hv-card-sub" style="font-size:12px;">${o.q}</div>
-        <p style="font-size:11.5px;color:var(--g700);line-height:1.65;margin-bottom:16px;flex:1;">${o.desc}</p>
-        <div class="hv-card-foot"><span class="hv-card-meta">CODE &nbsp;·&nbsp; ${o.name.toUpperCase() === 'DIRECT' ? 'DIR' : 'IND'}</span><span class="hv-card-arrow">›</span></div>
+        <p style="font-size:12px;color:var(--g700);line-height:1.65;margin:12px 0 16px;">${o.desc}</p>
+        <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px;">Typical examples</div>
+        <div style="margin-bottom:8px;">${tags}</div>
+        <div style="margin-top:auto;padding-top:14px;border-top:1px solid var(--g100);font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);letter-spacing:0.08em;">CODE &nbsp;·&nbsp; ${badge}</div>
       </div>`;
     }).join('');
     stage.innerHTML = `<div class="hv-grid cols-2">${cards}</div>`;
-    hint.textContent = 'Click either code to see when it applies';
+    hint.textContent = '';
   }
   else if(orgState.level === 'detail'){
     const o = ORG_DATA[orgState.id];
@@ -1563,6 +1765,10 @@ function hvRender(){
       const grpCurrent = hvState.level === 'segs' ? ' current' : '';
       crumbHtml += `<span class="hv-crumb-sep">›</span><span class="hv-crumb-item${grpCurrent}" onclick="hvGo('segs','${hvState.groupId}')">${HV_DATA[hvState.groupId].name}</span>`;
     }
+    // Back button.pops one level. Explicit so learners don't have to know
+    // the breadcrumb chips are clickable.
+    if(hvState.level === 'groups')    crumbHtml += `<button class="hv-back" onclick="hvGo('root')">Back</button>`;
+    else if(hvState.level === 'segs') crumbHtml += `<button class="hv-back" onclick="hvGo('groups')">Back</button>`;
     if(hvState.segId){
       const seg = HV_DATA[hvState.groupId].segs.find(s => s.id === hvState.segId);
       crumbHtml += `<span class="hv-crumb-sep">›</span><span class="hv-crumb-item current">${seg.name}</span>`;
@@ -1577,7 +1783,7 @@ function hvRender(){
         <div class="hv-hero-eyebrow">Module 2 · Overview</div>
         <h1 class="hv-hero-title">Market Segment</h1>
         <div class="hv-hero-divider"></div>
-        <p class="hv-hero-intro">Every reservation is tagged with one <b>market code</b> that identifies <b>who</b> is booking and <b>why</b>. The code is set at the time of booking and <b>never changes</b> — even for groups or complimentary rooms.</p>
+        <p class="hv-hero-intro">Every reservation is tagged with one <b>market code</b> that identifies <b>who</b> is booking and <b>why</b>. The code is set at the time of booking and <b>never changes</b>.even for groups or complimentary rooms.</p>
         <div class="hv-hero-stats">
           <div class="hv-hero-stat"><b>6</b><span>Major Groups</span></div>
           <div class="hv-hero-stat"><b>13</b><span>Market Segments</span></div>
@@ -1607,16 +1813,29 @@ function hvRender(){
     const g = HV_DATA[hvState.groupId];
     const n = g.segs.length;
     const colClass = n <= 2 ? 'cols-2' : (n === 3 ? 'cols-3' : 'cols-4');
-    const cards = g.segs.map(s =>
-      `<div class="hv-card" onclick="hvGo('codes','${s.id}')">
+    // Full code detail lives inline on each segment card.no extra click-through.
+    // The old 'codes' drill-down level still exists in the render function below
+    // for backwards compatibility (breadcrumb / direct-link recovery) but is not
+    // reachable from normal navigation.
+    const cards = g.segs.map(s => {
+      const codes = s.codes.map(c =>
+        `<div class="hv-seg-code">
+          <span class="hv-seg-code-badge">${c.b}</span>
+          <div class="hv-seg-code-body">
+            <div class="hv-seg-code-label">${c.l}</div>
+            <div class="hv-seg-code-desc">${c.d}</div>
+          </div>
+        </div>`
+      ).join('');
+      return `<div class="hv-card hv-card-static">
         <div class="hv-card-num">${s.num}</div>
         <div class="hv-card-rule"></div>
         <div class="hv-card-title">${s.name}</div>
-        <div class="hv-card-foot"><span class="hv-card-meta">${s.meta}</span><span class="hv-card-arrow">›</span></div>
-      </div>`
-    ).join('');
+        <div class="hv-seg-codes">${codes}</div>
+      </div>`;
+    }).join('');
     stage.innerHTML = `<div class="hv-grid ${colClass}">${cards}</div>`;
-    hint.textContent = 'Click a market segment to reveal its codes';
+    hint.textContent = '';
   }
   else if(hvState.level === 'codes'){
     const g = HV_DATA[hvState.groupId];
@@ -1691,7 +1910,7 @@ function answer(qi,chosen,btn){
   if(!ok) slide.querySelectorAll('.qopt')[QA[qi]].classList.add('reveal');
   const fb=document.getElementById('qfb-'+qi);
   fb.className='q-fb '+(ok?'correct':'wrong');
-  fb.textContent=(ok?'Correct — ':'Not quite — ')+QFB[qi];
+  fb.textContent=(ok?'Correct.':'Not quite.')+QFB[qi];
   fb.style.display='block';
   document.getElementById('qnxt-'+qi).style.display='inline-block';
   updateQDots();
@@ -1701,11 +1920,11 @@ function finishQuiz(){
   quizDone=true;
   const s=score;
   const msgs=[
-    'Go back through the module carefully — accurate segmentation is critical to every report and forecast.',
-    'Go back through the module carefully — accurate segmentation is critical to every report and forecast.',
-    'Good effort — review the golden rules and market code sections before applying on shift.',
-    'Strong result — review any missed questions before your next shift.',
-    'Strong result — review any missed questions before your next shift.',
+    'Go back through the module carefully.accurate segmentation is critical to every report and forecast.',
+    'Go back through the module carefully.accurate segmentation is critical to every report and forecast.',
+    'Good effort.review the golden rules and market code sections before applying on shift.',
+    'Strong result.review any missed questions before your next shift.',
+    'Strong result.review any missed questions before your next shift.',
     'Perfect score. Outstanding.'
   ];
   document.getElementById('res-n').textContent = s+'/5';
@@ -1783,6 +2002,387 @@ function scaleCanvas(){
 }
 
 window.addEventListener('resize',scaleCanvas);
+
+// ═══════════════════════════════════════════
+// CUELINE.narration-synced staging engine (ported from Module 1).
+// Adapted for Module 2's non-sequential SLIDE_IDS (uses slideEl(idx) instead
+// of getElementById('s-' + idx)). Everything else identical to Module 1.
+// Force-off until Module 2 audio is rendered (Phase 5).
+// ═══════════════════════════════════════════
+const Cueline = {
+  cues: {},
+  currentSlide: null,
+  audioBase: '../assets/audio/module2/',
+  audioAvailable: false,
+  audioCache: {},
+  currentAudio: null,
+  playing: false,
+  aborted: false,
+  captionOn: true,
+  ccEl: null,
+  hintEl: null,
+  playbackRate: 1.0,
+  slidePlaybackRates: {},   // fill per-slide overrides as Module 2 renders reveal
+  interCueGap: 400,
+  _audioUnlocked: false,
+  _autoAdvanceTimer: null,
+  autoAdvanceDelay: 1800,
+  autoAdvanceMaxSlide: CONTENT_END - 1,   // stop auto-advance before the checklist
+  // Slides where auto-advance MUST NOT fire.the learner is interacting with
+  // the drill-down state machine on these, and being yanked to the next slide
+  // mid-exploration is jarring. Learner clicks Next when they're done.
+  //   5 = Market Segment drill-down (s-2)
+  //   6 = Source Codes drill-down (s-6)
+  //   7 = Origin Codes drill-down (s-7)
+  noAutoAdvanceSlides: new Set([5, 6, 7]),
+  forceAudioOff: false,  // Module 2 audio rendered 2026-08-28 (Charlotte, multilingual_v2)
+
+  register(slideIdx, cueList){
+    this.cues[slideIdx] = cueList.map(c => Object.assign({fired:false}, c));
+  },
+
+  arm(slideIdx){
+    if(this._autoAdvanceTimer){ clearTimeout(this._autoAdvanceTimer); this._autoAdvanceTimer=null; }
+    this.pause();
+    this.currentSlide = slideIdx;
+    const list = this.cues[slideIdx];
+    this._clearCaption();
+    this._resetSlideElements(slideIdx);
+    if(!list){ document.body.classList.remove('preview-mode'); this._updatePlayButton('play'); return; }
+    list.forEach(c => c.fired=false);
+    if(this.audioAvailable){
+      document.body.classList.remove('preview-mode');
+      this._loadAudio(slideIdx, 0);
+      if(list.length > 1) this._loadAudio(slideIdx, 1);
+      if(this._audioUnlocked){
+        setTimeout(() => { if(this.currentSlide === slideIdx && !this.playing) this.playAll(); }, 300);
+      }
+    } else {
+      document.body.classList.add('preview-mode');
+    }
+    this._updatePlayButton('play');
+  },
+
+  async step(){
+    const now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+    if(this._lastStepAt && (now - this._lastStepAt) < 200) return;
+    this._lastStepAt = now;
+    const list = this.cues[this.currentSlide];
+    if(!list) return;
+    const idx = list.findIndex(c => !c.fired);
+    if(idx < 0) return;
+    if(this.currentAudio && !this.currentAudio.paused){
+      try{ this.currentAudio.pause(); }catch(_){}
+      await Promise.resolve();
+    }
+    const cue = list[idx];
+    this._fire(cue);
+    if(this.audioAvailable){
+      this._updatePlayButton('pause');
+      try{ await this._playCue(this.currentSlide, idx); }
+      finally{ if(!this.playing) this._updatePlayButton('play'); }
+    }
+  },
+
+  async playAll(){
+    if(this.playing) return;
+    this.playing = true; this.aborted = false;
+    this._updatePlayButton('pause');
+    try{
+      const list = this.cues[this.currentSlide];
+      if(!list) return;
+      while(!this.aborted){
+        const cur2 = this.currentAudio;
+        if(cur2 && !cur2.paused && !cur2.ended){
+          await new Promise((resolve) => {
+            const done = () => { cur2.removeEventListener('ended', done); cur2.removeEventListener('pause', done); resolve(); };
+            cur2.addEventListener('ended', done);
+            cur2.addEventListener('pause', done);
+            setTimeout(done, 8000);
+          });
+        }
+        if(this.aborted) break;
+        const idx = list.findIndex(c => !c.fired);
+        if(idx < 0) break;
+        const cue = list[idx];
+        this._fire(cue);
+        if(this.audioAvailable) await this._playCue(this.currentSlide, idx);
+        if(!this.aborted) await this._sleep(this.interCueGap);
+      }
+    } finally{
+      this.playing = false;
+      this._updatePlayButton('play');
+      if(!this.aborted && this.currentSlide !== null &&
+         this.currentSlide <= this.autoAdvanceMaxSlide &&
+         !this.noAutoAdvanceSlides.has(this.currentSlide) &&
+         typeof nav === 'function' && typeof N !== 'undefined' &&
+         this.currentSlide + 1 < N){
+        const fromSlide = this.currentSlide;
+        this._autoAdvanceTimer = setTimeout(() => {
+          this._autoAdvanceTimer = null;
+          if(this.currentSlide === fromSlide) nav(fromSlide + 1);
+        }, this.autoAdvanceDelay);
+      }
+    }
+  },
+
+  pause(){
+    this.aborted = true;
+    if(this.currentAudio){ try{ this.currentAudio.pause(); }catch(_){} }
+    if(this._autoAdvanceTimer){ clearTimeout(this._autoAdvanceTimer); this._autoAdvanceTimer=null; }
+    this._updatePlayButton('play');
+  },
+
+  toggleTransport(){
+    const audioLive = this.currentAudio && !this.currentAudio.paused && !this.currentAudio.ended;
+    if(this.playing || audioLive) this.pause();
+    else this.playAll();
+  },
+
+  _fire(cue){
+    cue.fired = true;
+    // Module 2 uses SLIDE_IDS mapping.use slideEl() helper instead of raw getElementById.
+    const slideNode = (typeof slideEl === 'function') ? slideEl(this.currentSlide) : null;
+    if(!slideNode) return;
+    if(cue.do === 'lit' || cue.do === 'reveal'){
+      slideNode.querySelectorAll('[data-cue="' + cue.target + '"]')
+        .forEach(el => el.classList.add(cue.do === 'lit' ? 'lit' : 'reveal'));
+    } else if(cue.do === 'pulse'){
+      slideNode.querySelectorAll(cue.target).forEach(el => {
+        el.classList.add('pulse');
+        setTimeout(() => el.classList.remove('pulse'), 900);
+      });
+    }
+    if(cue.cc) this._showCaption(cue.cc);
+  },
+
+  _loadAudio(slideIdx, cueIdx){
+    const key = 's' + slideIdx + '-c' + cueIdx;
+    if(this.audioCache[key]) return this.audioCache[key];
+    const audio = new Audio(this.audioBase + key + '.mp3');
+    audio.preload = 'auto';
+    audio.playbackRate = (this.slidePlaybackRates[slideIdx] != null) ? this.slidePlaybackRates[slideIdx] : this.playbackRate;
+    if('preservesPitch' in audio) audio.preservesPitch = true;
+    if('mozPreservesPitch' in audio) audio.mozPreservesPitch = true;
+    if('webkitPreservesPitch' in audio) audio.webkitPreservesPitch = true;
+    this.audioCache[key] = audio;
+    return audio;
+  },
+
+  _playCue(slideIdx, cueIdx){
+    return new Promise((resolve) => {
+      const audio = this._loadAudio(slideIdx, cueIdx);
+      const list = this.cues[slideIdx];
+      if(list && cueIdx + 1 < list.length) this._loadAudio(slideIdx, cueIdx + 1);
+      this.currentAudio = audio;
+      audio.currentTime = 0;
+      const onDone = () => { cleanup(); resolve(); };
+      const onErr  = () => { cleanup(); console.warn('Audio failed:', audio.src); resolve(); };
+      const cleanup = () => {
+        audio.removeEventListener('ended', onDone);
+        audio.removeEventListener('error', onErr);
+        audio.removeEventListener('pause', onDone);
+      };
+      audio.addEventListener('ended', onDone);
+      audio.addEventListener('error', onErr);
+      audio.addEventListener('pause', onDone);
+      const p = audio.play();
+      if(p && p.then){
+        p.then(() => { this._audioUnlocked = true; },
+               err => { console.info('[Cueline] play() blocked:', err && err.message); cleanup(); resolve(); });
+      }
+    });
+  },
+
+  _resetSlideElements(slideIdx){
+    const slideNode = (typeof slideEl === 'function') ? slideEl(slideIdx) : null;
+    if(!slideNode) return;
+    slideNode.querySelectorAll('[data-cue]').forEach(el => el.classList.remove('lit','reveal','pulse'));
+  },
+
+  _showCaption(text){
+    if(!this.ccEl || !this.captionOn) return;
+    this.ccEl.textContent = text;
+    this.ccEl.classList.add('visible');
+  },
+  _clearCaption(){
+    if(!this.ccEl) return;
+    this.ccEl.textContent = '';
+    this.ccEl.classList.remove('visible');
+  },
+
+  _updatePlayButton(state){
+    const isPlaying = state === 'pause';
+    ['play-btn','fs-play-btn'].forEach(id => {
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.textContent = isPlaying ? '⏸' : '▶';
+      el.title       = isPlaying ? 'Pause narration' : 'Play narration';
+      el.classList.toggle('is-playing', isPlaying);
+    });
+  },
+
+  toggleCC(){
+    this.captionOn = !this.captionOn;
+    document.body.classList.toggle('cc-off', !this.captionOn);
+    ['cc-btn','fs-cc-btn'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.classList.toggle('off', !this.captionOn);
+    });
+    if(!this.captionOn) this._clearCaption();
+    try{ localStorage.setItem('m2.cc', this.captionOn ? 'on' : 'off'); }catch(e){}
+  },
+
+  _sleep(ms){ return new Promise(r => setTimeout(r, ms)); },
+
+  async _probeAudio(){
+    if(this.forceAudioOff){ this.audioAvailable = false; return; }
+    try{
+      const res = await fetch(this.audioBase + 's0-c0.mp3', {method:'HEAD'});
+      this.audioAvailable = res.ok;
+    }catch(_){ this.audioAvailable = false; }
+  },
+
+  async init(){
+    this.ccEl   = document.getElementById('cc-overlay');
+    this.hintEl = document.getElementById('cue-hint');
+    document.body.classList.add('cueline-active');
+    try{
+      if(localStorage.getItem('m2.cc') === 'off'){
+        this.captionOn = false;
+        document.body.classList.add('cc-off');
+        ['cc-btn','fs-cc-btn'].forEach(id => { const el=document.getElementById(id); if(el) el.classList.add('off'); });
+      }
+    }catch(e){}
+    await this._probeAudio();
+    if(this.audioAvailable){
+      document.body.classList.add('has-audio');
+      console.info('[Cueline] Module 2 audio available.playback mode active.');
+    } else {
+      console.info('[Cueline] Module 2 running in preview mode (no audio yet. Phase 5).');
+    }
+    document.addEventListener('keydown', (e) => {
+      const t = e.target;
+      const typing = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
+      if(typing) return;
+      if(e.code === 'Space')      { e.preventDefault(); this.step(); }
+      else if(e.code === 'Enter') { e.preventDefault(); this.toggleTransport(); }
+    });
+  }
+};
+
+// ── Cueline cue registrations.multi-beat timelines synced to module2-narration.md ──
+// Format: {do:'lit'|'reveal'|'pulse', target:'<data-cue-key>', cc:'<caption>'}
+// Where `do` is omitted the cue is narrate-only (fires caption, no element reveal).
+
+// Slide 0 (s-hook) · The forecast that lied.dialogue-driven opener
+Cueline.register(0, [
+  {do:'reveal', target:'bubble-1', cc:"The Revenue Manager, in Monday's review. We're behind on groups versus last year."},
+  {do:'reveal', target:'bubble-2', cc:"The Director of Sales. That can't be right. We have two groups on the books this month."},
+  {do:'reveal', target:'bubble-3', cc:"The Revenue Manager. Let me check."},
+  {do:'reveal', target:'bubble-4', cc:"Both groups were tracked under Transient Corporate. The group number looks empty. The transient number is inflated."},
+  {do:'reveal', target:'headline', cc:"By the end of this module, your team will know exactly which code goes where. And why the data has to tell the truth."}
+]);
+
+// Slide 1 (s-0) · Overview.4 tf-cards light up one by one
+Cueline.register(1, [
+  {cc:"Welcome to Module 2. Tracking segmentation."},
+  {cc:"Every booking Dusit takes lives inside four tracking fields. Get them right and every report, every forecast, every rate decision runs on clean data."},
+  {do:'lit', target:'card-1', cc:"Market Segment."},
+  {do:'lit', target:'card-2', cc:"Source Code."},
+  {do:'lit', target:'card-3', cc:"Origin Code."},
+  {do:'lit', target:'card-4', cc:"Country of Residence."},
+  {cc:"Four fields. One story per booking."}
+]);
+
+// Slide 2 (s-1) · What is Tracking.diagram reveals with the both-sides beat
+Cueline.register(2, [
+  {cc:"Every booking has a story."},
+  {cc:"When a reservation comes in, two things happen. Someone books a room. Someone stays in it. Often not the same person."},
+  {do:'reveal', target:'diagram', cc:"Tracking records both sides. Booking-side and guest-side."},
+  {cc:"Together they tell the complete story of the reservation."}
+]);
+
+// Slide 3 (s-1b) · Who Books.3 story cards
+Cueline.register(3, [
+  {cc:"Who books the room? Not always the person who stays."},
+  {do:'reveal', target:'card-1', cc:"A travel agent books for the guest via GDS. Commissioned."},
+  {do:'reveal', target:'card-2', cc:"A company travel desk books an employee at a negotiated rate."},
+  {do:'reveal', target:'card-3', cc:"A guest books through Booking.com, Agoda or Expedia. Retail rate."},
+  {cc:"The market code says who is booking. The source code says how they got there."}
+]);
+
+// Slide 4 (s-1c) · Who Stays.4 guest-type cards
+Cueline.register(4, [
+  {cc:"Now the other side. Who actually stays in the room."},
+  {do:'reveal', target:'card-1', cc:"A family on leisure. Three to five nights. Retail segment."},
+  {do:'reveal', target:'card-2', cc:"A business traveller. One or two nights. Corporate segment."},
+  {do:'reveal', target:'card-3', cc:"Airline crew. Contracted block. Recurring stays under the Airline Crew market code."},
+  {do:'reveal', target:'card-4', cc:"A tour group booked through a wholesaler. Coded as Tour Group."},
+  {cc:"Different guest, different profile. The right tracking fields keep the data honest."}
+]);
+
+// Slide 5 (s-2) · Market Segment · Overview.interactive drill-down, narrate-only
+Cueline.register(5, [
+  {cc:"The Market Segment is the first tracking field. It captures who is booking and why."},
+  {cc:"Dusit organises segments into six major groups. Thirteen segments underneath. Forty codes underneath those."},
+  {cc:"Click any group to see the segments and codes it holds."}
+]);
+
+// Slide 6 (s-6) · Source Codes.interactive drill-down
+Cueline.register(6, [
+  {cc:"The Source Code is the second tracking field. It captures the exact channel the booking came through."},
+  {cc:"Website. Phone. Walk-in. G-D-S terminal. O-T-A. Group booking desk. Each has its own code."},
+  {cc:"Click a group to see the codes."}
+]);
+
+// Slide 7 (s-7) · Origin Codes.interactive drill-down
+Cueline.register(7, [
+  {cc:"The Origin Code is the third tracking field. It answers one question."},
+  {cc:"Did the booking come direct, or through an intermediary? Two codes. Direct. And indirect."}
+]);
+
+// Slide 8 (s-8) · Country of Residence.3 hv-cards
+Cueline.register(8, [
+  {cc:"The fourth tracking field. Country of Residence."},
+  {cc:"Not where the guest is from. Where they currently live."},
+  {do:'reveal', target:'card-1', cc:"A French national living in Singapore books a room. Passport French. Residence Singapore. Enter S-G, not F-R."},
+  {do:'reveal', target:'card-2', cc:"Common mistakes. Spain is E-S, not S-P. France is F-R, not F. United Kingdom is G-B, not U-K. Two-letter codes following I-S-O standards."},
+  {do:'reveal', target:'card-3', cc:"Ask at the time of booking. What country are you currently based in?"}
+]);
+
+// Slide 9 (s-9) · Golden Rules.6 rule cards, one per beat
+Cueline.register(9, [
+  {cc:"Six rules that keep every Dusit property's data clean and consistent."},
+  {do:'reveal', target:'rule-0', cc:"One. The market code must match in P-M-S, C-R-S, and R-M-S. All three systems, every time."},
+  {do:'reveal', target:'rule-1', cc:"Two. The Loyalty Program market code is only for Dusit Gold members. No other use."},
+  {do:'reveal', target:'rule-2', cc:"Three. All OTA bookings use the E-Commerce market code. No exceptions."},
+  {do:'reveal', target:'rule-3', cc:"Four. Keep it simple. The main reason defines the whole stay."},
+  {do:'reveal', target:'rule-4', cc:"Five. Free-of-charge rooms in a group take the same code as the core business."},
+  {do:'reveal', target:'rule-5', cc:"Six. The market code is set at booking. It never changes. Not for groups. Not for anyone."}
+]);
+
+// Slide 10 (s-10) · Do / Don't.dos then donts
+Cueline.register(10, [
+  {cc:"Guardrails for every shift."},
+  {do:'reveal', target:'dos',   cc:"The dos. Set the market code at booking and leave it. Use the E-Commerce code for every OTA booking without exception. Make the market code match across P-M-S, C-R-S, and R-M-S. Ask where the guest lives, not where they're from. And keep complimentary rooms in a group under the group's own code."},
+  {do:'reveal', target:'donts', cc:"The don'ts. Never change the market code after booking. Never use the Loyalty code for anything but a Dusit Gold rate. Never use the Finance-only Accounts Transfer code, which is Finance department only. Never guess the country code. Check the I-S-O list. And never leave a tracking field blank. Incomplete records corrupt every downstream report."}
+]);
+
+// Slide 11 (s-11) · Checklist.5 items highlight one at a time
+Cueline.register(11, [
+  {cc:"Five statements. Tick each one you can confidently say is true."},
+  {do:'reveal', target:'chk-1', cc:"You can name the four tracking fields."},
+  {do:'reveal', target:'chk-2', cc:"You know that the Loyalty code is for Gold members, and the E-Commerce code is for all OTA bookings."},
+  {do:'reveal', target:'chk-3', cc:"Market codes are set at booking. They never change."},
+  {do:'reveal', target:'chk-4', cc:"You know the difference between Direct and Indirect origin codes."},
+  {do:'reveal', target:'chk-5', cc:"Country of Residence uses I-S-O codes. Where the guest lives."},
+  {cc:"Tick all five, then the quiz unlocks."}
+]);
+// Quiz slides (11-15 index) carry no narration.
+
+// Boot Cueline after everything else is up
+Cueline.init().then(() => { Cueline.arm(cur); });
 
 // Fix code-grid display
 document.querySelectorAll('.code-grid').forEach(g=>g.style.display='flex');
