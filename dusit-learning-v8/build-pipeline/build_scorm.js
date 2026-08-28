@@ -39,6 +39,13 @@ const MODULES = {
     htmlPath:   'modules/module2-segmentation.html',
     masteryScore: 60,
     duration:   'PT20M'
+  },
+  module3: {
+    identifier: 'dusit_module3_distribution_basic',
+    title:      'Module 3 — OTA1 · Distribution Basic Knowledge',
+    htmlPath:   'modules/module3-distribution-basic.html',
+    masteryScore: 80,       // blueprint spec: 4 of 5 to pass
+    duration:   'PT31M'
   }
   // Future entries follow the same shape.
 };
