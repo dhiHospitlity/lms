@@ -1602,8 +1602,8 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           <!-- 4 drop-zones -->
           <div class="map-zones">
             <div class="map-zone" data-lane="direct"><div class="mz-title">Direct</div><div class="mz-slot"></div></div>
-            <div class="map-zone" data-lane="ota"><div class="mz-title">Connected third party</div><div class="mz-slot"></div></div>
-            <div class="map-zone" data-lane="b2b"><div class="mz-title">B2B</div><div class="mz-slot"></div></div>
+            <div class="map-zone" data-lane="ota"><div class="mz-title">Connected OTAs</div><div class="mz-slot"></div></div>
+            <div class="map-zone" data-lane="b2b"><div class="mz-title">Connected B2B</div><div class="mz-slot"></div></div>
             <div class="map-zone" data-lane="non"><div class="mz-title">Non-connected</div><div class="mz-slot"></div></div>
           </div>
 
@@ -3251,10 +3251,10 @@ function initMapDragDrop(){
 const TRACE_STAGES = [
   {
     q: "Which lane did this booking come through?",
-    opts: ["Direct", "Connected third party", "B2B (wholesale)", "Non-connected"],
+    opts: ["Direct", "Connected OTAs", "Connected B2B", "Non-connected"],
     a: 2,
     ok: "Hotelbeds is a wholesale partner. B2B.",
-    ans: "Lane: B2B (wholesale)"
+    ans: "Lane: Connected B2B (wholesale)"
   },
   {
     q: "The guest paid Hotelbeds 220. What does Dusit actually receive?",
@@ -3331,7 +3331,7 @@ function renderTraceStage(){
 // ─── Interactions · Slide 16 · Knowledge-check gate ───
 // 3 MCQs, one at a time. All correct → unlock quiz. Unlimited attempts.
 const KC_QS = [
-  { q:"A guest books on Booking.com. Which lane?", opts:["Direct","Connected third party","B2B","Non-connected"], a:1 },
+  { q:"A guest books on Booking.com. Which lane?", opts:["Direct","Connected OTAs","Connected B2B","Non-connected"], a:1 },
   { q:"You change a rate in the CRS. Which channels update automatically?", opts:["Only dusit.com","Only OTAs","Every connected channel","Every channel including non-connected"], a:2 },
   { q:"A B2B partner's net rate ends up on a public consumer site. What is that?", opts:["A pricing win","Rate leakage — report immediately","Standard channel behaviour","A promotion"], a:1 }
 ];
