@@ -113,6 +113,32 @@ Bottom-right, common to every module:
 10. **Build SCORM zip** — `node build_scorm.js <moduleKey>` → `dist/scorm/<moduleKey>-scorm12.zip`.
 11. **Commit + push** — GitHub Pages deploys to `lmsdusit.dhihospitality.com`.
 
+## Content-slide design patterns (locked 2026-08-29 after Module 3 Section 1)
+
+**Light-only backgrounds.** Every slide sits on white or `--g50`. Never full-bleed navy or dark. Navy is text and accent only.
+
+**Vertically centered content.** `.s-inner` and `.slide` use `justify-content: center` by default. Content sits balanced in the ~430px between the top of the canvas and the 110px CC safe zone.
+
+**Reveal is a one-shot pulse.** `.reveal` triggers a 1.4s `@keyframes revealPulse` (subtle gold glow, brief lift, return to rest). Never a persistent shadow — that just accumulates highlight noise.
+
+**Per-cue staggered reveals for lists.** For any set the narration walks through item-by-item, split into individual `data-cue="item-1"`…`item-N` targets. Cueline fires each element together with its matching narration beat (share the data-cue value between the SVG element and the list row so they light in sync). See slide 1 (s-loc) — the six strategy wheel wedges + numbered list rows.
+
+**Vertical column split with gold gradient dividers.** For compare (B2C vs B2B) or progression (Past → Today → Impact) slides, use a grid with 1px–3px gold-gradient vertical dividers between columns rather than tinted card backgrounds. Divider fades at top and bottom: `linear-gradient(to bottom, transparent 0%, var(--gold) 15%, var(--gold) 85%, transparent 100%)`. Content on white; differentiation via typography. `min-height` on header rows keeps columns aligned when titles wrap.
+
+**Mini-diagram + looping CSS animation per column.** Where a concept has a visual metaphor (parallel lanes, crossing lanes, a leaking rail), build a small SVG (≤180×90 viewport) into each column and animate what's happening with CSS `@keyframes` on the elements. Continuous loop, `transform: translate(x,y)`, fade at edges. Slide 4 is the reference.
+
+**Column order — label, text, animation.** In a multi-column layout with diagrams, each column reads top-to-bottom: label (01 · PAST) → text description → animation. Never diagram first.
+
+**Uniform cards in a single inline flow.** When showing a sequence of things a booking touches (OTA → Channel Manager → CRS → Opera), all boxes get identical size, style, border weight — white bg with matching navy border, gold arrows between each pair. No visual hierarchy between peers.
+
+**Hero visuals for anchor moments.** The hook, the summary, and any slide that opens or closes an arc gets a prominent visual — sized ~2× a normal card, with real device-shape details where applicable (rounded corners, notch, home indicator, drop shadow, live-looking content). Slide 0's phone is the reference. Not on every slide — punctuation, not sentence.
+
+**"Premium" content-slide pattern** (multi-item concept slide): h2 title (no section eyebrow above), optional gold-l definition callout at top, 2×N card grid with white cards + gold left rule + numbered gold uppercase eyebrow ("Family 01", "Segment 01"), plain-text closer beneath. See slide 2 (s-def) — the four channel families.
+
+**Standalone callouts get plain text, not gold-rule containers.** The gold left rule is functional on card *grids* (rhythm across a set) but decorative on solo takeaways / pull-quotes / one-liners. Plain centered text — muted body colour with the emphasized phrase in bold navy — is the default for takeaways.
+
+**No section eyebrow above every slide's title.** The sidebar carries the section. Only use an eyebrow when it's a functional signal specific to the slide ("Before the quiz", "Take-away", the module-tag on the hook).
+
 ## What NOT to change per module
 
 - Canvas size (900 × 540)

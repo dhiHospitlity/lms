@@ -40,6 +40,8 @@
 - **No em-dashes** in on-screen text or in the audio script (they break TTS pacing).
 - **No italic** for emphasis anywhere. Use weight and color contrast instead.
 - Numbers written as words in the audio script only ("one hundred and thirty-three"). On-slide stays as digits ("$133").
+- **No narrator self-references** in the audio script — never "I just drew you", "as you can see", "let me show you", "here on the slide". These read as narrator-out-of-scene. Instead reference the *previous slide* naturally ("the split we walked through on the last slide"), the *shared understanding* ("we've established that…"), or let the visual speak for itself and describe the concept, not the drawing. Locked 2026-08-29 after Prakash flagged "I just drew you" on Module 3 slide 4.
+- **Rework blueprint-verbatim section and slide names** if they read as placeholder or locator jargon. "Basic knowledge" (when the whole module is basic knowledge) → "The landscape". "Where this sits" (locator jargon) → "The bigger picture". Blueprint is authoritative on *what's taught*, not on *how it reads*.
 
 ## On-slide copy budget
 
