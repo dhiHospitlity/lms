@@ -768,9 +768,12 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);text-align:center;line-height:1.3;margin-top:3px;">rate + avail</div>
             </div>
             <div style="font-family:'DusitDisplay',sans-serif;font-size:18px;color:var(--gold);">→</div>
-            <div style="width:100px;height:88px;background:var(--white);border:1.5px solid var(--b400);border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:8px;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--b900);letter-spacing:0.02em;">Opera</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);text-align:center;line-height:1.3;margin-top:3px;">PMS</div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div style="width:100px;height:88px;background:var(--white);border:2.5px solid var(--b900);border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:8px;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--b900);letter-spacing:0.02em;">Opera</div>
+                <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);text-align:center;line-height:1.3;margin-top:3px;">PMS</div>
+              </div>
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--g500);letter-spacing:0.12em;text-transform:uppercase;">Your desk</div>
             </div>
           </div>
         </div>
@@ -876,22 +879,18 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:720px;margin:0 auto;width:100%;">
             <div data-cue="card-direct" style="padding:12px 14px;background:var(--white);border:1px solid var(--g100);border-left:4px solid var(--gold);border-radius:var(--rs);">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:4px;">Family 01</div>
               <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--b900);margin-bottom:4px;">Direct</div>
               <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);line-height:1.45;">Your website · your phone · your front desk</div>
             </div>
             <div data-cue="card-ota" style="padding:12px 14px;background:var(--white);border:1px solid var(--g100);border-left:4px solid var(--gold);border-radius:var(--rs);">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:4px;">Family 02</div>
               <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--b900);margin-bottom:4px;">OTAs</div>
               <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);line-height:1.45;">Booking.com · Expedia · Agoda · Trip.com</div>
             </div>
             <div data-cue="card-b2b" style="padding:12px 14px;background:var(--white);border:1px solid var(--g100);border-left:4px solid var(--gold);border-radius:var(--rs);">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:4px;">Family 03</div>
               <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--b900);margin-bottom:4px;">B2B</div>
               <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);line-height:1.45;">Wholesalers who resell to travel agents</div>
             </div>
             <div data-cue="card-gds" style="padding:12px 14px;background:var(--white);border:1px solid var(--g100);border-left:4px solid var(--gold);border-radius:var(--rs);">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:4px;">Family 04</div>
               <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--b900);margin-bottom:4px;">GDS</div>
               <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);line-height:1.45;">The network corporate travel bookers work inside</div>
             </div>
@@ -2461,7 +2460,7 @@ Cueline.register(2, [ // s-def · What distribution actually means
 Cueline.register(3, [ // s-b2c-b2b · B2C and B2B, who is the customer?
   {cc:"Here is the split that everything else hangs off. Who is the customer?"},
   {do:'reveal', target:'col-b2c',      cc:"In B-2-C, the customer is the guest. They see a rate. They book it. They pay it. They turn up."},
-  {do:'reveal', target:'b2c-examples', cc:"Your website is B-2-C. So is the front desk. So, importantly, is an OTA, because the guest is still the one choosing and paying. The OTA just sits in the middle."},
+  {do:'reveal', target:'b2c-examples', cc:"Your website is B-2-C. So is the front desk. And so is an OTA, because the guest is still the one choosing and paying. The OTA just sits in the middle."},
   {do:'reveal', target:'col-b2b',      cc:"In B-2-B, the customer is not the guest. It is a business. A wholesaler. A bedbank. A tour operator."},
   {do:'reveal', target:'b2b-examples', cc:"They buy your rooms at a net rate. Then they resell them to their own customers, usually travel agents, at whatever price they choose."},
   {do:'reveal', target:'pull-quote',   cc:"In B-2-C you control the price the guest sees. In B-2-B you control the price your partner pays. After that it is out of your hands. Which is exactly where the problems start."}

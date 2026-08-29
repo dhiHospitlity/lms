@@ -183,7 +183,7 @@
 >
 > [pause 0.5s]
 >
-> Your website is B-2-C. So is the front desk. So, importantly, is an O-T-A, because the guest is still the one choosing and paying. The O-T-A just sits in the middle.
+> Your website is B-2-C. So is the front desk. And so is an O-T-A, because the guest is still the one choosing and paying. The O-T-A just sits in the middle.
 >
 > [pause 0.7s]
 >
@@ -203,7 +203,7 @@
 |---|---------|--------------|-------------|
 | 0 | narrate | .            | Here is the split that everything else hangs off. Who is the customer? |
 | 1 | reveal  | col-b2c      | In B-2-C, the customer is the guest. They see a rate. They book it. They pay it. They turn up. |
-| 2 | reveal  | b2c-examples | Your website is B-2-C. So is the front desk. So, importantly, is an O-T-A, because the guest is still the one choosing and paying. The O-T-A just sits in the middle. |
+| 2 | reveal  | b2c-examples | Your website is B-2-C. So is the front desk. And so is an O-T-A, because the guest is still the one choosing and paying. The O-T-A just sits in the middle. |
 | 3 | reveal  | col-b2b      | In B-2-B, the customer is not the guest. It is a business. A wholesaler. A bedbank. A tour operator. |
 | 4 | reveal  | b2b-examples | They buy your rooms at a net rate. Then they resell them to their own customers, usually travel agents, at whatever price they choose. |
 | 5 | reveal  | pull-quote   | In B-2-C you control the price the guest sees. In B-2-B you control the price your partner pays. After that it is out of your hands. Which is exactly where the problems start. |
