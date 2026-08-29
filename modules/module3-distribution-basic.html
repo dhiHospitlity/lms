@@ -570,6 +570,12 @@ body.cueline-active #s-blurred .lane-dot-impact{
   100% { transform: translate(160px, 35px);   opacity: 0; }
 }
 
+
+
+/* Slide 6 · hub-and-spoke connectors between nodes and the Dusit hub */
+.hub-node{transition:opacity 0.45s ease, transform 0.45s ease;}
+.hub-connector-v{width:2px;height:14px;background:var(--gold);opacity:0.55;}
+.hub-connector-h{width:22px;height:2px;background:var(--gold);opacity:0.55;}
 /* Reveal is a one-shot pulse — brief acknowledgment of the beat, then back to rest.
    Persistent glow was leaving every fired element highlighted, which read as noise. */
 body.cueline-active #s-hook [data-cue].reveal,
@@ -1067,52 +1073,68 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 6 (s-connected): CONCEPT. Connected players — 3 OTA tiers + other channels + key note. -->
+      <!-- SLIDE 6 (s-connected): CONCEPT. Connected players — hub-and-spoke diagram.
+           Dusit centre. OTA tiers stack above (Major 4 closest, Connected-only outermost).
+           Direct / B2B arms flank hub. GDS drops beneath. Each node reveals on its cue. -->
       <div class="slide s-white" id="s-connected">
-        <div class="s-inner" style="padding:22px 40px 0;text-align:center;">
-          <h2 class="sh" style="margin-top:4px;margin-bottom:12px;">Who plugs in directly?</h2>
+        <div class="s-inner" style="padding:16px 30px 0;text-align:center;">
+          <h2 class="sh" style="margin-top:2px;margin-bottom:8px;">Who plugs in directly?</h2>
 
-          <!-- Setup callout -->
-          <div data-cue="hub-centre" style="max-width:680px;margin:0 auto 14px;padding:12px 20px;background:var(--gold-l);border-radius:var(--r);">
-            <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:700;color:var(--b900);line-height:1.4;"><b style="color:var(--gold);">Connected</b> = the channel talks to our systems automatically. Rates out, availability out, bookings back. No one types anything.</div>
-          </div>
+          <!-- Setup line (short — the diagram carries the story) -->
+          <div data-cue="tier-intro" style="max-width:640px;margin:0 auto 8px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.45;"><b style="color:var(--gold);">Connected</b> = rates out, availability out, bookings back. No one types anything.</div>
 
-          <!-- Tier intro line -->
-          <div data-cue="tier-intro" style="max-width:680px;margin:0 auto 12px;font-family:'DusitText',sans-serif;font-size:13px;color:var(--g500);line-height:1.5;">Ten OTAs are live with Dusit, in three tiers by how deep the relationship runs.</div>
+          <!-- Hub-and-spoke diagram -->
+          <div style="display:flex;flex-direction:column;align-items:center;max-width:820px;margin:0 auto;">
 
-          <!-- 3 OTA tier cards, side-by-side, using the premium card pattern -->
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;max-width:820px;margin:0 auto 14px;">
-            <div data-cue="tier-major" style="padding:14px 14px;background:var(--white);border:1px solid var(--g100);border-left:4px solid var(--gold);border-radius:var(--rs);text-align:left;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:4px;">Tier 01 · Major 4</div>
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);margin-bottom:6px;">Named account manager</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);line-height:1.5;">Expedia · Booking.com · Agoda · Trip.com</div>
+            <!-- OTA tiers stack above hub, outermost first, brightest gold closest to hub -->
+            <div data-cue="tier-connected" class="hub-node" style="width:340px;padding:6px 14px;background:var(--white);border:1px solid var(--gold);border-radius:var(--rs);">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:8px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;">Tier 03 · Connected only</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);margin-top:1px;">Gother · Hopper · Klook</div>
             </div>
-            <div data-cue="tier-growing" style="padding:14px 14px;background:var(--white);border:1px solid var(--g100);border-left:4px solid var(--gold);border-radius:var(--rs);text-align:left;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:4px;">Tier 02 · Growing</div>
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);margin-bottom:6px;">Contracting promotions now</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);line-height:1.5;">MakeMyTrip · tiket.com · Traveloka</div>
+            <div class="hub-connector-v"></div>
+            <div data-cue="tier-growing" class="hub-node" style="width:340px;padding:6px 14px;background:#FBF3DE;border:1px solid var(--gold);border-radius:var(--rs);">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:8px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;">Tier 02 · Growing</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);margin-top:1px;">MakeMyTrip · tiket.com · Traveloka</div>
             </div>
-            <div data-cue="tier-connected" style="padding:14px 14px;background:var(--white);border:1px solid var(--g100);border-left:4px solid var(--gold);border-radius:var(--rs);text-align:left;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:4px;">Tier 03 · Connected only</div>
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);margin-bottom:6px;">Plumbing only, no manager</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);line-height:1.5;">Gother · Hopper · Klook</div>
+            <div class="hub-connector-v"></div>
+            <div data-cue="tier-major" class="hub-node" style="width:340px;padding:8px 14px;background:var(--gold-l);border:1.5px solid var(--gold);border-radius:var(--rs);">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:8px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;">Tier 01 · Major 4</div>
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);margin-top:1px;">Expedia · Booking.com · Agoda · Trip.com</div>
             </div>
-          </div>
+            <div class="hub-connector-v"></div>
 
-          <!-- Other connected channels: single row of chips -->
-          <div data-cue="other-channels" style="max-width:820px;margin:0 auto 14px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;align-items:center;">
-            <span style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);">Also connected:</span>
-            <span style="background:var(--g50);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;padding:5px 12px;border-radius:14px;letter-spacing:0.04em;">B2B · 20+ wholesalers</span>
-            <span style="background:var(--g50);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;padding:5px 12px;border-radius:14px;letter-spacing:0.04em;">GDS · Amadeus, Sabre, Travelport</span>
-            <span style="background:var(--g50);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;padding:5px 12px;border-radius:14px;letter-spacing:0.04em;">Direct · dusit.com, phone</span>
+            <!-- Middle row: Direct ← DUSIT hub → B2B -->
+            <div style="display:flex;align-items:center;gap:0;">
+              <div data-cue="other-channels" style="width:130px;padding:8px 12px;background:var(--white);border:1.5px solid var(--b400);border-radius:var(--rs);text-align:center;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);">Direct</div>
+                <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);margin-top:1px;">dusit.com · phone</div>
+              </div>
+              <div class="hub-connector-h"></div>
+              <div data-cue="hub-centre" style="width:100px;height:100px;background:var(--b900);border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:0 6px 18px rgba(0,31,63,0.22);">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--white);letter-spacing:0.06em;">DUSIT</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:8px;font-weight:700;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-top:2px;">Hub</div>
+              </div>
+              <div class="hub-connector-h"></div>
+              <div data-cue="other-channels" style="width:130px;padding:8px 12px;background:var(--white);border:1.5px solid var(--b400);border-radius:var(--rs);text-align:center;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);">B2B</div>
+                <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);margin-top:1px;">20+ wholesalers</div>
+              </div>
+            </div>
+
+            <!-- GDS drops beneath the hub -->
+            <div class="hub-connector-v"></div>
+            <div data-cue="other-channels" style="width:280px;padding:8px 14px;background:var(--white);border:1.5px solid var(--b400);border-radius:var(--rs);text-align:center;">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);">GDS</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);margin-top:1px;">Amadeus · Sabre · Travelport</div>
+            </div>
           </div>
 
           <!-- Key note -->
-          <div data-cue="key-note" style="max-width:680px;margin:0 auto;font-family:'DusitText',sans-serif;font-size:13px;color:var(--g500);line-height:1.55;text-align:center;">Everything on this diagram moves automatically. That's the power. It's also why <b style="color:var(--b900);">an error moves just as fast as a correction.</b></div>
+          <div data-cue="key-note" style="max-width:660px;margin:12px auto 0;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.5;text-align:center;">Everything on this diagram moves automatically. That's the power. It's also why <b style="color:var(--b900);">an error moves just as fast as a correction.</b></div>
         </div>
       </div>
 
-      <!-- SLIDE 7 (s-b2b): CONCEPT. B2B partners — flow, portfolio, market cards, rule. -->
+            <!-- SLIDE 7 (s-b2b): CONCEPT. B2B partners — flow, portfolio, market cards, rule. -->
       <div class="slide s-white" id="s-b2b">
         <div class="s-inner" style="padding:22px 40px 0;text-align:center;">
           <h2 class="sh" style="margin-top:4px;margin-bottom:12px;">The wholesale channel</h2>
