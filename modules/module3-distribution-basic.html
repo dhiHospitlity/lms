@@ -535,6 +535,9 @@ body.cueline-active #s-loc .wheel-wedge.reveal{opacity:1;}
 body.cueline-active #s-loc .wheel-wedge-lit.reveal{filter:drop-shadow(0 3px 8px rgba(201,168,76,0.5));}
 body.cueline-active #s-loc .lever-row{opacity:0;transform:translateX(8px);transition:opacity 0.45s ease, transform 0.45s ease;}
 body.cueline-active #s-loc .lever-row.reveal{opacity:1;transform:translateX(0);}
+/* "The six levers" header rides with lever-1's reveal so it never floats alone at the top. */
+body.cueline-active #s-loc .levers-header{opacity:0;transition:opacity 0.45s ease;}
+body.cueline-active #s-loc .levers-header.reveal{opacity:1;}
 
 /* ─── CC OVERLAY ─── */
 #cc-overlay{
@@ -770,7 +773,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
             <!-- Levers ledger — bigger text (14px), numbered rows, each row lights with its wedge -->
             <div>
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;">The six levers</div>
+              <div data-cue="lever-1" class="levers-header" style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;">The six levers</div>
               <div style="display:flex;flex-direction:column;gap:8px;font-family:'DusitText',sans-serif;font-size:14px;color:var(--g700);">
                 <div data-cue="lever-1" class="lever-row" style="display:grid;grid-template-columns:22px 1fr;gap:14px;align-items:center;padding:6px 0;">
                   <span style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--gold);">1</span>
