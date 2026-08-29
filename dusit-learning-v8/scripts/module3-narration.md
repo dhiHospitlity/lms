@@ -494,3 +494,126 @@
 **Actor notes:** Instructional, warm. This is a practice exercise — the tone should reduce any assessment anxiety.
 
 ---
+
+## Slide 12 (s-sys-mark). § Section marker · The systems behind every booking
+
+### Reading text (~10 sec)
+
+> That's the ecosystem. Now to the plumbing underneath.
+>
+> [pause 0.5s]
+>
+> Three systems make everything you just saw actually move.
+
+### Cue map
+
+| # | Action  | Target | Spoken line |
+|---|---------|--------|-------------|
+| 0 | narrate | .      | That's the ecosystem. Now to the plumbing underneath. |
+| 1 | narrate | .      | Three systems make everything you just saw actually move. |
+
+**Actor notes:** Transition beat. Small pause between the two cues. Mirrors the s-eco-mark marker earlier.
+
+---
+
+## Slide 13 (s-which). Which system does what · CRS · Channel Manager · Opera
+
+### Reading text (~55 sec)
+
+> The C-R-S. Central Reservation System. This is where the rate lives. Every price, every rate plan, every restriction. One source of truth.
+>
+> [pause 0.6s]
+>
+> The channel manager. Its job is to publish. The moment the rate changes in the C-R-S, the channel manager pushes it out to every connected channel.
+>
+> [pause 0.6s]
+>
+> And Opera. The property management system. Opera runs what happens on-property. Check-in, check-out, folios, housekeeping status.
+>
+> [pause 0.7s]
+>
+> Watch what happens on a rate change. C-R-S updates. Channel manager fans it out to every partner. Every connected channel is on the new rate within seconds.
+>
+> [pause 0.5s]
+>
+> One rate. One push. Everywhere at once. That is why the connected channels can't drift.
+
+### Cue map
+
+| # | Action  | Target      | Spoken line |
+|---|---------|-------------|-------------|
+| 0 | reveal  | sys-crs     | The C-R-S. Central Reservation System. This is where the rate lives. Every price, every rate plan, every restriction. One source of truth. |
+| 1 | reveal  | sys-cm      | The channel manager. Its job is to publish. The moment the rate changes in the C-R-S, the channel manager pushes it out to every connected channel. |
+| 2 | reveal  | sys-opera   | And Opera. The property management system. Opera runs what happens on-property. Check-in, check-out, folios, housekeeping status. |
+| 3 | reveal  | sys-flow    | Watch what happens on a rate change. C-R-S updates. Channel manager fans it out to every partner. Every connected channel is on the new rate within seconds. |
+| 4 | reveal  | sys-closer  | One rate. One push. Everywhere at once. That is why the connected channels can't drift. |
+
+**Actor notes:** Cues 0-2 introduce each system with even weight. Cue 3 opens the loop-animation — deliver with a slight lift, watching the diagram fire. Cue 4 lands the takeaway line quietly, no theatricality.
+
+---
+
+## Slide 14 (s-gds). GDS and metasearch
+
+### Reading text (~45 sec)
+
+> Two more players worth knowing. Both live in the connected side of the map, but they behave very differently.
+>
+> [pause 0.5s]
+>
+> The G-D-S. Global Distribution System. Amadeus. Sabre. Travelport. This is the network that corporate travel agents use to book flights, hotels, and cars in one place. Business travel runs on it.
+>
+> [pause 0.6s]
+>
+> Metasearch. Google Hotel Ads. Trivago. TripAdvisor. Kayak. These aren't places you book. They compare prices across channels and send the guest onward — usually to dusit dot com, or to an O-T-A.
+>
+> [pause 0.6s]
+>
+> G-D-S sells the room. Metasearch decides where the guest goes to buy it.
+
+### Cue map
+
+| # | Action  | Target      | Spoken line |
+|---|---------|-------------|-------------|
+| 0 | reveal  | gds-block   | Two more players worth knowing. Both live in the connected side of the map, but they behave very differently. |
+| 1 | reveal  | gds-what    | The G-D-S. Global Distribution System. Amadeus. Sabre. Travelport. This is the network that corporate travel agents use to book flights, hotels, and cars in one place. Business travel runs on it. |
+| 2 | reveal  | meta-what   | Metasearch. Google Hotel Ads. Trivago. TripAdvisor. Kayak. These aren't places you book. They compare prices across channels and send the guest onward — usually to dusit dot com, or to an O-T-A. |
+| 3 | reveal  | gds-closer  | G-D-S sells the room. Metasearch decides where the guest goes to buy it. |
+
+**Actor notes:** Cue 1 (GDS) delivered with confidence — this is business-critical infrastructure. Cue 2 (metasearch) slightly lighter — describe as a comparison layer, not a sales channel. Cue 3 is the compression takeaway.
+
+---
+
+## Slide 15 (s-trace). Trace the booking · 4-stage branching
+
+### Reading text (~15 sec)
+
+> One booking. Four decisions.
+>
+> [pause 0.5s]
+>
+> Read the card on the left. Answer each stage. When you're wrong, try again — there's no penalty.
+
+### Cue map
+
+| # | Action  | Target | Spoken line |
+|---|---------|--------|-------------|
+| 0 | narrate | .      | One booking. Four decisions. |
+| 1 | narrate | .      | Read the card on the left. Answer each stage. When you're wrong, try again — there's no penalty. |
+
+**Actor notes:** Instructional. Warm and encouraging on cue 1 — "no penalty" should reassure.
+
+---
+
+## Slide 16 (s-kc). Knowledge check · gate
+
+### Reading text (~10 sec)
+
+> Three checks before the quiz. Get all three right and the quiz unlocks. Unlimited attempts.
+
+### Cue map
+
+| # | Action  | Target | Spoken line |
+|---|---------|--------|-------------|
+| 0 | narrate | .      | Three checks before the quiz. Get all three right and the quiz unlocks. Unlimited attempts. |
+
+**Actor notes:** Single instructional cue — steady, no lift. This is a gate, not a test.
