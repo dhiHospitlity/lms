@@ -818,36 +818,44 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <h2 class="sh" style="margin-top:6px;">B2C and B2B — who is the customer?</h2>
           </div>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto;width:100%;flex:1;">
-            <!-- B2C column -->
-            <div style="display:flex;flex-direction:column;gap:10px;">
-              <div data-cue="col-b2c" style="padding:14px 16px;background:var(--b50);border-radius:var(--r);border-top:3px solid var(--b700);">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--b700);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:4px;">B2C · business to consumer</div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);line-height:1.35;">The customer is the guest.</div>
-                <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);line-height:1.5;margin-top:6px;">They see the rate. They book it. They pay it. They turn up.</div>
+          <!-- Two-column split with a vertical hairline down the centre. No tinted boxes,
+               no coloured borders. Typography carries the differentiation. -->
+          <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:24px;max-width:780px;margin:0 auto;width:100%;flex:1;align-items:start;">
+
+            <!-- B2C side -->
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div data-cue="col-b2c">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:6px;">B2C · business to consumer</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--b900);line-height:1.3;margin-bottom:6px;">The customer is the guest.</div>
+                <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.55;">They see the rate. They book it. They pay it. They turn up.</div>
               </div>
-              <div data-cue="b2c-examples" style="padding:12px 14px;background:var(--white);border:1px solid var(--b200);border-radius:var(--rs);">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--b700);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;">Examples</div>
-                <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);line-height:1.55;">Your website · the front desk · <b style="color:var(--b900);">also OTAs</b> — the guest still chooses and pays; the OTA sits in the middle.</div>
+              <div data-cue="b2c-examples">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--g500);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:6px;">Examples</div>
+                <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);line-height:1.55;">Your website, the front desk, and <b style="color:var(--b900);">also OTAs</b> — the guest still chooses and pays; the OTA sits in the middle.</div>
               </div>
             </div>
 
-            <!-- B2B column -->
-            <div style="display:flex;flex-direction:column;gap:10px;">
-              <div data-cue="col-b2b" style="padding:14px 16px;background:var(--gold-l);border-radius:var(--r);border-top:3px solid var(--gold);">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:4px;">B2B · business to business</div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);line-height:1.35;">The customer is a business, not the guest.</div>
-                <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);line-height:1.5;margin-top:6px;">Wholesaler · bedbank · tour operator · DMC</div>
+            <!-- Vertical divider -->
+            <div style="background:var(--g100);width:1px;height:100%;"></div>
+
+            <!-- B2B side -->
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div data-cue="col-b2b">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:6px;">B2B · business to business</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--b900);line-height:1.3;margin-bottom:6px;">The customer is a business, not the guest.</div>
+                <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.55;">Wholesaler, bedbank, tour operator, DMC.</div>
               </div>
-              <div data-cue="b2b-examples" style="padding:12px 14px;background:var(--white);border:1px solid var(--gold);border-radius:var(--rs);">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;">How it flows</div>
-                <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);line-height:1.55;">Buys at a <b style="color:var(--b900);">net rate</b> → resells to travel agents → agent sells to guest at <b style="color:var(--b900);">whatever price the partner chooses.</b></div>
+              <div data-cue="b2b-examples">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--g500);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:6px;">How it flows</div>
+                <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);line-height:1.55;">Buys at a <b style="color:var(--b900);">net rate</b>, resells to travel agents, and the agent sells to the guest at <b style="color:var(--b900);">whatever price the partner chooses.</b></div>
               </div>
             </div>
+
           </div>
 
-          <div data-cue="pull-quote" style="margin:6px auto 0;max-width:720px;padding:12px 22px;background:var(--g50);border-radius:var(--r);text-align:center;font-family:'DusitText',sans-serif;font-size:13px;color:var(--g500);line-height:1.55;">
-            <b style="color:var(--b900);">B2C:</b> you control the guest price. <b style="color:var(--b900);">B2B:</b> you control the partner price. After that, it's out of your hands — which is where the problems start.
+          <!-- Plain centered takeaway. No container, no rule. -->
+          <div data-cue="pull-quote" style="margin:14px auto 0;max-width:720px;text-align:center;font-family:'DusitText',sans-serif;font-size:13px;color:var(--g500);line-height:1.6;">
+            <b style="color:var(--b900);">B2C:</b> you control the guest price. <b style="color:var(--b900);">B2B:</b> you control the partner price. After that, it's out of your hands, which is where the problems start.
           </div>
         </div>
       </div>
