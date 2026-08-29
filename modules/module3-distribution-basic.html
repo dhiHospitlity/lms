@@ -517,7 +517,8 @@ body.cueline-active #s-def [data-cue],
 body.cueline-active #s-b2c-b2b [data-cue],
 body.cueline-active #s-blurred [data-cue],
 body.cueline-active #s-eco-mark [data-cue],
-body.cueline-active #s-connected [data-cue],
+body.cueline-active #s-channels [data-cue],
+body.cueline-active #s-ota-tiers [data-cue],
 body.cueline-active #s-b2b [data-cue],
 body.cueline-active #s-non [data-cue]{
   opacity:1;transform:none;transition:box-shadow 0.5s ease, transform 0.5s ease, filter 0.5s ease;
@@ -584,7 +585,8 @@ body.cueline-active #s-def [data-cue].reveal,
 body.cueline-active #s-b2c-b2b [data-cue].reveal,
 body.cueline-active #s-blurred [data-cue].reveal,
 body.cueline-active #s-eco-mark [data-cue].reveal,
-body.cueline-active #s-connected [data-cue].reveal,
+body.cueline-active #s-channels [data-cue].reveal,
+body.cueline-active #s-ota-tiers [data-cue].reveal,
 body.cueline-active #s-b2b [data-cue].reveal,
 body.cueline-active #s-non [data-cue].reveal{
   animation: revealPulse 1.4s ease-out;
@@ -687,19 +689,20 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
     <div class="sb-item" id="sbi-blurred" onclick="nav(4)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The line blurred</div></div></div>
     <div class="sb-section">2 · The ecosystem</div>
     <div class="sb-item" id="sbi-eco-mark" onclick="nav(5)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The Dusit distribution ecosystem</div></div></div>
-    <div class="sb-item" id="sbi-connected" onclick="nav(6)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Connected players</div></div></div>
-    <div class="sb-item" id="sbi-b2b" onclick="nav(7)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">B2B partners</div></div></div>
-    <div class="sb-item" id="sbi-non" onclick="nav(8)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Non-connected players</div></div></div>
-    <div class="sb-item" id="sbi-map" onclick="nav(9)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Map the booking</div></div></div>
+    <div class="sb-item" id="sbi-channels" onclick="nav(6)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The four connected channels</div></div></div>
+    <div class="sb-item" id="sbi-ota-tiers" onclick="nav(7)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">OTAs, in three tiers</div></div></div>
+    <div class="sb-item" id="sbi-b2b" onclick="nav(8)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">B2B partners</div></div></div>
+    <div class="sb-item" id="sbi-non" onclick="nav(9)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Non-connected players</div></div></div>
+    <div class="sb-item" id="sbi-map" onclick="nav(10)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Map the booking</div></div></div>
     <div class="sb-section">3 · The role of distribution</div>
-    <div class="sb-item" id="sbi-sys-mark" onclick="nav(10)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The systems behind every booking</div></div></div>
-    <div class="sb-item" id="sbi-which" onclick="nav(11)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Which system does what</div></div></div>
-    <div class="sb-item" id="sbi-gds" onclick="nav(12)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">GDS and metasearch</div></div></div>
-    <div class="sb-item" id="sbi-trace" onclick="nav(13)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Trace the booking</div></div></div>
-    <div class="sb-item" id="sbi-kc" onclick="nav(14)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Three checks before the quiz</div></div></div>
+    <div class="sb-item" id="sbi-sys-mark" onclick="nav(11)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The systems behind every booking</div></div></div>
+    <div class="sb-item" id="sbi-which" onclick="nav(12)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Which system does what</div></div></div>
+    <div class="sb-item" id="sbi-gds" onclick="nav(13)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">GDS and metasearch</div></div></div>
+    <div class="sb-item" id="sbi-trace" onclick="nav(14)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Trace the booking</div></div></div>
+    <div class="sb-item" id="sbi-kc" onclick="nav(15)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Three checks before the quiz</div></div></div>
     <div class="sb-divider"></div>
     <div class="sb-section">Quiz</div>
-    <div class="sb-item locked" id="sbi-quiz" onclick="nav(15)">
+    <div class="sb-item locked" id="sbi-quiz" onclick="nav(16)">
       <div class="sb-dot"></div>
       <div class="sb-text"><div class="sb-stitle">Quiz · 5 Questions</div></div>
       <div class="sb-lock" id="quizLock">🔒</div>
@@ -1073,130 +1076,143 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 6 (s-connected): CONCEPT. Connected players — hub-and-spoke diagram.
-           Dusit centre. OTA tiers stack above (Major 4 closest, Connected-only outermost).
-           Direct / B2B arms flank hub. GDS drops beneath. Each node reveals on its cue. -->
-      <div class="slide s-white" id="s-connected">
-        <div class="s-inner" style="padding:16px 30px 0;text-align:center;">
-          <h2 class="sh" style="margin-top:2px;margin-bottom:8px;">Who plugs in directly?</h2>
+      <!-- SLIDE 6 (s-channels): CONCEPT. Overview diagram — 4 connected channels around the Dusit hub. -->
+      <div class="slide s-white" id="s-channels">
+        <div class="s-inner" style="padding:18px 30px 0;text-align:center;">
+          <h2 class="sh" style="margin-top:2px;margin-bottom:12px;">The four connected channels</h2>
 
-          <!-- Setup line (short — the diagram carries the story) -->
-          <div data-cue="tier-intro" style="max-width:640px;margin:0 auto 8px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.45;"><b style="color:var(--gold);">Connected</b> = rates out, availability out, bookings back. No one types anything.</div>
+          <!-- Hub-and-spoke diagram: Dusit centre + 4 channel nodes at compass positions -->
+          <div style="position:relative;width:100%;max-width:640px;height:290px;margin:0 auto 12px;">
+            <!-- SVG connector lines behind the nodes -->
+            <svg viewBox="0 0 640 290" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+              <!-- 4 arms from centre (320, 145) to each channel node -->
+              <line x1="320" y1="60"  x2="320" y2="115" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5 4" opacity="0.7"/>
+              <line x1="320" y1="175" x2="320" y2="230" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5 4" opacity="0.7"/>
+              <line x1="150" y1="145" x2="265" y2="145" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5 4" opacity="0.7"/>
+              <line x1="375" y1="145" x2="490" y2="145" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5 4" opacity="0.7"/>
+            </svg>
 
-          <!-- Hub-and-spoke diagram -->
-          <div style="display:flex;flex-direction:column;align-items:center;max-width:820px;margin:0 auto;">
-
-            <!-- OTA tiers stack above hub, outermost first, brightest gold closest to hub -->
-            <div data-cue="tier-connected" class="hub-node" style="width:340px;padding:6px 14px;background:var(--white);border:1px solid var(--gold);border-radius:var(--rs);">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:8px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;">Tier 03 · Connected only</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);margin-top:1px;">Gother · Hopper · Klook</div>
-            </div>
-            <div class="hub-connector-v"></div>
-            <div data-cue="tier-growing" class="hub-node" style="width:340px;padding:6px 14px;background:#FBF3DE;border:1px solid var(--gold);border-radius:var(--rs);">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:8px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;">Tier 02 · Growing</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);margin-top:1px;">MakeMyTrip · tiket.com · Traveloka</div>
-            </div>
-            <div class="hub-connector-v"></div>
-            <div data-cue="tier-major" class="hub-node" style="width:340px;padding:8px 14px;background:var(--gold-l);border:1.5px solid var(--gold);border-radius:var(--rs);">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:8px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;">Tier 01 · Major 4</div>
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);margin-top:1px;">Expedia · Booking.com · Agoda · Trip.com</div>
-            </div>
-            <div class="hub-connector-v"></div>
-
-            <!-- Middle row: Direct ← DUSIT hub → B2B -->
-            <div style="display:flex;align-items:center;gap:0;">
-              <div data-cue="other-channels" style="width:130px;padding:8px 12px;background:var(--white);border:1.5px solid var(--b400);border-radius:var(--rs);text-align:center;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);">Direct</div>
-                <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);margin-top:1px;">dusit.com · phone</div>
-              </div>
-              <div class="hub-connector-h"></div>
-              <div data-cue="hub-centre" style="width:100px;height:100px;background:var(--b900);border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:0 6px 18px rgba(0,31,63,0.22);">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--white);letter-spacing:0.06em;">DUSIT</div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:8px;font-weight:700;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-top:2px;">Hub</div>
-              </div>
-              <div class="hub-connector-h"></div>
-              <div data-cue="other-channels" style="width:130px;padding:8px 12px;background:var(--white);border:1.5px solid var(--b400);border-radius:var(--rs);text-align:center;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);">B2B</div>
-                <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);margin-top:1px;">20+ wholesalers</div>
-              </div>
+            <!-- TOP: OTAs -->
+            <div data-cue="channel-ota" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:250px;padding:10px 14px;background:var(--gold-l);border:1.5px solid var(--gold);border-radius:var(--rs);text-align:center;">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">OTAs</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g500);margin-top:2px;">10 partners · 3 tiers · <b style="color:var(--gold);">next slide →</b></div>
             </div>
 
-            <!-- GDS drops beneath the hub -->
-            <div class="hub-connector-v"></div>
-            <div data-cue="other-channels" style="width:280px;padding:8px 14px;background:var(--white);border:1.5px solid var(--b400);border-radius:var(--rs);text-align:center;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);">GDS</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);margin-top:1px;">Amadeus · Sabre · Travelport</div>
+            <!-- LEFT: Direct -->
+            <div data-cue="channel-direct" style="position:absolute;top:118px;left:0;width:150px;padding:10px 14px;background:var(--white);border:1.5px solid var(--b400);border-radius:var(--rs);text-align:center;">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">Direct</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g500);margin-top:2px;">dusit.com, phone, CRO</div>
+            </div>
+
+            <!-- CENTRE: Dusit hub -->
+            <div data-cue="hub-centre" style="position:absolute;top:115px;left:50%;transform:translateX(-50%);width:110px;height:60px;background:var(--b900);border-radius:var(--r);display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:0 6px 18px rgba(0,31,63,0.22);">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--white);letter-spacing:0.06em;">DUSIT</div>
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:8px;font-weight:700;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;">Hub</div>
+            </div>
+
+            <!-- RIGHT: B2B -->
+            <div data-cue="channel-b2b" style="position:absolute;top:118px;right:0;width:150px;padding:10px 14px;background:var(--white);border:1.5px solid var(--b400);border-radius:var(--rs);text-align:center;">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">B2B</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g500);margin-top:2px;">20+ wholesale partners</div>
+            </div>
+
+            <!-- BOTTOM: GDS -->
+            <div data-cue="channel-gds" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:250px;padding:10px 14px;background:var(--white);border:1.5px solid var(--b400);border-radius:var(--rs);text-align:center;">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">GDS</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g500);margin-top:2px;">Amadeus · Sabre · Travelport</div>
             </div>
           </div>
 
           <!-- Key note -->
-          <div data-cue="key-note" style="max-width:660px;margin:12px auto 0;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.5;text-align:center;">Everything on this diagram moves automatically. That's the power. It's also why <b style="color:var(--b900);">an error moves just as fast as a correction.</b></div>
+          <div data-cue="key-note" style="max-width:660px;margin:0 auto;font-family:'DusitText',sans-serif;font-size:13px;color:var(--g500);line-height:1.5;text-align:center;">Everything on this diagram moves automatically. That's the power. It's also why <b style="color:var(--b900);">an error moves just as fast as a correction.</b></div>
         </div>
       </div>
 
-            <!-- SLIDE 7 (s-b2b): CONCEPT. B2B partners — flow, portfolio, market cards, rule. -->
+      <!-- SLIDE 7 (s-ota-tiers): CONCEPT. OTA partners — 3 tiers by relationship depth. -->
+      <div class="slide s-white" id="s-ota-tiers">
+        <div class="s-inner" style="padding:18px 40px 0;text-align:center;">
+          <h2 class="sh" style="margin-top:2px;margin-bottom:10px;">OTAs, in three tiers</h2>
+
+          <div data-cue="tier-intro" style="max-width:640px;margin:0 auto 14px;font-family:'DusitText',sans-serif;font-size:13px;color:var(--g500);line-height:1.5;">Ten OTAs are live with Dusit — <b style="color:var(--b900);">organised by how deep the relationship runs</b>, not by booking volume.</div>
+
+          <!-- 3 tier cards stacked vertically — closest to hub (Major 4) at TOP for visual weight -->
+          <div style="max-width:720px;margin:0 auto 14px;display:flex;flex-direction:column;gap:10px;">
+            <div data-cue="tier-major" style="padding:12px 18px;background:var(--gold-l);border:1.5px solid var(--gold);border-radius:var(--rs);text-align:left;display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center;">
+              <div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;">Tier 01</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);margin-top:2px;">Major 4</div>
+                <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);margin-top:2px;">Named account manager, contracted promotions</div>
+              </div>
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);letter-spacing:0.01em;">Expedia · Booking.com · Agoda · Trip.com</div>
+            </div>
+            <div data-cue="tier-growing" style="padding:12px 18px;background:#FBF3DE;border:1px solid var(--gold);border-radius:var(--rs);text-align:left;display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center;">
+              <div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;">Tier 02</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);margin-top:2px;">Growing</div>
+                <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);margin-top:2px;">Account management in place, contracts being written</div>
+              </div>
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);letter-spacing:0.01em;">MakeMyTrip · tiket.com · Traveloka</div>
+            </div>
+            <div data-cue="tier-connected" style="padding:12px 18px;background:var(--white);border:1px solid var(--g100);border-radius:var(--rs);text-align:left;display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center;">
+              <div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;">Tier 03</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);margin-top:2px;">Connected only</div>
+                <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);margin-top:2px;">Plumbing works, no dedicated manager</div>
+              </div>
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);letter-spacing:0.01em;">Gother · Hopper · Klook</div>
+            </div>
+          </div>
+
+          <div data-cue="tier-closer" style="max-width:600px;margin:0 auto;font-family:'DusitText',sans-serif;font-size:13px;color:var(--g500);line-height:1.5;text-align:center;">Same connection under the hood. <b style="color:var(--b900);">Different depth of relationship.</b></div>
+        </div>
+      </div>
+
+      <!-- SLIDE 8 (s-b2b): CONCEPT. B2B partners — organised by source market. Restructured to match slide 7's pattern. -->
       <div class="slide s-white" id="s-b2b">
-        <div class="s-inner" style="padding:22px 40px 0;text-align:center;">
-          <h2 class="sh" style="margin-top:4px;margin-bottom:12px;">The wholesale channel</h2>
+        <div class="s-inner" style="padding:18px 40px 0;text-align:center;">
+          <h2 class="sh" style="margin-top:2px;margin-bottom:10px;">B2B partners, by market</h2>
 
-          <!-- Flow visualization: Hotel → Partner → Agent → Guest, with rate stops labelled -->
-          <div data-cue="flow" style="max-width:780px;margin:0 auto 14px;display:flex;justify-content:center;align-items:center;gap:8px;">
-            <div style="padding:8px 12px;background:var(--white);border:1.5px solid var(--b400);border-radius:var(--rs);font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);">Hotel</div>
-            <div style="display:flex;flex-direction:column;align-items:center;color:var(--gold);">
-              <span style="font-family:'DusitDisplay',sans-serif;font-size:8px;font-weight:800;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;">Net rate</span>
-              <span style="font-size:14px;line-height:1;">→</span>
-            </div>
-            <div style="padding:8px 12px;background:var(--gold-l);border:1.5px solid var(--gold);border-radius:var(--rs);font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);">Partner</div>
-            <div style="display:flex;flex-direction:column;align-items:center;color:var(--gold);">
-              <span style="font-family:'DusitDisplay',sans-serif;font-size:8px;font-weight:800;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;">+ margin</span>
-              <span style="font-size:14px;line-height:1;">→</span>
-            </div>
-            <div style="padding:8px 12px;background:var(--white);border:1.5px solid var(--b400);border-radius:var(--rs);font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);">Travel agent</div>
-            <div style="display:flex;flex-direction:column;align-items:center;color:var(--gold);">
-              <span style="font-family:'DusitDisplay',sans-serif;font-size:8px;font-weight:800;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;">Retail</span>
-              <span style="font-size:14px;line-height:1;">→</span>
-            </div>
-            <div style="padding:8px 12px;background:var(--white);border:1.5px solid var(--b400);border-radius:var(--rs);font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);">Guest</div>
-          </div>
+          <div data-cue="flow" style="max-width:680px;margin:0 auto 12px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.5;"><b style="color:var(--b900);">Hotel → net rate → partner → + margin → travel agent → guest.</b> You set the net; the partner sets the guest price.</div>
 
-          <!-- Portfolio intro -->
-          <div data-cue="portfolio" style="max-width:680px;margin:0 auto 12px;font-family:'DusitText',sans-serif;font-size:13px;color:var(--g500);line-height:1.5;">20+ partners, <b style="color:var(--b900);">organised by market, not by size.</b></div>
+          <div data-cue="portfolio" style="max-width:640px;margin:0 auto 12px;font-family:'DusitText',sans-serif;font-size:13px;color:var(--g500);line-height:1.5;">20+ partners — <b style="color:var(--b900);">organised by the market each one reaches</b>, not by size.</div>
 
-          <!-- Market grid: Global row + regional row -->
-          <div style="max-width:820px;margin:0 auto 14px;display:flex;flex-direction:column;gap:10px;">
-            <div data-cue="market-global" style="padding:12px 14px;background:var(--white);border:1px solid var(--g100);border-left:4px solid var(--gold);border-radius:var(--rs);text-align:left;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:4px;">Global · reach everywhere</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:13px;color:var(--g700);line-height:1.55;">Hotelbeds · WebBeds · TBO · Dida Travel · Dnata · Miki Travel</div>
+          <!-- Market cards — same 2-column left-label / right-partners pattern as slide 7 -->
+          <div style="max-width:760px;margin:0 auto 12px;display:flex;flex-direction:column;gap:8px;">
+            <div data-cue="market-global" style="padding:10px 16px;background:var(--gold-l);border:1.5px solid var(--gold);border-radius:var(--rs);text-align:left;display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;">
+              <div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;">Group 01</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);margin-top:2px;">Global</div>
+              </div>
+              <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);">Hotelbeds · WebBeds · TBO · Dida · Dnata · Miki</div>
             </div>
-            <div data-cue="market-rest" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-              <div style="padding:10px 14px;background:var(--white);border:1px solid var(--g100);border-left:3px solid var(--gold);border-radius:var(--rs);text-align:left;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:2px;">India</div>
-                <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);line-height:1.5;">Akbar · Ottila · GRN Connect · Stuba</div>
+            <div data-cue="market-rest" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="padding:10px 14px;background:var(--white);border:1px solid var(--g100);border-radius:var(--rs);text-align:left;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;">India</div>
+                <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);margin-top:1px;">Akbar · Ottila · GRN · Stuba</div>
               </div>
-              <div style="padding:10px 14px;background:var(--white);border:1px solid var(--g100);border-left:3px solid var(--gold);border-radius:var(--rs);text-align:left;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:2px;">GCC · Middle East</div>
-                <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);line-height:1.5;">Almosafer · Happy Travel · iTrip · Nirvana</div>
+              <div style="padding:10px 14px;background:var(--white);border:1px solid var(--g100);border-radius:var(--rs);text-align:left;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;">GCC · Middle East</div>
+                <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);margin-top:1px;">Almosafer · Happy Travel · iTrip · Nirvana</div>
               </div>
-              <div style="padding:10px 14px;background:var(--white);border:1px solid var(--g100);border-left:3px solid var(--gold);border-radius:var(--rs);text-align:left;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:2px;">Korea</div>
-                <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);line-height:1.5;">Hotelpass · Tidequare</div>
+              <div style="padding:10px 14px;background:var(--white);border:1px solid var(--g100);border-radius:var(--rs);text-align:left;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;">Korea</div>
+                <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);margin-top:1px;">Hotelpass · Tidequare</div>
               </div>
-              <div style="padding:10px 14px;background:var(--white);border:1px solid var(--g100);border-left:3px solid var(--gold);border-radius:var(--rs);text-align:left;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:2px;">Europe · into Asia</div>
-                <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);line-height:1.5;">Asian Trails · Olympia · Synergy</div>
+              <div style="padding:10px 14px;background:var(--white);border:1px solid var(--g100);border-radius:var(--rs);text-align:left;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;">Europe · into Asia</div>
+                <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g700);margin-top:1px;">Asian Trails · Olympia · Synergy</div>
               </div>
             </div>
           </div>
 
-          <!-- The rule that matters — gold-l callout since this IS the module's key line -->
-          <div data-cue="b2b-rule" style="max-width:720px;margin:0 auto;padding:14px 22px;background:var(--gold-l);border-radius:var(--r);text-align:center;">
-            <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:4px;">The rule that matters</div>
-            <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);line-height:1.4;">B2B rates are room-only products. They belong in B2B channels — <span style="color:var(--gold);">never on a public consumer site.</span></div>
+          <div data-cue="b2b-rule" style="max-width:680px;margin:0 auto;padding:10px 20px;background:var(--gold-l);border-radius:var(--r);text-align:center;">
+            <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:2px;">The rule that matters</div>
+            <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);line-height:1.4;">B2B rates are room-only. They belong in B2B channels — <span style="color:var(--gold);">never on a public consumer site.</span></div>
           </div>
         </div>
       </div>
 
-      <!-- SLIDE 8 (s-non): CONCEPT. Non-connected players — manual channels, risk lands on the team. -->
+            <!-- SLIDE 9 (s-non): CONCEPT. Non-connected players — manual channels, risk lands on the team. -->
       <div class="slide s-white" id="s-non">
         <div class="s-inner" style="padding:22px 40px 0;text-align:center;">
           <h2 class="sh" style="margin-top:4px;margin-bottom:16px;">Not everything plugs in</h2>
@@ -1231,7 +1247,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-            <!-- SLIDE 9 (s-map): INTERACTION. Drag-and-drop — map 8 bookings to 4 zones. -->
+            <!-- SLIDE 10 (s-map): INTERACTION. Drag-and-drop — map 8 bookings to 4 zones. -->
       <div class="slide s-white" id="s-map">
         <div class="s-inner s-centre">
           <h2 class="sh">Map the booking to its channel</h2>
@@ -1240,7 +1256,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 10 (s-sys-mark): TRANSITION. Section marker · The systems behind every booking. -->
+      <!-- SLIDE 11 (s-sys-mark): TRANSITION. Section marker · The systems behind every booking. -->
       <div class="slide s-white" id="s-sys-mark" style="justify-content:center;align-items:center;text-align:center;padding:44px;">
         <div>
           <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">Section 03</div>
@@ -1251,7 +1267,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 11 (s-which): CONCEPT. Which system does what — CRS · Channel Mgr · Opera. -->
+      <!-- SLIDE 12 (s-which): CONCEPT. Which system does what — CRS · Channel Mgr · Opera. -->
       <div class="slide s-white" id="s-which">
         <div class="s-inner s-centre">
           <h2 class="sh">Which system does what</h2>
@@ -1260,7 +1276,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 12 (s-gds): CONCEPT. GDS and metasearch — complete the map. -->
+      <!-- SLIDE 13 (s-gds): CONCEPT. GDS and metasearch — complete the map. -->
       <div class="slide s-white" id="s-gds">
         <div class="s-inner s-centre">
           <h2 class="sh">GDS and metasearch</h2>
@@ -1269,7 +1285,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 13 (s-trace): INTERACTION. Branching — trace one booking through 4 decision stages. -->
+      <!-- SLIDE 14 (s-trace): INTERACTION. Branching — trace one booking through 4 decision stages. -->
       <div class="slide s-white" id="s-trace">
         <div class="s-inner s-centre">
           <h2 class="sh">Trace the booking</h2>
@@ -1278,7 +1294,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 14 (s-kc): KNOWLEDGE CHECK — GATE. 3 questions. All correct to unlock quiz. -->
+      <!-- SLIDE 15 (s-kc): KNOWLEDGE CHECK — GATE. 3 questions. All correct to unlock quiz. -->
       <div class="slide s-off" id="s-kc">
         <div class="s-inner s-centre">
           <span class="eye">Before the quiz</span>
@@ -1303,7 +1319,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <button class="qopt" onclick="answer(0,3,this)">D. How quickly they can connect</button>
           </div>
           <div class="q-fb" id="qfb-0"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q1 / 5</div><button class="btn btn-p" id="qnxt-0" onclick="nav(16)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q1 / 5</div><button class="btn btn-p" id="qnxt-0" onclick="nav(17)" style="display:none">Next →</button></div>
         </div>
       </div>
 
@@ -1321,7 +1337,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <button class="qopt" onclick="answer(1,3,this)">D. Tell them to take it up with their agent</button>
           </div>
           <div class="q-fb" id="qfb-1"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q2 / 5</div><button class="btn btn-p" id="qnxt-1" onclick="nav(17)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q2 / 5</div><button class="btn btn-p" id="qnxt-1" onclick="nav(18)" style="display:none">Next →</button></div>
         </div>
       </div>
 
@@ -1339,7 +1355,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <button class="qopt" onclick="answer(2,3,this)">D. The OTA is discounting its own commission</button>
           </div>
           <div class="q-fb" id="qfb-2"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q3 / 5</div><button class="btn btn-p" id="qnxt-2" onclick="nav(18)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q3 / 5</div><button class="btn btn-p" id="qnxt-2" onclick="nav(19)" style="display:none">Next →</button></div>
         </div>
       </div>
 
@@ -1357,7 +1373,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <button class="qopt" onclick="answer(3,3,this)">D. None. Each channel has to be updated separately</button>
           </div>
           <div class="q-fb" id="qfb-3"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q4 / 5</div><button class="btn btn-p" id="qnxt-3" onclick="nav(19)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q4 / 5</div><button class="btn btn-p" id="qnxt-3" onclick="nav(20)" style="display:none">Next →</button></div>
         </div>
       </div>
 
@@ -1389,7 +1405,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 20 (s-summary): SUMMARY. Every channel has a cost. -->
+      <!-- SLIDE 21 (s-summary): SUMMARY. Every channel has a cost. -->
       <div class="slide s-white" id="s-summary" style="justify-content:center;align-items:center;text-align:center;padding:44px;">
         <div>
           <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Take-away</div>
@@ -1456,27 +1472,28 @@ const SLIDE_IDS = [
   's-b2c-b2b',    //  3  B2C and B2B — who is the customer?
   's-blurred',    //  4  The line blurred (rate leakage setup)
   's-eco-mark',   //  5  § Section marker · The Dusit distribution ecosystem
-  's-connected',  //  6  Connected players (Major 4 + Growing + Connected-only)
-  's-b2b',        //  7  B2B partners by source market
-  's-non',        //  8  Non-connected players
-  's-map',        //  9  Map the booking to its channel (drag-drop)
-  's-sys-mark',   // 10  § Section marker · The systems behind every booking
-  's-which',      // 11  Which system does what (CRS · Channel Mgr · Opera)
-  's-gds',        // 12  GDS and metasearch
-  's-trace',      // 13  Trace the booking (4-stage branching)
-  's-kc',         // 14  Knowledge check — three checks before the quiz (GATE)
-  's-q1',         // 15  Q1
-  's-q2',         // 16  Q2
-  's-q3',         // 17  Q3
-  's-q4',         // 18  Q4
-  's-q5',         // 19  Q5 (also carries the results overlay)
-  's-summary'     // 20  Every channel has a cost
+  's-channels',   //  6  The four connected channels (hub + 4 arms)
+  's-ota-tiers',  //  7  OTAs, in three tiers (Major 4 / Growing / Connected only)
+  's-b2b',        //  8  B2B partners by source market
+  's-non',        //  9  Non-connected players
+  's-map',        // 10  Map the booking to its channel (drag-drop)
+  's-sys-mark',   // 11  § Section marker · The systems behind every booking
+  's-which',      // 12  Which system does what (CRS · Channel Mgr · Opera)
+  's-gds',        // 13  GDS and metasearch
+  's-trace',      // 14  Trace the booking (4-stage branching)
+  's-kc',         // 15  Knowledge check — three checks before the quiz (GATE)
+  's-q1',         // 16  Q1
+  's-q2',         // 17  Q2
+  's-q3',         // 18  Q3
+  's-q4',         // 19  Q4
+  's-q5',         // 20  Q5 (also carries the results overlay)
+  's-summary'     // 21  Every channel has a cost
 ];
-const N = SLIDE_IDS.length;   // 21
-const CONTENT_END = 14;       // index of KC slide (gate)
-const QUIZ_START  = 15;       // index of Q1
+const N = SLIDE_IDS.length;   // 22
+const CONTENT_END = 15;       // index of KC slide (gate)
+const QUIZ_START  = 16;       // index of Q1
 
-const SIDEBAR_IDS = ['sbi-hook','sbi-loc','sbi-def','sbi-b2c-b2b','sbi-blurred','sbi-eco-mark','sbi-connected','sbi-b2b','sbi-non','sbi-map','sbi-sys-mark','sbi-which','sbi-gds','sbi-trace','sbi-kc'];
+const SIDEBAR_IDS = ['sbi-hook','sbi-loc','sbi-def','sbi-b2c-b2b','sbi-blurred','sbi-eco-mark','sbi-channels','sbi-ota-tiers','sbi-b2b','sbi-non','sbi-map','sbi-sys-mark','sbi-which','sbi-gds','sbi-trace','sbi-kc'];
 
 const TITLES = [
   'Someone is booking your hotel right now',
@@ -1485,7 +1502,8 @@ const TITLES = [
   'B2C and B2B',
   'The line blurred',
   'The Dusit distribution ecosystem',
-  'Connected players',
+  'The four connected channels',
+  'OTAs, in three tiers',
   'B2B partners',
   'Non-connected players',
   'Map the booking',
@@ -2333,7 +2351,7 @@ const Cueline = {
   //   5 = Market Segment drill-down (s-2)
   //   6 = Source Codes drill-down (s-6)
   //   7 = Origin Codes drill-down (s-7)
-  noAutoAdvanceSlides: new Set([5, 6, 7]),
+  noAutoAdvanceSlides: new Set([10, 14]),  // s-map (drag-drop) and s-trace (branching)
   forceAudioOff: false,  // Phase 2 · Section 1 audio rendered 2026-08-29 (George, multilingual_v2). Sections 2-3 still empty; the Cueline empty-registers just no-op.
 
   register(slideIdx, cueList){
@@ -2624,16 +2642,23 @@ Cueline.register(5, [ // s-eco-mark · Section marker
   {cc:"So that is what distribution is, and how the lines have blurred."},
   {do:'reveal', target:'section-mark', cc:"Now let's look at what Dusit actually runs. Who is connected, who is not, and what the systems underneath are doing."}
 ]);
-Cueline.register(6, [ // s-connected · Connected players
-  {do:'reveal', target:'hub-centre',      cc:"Connected is the word to hold on to. A connected channel talks to our systems automatically. Rates out, availability out, bookings back. No one types anything."},
-  {do:'reveal', target:'tier-intro',      cc:"On the OTA side, Dusit is live with ten. But they're not all managed the same way, and that difference is worth understanding."},
+Cueline.register(6, [ // s-channels · The four connected channels
+  {do:'reveal', target:'hub-centre',      cc:"Connected is the word to hold on to. A connected channel talks to our systems automatically. Rates out, availability out, bookings back. Nobody types anything."},
+  {cc:"Four families of connected channel come off the Dusit hub."},
+  {do:'reveal', target:'channel-direct',  cc:"Direct. Your own website, phone, and central reservations."},
+  {do:'reveal', target:'channel-ota',     cc:"OTAs. Ten of them, organised in three tiers. We'll come back to that."},
+  {do:'reveal', target:'channel-b2b',     cc:"B-2-B. More than twenty wholesale partners."},
+  {do:'reveal', target:'channel-gds',     cc:"And the GDS. Amadeus, Sabre, and Travelport."},
+  {do:'reveal', target:'key-note',        cc:"Everything on this diagram moves automatically. That's the power. It's also why an error moves just as fast as a correction does."}
+]);
+Cueline.register(7, [ // s-ota-tiers · OTAs in three tiers
+  {do:'reveal', target:'tier-intro',      cc:"Zooming in on the OTA side. Dusit is live with ten. But they're not all managed the same way, and that difference is worth understanding."},
   {do:'reveal', target:'tier-major',      cc:"Four of them sit closest. Expedia. Booking.com. Agoda. Trip.com. Each has a named account manager, we run contracted promotions with all four. You'll hear these called the Major 4."},
   {do:'reveal', target:'tier-growing',    cc:"A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Account management is in place; promotions being contracted now."},
   {do:'reveal', target:'tier-connected',  cc:"And a third group that's simply live and connected. Gother. Hopper. Klook. The plumbing works; there's no dedicated account manager."},
-  {do:'reveal', target:'other-channels',  cc:"Alongside all of that sits more than twenty B-2-B wholesale partners, the GDS, and our own direct channels."},
-  {do:'reveal', target:'key-note',        cc:"Everything on this diagram moves automatically. That's what makes it powerful. It's also why an error moves just as fast as a correction does."}
+  {do:'reveal', target:'tier-closer',     cc:"Same connection under the hood. Different depth of relationship."}
 ]);
-Cueline.register(7, [ // s-b2b · B2B partners
+Cueline.register(8, [ // s-b2b · B2B partners
   {cc:"Wholesale works differently from everything else, so it's worth slowing down."},
   {do:'reveal', target:'flow',            cc:"You give the partner a net rate. That's your number, the one you're content to receive. They add their own margin, sell it on to travel agents, who sell it to the guest. You don't see the final price, and you don't control it."},
   {do:'reveal', target:'portfolio',       cc:"Dusit has more than twenty connected wholesale partners. That sounds like a lot until you look at how they're organised, because the portfolio isn't built around size. It's built around markets."},
@@ -2641,19 +2666,19 @@ Cueline.register(7, [ // s-b2b · B2B partners
   {do:'reveal', target:'market-rest',     cc:"The rest are there because they own a market. Akbar, Ottila, GRN and Stuba reach the Indian travel trade. Almosafer, Happy Travel, iTrip and Nirvana reach the GCC. Hotelpass and Tidequare reach Korea. Asian Trails brings European tour business into Asia."},
   {do:'reveal', target:'b2b-rule',        cc:"Now the rule that matters. And it's the one worth taking away from this whole module. B-2-B rates are room-only products, and they belong in B-2-B channels. They must not be sold, directly or indirectly, to consumers."}
 ]);
-Cueline.register(8, [ // s-non · Non-connected players
+Cueline.register(9, [ // s-non · Non-connected players
   {cc:"Not everything plugs in. Plenty of business still arrives the old way."},
   {do:'reveal', target:'manual-list',     cc:"A local agent who emails. A corporate account with a negotiated rate. A small tour operator. A DMC arranging a group."},
   {do:'reveal', target:'manual-work',     cc:"None of that is automatic. Somebody at the hotel loads the rate, checks the availability, keys the booking in."},
   {do:'reveal', target:'risk',            cc:"Which means two things. It's slower. And when something goes wrong, it went wrong on your side, not in a system."}
 ]);
 
-Cueline.register(9,  []); // s-map        · Map the booking to its channel (drag-drop)
-Cueline.register(10, []); // s-sys-mark   · § The systems behind every booking
-Cueline.register(11, []); // s-which      · Which system does what
-Cueline.register(12, []); // s-gds        · GDS and metasearch
-Cueline.register(13, []); // s-trace      · Trace the booking (branching)
-Cueline.register(14, []); // s-kc         · Knowledge check (gate)
+Cueline.register(10, []); // s-map        · Map the booking to its channel (drag-drop)
+Cueline.register(11, []); // s-sys-mark   · § The systems behind every booking
+Cueline.register(12, []); // s-which      · Which system does what
+Cueline.register(13, []); // s-gds        · GDS and metasearch
+Cueline.register(14, []); // s-trace      · Trace the booking (branching)
+Cueline.register(15, []); // s-kc         · Knowledge check (gate)
 // Slides 15-19 (s-q1 through s-q5) and 20 (s-summary) carry no auto-narration.
 
 

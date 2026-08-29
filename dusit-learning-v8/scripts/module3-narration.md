@@ -279,15 +279,57 @@
 
 ---
 
-## Slide 6 (s-connected). Connected players — who plugs in directly?
+## Slide 6 (s-channels). The four connected channels
 
-### Reading text (~65 sec)
+### Reading text (~45 sec)
 
-> Connected is the word to hold on to. A connected channel talks to our systems automatically. Rates go out, availability goes out, bookings come back, and nobody types anything.
+> Connected is the word to hold on to. A connected channel talks to our systems automatically. Rates out, availability out, bookings back. Nobody types anything.
 >
-> [pause 0.7s]
+> [pause 0.6s]
 >
-> On the OTA side, Dusit is live with ten. But they are not all managed the same way, and that difference is worth understanding.
+> Four families of connected channel come off the Dusit hub.
+>
+> [pause 0.3s]
+>
+> Direct. Your own website, phone, and central reservations.
+>
+> [pause 0.3s]
+>
+> OTAs. Ten of them, organised in three tiers. We'll come back to that.
+>
+> [pause 0.3s]
+>
+> B-2-B. More than twenty wholesale partners.
+>
+> [pause 0.3s]
+>
+> And the GDS. Amadeus, Sabre, and Travelport.
+>
+> [pause 0.6s]
+>
+> Everything on this diagram moves automatically. That is what makes it powerful. It is also why an error moves just as fast as a correction does.
+
+### Cue map
+
+| # | Action  | Target          | Spoken line |
+|---|---------|-----------------|-------------|
+| 0 | reveal  | hub-centre      | Connected is the word to hold on to. A connected channel talks to our systems automatically. Rates out, availability out, bookings back. Nobody types anything. |
+| 1 | narrate | .               | Four families of connected channel come off the Dusit hub. |
+| 2 | reveal  | channel-direct  | Direct. Your own website, phone, and central reservations. |
+| 3 | reveal  | channel-ota     | OTAs. Ten of them, organised in three tiers. We'll come back to that. |
+| 4 | reveal  | channel-b2b     | B-2-B. More than twenty wholesale partners. |
+| 5 | reveal  | channel-gds     | And the GDS. Amadeus, Sabre, and Travelport. |
+| 6 | reveal  | key-note        | Everything on this diagram moves automatically. That is what makes it powerful. It is also why an error moves just as fast as a correction does. |
+
+**Actor notes:** Cues 2–5 are the four families. Each one short and deliberate. Cue 3 (OTAs) teases the next slide — light lift on "we'll come back to that." Cue 6 lands the "error moves as fast as a correction" line with weight.
+
+---
+
+## Slide 7 (s-ota-tiers). OTAs, in three tiers
+
+### Reading text (~50 sec)
+
+> Zooming in on the OTA side. Dusit is live with ten. But they are not all managed the same way, and that difference is worth understanding.
 >
 > [pause 0.5s]
 >
@@ -303,29 +345,23 @@
 >
 > [pause 0.6s]
 >
-> Alongside all of that sits more than twenty B-2-B wholesale partners, the GDS, and our own direct channels.
->
-> [pause 0.6s]
->
-> Everything on this diagram moves automatically. That is what makes it powerful. It is also why an error moves just as fast as a correction does.
+> Same connection under the hood. Different depth of relationship.
 
 ### Cue map
 
-| # | Action  | Target       | Spoken line |
-|---|---------|--------------|-------------|
-| 0 | reveal  | hub-centre   | Connected is the word to hold on to. A connected channel talks to our systems automatically. Rates go out, availability goes out, bookings come back, and nobody types anything. |
-| 1 | reveal  | tier-intro   | On the OTA side, Dusit is live with ten. But they are not all managed the same way, and that difference is worth understanding. |
-| 2 | reveal  | tier-major   | Four of them sit closest. Expedia. Booking.com. Agoda. Trip.com. Each has a named account manager, we run contracted promotions with all four. You will hear these called the Major 4. |
-| 3 | reveal  | tier-growing | A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Account management is in place; promotions being contracted now. |
-| 4 | reveal  | tier-connected | And a third group that is simply live and connected. Gother. Hopper. Klook. The plumbing works; there is no dedicated account manager. |
-| 5 | reveal  | other-channels | Alongside all of that sits more than twenty B-2-B wholesale partners, the GDS, and our own direct channels. |
-| 6 | reveal  | key-note     | Everything on this diagram moves automatically. That is what makes it powerful. It is also why an error moves just as fast as a correction does. |
+| # | Action  | Target         | Spoken line |
+|---|---------|----------------|-------------|
+| 0 | reveal  | tier-intro     | Zooming in on the OTA side. Dusit is live with ten. But they are not all managed the same way, and that difference is worth understanding. |
+| 1 | reveal  | tier-major     | Four of them sit closest. Expedia. Booking.com. Agoda. Trip.com. Each has a named account manager, we run contracted promotions with all four. You will hear these called the Major 4. |
+| 2 | reveal  | tier-growing   | A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Account management is in place; promotions being contracted now. |
+| 3 | reveal  | tier-connected | And a third group that is simply live and connected. Gother. Hopper. Klook. The plumbing works; there is no dedicated account manager. |
+| 4 | reveal  | tier-closer    | Same connection under the hood. Different depth of relationship. |
 
-**Actor notes:** Cues 2–4 name the three tiers with escalating warmth on the Major 4 (closest partners) and cooling toward "connected only" (no dedicated relationship). Cue 6 lands the "error moves as fast as a correction" line with weight — it is the module's second-biggest teaching moment after rate leakage.
+**Actor notes:** Cues 1–3 escalate warmth on Major 4 (closest partners), settle on Growing, and cool toward "connected only." Cue 4 lands the summarising line quietly.
 
 ---
 
-## Slide 7 (s-b2b). B2B partners — the wholesale channel
+## Slide 8 (s-b2b). B2B partners — the wholesale channel
 
 ### Reading text (~60 sec)
 
@@ -366,7 +402,7 @@
 
 ---
 
-## Slide 8 (s-non). Non-connected players
+## Slide 9 (s-non). Non-connected players
 
 ### Reading text (~35 sec)
 
@@ -397,7 +433,7 @@
 
 ---
 
-## Slide 9 (s-map). Map the booking to its channel · drag-and-drop
+## Slide 10 (s-map). Map the booking to its channel · drag-and-drop
 
 ### Reading text (~20 sec)
 
