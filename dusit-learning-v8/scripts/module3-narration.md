@@ -257,3 +257,163 @@
 **Actor notes:** Slide 4 is the emotional pivot of the module — the moment the tidy picture from slide 3 collapses. Beat 6 delivers "rate leakage" with weight; slight pause before it.
 
 ---
+
+## Slide 5 (s-eco-mark). § The Dusit distribution ecosystem
+
+### Reading text (~20 sec)
+
+> So that is what distribution is, and how the lines have blurred.
+>
+> [pause 0.5s]
+>
+> Now let's look at what Dusit actually runs. Who is connected, who is not, and what the systems underneath are doing.
+
+### Cue map
+
+| # | Action  | Target       | Spoken line |
+|---|---------|--------------|-------------|
+| 0 | narrate | .            | So that is what distribution is, and how the lines have blurred. |
+| 1 | reveal  | section-mark | Now let's look at what Dusit actually runs. Who is connected, who is not, and what the systems underneath are doing. |
+
+**Actor notes:** Slower, deliberate. This is a rest point between the concept section and the ecosystem walk-through — let the second beat settle before slide 6 begins.
+
+---
+
+## Slide 6 (s-connected). Connected players — who plugs in directly?
+
+### Reading text (~65 sec)
+
+> Connected is the word to hold on to. A connected channel talks to our systems automatically. Rates go out, availability goes out, bookings come back, and nobody types anything.
+>
+> [pause 0.7s]
+>
+> On the OTA side, Dusit is live with ten. But they are not all managed the same way, and that difference is worth understanding.
+>
+> [pause 0.5s]
+>
+> Four of them sit closest. Expedia. Booking.com. Agoda. Trip.com. Each has a named account manager, we run contracted promotions with all four. You will hear these called the Major 4.
+>
+> [pause 0.5s]
+>
+> A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Account management is in place; promotions being contracted now.
+>
+> [pause 0.5s]
+>
+> And a third group that is simply live and connected. Gother. Hopper. Klook. The plumbing works; there is no dedicated account manager.
+>
+> [pause 0.6s]
+>
+> Alongside all of that sits more than twenty B-2-B wholesale partners, the GDS, and our own direct channels.
+>
+> [pause 0.6s]
+>
+> Everything on this diagram moves automatically. That is what makes it powerful. It is also why an error moves just as fast as a correction does.
+
+### Cue map
+
+| # | Action  | Target       | Spoken line |
+|---|---------|--------------|-------------|
+| 0 | reveal  | hub-centre   | Connected is the word to hold on to. A connected channel talks to our systems automatically. Rates go out, availability goes out, bookings come back, and nobody types anything. |
+| 1 | reveal  | tier-intro   | On the OTA side, Dusit is live with ten. But they are not all managed the same way, and that difference is worth understanding. |
+| 2 | reveal  | tier-major   | Four of them sit closest. Expedia. Booking.com. Agoda. Trip.com. Each has a named account manager, we run contracted promotions with all four. You will hear these called the Major 4. |
+| 3 | reveal  | tier-growing | A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Account management is in place; promotions being contracted now. |
+| 4 | reveal  | tier-connected | And a third group that is simply live and connected. Gother. Hopper. Klook. The plumbing works; there is no dedicated account manager. |
+| 5 | reveal  | other-channels | Alongside all of that sits more than twenty B-2-B wholesale partners, the GDS, and our own direct channels. |
+| 6 | reveal  | key-note     | Everything on this diagram moves automatically. That is what makes it powerful. It is also why an error moves just as fast as a correction does. |
+
+**Actor notes:** Cues 2–4 name the three tiers with escalating warmth on the Major 4 (closest partners) and cooling toward "connected only" (no dedicated relationship). Cue 6 lands the "error moves as fast as a correction" line with weight — it is the module's second-biggest teaching moment after rate leakage.
+
+---
+
+## Slide 7 (s-b2b). B2B partners — the wholesale channel
+
+### Reading text (~60 sec)
+
+> Wholesale works differently from everything else, so it is worth slowing down.
+>
+> [pause 0.5s]
+>
+> You give the partner a net rate. That is your number, the one you are content to receive. They add their own margin, sell it on to travel agents, who sell it to the guest. You do not see the final price, and you do not control it.
+>
+> [pause 0.7s]
+>
+> Dusit has more than twenty connected wholesale partners. That sounds like a lot until you look at how they are organised, because the portfolio is not built around size. It is built around markets.
+>
+> [pause 0.5s]
+>
+> A handful are genuinely global. Hotelbeds. WebBeds. TBO. Dida. Dnata. Miki.
+>
+> [pause 0.4s]
+>
+> The rest are there because they own a market. Akbar, Ottila, GRN and Stuba reach the Indian travel trade. Almosafer, Happy Travel, iTrip and Nirvana reach the GCC. Hotelpass and Tidequare reach Korea. Asian Trails brings European tour business into Asia.
+>
+> [pause 0.7s]
+>
+> Now the rule that matters. And it is the one worth taking away from this whole module. B-2-B rates are room-only products, and they belong in B-2-B channels. They must not be sold, directly or indirectly, to consumers.
+
+### Cue map
+
+| # | Action  | Target       | Spoken line |
+|---|---------|--------------|-------------|
+| 0 | narrate | .            | Wholesale works differently from everything else, so it is worth slowing down. |
+| 1 | reveal  | flow         | You give the partner a net rate. That is your number, the one you are content to receive. They add their own margin, sell it on to travel agents, who sell it to the guest. You do not see the final price, and you do not control it. |
+| 2 | reveal  | portfolio    | Dusit has more than twenty connected wholesale partners. That sounds like a lot until you look at how they are organised, because the portfolio is not built around size. It is built around markets. |
+| 3 | reveal  | market-global | A handful are genuinely global. Hotelbeds. WebBeds. TBO. Dida. Dnata. Miki. |
+| 4 | reveal  | market-rest  | The rest are there because they own a market. Akbar, Ottila, GRN and Stuba reach the Indian travel trade. Almosafer, Happy Travel, iTrip and Nirvana reach the GCC. Hotelpass and Tidequare reach Korea. Asian Trails brings European tour business into Asia. |
+| 5 | reveal  | b2b-rule     | Now the rule that matters. And it is the one worth taking away from this whole module. B-2-B rates are room-only products, and they belong in B-2-B channels. They must not be sold, directly or indirectly, to consumers. |
+
+**Actor notes:** Cues 3–4 are two contrasting waves — the six global partners as a rhythm of proper nouns, then the market-by-market list at slightly higher pace. Cue 5 is the module's most important line. Deliberate, weighty, no lift on the last clause.
+
+---
+
+## Slide 8 (s-non). Non-connected players
+
+### Reading text (~35 sec)
+
+> Not everything plugs in. Plenty of business still arrives the old way.
+>
+> [pause 0.4s]
+>
+> A local agent who emails. A corporate account with a negotiated rate. A small tour operator. A DMC arranging a group.
+>
+> [pause 0.6s]
+>
+> None of that is automatic. Somebody at the hotel loads the rate, checks the availability, keys the booking in.
+>
+> [pause 0.5s]
+>
+> Which means two things. It is slower. And when something goes wrong, it went wrong on your side, not in a system.
+
+### Cue map
+
+| # | Action  | Target       | Spoken line |
+|---|---------|--------------|-------------|
+| 0 | narrate | .            | Not everything plugs in. Plenty of business still arrives the old way. |
+| 1 | reveal  | manual-list  | A local agent who emails. A corporate account with a negotiated rate. A small tour operator. A DMC arranging a group. |
+| 2 | reveal  | manual-work  | None of that is automatic. Somebody at the hotel loads the rate, checks the availability, keys the booking in. |
+| 3 | reveal  | risk         | Which means two things. It is slower. And when something goes wrong, it went wrong on your side, not in a system. |
+
+**Actor notes:** Slower, more considered. This is a small quiet slide about the discipline the connected side takes for granted. Cue 3 lands the responsibility line without any dramatic lift.
+
+---
+
+## Slide 9 (s-map). Map the booking to its channel · drag-and-drop
+
+### Reading text (~20 sec)
+
+> Your turn. Eight bookings, four routes.
+>
+> [pause 0.5s]
+>
+> Drag each one where it belongs. Two are trickier than they look, so take your time. There is no score on this one.
+
+### Cue map
+
+| # | Action  | Target       | Spoken line |
+|---|---------|--------------|-------------|
+| 0 | narrate | .            | Your turn. Eight bookings, four routes. |
+| 1 | narrate | .            | Drag each one where it belongs. Two are trickier than they look, so take your time. There is no score on this one. |
+
+**Actor notes:** Instructional, warm. This is a practice exercise — the tone should reduce any assessment anxiety.
+
+---
