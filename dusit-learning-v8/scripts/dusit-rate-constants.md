@@ -10,7 +10,7 @@
 |---|---|---|
 | **Dusit Gold** | **15% off** | Loyalty programme rate. Applied automatically at check-in when the member is tagged DLOYAL. |
 | **Corporate** | **15% off** | Contracted corporate accounts (CORPP / CORGL / CORPK / CORPL). |
-| **Wholesale** | **22% off** | Contracted wholesalers (WHODM / WHOLS / WHOLN / WHOPM). |
+| **Wholesale** | **23% off** | Contracted wholesalers (WHODM / WHOLS / WHOLN / WHOPM). Updated from 22% → 23% on 2026-08-29 per Dusit. |
 
 ## Channel parity
 
@@ -35,13 +35,13 @@
 At BAR = $133:
 - Dusit Gold: $133 × 0.85 = **$113**
 - Corporate: $133 × 0.85 = **$113** (same as Gold at 15%)
-- Wholesale: $133 × 0.78 = **$104** (rounded)
+- Wholesale: $133 × 0.77 = **$102** (rounded)
 - Direct / OTA / GDS: **$133** (parity)
 
 At BAR = ฿4,000 (propagation animation, Module 1 The System slide):
 - Corporate: ฿3,400
 - Dusit Gold: ฿3,400
-- Wholesale: ฿3,120
+- Wholesale: ฿3,080
 - Direct / OTA / GDS: ฿4,000
 
 ## Room supplements (Module 1)
