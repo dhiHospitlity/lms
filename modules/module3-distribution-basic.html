@@ -979,7 +979,10 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
             <!-- 01 · PAST -->
             <div data-cue="band-past" style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 4px;">
-              <!-- Diagram: two parallel lanes, dots flow independently -->
+              <div style="text-align:center;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--g500);letter-spacing:0.06em;line-height:1;">01</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--g500);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px;">Past</div>
+              </div>
               <svg viewBox="0 0 180 90" style="width:100%;max-width:180px;height:auto;">
                 <line x1="10" y1="30" x2="170" y2="30" stroke="var(--b400)" stroke-width="1.6" stroke-dasharray="4 4"/>
                 <line x1="10" y1="60" x2="170" y2="60" stroke="var(--gold)" stroke-width="1.6" stroke-dasharray="4 4"/>
@@ -988,10 +991,6 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
                 <circle class="lane-dot-past-a" cx="10" cy="30" r="4.5" fill="var(--b700)"/>
                 <circle class="lane-dot-past-b" cx="10" cy="60" r="4.5" fill="var(--gold)"/>
               </svg>
-              <div style="text-align:center;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--g500);letter-spacing:0.06em;line-height:1;">01</div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--g500);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px;">Past</div>
-              </div>
               <div style="font-family:'DusitText',sans-serif;font-size:13px;color:var(--g700);line-height:1.55;text-align:center;">Wholesalers sold room-only rates to trade partners. Guests booked direct. <b style="color:var(--b900);">B2B and B2C ran on separate rails.</b></div>
             </div>
 
@@ -1000,7 +999,10 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
             <!-- 02 · TODAY -->
             <div data-cue="band-today" style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 4px;">
-              <!-- Diagram: lanes crossing. Two dots swap lanes mid-way. -->
+              <div style="text-align:center;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold);letter-spacing:0.06em;line-height:1;">02</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px;">Today</div>
+              </div>
               <svg viewBox="0 0 180 90" style="width:100%;max-width:180px;height:auto;">
                 <line x1="10" y1="30" x2="170" y2="30" stroke="var(--b400)" stroke-width="1.6" stroke-dasharray="4 4"/>
                 <line x1="10" y1="60" x2="170" y2="60" stroke="var(--gold)" stroke-width="1.6" stroke-dasharray="4 4"/>
@@ -1010,10 +1012,6 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
                 <circle class="lane-dot-today-a" cx="10" cy="60" r="4.5" fill="var(--gold)"/>
                 <circle class="lane-dot-today-b" cx="10" cy="30" r="4.5" fill="var(--b700)"/>
               </svg>
-              <div style="text-align:center;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold);letter-spacing:0.06em;line-height:1;">02</div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px;">Today</div>
-              </div>
               <div style="font-family:'DusitText',sans-serif;font-size:13px;color:var(--b900);line-height:1.55;text-align:center;">Wholesalers reach guests through connected agents and white-label sites. <b>The lanes cross.</b></div>
             </div>
 
@@ -1022,7 +1020,10 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
             <!-- 03 · IMPACT -->
             <div data-cue="band-impact" style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 4px;">
-              <!-- Diagram: gold rail drops through a warning into a public price marker -->
+              <div style="text-align:center;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b700);letter-spacing:0.06em;line-height:1;">03</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--b900);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px;">Impact</div>
+              </div>
               <svg viewBox="0 0 180 90" style="width:100%;max-width:180px;height:auto;">
                 <!-- Rail path -->
                 <path d="M 10 30 L 80 30 L 110 65 L 170 65" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
@@ -1036,10 +1037,6 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
                 <!-- Warning at the drop point -->
                 <text x="95" y="55" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="16" fill="var(--b900)">⚠</text>
               </svg>
-              <div style="text-align:center;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b700);letter-spacing:0.06em;line-height:1;">03</div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--b900);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px;">Impact</div>
-              </div>
               <div style="font-family:'DusitText',sans-serif;font-size:13px;color:var(--b900);line-height:1.55;text-align:center;">A B2B net rate shows up on a public site <b>below your own price.</b> Your parity is gone.</div>
             </div>
           </div>
