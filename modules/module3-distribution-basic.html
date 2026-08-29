@@ -518,19 +518,52 @@ body.cueline-active #s-b2c-b2b [data-cue],
 body.cueline-active #s-blurred [data-cue]{
   opacity:1;transform:none;transition:box-shadow 0.5s ease, transform 0.5s ease, filter 0.5s ease;
 }
-/* Slide 4 · Past lane: dots travel along their own lane, never crossing. Loops. */
-body.cueline-active #s-blurred .lane-dot-a{
-  animation: laneFlow 3.4s ease-in-out infinite;
+/* Slide 4 · Past — two dots travel their own lanes, never cross. Continuous loop. */
+body.cueline-active #s-blurred .lane-dot-past-a,
+body.cueline-active #s-blurred .lane-dot-past-b{
+  animation: pastFlow 4s linear infinite;
 }
-body.cueline-active #s-blurred .lane-dot-b{
-  animation: laneFlow 3.4s ease-in-out infinite;
-  animation-delay: 1.6s;
+body.cueline-active #s-blurred .lane-dot-past-b{ animation-delay: 2s; }
+@keyframes pastFlow {
+  0%   { transform: translateX(0);    opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { transform: translateX(160px); opacity: 0; }
 }
-@keyframes laneFlow {
-  0%   { transform: translateX(0);   opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translateX(118px); opacity: 0; }
+
+/* Slide 4 · Today — dots start in their own lane and swap. Clear crossing motion. */
+body.cueline-active #s-blurred .lane-dot-today-a{
+  animation: todayCrossA 4s ease-in-out infinite;
+}
+body.cueline-active #s-blurred .lane-dot-today-b{
+  animation: todayCrossB 4s ease-in-out infinite;
+}
+@keyframes todayCrossA {
+  0%   { transform: translate(0, 0);          opacity: 0; }
+  8%   { opacity: 1; }
+  50%  { transform: translate(90px, -30px);   opacity: 1; }
+  92%  { opacity: 1; }
+  100% { transform: translate(160px, -30px);  opacity: 0; }
+}
+@keyframes todayCrossB {
+  0%   { transform: translate(0, 0);          opacity: 0; }
+  8%   { opacity: 1; }
+  50%  { transform: translate(90px, 30px);    opacity: 1; }
+  92%  { opacity: 1; }
+  100% { transform: translate(160px, 30px);   opacity: 0; }
+}
+
+/* Slide 4 · Impact — leak dot travels the rail, drops through the warning, lands on $. */
+body.cueline-active #s-blurred .lane-dot-impact{
+  animation: impactLeak 3.6s ease-in-out infinite;
+}
+@keyframes impactLeak {
+  0%   { transform: translate(0, 0);          opacity: 0; }
+  8%   { opacity: 1; }
+  35%  { transform: translate(70px, 0);       opacity: 1; }
+  60%  { transform: translate(100px, 35px);   opacity: 1; }
+  92%  { transform: translate(160px, 35px);   opacity: 1; }
+  100% { transform: translate(160px, 35px);   opacity: 0; }
 }
 
 /* Reveal is a one-shot pulse — brief acknowledgment of the beat, then back to rest.
@@ -940,73 +973,74 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <h2 class="sh" style="margin-top:6px;">The line blurred</h2>
           </div>
 
-          <!-- Progression: Past → Today → Impact. Each state has a mini SVG diagram on the
-               left showing what the two lanes are DOING (parallel / crossing / leaking).
-               Small vertical median arrows connect the three states as a build. -->
-          <div style="max-width:820px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:0;">
+          <!-- Vertical 3-column split. Each column tells one state with its own diagram,
+               label, and text. Gold gradient dividers between columns for structure. -->
+          <div style="max-width:900px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 2px 1fr 2px 1fr;gap:18px;align-items:stretch;">
 
-            <!-- 01 · PAST — two parallel lanes, dots flow in their own lanes -->
-            <div data-cue="band-past" style="padding:14px 18px;background:var(--g50);border-radius:var(--rs);display:grid;grid-template-columns:130px 74px 1fr;gap:18px;align-items:center;">
-              <!-- Mini diagram: two parallel lanes -->
-              <svg viewBox="0 0 130 60" style="width:130px;height:60px;">
-                <line x1="6" y1="20" x2="124" y2="20" stroke="var(--b400)" stroke-width="1.6" stroke-dasharray="4 4"/>
-                <line x1="6" y1="42" x2="124" y2="42" stroke="var(--gold)" stroke-width="1.6" stroke-dasharray="4 4"/>
-                <text x="6" y="14" font-family="DusitDisplay,sans-serif" font-size="7" font-weight="800" fill="var(--b700)">B2C</text>
-                <text x="6" y="55" font-family="DusitDisplay,sans-serif" font-size="7" font-weight="800" fill="var(--gold)">B2B</text>
-                <circle class="lane-dot-a" cx="6" cy="20" r="3.5" fill="var(--b700)"/>
-                <circle class="lane-dot-b" cx="6" cy="42" r="3.5" fill="var(--gold)"/>
+            <!-- 01 · PAST -->
+            <div data-cue="band-past" style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 4px;">
+              <!-- Diagram: two parallel lanes, dots flow independently -->
+              <svg viewBox="0 0 180 90" style="width:100%;max-width:180px;height:auto;">
+                <line x1="10" y1="30" x2="170" y2="30" stroke="var(--b400)" stroke-width="1.6" stroke-dasharray="4 4"/>
+                <line x1="10" y1="60" x2="170" y2="60" stroke="var(--gold)" stroke-width="1.6" stroke-dasharray="4 4"/>
+                <text x="10" y="20" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--b700)">B2C</text>
+                <text x="10" y="80" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)">B2B</text>
+                <circle class="lane-dot-past-a" cx="10" cy="30" r="4.5" fill="var(--b700)"/>
+                <circle class="lane-dot-past-b" cx="10" cy="60" r="4.5" fill="var(--gold)"/>
               </svg>
-              <div>
+              <div style="text-align:center;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--g500);letter-spacing:0.06em;line-height:1;">01</div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--g500);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;">Past</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--g500);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px;">Past</div>
               </div>
-              <div style="font-family:'DusitText',sans-serif;font-size:14px;color:var(--g700);line-height:1.5;">Wholesalers sold room-only rates to trade partners. Guests booked their own trips direct. <b style="color:var(--b900);">B2B and B2C ran on separate rails</b> — different customers, different rates, no overlap.</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:13px;color:var(--g700);line-height:1.55;text-align:center;">Wholesalers sold room-only rates to trade partners. Guests booked direct. <b style="color:var(--b900);">B2B and B2C ran on separate rails.</b></div>
             </div>
 
-            <!-- Median arrow between Past and Today -->
-            <div aria-hidden="true" style="text-align:center;color:var(--g300);font-family:'DusitDisplay',sans-serif;font-size:14px;line-height:1;padding:4px 0;">↓</div>
+            <!-- Divider 1 -->
+            <div aria-hidden="true" style="background:linear-gradient(to bottom, transparent 0%, var(--g100) 15%, var(--g100) 85%, transparent 100%);"></div>
 
-            <!-- 02 · TODAY — lanes crossing over -->
-            <div data-cue="band-today" style="padding:14px 18px;background:var(--white);border:1px solid var(--gold);border-radius:var(--rs);display:grid;grid-template-columns:130px 74px 1fr;gap:18px;align-items:center;">
-              <svg viewBox="0 0 130 60" style="width:130px;height:60px;">
-                <!-- Lane baselines -->
-                <line x1="6" y1="20" x2="52" y2="20" stroke="var(--b400)" stroke-width="1.6" stroke-dasharray="4 4"/>
-                <line x1="78" y1="20" x2="124" y2="20" stroke="var(--b400)" stroke-width="1.6" stroke-dasharray="4 4"/>
-                <line x1="6" y1="42" x2="52" y2="42" stroke="var(--gold)" stroke-width="1.6" stroke-dasharray="4 4"/>
-                <line x1="78" y1="42" x2="124" y2="42" stroke="var(--gold)" stroke-width="1.6" stroke-dasharray="4 4"/>
-                <!-- Crossing lines in the middle -->
-                <line x1="52" y1="20" x2="78" y2="42" stroke="var(--gold)" stroke-width="1.8"/>
-                <line x1="52" y1="42" x2="78" y2="20" stroke="var(--b400)" stroke-width="1.8"/>
-                <text x="6" y="14" font-family="DusitDisplay,sans-serif" font-size="7" font-weight="800" fill="var(--b700)">B2C</text>
-                <text x="6" y="55" font-family="DusitDisplay,sans-serif" font-size="7" font-weight="800" fill="var(--gold)">B2B</text>
+            <!-- 02 · TODAY -->
+            <div data-cue="band-today" style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 4px;">
+              <!-- Diagram: lanes crossing. Two dots swap lanes mid-way. -->
+              <svg viewBox="0 0 180 90" style="width:100%;max-width:180px;height:auto;">
+                <line x1="10" y1="30" x2="170" y2="30" stroke="var(--b400)" stroke-width="1.6" stroke-dasharray="4 4"/>
+                <line x1="10" y1="60" x2="170" y2="60" stroke="var(--gold)" stroke-width="1.6" stroke-dasharray="4 4"/>
+                <text x="10" y="20" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--b700)">B2C</text>
+                <text x="10" y="80" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)">B2B</text>
+                <!-- The crossing swap path — two dots follow an X path -->
+                <circle class="lane-dot-today-a" cx="10" cy="60" r="4.5" fill="var(--gold)"/>
+                <circle class="lane-dot-today-b" cx="10" cy="30" r="4.5" fill="var(--b700)"/>
               </svg>
-              <div>
+              <div style="text-align:center;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold);letter-spacing:0.06em;line-height:1;">02</div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;">Today</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px;">Today</div>
               </div>
-              <div style="font-family:'DusitText',sans-serif;font-size:14px;color:var(--b900);line-height:1.5;">Wholesalers reach guests through connected agents, affiliates, white-label sites. Consumer platforms run reseller tools. <b>The lanes cross.</b></div>
+              <div style="font-family:'DusitText',sans-serif;font-size:13px;color:var(--b900);line-height:1.55;text-align:center;">Wholesalers reach guests through connected agents and white-label sites. <b>The lanes cross.</b></div>
             </div>
 
-            <!-- Median arrow between Today and Impact -->
-            <div aria-hidden="true" style="text-align:center;color:var(--gold);font-family:'DusitDisplay',sans-serif;font-size:14px;line-height:1;padding:4px 0;">↓</div>
+            <!-- Divider 2 -->
+            <div aria-hidden="true" style="background:linear-gradient(to bottom, transparent 0%, var(--gold) 15%, var(--gold) 85%, transparent 100%);"></div>
 
-            <!-- 03 · IMPACT — leak marker with warning -->
-            <div data-cue="band-impact" style="padding:14px 18px;background:var(--gold-l);border-radius:var(--rs);display:grid;grid-template-columns:130px 74px 1fr;gap:18px;align-items:center;">
-              <svg viewBox="0 0 130 60" style="width:130px;height:60px;">
-                <line x1="6" y1="30" x2="60" y2="30" stroke="var(--gold)" stroke-width="1.8"/>
-                <line x1="60" y1="30" x2="86" y2="46" stroke="var(--gold)" stroke-width="1.8"/>
-                <line x1="86" y1="46" x2="124" y2="46" stroke="var(--gold)" stroke-width="1.8" stroke-dasharray="3 3"/>
+            <!-- 03 · IMPACT -->
+            <div data-cue="band-impact" style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 4px;">
+              <!-- Diagram: gold rail drops through a warning into a public price marker -->
+              <svg viewBox="0 0 180 90" style="width:100%;max-width:180px;height:auto;">
+                <!-- Rail path -->
+                <path d="M 10 30 L 80 30 L 110 65 L 170 65" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+                <text x="10" y="20" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)">B2B RATE</text>
+                <text x="130" y="80" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--b900)" text-anchor="middle">PUBLIC SITE</text>
                 <!-- Public-site marker -->
-                <circle cx="112" cy="46" r="6" fill="var(--white)" stroke="var(--b900)" stroke-width="1.4"/>
-                <text x="112" y="49" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="7" font-weight="800" fill="var(--b900)">$</text>
+                <circle cx="170" cy="65" r="8" fill="var(--white)" stroke="var(--b900)" stroke-width="1.6"/>
+                <text x="170" y="69" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="10" font-weight="800" fill="var(--b900)">$</text>
+                <!-- Animated leak dot travelling the rail -->
+                <circle class="lane-dot-impact" cx="10" cy="30" r="4.5" fill="var(--gold)"/>
                 <!-- Warning at the drop point -->
-                <text x="72" y="42" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" fill="var(--b900)">⚠</text>
+                <text x="95" y="55" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="16" fill="var(--b900)">⚠</text>
               </svg>
-              <div>
+              <div style="text-align:center;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b700);letter-spacing:0.06em;line-height:1;">03</div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;">Impact</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--b900);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px;">Impact</div>
               </div>
-              <div style="font-family:'DusitText',sans-serif;font-size:14px;color:var(--b900);line-height:1.5;">A net rate you gave a wholesaler shows up on a public site <b>below your own price.</b> Your parity is gone. And you did nothing wrong.</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:13px;color:var(--b900);line-height:1.55;text-align:center;">A B2B net rate shows up on a public site <b>below your own price.</b> Your parity is gone.</div>
             </div>
           </div>
 
