@@ -95,8 +95,12 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
   display:flex;flex-direction:column;justify-content:center;
   overflow-y:auto;overflow-x:hidden;
 }
-.s-inner{padding:26px 30px;height:100%;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;}
+.s-inner{padding:26px 30px;height:100%;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;justify-content:center;}
 .s-centre{justify-content:center;}
+/* The .slide flex layout also needs vertical centering so hooks / section markers /
+   summary (which position their content directly in .slide, not in .s-inner) sit
+   visually balanced above the CC safe zone rather than pinning to the top. */
+.slide{justify-content:center;}
 
 /* TYPOGRAPHY */
 .eye{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block;}
