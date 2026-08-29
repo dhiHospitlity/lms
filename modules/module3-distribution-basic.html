@@ -716,61 +716,61 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 1 (s-loc): LOCATOR. Strategy wheel — Retail & Leisure Distribution wedge lit. -->
+      <!-- SLIDE 1 (s-loc): LOCATOR. Strategy wheel — Retail & Leisure Distribution wedge lit.
+           Wheel on left, six-lever ledger on right. Gold-lit wedge + highlighted list row
+           tell the story together — no absolute-positioned callout to collide with. -->
       <div class="slide s-white" id="s-loc">
-        <div class="s-inner" style="padding:24px 40px;display:flex;flex-direction:column;gap:14px;">
-          <div style="text-align:center;">
-            <span class="eye">1 · Basic knowledge</span>
-            <h2 class="sh" style="margin-top:6px;">Where this sits</h2>
-          </div>
+        <div class="s-inner" style="padding:18px 40px 0;text-align:center;">
+          <span class="eye">1 · Basic knowledge</span>
+          <h2 class="sh" style="margin-top:4px;margin-bottom:14px;">Where this sits</h2>
 
-          <div style="display:flex;align-items:center;justify-content:center;gap:36px;flex:1;">
-            <!-- Wheel diagram -->
-            <div style="position:relative;width:280px;height:280px;flex:0 0 280px;">
-              <!-- Outer ring container -->
-              <svg viewBox="0 0 200 200" style="width:100%;height:100%;">
-                <!-- Six equal wedges around a centre; wedge 6 (Retail & Leisure Distribution) is lit gold -->
-                <g data-cue="wheel-ring" style="">
-                  <path d="M 100 100 L 100 20 A 80 80 0 0 1 169.28 60 Z" fill="#EEF6FD" stroke="var(--b900)" stroke-width="0.6"/>
-                  <path d="M 100 100 L 169.28 60 A 80 80 0 0 1 169.28 140 Z" fill="#EEF6FD" stroke="var(--b900)" stroke-width="0.6"/>
-                  <path d="M 100 100 L 169.28 140 A 80 80 0 0 1 100 180 Z" fill="#EEF6FD" stroke="var(--b900)" stroke-width="0.6"/>
-                  <path d="M 100 100 L 100 180 A 80 80 0 0 1 30.72 140 Z" fill="#EEF6FD" stroke="var(--b900)" stroke-width="0.6"/>
-                  <path d="M 100 100 L 30.72 140 A 80 80 0 0 1 30.72 60 Z" fill="#EEF6FD" stroke="var(--b900)" stroke-width="0.6"/>
-                  <path d="M 100 100 L 30.72 60 A 80 80 0 0 1 100 20 Z" fill="#EEF6FD" stroke="var(--b900)" stroke-width="0.6"/>
+          <div style="display:grid;grid-template-columns:260px 1fr;gap:44px;align-items:center;max-width:720px;margin:0 auto;text-align:left;">
+
+            <!-- Wheel (SVG). 6 equal wedges. Top-right (2 o'clock) = Retail & Leisure Distribution → lit gold. -->
+            <div style="position:relative;width:260px;height:260px;">
+              <svg viewBox="0 0 200 200" style="width:100%;height:100%;overflow:visible;">
+                <!-- Five pale wedges (alternating tint). Revealed together with wheel-ring. -->
+                <g data-cue="wheel-ring">
+                  <path d="M 100 100 L 100 20 A 80 80 0 0 1 169.28 60 Z"    fill="#EEF6FD" stroke="var(--b700)" stroke-width="0.5"/>
+                  <path d="M 100 100 L 169.28 140 A 80 80 0 0 1 100 180 Z"  fill="#EEF6FD" stroke="var(--b700)" stroke-width="0.5"/>
+                  <path d="M 100 100 L 100 180 A 80 80 0 0 1 30.72 140 Z"   fill="#D8EAFB" stroke="var(--b700)" stroke-width="0.5"/>
+                  <path d="M 100 100 L 30.72 140 A 80 80 0 0 1 30.72 60 Z"  fill="#EEF6FD" stroke="var(--b700)" stroke-width="0.5"/>
+                  <path d="M 100 100 L 30.72 60 A 80 80 0 0 1 100 20 Z"     fill="#D8EAFB" stroke="var(--b700)" stroke-width="0.5"/>
                 </g>
-                <!-- Lit gold wedge (top-right position — placeholder for Retail & Leisure Distribution) -->
-                <path data-cue="wheel-lit" d="M 100 100 L 169.28 60 A 80 80 0 0 1 169.28 140 Z" fill="var(--gold)" stroke="var(--b900)" stroke-width="0.6" style=""/>
-                <!-- Centre disc -->
-                <circle data-cue="wheel-centre" cx="100" cy="100" r="38" fill="var(--b900)" style=""/>
-                <text data-cue="wheel-centre" x="100" y="92" text-anchor="middle" fill="var(--white)" font-family="DusitDisplay,sans-serif" font-size="6.5" font-weight="800" style="">Grow Profitable</text>
-                <text data-cue="wheel-centre" x="100" y="101" text-anchor="middle" fill="var(--white)" font-family="DusitDisplay,sans-serif" font-size="6.5" font-weight="800" style="">Total Hotel</text>
-                <text data-cue="wheel-centre" x="100" y="110" text-anchor="middle" fill="var(--gold)" font-family="DusitDisplay,sans-serif" font-size="6.5" font-weight="800" style="">Revenue</text>
+                <!-- The lit wedge (2 o'clock position) — Retail & Leisure Distribution -->
+                <path data-cue="wheel-lit" d="M 100 100 L 169.28 60 A 80 80 0 0 1 169.28 140 Z" fill="var(--gold)" stroke="var(--b900)" stroke-width="0.7"/>
+                <!-- Centre disc + label -->
+                <circle data-cue="wheel-centre" cx="100" cy="100" r="38" fill="var(--b900)"/>
+                <text data-cue="wheel-centre" x="100" y="93"  text-anchor="middle" fill="var(--white)" font-family="DusitDisplay,sans-serif" font-size="7" font-weight="800">Grow Profitable</text>
+                <text data-cue="wheel-centre" x="100" y="102" text-anchor="middle" fill="var(--white)" font-family="DusitDisplay,sans-serif" font-size="7" font-weight="800">Total Hotel</text>
+                <text data-cue="wheel-centre" x="100" y="112" text-anchor="middle" fill="var(--gold)"  font-family="DusitDisplay,sans-serif" font-size="7" font-weight="800">Revenue</text>
               </svg>
-              <!-- Lit wedge label callout -->
-              <div data-cue="wheel-lit" style="position:absolute;top:44%;right:-100px;transform:translateY(-50%);width:140px;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:2px;">This module →</div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);line-height:1.2;">Retail &amp; Leisure Distribution</div>
+              <!-- Caption pinned beneath the wheel — sits below the SVG, no absolute overlap with the list. -->
+              <div style="text-align:center;font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--g500);letter-spacing:0.14em;text-transform:uppercase;margin-top:6px;">Dusit strategy wheel</div>
+            </div>
+
+            <!-- Levers ledger. Retail & Leisure row gets the gold treatment via wheel-lit. -->
+            <div>
+              <div data-cue="wheel-ring" style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:10px;">The six levers</div>
+              <div style="display:flex;flex-direction:column;gap:6px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">
+                <div data-cue="wheel-ring" style="padding:5px 10px;border-left:2px solid var(--g100);">Drive RevPAR Growth</div>
+                <div data-cue="wheel-ring" style="padding:5px 10px;border-left:2px solid var(--g100);">Gain Market Share</div>
+                <div data-cue="wheel-ring" style="padding:5px 10px;border-left:2px solid var(--g100);">Grow Digital Delivery</div>
+                <div data-cue="wheel-ring" style="padding:5px 10px;border-left:2px solid var(--g100);">Grow Non-Room Revenue</div>
+                <div data-cue="wheel-ring" style="padding:5px 10px;border-left:2px solid var(--g100);">Maintain Parity</div>
+                <!-- The lit row: gold left rule, gold "This module" tag, bold navy title. Fires with wheel-lit. -->
+                <div data-cue="wheel-lit" style="padding:8px 12px;border-left:3px solid var(--gold);background:var(--gold-l);border-radius:0 var(--rs) var(--rs) 0;">
+                  <div style="font-family:'DusitDisplay',sans-serif;font-size:8px;font-weight:800;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:2px;">This module</div>
+                  <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);line-height:1.25;">Retail &amp; Leisure Distribution</div>
+                </div>
               </div>
             </div>
 
-            <!-- Right panel: the 6 levers list + take-away -->
-            <div style="flex:1;max-width:280px;">
-              <div data-cue="wheel-ring" style="">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px;">Six levers, same centre</div>
-                <ul style="list-style:none;padding:0;margin:0;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);line-height:1.9;">
-                  <li>Drive RevPAR Growth</li>
-                  <li>Gain Market Share</li>
-                  <li>Grow Digital Delivery</li>
-                  <li>Grow Non-Room Revenue</li>
-                  <li>Maintain Parity</li>
-                  <li style="color:var(--b900);font-weight:700;">Retail &amp; Leisure Distribution</li>
-                </ul>
-              </div>
-            </div>
           </div>
 
-          <div data-cue="takeaway" style="padding:12px 20px;background:var(--gold-l);border-left:3px solid var(--gold);border-radius:0 var(--rs) var(--rs) 0;max-width:640px;margin:0 auto;">
-            <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);line-height:1.5;">A channel decision is not a technical setting. It pulls on <b>the number in the middle.</b></div>
+          <!-- Takeaway callout, centered beneath. -->
+          <div data-cue="takeaway" style="margin:16px auto 0;max-width:600px;padding:10px 18px;background:var(--white);border:1px solid var(--g100);border-left:3px solid var(--gold);border-radius:0 var(--rs) var(--rs) 0;text-align:left;">
+            <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);line-height:1.5;">A channel decision is not a technical setting. It pulls on <b style="color:var(--b900);">the number in the middle.</b></div>
           </div>
         </div>
       </div>
