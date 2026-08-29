@@ -768,12 +768,12 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);text-align:center;line-height:1.3;margin-top:3px;">rate + avail</div>
             </div>
             <div style="font-family:'DusitDisplay',sans-serif;font-size:18px;color:var(--gold);">→</div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-              <div style="width:100px;height:88px;background:var(--white);border:2.5px solid var(--b900);border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:8px;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--b900);letter-spacing:0.02em;">Opera</div>
-                <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);text-align:center;line-height:1.3;margin-top:3px;">PMS</div>
-              </div>
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--g500);letter-spacing:0.12em;text-transform:uppercase;">Your desk</div>
+            <div style="width:100px;height:88px;background:var(--white);border:2.5px solid var(--b900);border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:8px;position:relative;">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--b900);letter-spacing:0.02em;">Opera</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:10px;color:var(--g500);text-align:center;line-height:1.3;margin-top:3px;">PMS</div>
+              <!-- YOUR DESK sits absolutely beneath the box so the box itself stays at
+                   the same 88px height as OTA / CM / CRS in the flex row above. -->
+              <div style="position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--g500);letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;">Your desk</div>
             </div>
           </div>
         </div>
