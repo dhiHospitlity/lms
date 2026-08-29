@@ -595,9 +595,9 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
     <div class="sb-prog-bar"><div class="sb-prog-fill" id="sbFill" style="width:5%"></div></div>
   </div>
   <div class="sb-nav">
-    <div class="sb-section">1 · Basic knowledge</div>
+    <div class="sb-section">1 · The landscape</div>
     <div class="sb-item active" id="sbi-hook" onclick="nav(0)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Someone is booking your hotel right now</div></div></div>
-    <div class="sb-item" id="sbi-loc" onclick="nav(1)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Where this sits</div></div></div>
+    <div class="sb-item" id="sbi-loc" onclick="nav(1)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The bigger picture</div></div></div>
     <div class="sb-item" id="sbi-def" onclick="nav(2)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">What distribution actually means</div></div></div>
     <div class="sb-item" id="sbi-b2c-b2b" onclick="nav(3)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">B2C and B2B</div></div></div>
     <div class="sb-item" id="sbi-blurred" onclick="nav(4)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The line blurred</div></div></div>
@@ -721,8 +721,8 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
            tell the story together — no absolute-positioned callout to collide with. -->
       <div class="slide s-white" id="s-loc">
         <div class="s-inner" style="padding:18px 40px 0;text-align:center;">
-          <span class="eye">1 · Basic knowledge</span>
-          <h2 class="sh" style="margin-top:4px;margin-bottom:14px;">Where this sits</h2>
+          <span class="eye">1 · The landscape</span>
+          <h2 class="sh" style="margin-top:4px;margin-bottom:14px;">The bigger picture</h2>
 
           <div style="display:grid;grid-template-columns:260px 1fr;gap:44px;align-items:center;max-width:720px;margin:0 auto;text-align:left;">
 
@@ -777,7 +777,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
       <div class="slide s-white" id="s-def">
         <div class="s-inner" style="padding:24px 40px;display:flex;flex-direction:column;gap:14px;">
           <div style="text-align:center;">
-            <span class="eye">1 · Basic knowledge</span>
+            <span class="eye">1 · The landscape</span>
             <h2 class="sh" style="margin-top:6px;">What distribution actually means</h2>
           </div>
 
@@ -818,7 +818,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
       <div class="slide s-white" id="s-b2c-b2b">
         <div class="s-inner" style="padding:24px 40px;display:flex;flex-direction:column;gap:14px;">
           <div style="text-align:center;">
-            <span class="eye">1 · Basic knowledge</span>
+            <span class="eye">1 · The landscape</span>
             <h2 class="sh" style="margin-top:6px;">B2C and B2B — who is the customer?</h2>
           </div>
 
@@ -868,7 +868,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
       <div class="slide s-white" id="s-blurred">
         <div class="s-inner" style="padding:22px 40px;display:flex;flex-direction:column;gap:10px;">
           <div style="text-align:center;">
-            <span class="eye">1 · Basic knowledge</span>
+            <span class="eye">1 · The landscape</span>
             <h2 class="sh" style="margin-top:6px;">The line blurred</h2>
           </div>
 
@@ -1161,7 +1161,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 // Module 3 · OTA1 Distribution Basic Knowledge — 21 slides, 3 sections + KC gate + 5-Q quiz + summary
 const SLIDE_IDS = [
   's-hook',       //  0  Someone is booking your hotel right now
-  's-loc',        //  1  Where this sits (strategy wheel)
+  's-loc',        //  1  The bigger picture (strategy wheel)
   's-def',        //  2  What distribution actually means
   's-b2c-b2b',    //  3  B2C and B2B — who is the customer?
   's-blurred',    //  4  The line blurred (rate leakage setup)
@@ -1190,7 +1190,7 @@ const SIDEBAR_IDS = ['sbi-hook','sbi-loc','sbi-def','sbi-b2c-b2b','sbi-blurred',
 
 const TITLES = [
   'Someone is booking your hotel right now',
-  'Where this sits',
+  'The bigger picture',
   'What distribution actually means',
   'B2C and B2B',
   'The line blurred',
@@ -2291,7 +2291,7 @@ Cueline.register(0, [ // s-hook · Someone is booking your hotel right now
   {do:'reveal', target:'channels',   cc:"That connection might be an OTA. Or a wholesaler. Or a travel agent. Or your own website. Each of those routes costs the hotel a different amount."},
   {do:'reveal', target:'headline',   cc:"Same room. Same guest. Same night. Different money in the bank. This module is about that journey."}
 ]);
-Cueline.register(1, [ // s-loc · Where this sits
+Cueline.register(1, [ // s-loc · The bigger picture
   {cc:"Before we get into channels, one piece of context."},
   {do:'reveal', target:'wheel-centre', cc:"Everything your commercial team does rolls up to a single number. Grow profitable total hotel revenue."},
   {do:'reveal', target:'wheel-ring',   cc:"RevPAR growth. Market share. Digital delivery. Non-room revenue. Parity. Different levers, same centre."},
