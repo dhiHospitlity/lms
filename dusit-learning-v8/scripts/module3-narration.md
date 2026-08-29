@@ -443,7 +443,7 @@
 
 ---
 
-## Slide 10 (s-non). Non-connected players
+## Slide 10 (s-non). Non-connected channels
 
 ### Reading text (~35 sec)
 

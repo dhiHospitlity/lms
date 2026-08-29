@@ -812,7 +812,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
     <div class="sb-item" id="sbi-ota-tiers" onclick="nav(7)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">OTAs, in three tiers</div></div></div>
     <div class="sb-item" id="sbi-b2b-math" onclick="nav(8)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">How wholesale actually works</div></div></div>
     <div class="sb-item" id="sbi-b2b" onclick="nav(9)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">B2B partners</div></div></div>
-    <div class="sb-item" id="sbi-non" onclick="nav(10)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Non-connected players</div></div></div>
+    <div class="sb-item" id="sbi-non" onclick="nav(10)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Non-connected channels</div></div></div>
     <div class="sb-item" id="sbi-map" onclick="nav(11)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Map the booking</div></div></div>
     <div class="sb-section">3 · The role of distribution</div>
     <div class="sb-item" id="sbi-sys-mark" onclick="nav(12)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The systems behind every booking</div></div></div>
@@ -2002,7 +2002,7 @@ const TITLES = [
   'OTAs, in three tiers',
   'How wholesale actually works',
   'B2B partners',
-  'Non-connected players',
+  'Non-connected channels',
   'Map the booking',
   'The systems behind every booking',
   'Which system does what',
@@ -2026,7 +2026,7 @@ const QFB = [
   'Volume is worthless if the rate leaks onto a public site and undercuts your own. Every new B2B partner starts with two questions: what is the net rate, and where will those rooms end up being sold?',
   'B2B rates are room-only products by contract. Changing the rate code to include breakfast breaks the partner agreement, corrupts reporting, and puts the parity conversation in the wrong place. Offer breakfast as a paid add-on.',
   'That is rate leakage — a B2B net rate that has ended up on a consumer channel, below your own dusit.com price. It is exactly what the B2B channel rule exists to prevent. Report it to Corporate Distribution the same day.',
-  'Connected channels update automatically the moment the rate changes in the CRS. The channel manager carries it out to every OTA, every B2B partner, the GDS, and dusit.com. The only channels sitting on the old rate are the non-connected ones — the local agent and the corporate account on email — until someone tells them.',
+  'Connected channels update automatically the moment the rate changes in SynXis, the central platform. SynXis fans it out — dusit.com through the booking engine, the OTAs and B2B partners through the channel manager, and the GDS directly. The only channels sitting on the old rate are the non-connected ones — the local agent and the corporate account on email — until someone tells them.',
   'The guest pays the same either way. The hotel does not receive the same. Commission comes off the OTA-net; the direct booking lands full. That is the single sentence to remember about channel choice.'
 ];
 const answered = Array(5).fill(false);
@@ -3346,7 +3346,7 @@ function renderTraceStage(){
 // 3 MCQs, one at a time. All correct → unlock quiz. Unlimited attempts.
 const KC_QS = [
   { q:"A guest books on Booking.com. Which lane?", opts:["Direct","Connected OTAs","Connected B2B","Non-connected"], a:1 },
-  { q:"You change a rate in the CRS. Which channels update automatically?", opts:["Only dusit.com","Only OTAs","Every connected channel","Every channel including non-connected"], a:2 },
+  { q:"You change a rate in SynXis. Which channels update automatically?", opts:["Only dusit.com","Only OTAs","Every connected channel","Every channel including non-connected"], a:2 },
   { q:"A B2B partner's net rate ends up on a public consumer site. What is that?", opts:["A pricing win","Rate leakage — report immediately","Standard channel behaviour","A promotion"], a:1 }
 ];
 let kcIdx = 0;
