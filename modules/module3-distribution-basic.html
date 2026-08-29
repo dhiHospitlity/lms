@@ -612,25 +612,29 @@ body.cueline-active #s-non .manual-hand{
   0%, 100% { transform: rotate(0deg) scale(1); opacity: 1; }
   50%      { transform: rotate(-8deg) scale(1.08); opacity: 0.7; }
 }
-/* s-b2b-math · Gold "$" coin travels the wholesale chain L→R and loops.
-   Pauses at each node in the chain (Hotel → Wholesaler → Agent → Guest)
-   so the eye can track that ONE booking is moving through the four
-   parties as George narrates each hand-off. */
+/* s-b2b-math · Gold "$" coin position is DRIVEN by which chain-* group
+   was most recently revealed by Cueline. Uses the sibling combinator (~)
+   so the coin picks up the position of the LATEST revealed chain node.
+   Because CSS cascade honours the LAST matching rule of equal specificity,
+   listing the rules in narrative order (hotel → partner → agent → guest)
+   makes the later reveals win over earlier ones — no JS, no free-running
+   loop, coin stays in sync with George's narration. */
 body.cueline-active #s-b2b-math .wholesale-coin{
-  animation: wholesaleCoin 6.4s ease-in-out infinite;
-  transform-origin: 0 0;
+  transform: translate(120px, 125px);
+  opacity: 0;
+  transition: transform 0.9s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.35s ease;
 }
-@keyframes wholesaleCoin{
-  0%   { transform: translate(90px,  95px); opacity: 0; }
-  6%   { opacity: 1; }
-  20%  { transform: translate(90px,  95px); opacity: 1; }
-  30%  { transform: translate(310px, 95px); opacity: 1; }
-  45%  { transform: translate(310px, 95px); opacity: 1; }
-  55%  { transform: translate(530px, 95px); opacity: 1; }
-  70%  { transform: translate(530px, 95px); opacity: 1; }
-  80%  { transform: translate(750px, 95px); opacity: 1; }
-  94%  { opacity: 1; }
-  100% { transform: translate(750px, 95px); opacity: 0; }
+body.cueline-active #s-b2b-math [data-cue="chain-hotel"].reveal   ~ .wholesale-coin{
+  transform: translate(120px, 125px); opacity: 1;
+}
+body.cueline-active #s-b2b-math [data-cue="chain-partner"].reveal ~ .wholesale-coin{
+  transform: translate(340px, 125px); opacity: 1;
+}
+body.cueline-active #s-b2b-math [data-cue="chain-agent"].reveal   ~ .wholesale-coin{
+  transform: translate(560px, 125px); opacity: 1;
+}
+body.cueline-active #s-b2b-math [data-cue="chain-guest"].reveal   ~ .wholesale-coin{
+  transform: translate(780px, 125px); opacity: 1;
 }
 /* Reveal is a one-shot pulse — brief acknowledgment of the beat, then back to rest.
    Persistent glow was leaving every fired element highlighted, which read as noise. */
@@ -1293,67 +1297,70 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           <h2 class="sh" style="margin-top:2px;margin-bottom:6px;">How wholesale actually works</h2>
           <div style="max-width:640px;margin:0 auto 10px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.5;">Follow one room through the chain. Same room, same guest, watch the money.</div>
 
-          <!-- Animated chain diagram -->
-          <div style="position:relative;width:100%;max-width:840px;height:250px;margin:0 auto;">
-            <svg viewBox="0 0 840 250" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;">
-              <!-- BAR label above the Hotel node -->
-              <text x="90" y="40" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)" letter-spacing="1.5">BAR $200</text>
-
-              <!-- 4 chain nodes -->
+          <!-- Animated chain diagram · larger nodes, BAR $200 badge sits INSIDE the
+               Hotel card (no floating text), coin is anchored to the last-revealed
+               chain-* group via sibling selectors (see .wholesale-coin CSS below) —
+               it moves ONLY when George's cue fires, not on a free-running loop. -->
+          <div style="position:relative;width:100%;max-width:880px;height:320px;margin:0 auto;">
+            <svg viewBox="0 0 880 320" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;">
+              <!-- 4 chain nodes · 200×130 · centres at x = 120, 340, 560, 780 · y-top 60 -->
               <g data-cue="chain-hotel">
-                <rect x="20" y="60" width="140" height="70" rx="10" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.5"/>
-                <text x="90" y="88" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--b900)">Hotel</text>
-                <text x="90" y="104" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Dusit</text>
-                <text x="90" y="122" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="12" font-weight="800" fill="var(--b900)">gets $154</text>
+                <rect x="20" y="60" width="200" height="130" rx="12" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.75"/>
+                <rect x="60" y="76" width="120" height="20" rx="10" fill="var(--gold)"/>
+                <text x="120" y="90" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="11" font-weight="800" fill="var(--b900)" letter-spacing="1.5">BAR $200</text>
+                <text x="120" y="122" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="19" font-weight="800" fill="var(--b900)">Hotel</text>
+                <text x="120" y="140" text-anchor="middle" font-family="DusitText,sans-serif" font-size="12" fill="var(--g500)">Dusit</text>
+                <text x="120" y="170" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="16" font-weight="800" fill="var(--b900)">gets $154</text>
               </g>
 
               <g data-cue="chain-partner">
-                <line x1="160" y1="95" x2="240" y2="95" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 3"/>
-                <polygon points="235,90 245,95 235,100" fill="var(--gold)"/>
-                <text x="200" y="82" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)" letter-spacing="1">NET · 23% off</text>
-                <text x="200" y="112" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="10" font-weight="800" fill="var(--b900)">$154</text>
+                <line x1="220" y1="125" x2="340" y2="125" stroke="var(--gold)" stroke-width="1.75" stroke-dasharray="4 3"/>
+                <polygon points="333,120 343,125 333,130" fill="var(--gold)"/>
+                <text x="280" y="112" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="10" font-weight="800" fill="var(--gold)" letter-spacing="1.2">NET · 23% off</text>
+                <text x="280" y="146" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--b900)">$154</text>
 
-                <rect x="240" y="60" width="140" height="70" rx="10" fill="var(--white)" stroke="var(--gold)" stroke-width="1.5"/>
-                <text x="310" y="88" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--b900)">Wholesaler</text>
-                <text x="310" y="104" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Partner</text>
-                <text x="310" y="122" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="12" font-weight="800" fill="var(--g700)">+ $26 margin</text>
+                <rect x="240" y="60" width="200" height="130" rx="12" fill="var(--white)" stroke="var(--gold)" stroke-width="1.75"/>
+                <text x="340" y="112" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="19" font-weight="800" fill="var(--b900)">Wholesaler</text>
+                <text x="340" y="130" text-anchor="middle" font-family="DusitText,sans-serif" font-size="12" fill="var(--g500)">Partner</text>
+                <text x="340" y="160" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="15" font-weight="800" fill="var(--g700)">+ $26 margin</text>
               </g>
 
               <g data-cue="chain-agent">
-                <line x1="380" y1="95" x2="460" y2="95" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 3"/>
-                <polygon points="455,90 465,95 455,100" fill="var(--gold)"/>
-                <text x="420" y="82" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)" letter-spacing="1">SELLS AT</text>
-                <text x="420" y="112" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="10" font-weight="800" fill="var(--b900)">$180</text>
+                <line x1="440" y1="125" x2="560" y2="125" stroke="var(--gold)" stroke-width="1.75" stroke-dasharray="4 3"/>
+                <polygon points="553,120 563,125 553,130" fill="var(--gold)"/>
+                <text x="500" y="112" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="10" font-weight="800" fill="var(--gold)" letter-spacing="1.2">SELLS AT</text>
+                <text x="500" y="146" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--b900)">$180</text>
 
-                <rect x="460" y="60" width="140" height="70" rx="10" fill="var(--white)" stroke="var(--gold)" stroke-width="1.5"/>
-                <text x="530" y="88" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--b900)">Travel agent</text>
-                <text x="530" y="104" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Books for guest</text>
-                <text x="530" y="122" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="12" font-weight="800" fill="var(--g700)">+ $20 margin</text>
+                <rect x="460" y="60" width="200" height="130" rx="12" fill="var(--white)" stroke="var(--gold)" stroke-width="1.75"/>
+                <text x="560" y="112" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="19" font-weight="800" fill="var(--b900)">Travel agent</text>
+                <text x="560" y="130" text-anchor="middle" font-family="DusitText,sans-serif" font-size="12" fill="var(--g500)">Books for guest</text>
+                <text x="560" y="160" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="15" font-weight="800" fill="var(--g700)">+ $20 margin</text>
               </g>
 
               <g data-cue="chain-guest">
-                <line x1="600" y1="95" x2="680" y2="95" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 3"/>
-                <polygon points="675,90 685,95 675,100" fill="var(--gold)"/>
-                <text x="640" y="82" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)" letter-spacing="1">RETAIL</text>
-                <text x="640" y="112" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="10" font-weight="800" fill="var(--b900)">$200</text>
+                <line x1="660" y1="125" x2="780" y2="125" stroke="var(--gold)" stroke-width="1.75" stroke-dasharray="4 3"/>
+                <polygon points="773,120 783,125 773,130" fill="var(--gold)"/>
+                <text x="720" y="112" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="10" font-weight="800" fill="var(--gold)" letter-spacing="1.2">RETAIL</text>
+                <text x="720" y="146" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--b900)">$200</text>
 
-                <rect x="680" y="60" width="140" height="70" rx="10" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.5"/>
-                <text x="750" y="88" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--b900)">Guest</text>
-                <text x="750" y="104" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Books the room</text>
-                <text x="750" y="122" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="12" font-weight="800" fill="var(--b900)">pays $200</text>
+                <rect x="680" y="60" width="200" height="130" rx="12" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.75"/>
+                <text x="780" y="112" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="19" font-weight="800" fill="var(--b900)">Guest</text>
+                <text x="780" y="130" text-anchor="middle" font-family="DusitText,sans-serif" font-size="12" fill="var(--g500)">Books the room</text>
+                <text x="780" y="160" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="15" font-weight="800" fill="var(--b900)">pays $200</text>
               </g>
 
-              <!-- Animated gold coin travelling the chain -->
+              <!-- Gold "$" coin · position is driven by which chain-* was last revealed
+                   (see .wholesale-coin sibling-selector CSS). Sits ABOVE all node rects. -->
               <g class="wholesale-coin">
-                <circle cx="0" cy="0" r="12" fill="var(--gold)" stroke="var(--b900)" stroke-width="1.2"/>
-                <text x="0" y="4" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="13" font-weight="800" fill="var(--b900)">$</text>
+                <circle cx="0" cy="0" r="16" fill="var(--gold)" stroke="var(--b900)" stroke-width="1.5"/>
+                <text x="0" y="5" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="18" font-weight="800" fill="var(--b900)">$</text>
               </g>
 
               <!-- Bottom math summary bar -->
               <g data-cue="math-summary">
-                <rect x="60" y="170" width="720" height="52" rx="10" fill="var(--b900)"/>
-                <text x="420" y="190" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="10" font-weight="800" fill="var(--gold)" letter-spacing="1.5">THE MATH</text>
-                <text x="420" y="210" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="13" font-weight="800" fill="var(--white)">Hotel receives $154 · Guest pays $200 · Chain keeps $46 in between</text>
+                <rect x="40" y="230" width="800" height="66" rx="12" fill="var(--b900)"/>
+                <text x="440" y="253" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="11" font-weight="800" fill="var(--gold)" letter-spacing="1.8">THE MATH</text>
+                <text x="440" y="278" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="16" font-weight="800" fill="var(--white)">Hotel receives $154 · Guest pays $200 · Chain keeps $46 in between</text>
               </g>
             </svg>
           </div>
