@@ -821,7 +821,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
             <!-- Levers ledger — bigger text (14px), numbered rows, each row lights with its wedge -->
             <div>
-              <div data-cue="lever-1" class="levers-header" style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;">The six levers</div>
+              <div data-cue="levers-header" class="levers-header" style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;">The six levers</div>
               <div style="display:flex;flex-direction:column;gap:8px;font-family:'DusitText',sans-serif;font-size:14px;color:var(--g700);">
                 <div data-cue="lever-1" class="lever-row" style="display:grid;grid-template-columns:22px 1fr;gap:14px;align-items:center;padding:6px 0;">
                   <span style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--gold);">1</span>
@@ -2436,16 +2436,17 @@ Cueline.register(0, [ // s-hook · Someone is booking your hotel right now
   {do:'reveal', target:'channels',   cc:"That connection might be an OTA. Or a wholesaler. Or a travel agent. Or your own website. Each of those routes costs the hotel a different amount."},
   {do:'reveal', target:'headline',   cc:"Same room. Same guest. Same night. Different money in the bank. This module is about that journey."}
 ]);
-Cueline.register(1, [ // s-loc · The bigger picture — per-lever staggered reveal
+Cueline.register(1, [ // s-loc · The bigger picture — bridge beat + numbered per-lever reveals
   {cc:"Before we get into channels, one piece of context."},
-  {do:'reveal', target:'wheel-centre', cc:"Everything your commercial team does rolls up to a single number. Grow profitable total hotel revenue."},
-  {do:'reveal', target:'lever-1',      cc:"Drive RevPAR growth."},
-  {do:'reveal', target:'lever-2',      cc:"Gain market share."},
-  {do:'reveal', target:'lever-3',      cc:"Grow digital delivery."},
-  {do:'reveal', target:'lever-4',      cc:"Grow non-room revenue."},
-  {do:'reveal', target:'lever-5',      cc:"Maintain parity."},
-  {do:'reveal', target:'lever-6',      cc:"And distribution. This module sits inside one part of it. Retail and leisure distribution."},
-  {do:'reveal', target:'takeaway',     cc:"One thing worth carrying forward. When you make a channel decision, you are not adjusting a technical setting. You are pulling on that number in the middle."}
+  {do:'reveal', target:'wheel-centre',   cc:"Everything your commercial team does rolls up to a single number. Grow profitable total hotel revenue."},
+  {do:'reveal', target:'levers-header',  cc:"Six levers pull on that number. Let's name them."},
+  {do:'reveal', target:'lever-1',        cc:"One. Drive RevPAR growth."},
+  {do:'reveal', target:'lever-2',        cc:"Two. Gain market share."},
+  {do:'reveal', target:'lever-3',        cc:"Three. Grow digital delivery."},
+  {do:'reveal', target:'lever-4',        cc:"Four. Grow non-room revenue."},
+  {do:'reveal', target:'lever-5',        cc:"Five. Maintain parity."},
+  {do:'reveal', target:'lever-6',        cc:"And the sixth is where this module lives. Retail and leisure distribution."},
+  {do:'reveal', target:'takeaway',       cc:"One thing worth carrying forward. When you make a channel decision, you are not adjusting a technical setting. You are pulling on that number in the middle."}
 ]);
 Cueline.register(2, [ // s-def · What distribution actually means
   {cc:"Let's start with the plain version. Distribution is how your rooms get marketed, sold, and delivered to guests."},

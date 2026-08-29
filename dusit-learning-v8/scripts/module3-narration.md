@@ -61,7 +61,7 @@
 
 ## Slide 1 (s-loc). The bigger picture
 
-### Reading text (~55 sec)
+### Reading text (~60 sec)
 
 > Before we get into channels, one piece of context.
 >
@@ -71,51 +71,52 @@
 >
 > [pause 0.5s]
 >
-> Six levers pull on that number.
+> Six levers pull on that number. Let's name them.
 >
-> [pause 0.3s]
+> [pause 0.4s]
 >
-> Drive rev-par growth.
+> One. Drive rev-par growth.
 >
-> [pause 0.3s]
+> [pause 0.35s]
 >
-> Gain market share.
+> Two. Gain market share.
 >
-> [pause 0.3s]
+> [pause 0.35s]
 >
-> Grow digital delivery.
+> Three. Grow digital delivery.
 >
-> [pause 0.3s]
+> [pause 0.35s]
 >
-> Grow non-room revenue.
+> Four. Grow non-room revenue.
 >
-> [pause 0.3s]
+> [pause 0.35s]
 >
-> Maintain parity.
->
-> [pause 0.5s]
->
-> And distribution. This module sits inside one part of it. Retail and leisure distribution.
+> Five. Maintain parity.
 >
 > [pause 0.6s]
+>
+> And the sixth is where this module lives. Retail and leisure distribution.
+>
+> [pause 0.7s]
 >
 > One thing worth carrying forward. When you make a channel decision, you are not adjusting a technical setting. You are pulling on that number in the middle.
 
 ### Cue map
 
-| # | Action  | Target       | Spoken line |
-|---|---------|--------------|-------------|
-| 0 | narrate | .            | Before we get into channels, one piece of context. |
-| 1 | reveal  | wheel-centre | Everything your commercial team does rolls up to a single number. Grow profitable total hotel revenue. |
-| 2 | reveal  | lever-1      | Drive rev-par growth. |
-| 3 | reveal  | lever-2      | Gain market share. |
-| 4 | reveal  | lever-3      | Grow digital delivery. |
-| 5 | reveal  | lever-4      | Grow non-room revenue. |
-| 6 | reveal  | lever-5      | Maintain parity. |
-| 7 | reveal  | lever-6      | And distribution. This module sits inside one part of it. Retail and leisure distribution. |
-| 8 | reveal  | takeaway     | One thing worth carrying forward. When you make a channel decision, you are not adjusting a technical setting. You are pulling on that number in the middle. |
+| # | Action  | Target         | Spoken line |
+|---|---------|----------------|-------------|
+| 0 | narrate | .              | Before we get into channels, one piece of context. |
+| 1 | reveal  | wheel-centre   | Everything your commercial team does rolls up to a single number. Grow profitable total hotel revenue. |
+| 2 | reveal  | levers-header  | Six levers pull on that number. Let's name them. |
+| 3 | reveal  | lever-1        | One. Drive rev-par growth. |
+| 4 | reveal  | lever-2        | Two. Gain market share. |
+| 5 | reveal  | lever-3        | Three. Grow digital delivery. |
+| 6 | reveal  | lever-4        | Four. Grow non-room revenue. |
+| 7 | reveal  | lever-5        | Five. Maintain parity. |
+| 8 | reveal  | lever-6        | And the sixth is where this module lives. Retail and leisure distribution. |
+| 9 | reveal  | takeaway       | One thing worth carrying forward. When you make a channel decision, you are not adjusting a technical setting. You are pulling on that number in the middle. |
 
-**Actor notes:** Cues 2–6 are the pale-wedge levers. Each spoken as a short deliberate beat, wedge + list row light together. Cue 7 is the gold-wedge climax — same cadence as the previous five but slightly longer as the module's own home lights up. Cue 8 lands with quiet conviction.
+**Actor notes:** Cue 2 is the bridge — "Let's name them" invites the learner into the walk-through with a slight lift, not a monologue. Cues 3–7 use number prefixes (One/Two/Three...) so each beat has a small anchor and the delivery has natural stress on the number then the lever. Cue 8 gets warmth on "where this module lives" — the moment the gold wedge lights up as the module's own home. Cue 9 lands with quiet conviction.
 
 ---
 
