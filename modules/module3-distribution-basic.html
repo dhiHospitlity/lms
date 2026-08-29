@@ -592,23 +592,6 @@ body.cueline-active #s-blurred .lane-dot-impact{
    MANUAL ENTRY hub. Slow, staggered, deliberate — signals that these bookings
    need human hands to move, unlike the automated flows on slides 6/7/8.
    The ✎ pencil in the hub pulses to reinforce "someone is typing". */
-body.cueline-active #s-non .manual-dot{
-  opacity:0;
-  animation: manualDrift 5.6s ease-in-out infinite;
-}
-/* Dots start at each chip's right edge (x=260, chip_y) and travel to the
-   Manual-Entry hub's left edge (x=380, y=106). Vertical layout — dy varies
-   per chip since sources are stacked, not spread across the top. */
-body.cueline-active #s-non .m-dot-1{ animation-delay: 0s;   --dx: 120px; --dy: 75px;  }
-body.cueline-active #s-non .m-dot-2{ animation-delay: 1.4s; --dx: 120px; --dy: 25px;  }
-body.cueline-active #s-non .m-dot-3{ animation-delay: 2.8s; --dx: 120px; --dy: -25px; }
-body.cueline-active #s-non .m-dot-4{ animation-delay: 4.2s; --dx: 120px; --dy: -75px; }
-@keyframes manualDrift{
-  0%   { opacity: 0; transform: translate(0, 0); }
-  12%  { opacity: 1; }
-  85%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(var(--dx), var(--dy)); }
-}
 /* s-b2b-math · Gold "$" coin position is DRIVEN by which chain-* group
    was most recently revealed by Cueline. Uses the sibling combinator (~)
    so the coin picks up the position of the LATEST revealed chain node.
@@ -1515,36 +1498,38 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
           <div data-cue="manual-list" style="max-width:640px;margin:0 auto 8px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.5;">Four kinds of business still arrive the old way, needing hands to move.</div>
 
-          <!-- Manual-flow diagram · VERTICAL. 4 source chips stacked in a left
-               column, dashed lines converging to a central Manual-entry hub,
-               then a short arrow right to OPERA · PMS. Compact — fits inside
-               the canvas without the slide scrolling. -->
+          <!-- Manual-flow diagram · vertical stack of source chips, right-angle
+               'trombone' routing into a combined Manual-Entry → Opera hub.
+               Opera PMS is absorbed into the hub (was a separate box) — the
+               whole non-connected story is 'keyed by hand into Opera'. -->
           <div data-cue="manual-work" style="position:relative;width:100%;max-width:820px;height:220px;margin:0 auto 6px;">
             <svg viewBox="0 0 820 220" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;">
-              <!-- Column A · 4 stacked source chips (each row: envelope + title + sublabel) -->
+              <defs>
+                <marker id="man-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M2 1L8 5L2 9" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </marker>
+              </defs>
+
+              <!-- Column A · 4 stacked source chips -->
               <g>
-                <!-- Chip 1 · Local agent -->
                 <rect x="20"  y="10"  width="240" height="42" rx="8" fill="var(--white)" stroke="var(--gold)" stroke-width="1.3"/>
                 <rect x="34"  y="24"  width="26" height="16" rx="2" fill="none" stroke="var(--gold)" stroke-width="1.4"/>
                 <path d="M 34 24 L 47 34 L 60 24" fill="none" stroke="var(--gold)" stroke-width="1.4"/>
                 <text x="76" y="27" font-family="DusitDisplay,sans-serif" font-size="13" font-weight="800" fill="var(--b900)">Local agent</text>
                 <text x="76" y="43" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">Emails the desk</text>
 
-                <!-- Chip 2 · Corporate -->
                 <rect x="20"  y="60"  width="240" height="42" rx="8" fill="var(--white)" stroke="var(--gold)" stroke-width="1.3"/>
                 <rect x="34"  y="74"  width="26" height="16" rx="2" fill="none" stroke="var(--gold)" stroke-width="1.4"/>
                 <path d="M 34 74 L 47 84 L 60 74" fill="none" stroke="var(--gold)" stroke-width="1.4"/>
                 <text x="76" y="77" font-family="DusitDisplay,sans-serif" font-size="13" font-weight="800" fill="var(--b900)">Corporate</text>
                 <text x="76" y="93" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">Negotiated rate</text>
 
-                <!-- Chip 3 · Tour operator -->
                 <rect x="20"  y="110" width="240" height="42" rx="8" fill="var(--white)" stroke="var(--gold)" stroke-width="1.3"/>
                 <rect x="34"  y="124" width="26" height="16" rx="2" fill="none" stroke="var(--gold)" stroke-width="1.4"/>
                 <path d="M 34 124 L 47 134 L 60 124" fill="none" stroke="var(--gold)" stroke-width="1.4"/>
                 <text x="76" y="127" font-family="DusitDisplay,sans-serif" font-size="13" font-weight="800" fill="var(--b900)">Tour operator</text>
                 <text x="76" y="143" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">Group block</text>
 
-                <!-- Chip 4 · DMC -->
                 <rect x="20"  y="160" width="240" height="42" rx="8" fill="var(--white)" stroke="var(--gold)" stroke-width="1.3"/>
                 <rect x="34"  y="174" width="26" height="16" rx="2" fill="none" stroke="var(--gold)" stroke-width="1.4"/>
                 <path d="M 34 174 L 47 184 L 60 174" fill="none" stroke="var(--gold)" stroke-width="1.4"/>
@@ -1552,34 +1537,31 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
                 <text x="76" y="193" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">Event / package</text>
               </g>
 
-              <!-- Dashed converging lines from each chip's right edge (x=260) to hub left edge (x=380, y=106) -->
-              <g stroke="var(--gold)" stroke-width="1.4" stroke-dasharray="4 5" opacity="0.55" fill="none">
-                <line x1="260" y1="31"  x2="380" y2="106"/>
-                <line x1="260" y1="81"  x2="380" y2="106"/>
-                <line x1="260" y1="131" x2="380" y2="106"/>
-                <line x1="260" y1="181" x2="380" y2="106"/>
+              <!-- Right-angle 'trombone' routing · 4 stubs → common vertical trunk → single arrow into hub -->
+              <g stroke="var(--gold)" stroke-width="1.4" fill="none" opacity="0.7">
+                <line x1="260" y1="31"  x2="310" y2="31"/>
+                <line x1="260" y1="81"  x2="310" y2="81"/>
+                <line x1="260" y1="131" x2="310" y2="131"/>
+                <line x1="260" y1="181" x2="310" y2="181"/>
+                <line x1="310" y1="31"  x2="310" y2="181"/>
+                <line x1="310" y1="106" x2="378" y2="106" marker-end="url(#man-arrow)"/>
               </g>
 
-              <!-- Slow travelling dots — one per lane, each with different offset.
-                   Coordinates match new vertical layout; see .manual-dot CSS. -->
-              <circle class="manual-dot m-dot-1" cx="260" cy="31"  r="4.5" fill="var(--gold)"/>
-              <circle class="manual-dot m-dot-2" cx="260" cy="81"  r="4.5" fill="var(--gold)"/>
-              <circle class="manual-dot m-dot-3" cx="260" cy="131" r="4.5" fill="var(--gold)"/>
-              <circle class="manual-dot m-dot-4" cx="260" cy="181" r="4.5" fill="var(--gold)"/>
+              <!-- Combined Manual-Entry → Opera hub. Divider in the middle separates
+                   the 'act' (manual entry) from the 'destination' (Opera). -->
+              <rect x="380" y="76" width="420" height="60" rx="12" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.6"/>
 
-              <!-- Central manual-entry hub · pencil inline with the label -->
-              <rect x="380" y="80" width="180" height="52" rx="12" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.6"/>
-              <text x="470" y="106" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="13" font-weight="800" fill="var(--b900)" letter-spacing="0.1em"><tspan fill="var(--gold)" font-size="15">✎ </tspan>MANUAL ENTRY</text>
-              <text x="470" y="123" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">Your reservations desk</text>
+              <!-- Left half · Manual entry -->
+              <text x="480" y="100" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="13" font-weight="800" fill="var(--b900)" letter-spacing="0.1em"><tspan fill="var(--gold)" font-size="15">✎ </tspan>MANUAL ENTRY</text>
+              <text x="480" y="118" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">Your reservations desk</text>
 
-              <!-- Arrow right from hub → Opera badge -->
-              <line x1="560" y1="106" x2="640" y2="106" stroke="var(--gold)" stroke-width="2"/>
-              <polygon points="640,101 640,111 650,106" fill="var(--gold)"/>
+              <!-- Divider + small arrow -->
+              <line x1="580" y1="86" x2="580" y2="126" stroke="var(--gold)" stroke-width="1" opacity="0.4"/>
+              <text x="606" y="112" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--gold)">→</text>
 
-              <!-- Opera destination badge -->
-              <rect x="660" y="80" width="150" height="52" rx="12" fill="var(--white)" stroke="var(--gold)" stroke-width="1.6"/>
-              <text x="735" y="104" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="13" font-weight="800" fill="var(--b900)" letter-spacing="0.08em">OPERA · PMS</text>
-              <text x="735" y="122" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Runs the hotel</text>
+              <!-- Right half · Opera PMS destination -->
+              <text x="710" y="100" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="13" font-weight="800" fill="var(--b900)" letter-spacing="0.08em">OPERA · PMS</text>
+              <text x="710" y="118" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">Runs the hotel</text>
             </svg>
           </div>
 
