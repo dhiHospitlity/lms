@@ -613,12 +613,12 @@
 
 ### Reading text (~10 sec)
 
-> Three checks before the quiz. Get all three right and the quiz unlocks. Unlimited attempts.
+> Three checks before the quiz. Get all three right and the quiz unlocks.
 
 ### Cue map
 
 | # | Action  | Target | Spoken line |
 |---|---------|--------|-------------|
-| 0 | narrate | .      | Three checks before the quiz. Get all three right and the quiz unlocks. Unlimited attempts. |
+| 0 | narrate | .      | Three checks before the quiz. Get all three right and the quiz unlocks. |
 
 **Actor notes:** Single instructional cue — steady, no lift. This is a gate, not a test.
