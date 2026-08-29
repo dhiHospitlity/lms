@@ -215,7 +215,7 @@
 
 ### Reading text (~58 sec)
 
-> Now the honest version. That clean split I just drew you is how it used to work. It does not work like that any more.
+> Now the honest version. That clean split we walked through on the last slide isn't how it works any more.
 >
 > [pause 0.6s]
 >
@@ -245,7 +245,7 @@
 
 | # | Action  | Target       | Spoken line |
 |---|---------|--------------|-------------|
-| 0 | reveal  | band-past    | Now the honest version. That clean split I just drew you is how it used to work. It does not work like that any more. |
+| 0 | reveal  | band-past    | Now the honest version. That clean split we walked through on the last slide isn't how it works any more. |
 | 1 | reveal  | band-today   | Wholesalers sell to guests now. Through connected agents. Affiliate deals. And white-label websites that look nothing like a wholesaler. |
 | 2 | narrate | .            | And it runs the other way too. Consumer platforms offer reseller tools, so travel agents book through channels built for guests. |
 | 3 | narrate | .            | There is no clean line any more between who is a guest and who is a trade partner. |
