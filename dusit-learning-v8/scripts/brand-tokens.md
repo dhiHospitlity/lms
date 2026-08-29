@@ -61,10 +61,12 @@
 
 - **Canvas: 900 × 540 px**, scaled to viewport via CSS transform. Same canvas for every module.
 - **Sidebar left, main stage right, transport bar bottom.**
-- **Full-bleed navy** reserved for hooks and section-marker transitions only. Content slides sit on `--g50` with white content panels.
+- **Slide backgrounds stay light.** White (`--white`) or `--g50` for every slide type — hooks, content, section markers, summary. **No full-bleed `--dark` or `--b900` slide backgrounds.** Navy is a text and accent colour on light surfaces, not a full-bleed treatment. Established 2026-08-29 after the Module 3 scaffold's dark hero read wrong against the rest of the programme.
 - **Card grids** — 2 to 4 cards per row, `border-radius: var(--r)`, subtle grey border, gold left edge on emphasis cards.
 - **Key-box** — "one principle per slide" bar. White bg, gold left border (3–4px), body text with **strong** or gold keyword.
-- **Section markers** — full-bleed navy, giant section number in gold, thin gold rule beneath the title, no body copy.
+- **Hooks** — light bg, gold eyebrow (module tag), navy display headline (~30px, weight 800), gold horizontal rule (~2×88px), muted body. Interior animation / diagram sits on the same light surface.
+- **Section markers** — light bg, gold eyebrow ("Section 02"), giant gold section number (~60px), navy title, thin gold rule beneath. No body copy.
+- **Summary** — same treatment as hook. Larger navy display quote, gold rule, subtle supporting lines beneath.
 
 ## Reconciling blueprint doc visual direction
 
@@ -74,7 +76,7 @@ When a blueprint (e.g. `OTA1-Distribution-Basic-Knowledge-Blueprint-v3.2.docx`) 
 |---|---|
 | "Gold and blue everywhere with 30% opacity fades" | Sparse gold-as-accent, navy-as-primary. Fade on inactive elements only. |
 | "40/60 split with dense text panels" | Card grid + one-key-principle. Push the fuller explanation into the audio narration. |
-| "Full-bleed navy for a content slide" | Navy is reserved for hooks and section markers. Rework as light-bg content. |
+| "Full-bleed navy for a hook, section marker, or content slide" | Navy is text + accent only, never a full-bleed slide background. Every slide sits on light bg (`--white` or `--g50`). |
 | "Multi-column text layouts" | Apply the on-slide copy budget from `tone-rubric.md` — cards, not paragraphs. |
 | A color outside this palette | Map to the nearest token, or escalate to Prakash before deviating. |
 
