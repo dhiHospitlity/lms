@@ -1273,7 +1273,11 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
           <div data-cue="portfolio" style="max-width:640px;margin:0 auto 10px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.5;">20+ partners — <b style="color:var(--b900);">organised by the market each one reaches</b>, not by size.</div>
 
-          <table style="border-collapse:separate;border-spacing:0 6px;max-width:840px;width:100%;margin:0 auto;table-layout:fixed;">
+          <!-- Table + header share the same table-layout so header labels align exactly
+               with column bodies. border-spacing:0 keeps header attached; a 1px --g100
+               rule beneath the header row supplies the divider. All regional rows on
+               matching cream; global row on gold-l. -->
+          <table style="border-collapse:separate;border-spacing:0;max-width:840px;width:100%;margin:0 auto;table-layout:fixed;">
             <colgroup>
               <col style="width:170px;"/>
               <col style="width:180px;"/>
@@ -1281,36 +1285,36 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             </colgroup>
             <thead>
               <tr>
-                <th style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;text-align:left;padding:0 16px 4px;">Market</th>
-                <th style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;text-align:left;padding:0 16px 4px;">Reach</th>
-                <th style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;text-align:left;padding:0 20px 4px;">Partners</th>
+                <th style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;text-align:left;padding:6px 16px 8px;border-bottom:1px solid var(--g100);">Market</th>
+                <th style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;text-align:left;padding:6px 16px 8px;border-bottom:1px solid var(--g100);">Reach</th>
+                <th style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;text-align:left;padding:6px 20px 8px;border-bottom:1px solid var(--g100);">Partners</th>
               </tr>
             </thead>
             <tbody>
               <tr data-cue="market-global">
-                <td style="padding:11px 16px;background:var(--gold-l);border-top-left-radius:var(--rs);border-bottom-left-radius:var(--rs);vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">Global</td>
+                <td style="padding:11px 16px;background:var(--gold-l);vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">Global</td>
                 <td style="padding:11px 16px;background:var(--gold-l);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">Everywhere</td>
-                <td style="padding:11px 20px;background:var(--gold-l);border-top-right-radius:var(--rs);border-bottom-right-radius:var(--rs);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);font-weight:600;">Hotelbeds · WebBeds · TBO · Dida · Dnata · Miki</td>
+                <td style="padding:11px 20px;background:var(--gold-l);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);font-weight:600;">Hotelbeds · WebBeds · TBO · Dida · Dnata · Miki</td>
               </tr>
               <tr data-cue="market-rest">
-                <td style="padding:10px 16px;background:#FBF3DE;border-top-left-radius:var(--rs);border-bottom-left-radius:var(--rs);vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">India</td>
-                <td style="padding:10px 16px;background:#FBF3DE;vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">Indian travel trade</td>
-                <td style="padding:10px 20px;background:#FBF3DE;border-top-right-radius:var(--rs);border-bottom-right-radius:var(--rs);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);">Akbar · Ottila · GRN Connect · Stuba</td>
+                <td style="padding:10px 16px;background:#FBF3DE;vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);border-top:2px solid var(--white);">India</td>
+                <td style="padding:10px 16px;background:#FBF3DE;vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);border-top:2px solid var(--white);">Indian travel trade</td>
+                <td style="padding:10px 20px;background:#FBF3DE;vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);border-top:2px solid var(--white);">Akbar · Ottila · GRN Connect · Stuba</td>
               </tr>
               <tr data-cue="market-rest">
-                <td style="padding:10px 16px;background:#FBF3DE;border-top-left-radius:var(--rs);border-bottom-left-radius:var(--rs);vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">GCC · Middle East</td>
-                <td style="padding:10px 16px;background:#FBF3DE;vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">Regional agents</td>
-                <td style="padding:10px 20px;background:#FBF3DE;border-top-right-radius:var(--rs);border-bottom-right-radius:var(--rs);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);">Almosafer · Happy Travel · iTrip · Nirvana</td>
+                <td style="padding:10px 16px;background:#FBF3DE;vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);border-top:2px solid var(--white);">GCC · Middle East</td>
+                <td style="padding:10px 16px;background:#FBF3DE;vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);border-top:2px solid var(--white);">Regional agents</td>
+                <td style="padding:10px 20px;background:#FBF3DE;vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);border-top:2px solid var(--white);">Almosafer · Happy Travel · iTrip · Nirvana</td>
               </tr>
               <tr data-cue="market-rest">
-                <td style="padding:10px 16px;background:#FBF3DE;border-top-left-radius:var(--rs);border-bottom-left-radius:var(--rs);vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Korea</td>
-                <td style="padding:10px 16px;background:#FBF3DE;vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">Korean market</td>
-                <td style="padding:10px 20px;background:#FBF3DE;border-top-right-radius:var(--rs);border-bottom-right-radius:var(--rs);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);">Hotelpass · Tidequare</td>
+                <td style="padding:10px 16px;background:#FBF3DE;vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);border-top:2px solid var(--white);">Korea</td>
+                <td style="padding:10px 16px;background:#FBF3DE;vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);border-top:2px solid var(--white);">Korean market</td>
+                <td style="padding:10px 20px;background:#FBF3DE;vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);border-top:2px solid var(--white);">Hotelpass · Tidequare</td>
               </tr>
               <tr data-cue="market-rest">
-                <td style="padding:10px 16px;background:var(--white);border:1px solid var(--g100);border-right:0;border-top-left-radius:var(--rs);border-bottom-left-radius:var(--rs);vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Europe → Asia</td>
-                <td style="padding:10px 16px;background:var(--white);border-top:1px solid var(--g100);border-bottom:1px solid var(--g100);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">European tour trade</td>
-                <td style="padding:10px 20px;background:var(--white);border:1px solid var(--g100);border-left:0;border-top-right-radius:var(--rs);border-bottom-right-radius:var(--rs);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);">Asian Trails · Olympia · Synergy</td>
+                <td style="padding:10px 16px;background:#FBF3DE;vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);border-top:2px solid var(--white);">Europe → Asia</td>
+                <td style="padding:10px 16px;background:#FBF3DE;vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);border-top:2px solid var(--white);">European tour trade</td>
+                <td style="padding:10px 20px;background:#FBF3DE;vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);border-top:2px solid var(--white);">Asian Trails · Olympia · Synergy</td>
               </tr>
             </tbody>
           </table>
