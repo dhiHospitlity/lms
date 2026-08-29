@@ -539,11 +539,16 @@ body.cueline-active #s-loc [data-cue].reveal[fill]{filter:drop-shadow(0 2px 4px 
 #cc-overlay.visible{opacity:1;}
 body.cc-off #cc-overlay{display:none;}
 
-/* Caption-safe bottom zone. Reserves space so slide content doesn't sit under
-   the CC overlay. Applies to any slide using .s-inner AND to the slides that
-   position content directly in .slide (like s-hook, which is a flex layout). */
-body.cueline-active:not(.cc-off) .s-inner{padding-bottom:100px;}
-body.cueline-active:not(.cc-off) #s-hook{padding-bottom:110px;}
+/* Caption-safe bottom zone.
+   The CC overlay is position:absolute at the bottom of the canvas. Any slide
+   must reserve room so content doesn't sit under it. This applies at the
+   .slide level so it catches every slide type (hook, content, section marker,
+   quiz, summary) regardless of whether the body uses .s-inner or its own
+   flex layout. !important so inline padding on individual slides can't defeat
+   the safe zone — the CC has to be free of collisions module-wide. */
+body.cueline-active:not(.cc-off) .slide{padding-bottom:110px !important;}
+/* Quiz slides use their own quiz-foot bar; keep them out of the blanket rule. */
+body.cueline-active:not(.cc-off) .slide.s-quiz{padding-bottom:0 !important;}
 
 /* Preview-mode hint.visible when Cueline armed but no audio rendered yet */
 #cue-hint{
