@@ -714,6 +714,24 @@ body.cueline-active #s-gds [data-cue].reveal{
   30%  { filter: drop-shadow(0 4px 14px rgba(201,168,76,0.55)); }
   100% { filter: drop-shadow(0 0 0 rgba(201,168,76,0)); }
 }
+
+/* s-b2b table rows · <tr> doesn't render filter, so the reveal has to travel
+   through its child <td>s as a brief background darken. Two variants keep the
+   Global row's cream tone and the regional rows' white tone stable at rest. */
+body.cueline-active #s-b2b tr[data-cue="market-global"].reveal > td{
+  animation: b2bRowGlobalPulse 1.6s ease-out;
+}
+body.cueline-active #s-b2b tr[data-cue="market-rest"].reveal > td{
+  animation: b2bRowRestPulse 1.6s ease-out;
+}
+@keyframes b2bRowGlobalPulse{
+  0%, 100% { background-color: var(--gold-l); }
+  30%      { background-color: #ECDFB6; }
+}
+@keyframes b2bRowRestPulse{
+  0%, 100% { background-color: var(--white); }
+  30%      { background-color: var(--gold-l); }
+}
 /* SVG paths inside the wheel: reveals swap the fill directly, no shadow needed. */
 body.cueline-active #s-loc [data-cue].reveal[fill]{filter:drop-shadow(0 2px 4px rgba(201,168,76,0.4));}
 
@@ -1436,32 +1454,46 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
           <div data-cue="portfolio" style="max-width:640px;margin:0 auto 10px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.5;">20+ partners — <b style="color:var(--b900);">organised by the market each one reaches</b>, not by size.</div>
 
-          <!-- 2-column flex list wrapped in a rounded gold-outlined card. Div-based
-               (not <table>) so the reveal filter:drop-shadow actually renders on
-               each row when its cue fires — <tr> elements don't accept filter.
-               Partner-name column dropped: 20+ names are too much detail for the
-               takeaway. Region + who-it-reaches is enough. -->
-          <div style="max-width:720px;margin:0 auto;border:1.5px solid var(--gold);border-radius:var(--r);overflow:hidden;">
-            <div data-cue="market-global" style="display:grid;grid-template-columns:200px 1fr;gap:24px;padding:13px 24px;background:var(--gold-l);align-items:center;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--b900);">Global</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">Everywhere</div>
-            </div>
-            <div data-cue="market-rest" style="display:grid;grid-template-columns:200px 1fr;gap:24px;padding:12px 24px;background:var(--white);align-items:center;border-top:1px solid var(--g100);">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">India</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">Indian travel trade</div>
-            </div>
-            <div data-cue="market-rest" style="display:grid;grid-template-columns:200px 1fr;gap:24px;padding:12px 24px;background:var(--white);align-items:center;border-top:1px solid var(--g100);">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">GCC · Middle East</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">Regional agents</div>
-            </div>
-            <div data-cue="market-rest" style="display:grid;grid-template-columns:200px 1fr;gap:24px;padding:12px 24px;background:var(--white);align-items:center;border-top:1px solid var(--g100);">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">Korea</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">Korean market</div>
-            </div>
-            <div data-cue="market-rest" style="display:grid;grid-template-columns:200px 1fr;gap:24px;padding:12px 24px;background:var(--white);align-items:center;border-top:1px solid var(--g100);">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">Europe → Asia</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">European tour trade</div>
-            </div>
+          <!-- 3-column table wrapped in a rounded gold-outlined card. Partner names
+               are back in the visual (learner can scan the list); it's the audio
+               that no longer reads them out. Table row highlights are driven by
+               background-color keyframes (see #s-b2b tr[data-cue] CSS) since
+               <tr> doesn't accept filter:drop-shadow. -->
+          <div style="max-width:840px;margin:0 auto;border:1.5px solid var(--gold);border-radius:var(--r);overflow:hidden;">
+            <table style="border-collapse:collapse;width:100%;table-layout:fixed;">
+              <colgroup>
+                <col style="width:170px;"/>
+                <col style="width:180px;"/>
+                <col/>
+              </colgroup>
+              <tbody>
+                <tr data-cue="market-global">
+                  <td style="padding:11px 16px;background:var(--gold-l);vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">Global</td>
+                  <td style="padding:11px 16px;background:var(--gold-l);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">Everywhere</td>
+                  <td style="padding:11px 20px;background:var(--gold-l);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);font-weight:600;">Hotelbeds · WebBeds · TBO · Dida · Dnata · Miki</td>
+                </tr>
+                <tr data-cue="market-rest">
+                  <td style="padding:10px 16px;background:var(--white);vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);border-top:1px solid var(--g100);">India</td>
+                  <td style="padding:10px 16px;background:var(--white);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);border-top:1px solid var(--g100);">Indian travel trade</td>
+                  <td style="padding:10px 20px;background:var(--white);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);border-top:1px solid var(--g100);">Akbar · Ottila · GRN Connect · Stuba</td>
+                </tr>
+                <tr data-cue="market-rest">
+                  <td style="padding:10px 16px;background:var(--white);vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);border-top:1px solid var(--g100);">GCC · Middle East</td>
+                  <td style="padding:10px 16px;background:var(--white);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);border-top:1px solid var(--g100);">Regional agents</td>
+                  <td style="padding:10px 20px;background:var(--white);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);border-top:1px solid var(--g100);">Almosafer · Happy Travel · iTrip · Nirvana</td>
+                </tr>
+                <tr data-cue="market-rest">
+                  <td style="padding:10px 16px;background:var(--white);vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);border-top:1px solid var(--g100);">Korea</td>
+                  <td style="padding:10px 16px;background:var(--white);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);border-top:1px solid var(--g100);">Korean market</td>
+                  <td style="padding:10px 20px;background:var(--white);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);border-top:1px solid var(--g100);">Hotelpass · Tidequare</td>
+                </tr>
+                <tr data-cue="market-rest">
+                  <td style="padding:10px 16px;background:var(--white);vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);border-top:1px solid var(--g100);">Europe → Asia</td>
+                  <td style="padding:10px 16px;background:var(--white);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);border-top:1px solid var(--g100);">European tour trade</td>
+                  <td style="padding:10px 20px;background:var(--white);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);border-top:1px solid var(--g100);">Asian Trails · Olympia · Synergy</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div data-cue="b2b-rule" style="max-width:680px;margin:12px auto 0;padding:10px 20px;background:var(--gold-l);border-radius:var(--r);text-align:center;">
@@ -3153,8 +3185,8 @@ Cueline.register(9, [ // s-b2b · B2B partners
   {cc:"Wholesale works differently from everything else, so it's worth slowing down."},
   {do:'reveal', target:'flow',            cc:"You give the partner a net rate. That's your number, the one you're content to receive. They add their own margin, sell it on to travel agents, who sell it to the guest. You don't see the final price, and you don't control it."},
   {do:'reveal', target:'portfolio',       cc:"Dusit has more than twenty connected wholesale partners. That sounds like a lot until you look at how they're organised, because the portfolio isn't built around size. It's built around markets."},
-  {do:'reveal', target:'market-global',   cc:"A handful are genuinely global. Hotelbeds. WebBeds. TBO. Dida. Dnata. Miki."},
-  {do:'reveal', target:'market-rest',     cc:"The rest are there because they own a market. Akbar, Ottila, GRN and Stuba reach the Indian travel trade. Almosafer, Happy Travel, iTrip and Nirvana reach the GCC. Hotelpass and Tidequare reach Korea. Asian Trails brings European tour business into Asia."},
+  {do:'reveal', target:'market-global',   cc:"A handful are genuinely global — they reach every market. The names are on the row."},
+  {do:'reveal', target:'market-rest',     cc:"The rest are there because they own a particular market. India. The GCC. Korea. And European tour business flowing into Asia."},
   {do:'reveal', target:'b2b-rule',        cc:"Now the rule that matters. And it's the one worth taking away from this whole module. B-2-B rates are room-only products, and they belong in B-2-B channels. They must not be sold, directly or indirectly, to consumers."}
 ]);
 Cueline.register(10, [ // s-non · Non-connected players

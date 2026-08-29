@@ -418,11 +418,11 @@
 >
 > [pause 0.5s]
 >
-> A handful are genuinely global. Hotelbeds. WebBeds. TBO. Dida. Dnata. Miki.
+> A handful are genuinely global — they reach every market. The names are on the row.
 >
 > [pause 0.4s]
 >
-> The rest are there because they own a market. Akbar, Ottila, GRN and Stuba reach the Indian travel trade. Almosafer, Happy Travel, iTrip and Nirvana reach the GCC. Hotelpass and Tidequare reach Korea. Asian Trails brings European tour business into Asia.
+> The rest are there because they own a particular market. India. The GCC. Korea. And European tour business flowing into Asia.
 >
 > [pause 0.7s]
 >
@@ -435,8 +435,8 @@
 | 0 | narrate | .            | Wholesale works differently from everything else, so it is worth slowing down. |
 | 1 | reveal  | flow         | You give the partner a net rate. That is your number, the one you are content to receive. They add their own margin, sell it on to travel agents, who sell it to the guest. You do not see the final price, and you do not control it. |
 | 2 | reveal  | portfolio    | Dusit has more than twenty connected wholesale partners. That sounds like a lot until you look at how they are organised, because the portfolio is not built around size. It is built around markets. |
-| 3 | reveal  | market-global | A handful are genuinely global. Hotelbeds. WebBeds. TBO. Dida. Dnata. Miki. |
-| 4 | reveal  | market-rest  | The rest are there because they own a market. Akbar, Ottila, GRN and Stuba reach the Indian travel trade. Almosafer, Happy Travel, iTrip and Nirvana reach the GCC. Hotelpass and Tidequare reach Korea. Asian Trails brings European tour business into Asia. |
+| 3 | reveal  | market-global | A handful are genuinely global — they reach every market. The names are on the row. |
+| 4 | reveal  | market-rest  | The rest are there because they own a particular market. India. The GCC. Korea. And European tour business flowing into Asia. |
 | 5 | reveal  | b2b-rule     | Now the rule that matters. And it is the one worth taking away from this whole module. B-2-B rates are room-only products, and they belong in B-2-B channels. They must not be sold, directly or indirectly, to consumers. |
 
 **Actor notes:** Cues 3–4 are two contrasting waves — the six global partners as a rhythm of proper nouns, then the market-by-market list at slightly higher pace. Cue 5 is the module's most important line. Deliberate, weighty, no lift on the last clause.
