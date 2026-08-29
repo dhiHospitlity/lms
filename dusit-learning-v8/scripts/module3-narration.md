@@ -361,7 +361,48 @@
 
 ---
 
-## Slide 8 (s-b2b). B2B partners — the wholesale channel
+## Slide 8 (s-b2b-math). How wholesale actually works — the math
+
+### Reading text (~40 sec)
+
+> Say BAR is two hundred dollars.
+>
+> [pause 0.5s]
+>
+> You sell to your wholesale partner at a net rate. Twenty-three percent off. That is one hundred and fifty-four dollars.
+>
+> [pause 0.6s]
+>
+> The partner adds their margin. Sells to a travel agent at one hundred and eighty.
+>
+> [pause 0.5s]
+>
+> The agent adds their own margin. Sells to the guest at two hundred.
+>
+> [pause 0.7s]
+>
+> The guest pays what they would have paid direct. You receive one hundred and fifty-four. The partner and the agent split the forty-six dollars in between.
+>
+> [pause 0.6s]
+>
+> Same room. Same guest. Different money in the bank.
+
+### Cue map
+
+| # | Action  | Target        | Spoken line |
+|---|---------|---------------|-------------|
+| 0 | narrate | .             | Say BAR is two hundred dollars. |
+| 1 | reveal  | chain-hotel   | You sell to your wholesale partner at a net rate. Twenty-three percent off. That is one hundred and fifty-four dollars. |
+| 2 | reveal  | chain-partner | The partner adds their margin. Sells to a travel agent at one hundred and eighty. |
+| 3 | reveal  | chain-agent   | The agent adds their own margin. Sells to the guest at two hundred. |
+| 4 | reveal  | chain-guest   | The guest pays what they would have paid direct. You receive one hundred and fifty-four. The partner and the agent split the forty-six dollars in between. |
+| 5 | reveal  | math-summary  | Same room. Same guest. Different money in the bank. |
+
+**Actor notes:** This is a slow, considered slide — the math is the point, not any rhetorical lift. Cues 1–4 each land one number cleanly, with a small breath before the next node in the chain. Cue 5 is a quiet takeaway; deliver "different money in the bank" flat and confident, not punched.
+
+---
+
+## Slide 9 (s-b2b). B2B partners — the wholesale channel
 
 ### Reading text (~60 sec)
 
@@ -402,7 +443,7 @@
 
 ---
 
-## Slide 9 (s-non). Non-connected players
+## Slide 10 (s-non). Non-connected players
 
 ### Reading text (~35 sec)
 
@@ -433,7 +474,7 @@
 
 ---
 
-## Slide 10 (s-map). Map the booking to its channel · drag-and-drop
+## Slide 11 (s-map). Map the booking to its channel · drag-and-drop
 
 ### Reading text (~20 sec)
 

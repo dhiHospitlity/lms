@@ -516,6 +516,7 @@ body.cueline-active #s-loc [data-cue],
 body.cueline-active #s-def [data-cue],
 body.cueline-active #s-b2c-b2b [data-cue],
 body.cueline-active #s-blurred [data-cue],
+body.cueline-active #s-b2b-math [data-cue],
 body.cueline-active #s-eco-mark [data-cue],
 body.cueline-active #s-channels [data-cue],
 body.cueline-active #s-ota-tiers [data-cue],
@@ -611,6 +612,26 @@ body.cueline-active #s-non .manual-hand{
   0%, 100% { transform: rotate(0deg) scale(1); opacity: 1; }
   50%      { transform: rotate(-8deg) scale(1.08); opacity: 0.7; }
 }
+/* s-b2b-math · Gold "$" coin travels the wholesale chain L→R and loops.
+   Pauses at each node in the chain (Hotel → Wholesaler → Agent → Guest)
+   so the eye can track that ONE booking is moving through the four
+   parties as George narrates each hand-off. */
+body.cueline-active #s-b2b-math .wholesale-coin{
+  animation: wholesaleCoin 6.4s ease-in-out infinite;
+  transform-origin: 0 0;
+}
+@keyframes wholesaleCoin{
+  0%   { transform: translate(90px,  95px); opacity: 0; }
+  6%   { opacity: 1; }
+  20%  { transform: translate(90px,  95px); opacity: 1; }
+  30%  { transform: translate(310px, 95px); opacity: 1; }
+  45%  { transform: translate(310px, 95px); opacity: 1; }
+  55%  { transform: translate(530px, 95px); opacity: 1; }
+  70%  { transform: translate(530px, 95px); opacity: 1; }
+  80%  { transform: translate(750px, 95px); opacity: 1; }
+  94%  { opacity: 1; }
+  100% { transform: translate(750px, 95px); opacity: 0; }
+}
 /* Reveal is a one-shot pulse — brief acknowledgment of the beat, then back to rest.
    Persistent glow was leaving every fired element highlighted, which read as noise. */
 body.cueline-active #s-hook [data-cue].reveal,
@@ -618,6 +639,7 @@ body.cueline-active #s-loc [data-cue].reveal,
 body.cueline-active #s-def [data-cue].reveal,
 body.cueline-active #s-b2c-b2b [data-cue].reveal,
 body.cueline-active #s-blurred [data-cue].reveal,
+body.cueline-active #s-b2b-math [data-cue].reveal,
 body.cueline-active #s-eco-mark [data-cue].reveal,
 body.cueline-active #s-channels [data-cue].reveal,
 body.cueline-active #s-ota-tiers [data-cue].reveal,
@@ -725,18 +747,19 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
     <div class="sb-item" id="sbi-eco-mark" onclick="nav(5)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The Dusit distribution ecosystem</div></div></div>
     <div class="sb-item" id="sbi-channels" onclick="nav(6)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The four connected channels</div></div></div>
     <div class="sb-item" id="sbi-ota-tiers" onclick="nav(7)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">OTAs, in three tiers</div></div></div>
-    <div class="sb-item" id="sbi-b2b" onclick="nav(8)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">B2B partners</div></div></div>
-    <div class="sb-item" id="sbi-non" onclick="nav(9)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Non-connected players</div></div></div>
-    <div class="sb-item" id="sbi-map" onclick="nav(10)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Map the booking</div></div></div>
+    <div class="sb-item" id="sbi-b2b-math" onclick="nav(8)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">How wholesale actually works</div></div></div>
+    <div class="sb-item" id="sbi-b2b" onclick="nav(9)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">B2B partners</div></div></div>
+    <div class="sb-item" id="sbi-non" onclick="nav(10)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Non-connected players</div></div></div>
+    <div class="sb-item" id="sbi-map" onclick="nav(11)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Map the booking</div></div></div>
     <div class="sb-section">3 · The role of distribution</div>
-    <div class="sb-item" id="sbi-sys-mark" onclick="nav(11)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The systems behind every booking</div></div></div>
-    <div class="sb-item" id="sbi-which" onclick="nav(12)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Which system does what</div></div></div>
-    <div class="sb-item" id="sbi-gds" onclick="nav(13)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">GDS and metasearch</div></div></div>
-    <div class="sb-item" id="sbi-trace" onclick="nav(14)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Trace the booking</div></div></div>
-    <div class="sb-item" id="sbi-kc" onclick="nav(15)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Three checks before the quiz</div></div></div>
+    <div class="sb-item" id="sbi-sys-mark" onclick="nav(12)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The systems behind every booking</div></div></div>
+    <div class="sb-item" id="sbi-which" onclick="nav(13)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Which system does what</div></div></div>
+    <div class="sb-item" id="sbi-gds" onclick="nav(14)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">GDS and metasearch</div></div></div>
+    <div class="sb-item" id="sbi-trace" onclick="nav(15)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Trace the booking</div></div></div>
+    <div class="sb-item" id="sbi-kc" onclick="nav(16)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Three checks before the quiz</div></div></div>
     <div class="sb-divider"></div>
     <div class="sb-section">Quiz</div>
-    <div class="sb-item locked" id="sbi-quiz" onclick="nav(16)">
+    <div class="sb-item locked" id="sbi-quiz" onclick="nav(17)">
       <div class="sb-dot"></div>
       <div class="sb-text"><div class="sb-stitle">Quiz · 5 Questions</div></div>
       <div class="sb-lock" id="quizLock">🔒</div>
@@ -1262,14 +1285,89 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 8 (s-b2b): CONCEPT. B2B partners — 3-col table matching slide 7's pattern.
+      <!-- SLIDE 8 (s-b2b-math): CONCEPT. How wholesale actually works — the math.
+           Animated coin travels the Hotel → Wholesaler → Agent → Guest chain.
+           BAR $200 · Net $154 (23% off) · Chain adds $46 · Guest pays $200. -->
+      <div class="slide s-white" id="s-b2b-math">
+        <div class="s-inner" style="padding:18px 30px 0;text-align:center;">
+          <h2 class="sh" style="margin-top:2px;margin-bottom:6px;">How wholesale actually works</h2>
+          <div style="max-width:640px;margin:0 auto 10px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.5;">Follow one room through the chain. Same room, same guest, watch the money.</div>
+
+          <!-- Animated chain diagram -->
+          <div style="position:relative;width:100%;max-width:840px;height:250px;margin:0 auto;">
+            <svg viewBox="0 0 840 250" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;">
+              <!-- BAR label above the Hotel node -->
+              <text x="90" y="40" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)" letter-spacing="1.5">BAR $200</text>
+
+              <!-- 4 chain nodes -->
+              <g data-cue="chain-hotel">
+                <rect x="20" y="60" width="140" height="70" rx="10" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.5"/>
+                <text x="90" y="88" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--b900)">Hotel</text>
+                <text x="90" y="104" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Dusit</text>
+                <text x="90" y="122" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="12" font-weight="800" fill="var(--b900)">gets $154</text>
+              </g>
+
+              <g data-cue="chain-partner">
+                <line x1="160" y1="95" x2="240" y2="95" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <polygon points="235,90 245,95 235,100" fill="var(--gold)"/>
+                <text x="200" y="82" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)" letter-spacing="1">NET · 23% off</text>
+                <text x="200" y="112" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="10" font-weight="800" fill="var(--b900)">$154</text>
+
+                <rect x="240" y="60" width="140" height="70" rx="10" fill="var(--white)" stroke="var(--gold)" stroke-width="1.5"/>
+                <text x="310" y="88" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--b900)">Wholesaler</text>
+                <text x="310" y="104" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Partner</text>
+                <text x="310" y="122" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="12" font-weight="800" fill="var(--g700)">+ $26 margin</text>
+              </g>
+
+              <g data-cue="chain-agent">
+                <line x1="380" y1="95" x2="460" y2="95" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <polygon points="455,90 465,95 455,100" fill="var(--gold)"/>
+                <text x="420" y="82" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)" letter-spacing="1">SELLS AT</text>
+                <text x="420" y="112" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="10" font-weight="800" fill="var(--b900)">$180</text>
+
+                <rect x="460" y="60" width="140" height="70" rx="10" fill="var(--white)" stroke="var(--gold)" stroke-width="1.5"/>
+                <text x="530" y="88" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--b900)">Travel agent</text>
+                <text x="530" y="104" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Books for guest</text>
+                <text x="530" y="122" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="12" font-weight="800" fill="var(--g700)">+ $20 margin</text>
+              </g>
+
+              <g data-cue="chain-guest">
+                <line x1="600" y1="95" x2="680" y2="95" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <polygon points="675,90 685,95 675,100" fill="var(--gold)"/>
+                <text x="640" y="82" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)" letter-spacing="1">RETAIL</text>
+                <text x="640" y="112" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="10" font-weight="800" fill="var(--b900)">$200</text>
+
+                <rect x="680" y="60" width="140" height="70" rx="10" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.5"/>
+                <text x="750" y="88" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--b900)">Guest</text>
+                <text x="750" y="104" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Books the room</text>
+                <text x="750" y="122" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="12" font-weight="800" fill="var(--b900)">pays $200</text>
+              </g>
+
+              <!-- Animated gold coin travelling the chain -->
+              <g class="wholesale-coin">
+                <circle cx="0" cy="0" r="12" fill="var(--gold)" stroke="var(--b900)" stroke-width="1.2"/>
+                <text x="0" y="4" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="13" font-weight="800" fill="var(--b900)">$</text>
+              </g>
+
+              <!-- Bottom math summary bar -->
+              <g data-cue="math-summary">
+                <rect x="60" y="170" width="720" height="52" rx="10" fill="var(--b900)"/>
+                <text x="420" y="190" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="10" font-weight="800" fill="var(--gold)" letter-spacing="1.5">THE MATH</text>
+                <text x="420" y="210" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="13" font-weight="800" fill="var(--white)">Hotel receives $154 · Guest pays $200 · Chain keeps $46 in between</text>
+              </g>
+            </svg>
+          </div>
+
+          <div data-cue="takeaway" style="max-width:640px;margin:8px auto 0;font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--b900);line-height:1.35;text-align:center;">Same room. Same guest. <span style="color:var(--gold);">Different money in the bank.</span></div>
+        </div>
+      </div>
+
+            <!-- SLIDE 9 (s-b2b): CONCEPT. B2B partners — 3-col table matching slide 7's pattern.
            Market · Reach · Partners. Global row highlighted (gold-l), regionals cream,
            Europe on white to close the set. No 'Group 0X' labels — just the market name. -->
       <div class="slide s-white" id="s-b2b">
         <div class="s-inner" style="padding:18px 30px 0;text-align:center;">
           <h2 class="sh" style="margin-top:2px;margin-bottom:8px;">B2B partners, by market</h2>
-
-          <div data-cue="flow" style="max-width:680px;margin:0 auto 6px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.5;"><b style="color:var(--b900);">Hotel → net rate → partner → + margin → travel agent → guest.</b> You set the net; the partner sets the guest price.</div>
 
           <div data-cue="portfolio" style="max-width:640px;margin:0 auto 10px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.5;">20+ partners — <b style="color:var(--b900);">organised by the market each one reaches</b>, not by size.</div>
 
@@ -1319,7 +1417,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 9 (s-non): CONCEPT. Non-connected players — animated manual flow.
+      <!-- SLIDE 10 (s-non): CONCEPT. Non-connected players — animated manual flow.
            4 source chips top row (Local agent / Corporate / Tour operator / DMC) →
            dashed lines converge on a central 'MANUAL ENTRY' hub (typing hand icon
            with slow pulse) → arrow to Opera PMS. Animation loop: envelope-dot
@@ -1394,7 +1492,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-            <!-- SLIDE 10 (s-map): INTERACTION. Drag-and-drop — map 8 bookings to 4 zones. -->
+            <!-- SLIDE 11 (s-map): INTERACTION. Drag-and-drop — map 8 bookings to 4 zones. -->
       <div class="slide s-white" id="s-map">
         <div class="s-inner s-centre">
           <h2 class="sh">Map the booking to its channel</h2>
@@ -1403,7 +1501,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 11 (s-sys-mark): TRANSITION. Section marker · The systems behind every booking. -->
+      <!-- SLIDE 12 (s-sys-mark): TRANSITION. Section marker · The systems behind every booking. -->
       <div class="slide s-white" id="s-sys-mark" style="justify-content:center;align-items:center;text-align:center;padding:44px;">
         <div>
           <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">Section 03</div>
@@ -1414,7 +1512,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 12 (s-which): CONCEPT. Which system does what — CRS · Channel Mgr · Opera. -->
+      <!-- SLIDE 13 (s-which): CONCEPT. Which system does what — CRS · Channel Mgr · Opera. -->
       <div class="slide s-white" id="s-which">
         <div class="s-inner s-centre">
           <h2 class="sh">Which system does what</h2>
@@ -1423,7 +1521,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 13 (s-gds): CONCEPT. GDS and metasearch — complete the map. -->
+      <!-- SLIDE 14 (s-gds): CONCEPT. GDS and metasearch — complete the map. -->
       <div class="slide s-white" id="s-gds">
         <div class="s-inner s-centre">
           <h2 class="sh">GDS and metasearch</h2>
@@ -1432,7 +1530,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 14 (s-trace): INTERACTION. Branching — trace one booking through 4 decision stages. -->
+      <!-- SLIDE 15 (s-trace): INTERACTION. Branching — trace one booking through 4 decision stages. -->
       <div class="slide s-white" id="s-trace">
         <div class="s-inner s-centre">
           <h2 class="sh">Trace the booking</h2>
@@ -1441,7 +1539,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 15 (s-kc): KNOWLEDGE CHECK — GATE. 3 questions. All correct to unlock quiz. -->
+      <!-- SLIDE 16 (s-kc): KNOWLEDGE CHECK — GATE. 3 questions. All correct to unlock quiz. -->
       <div class="slide s-off" id="s-kc">
         <div class="s-inner s-centre">
           <span class="eye">Before the quiz</span>
@@ -1466,7 +1564,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <button class="qopt" onclick="answer(0,3,this)">D. How quickly they can connect</button>
           </div>
           <div class="q-fb" id="qfb-0"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q1 / 5</div><button class="btn btn-p" id="qnxt-0" onclick="nav(17)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q1 / 5</div><button class="btn btn-p" id="qnxt-0" onclick="nav(18)" style="display:none">Next →</button></div>
         </div>
       </div>
 
@@ -1484,7 +1582,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <button class="qopt" onclick="answer(1,3,this)">D. Tell them to take it up with their agent</button>
           </div>
           <div class="q-fb" id="qfb-1"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q2 / 5</div><button class="btn btn-p" id="qnxt-1" onclick="nav(18)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q2 / 5</div><button class="btn btn-p" id="qnxt-1" onclick="nav(19)" style="display:none">Next →</button></div>
         </div>
       </div>
 
@@ -1502,7 +1600,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <button class="qopt" onclick="answer(2,3,this)">D. The OTA is discounting its own commission</button>
           </div>
           <div class="q-fb" id="qfb-2"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q3 / 5</div><button class="btn btn-p" id="qnxt-2" onclick="nav(19)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q3 / 5</div><button class="btn btn-p" id="qnxt-2" onclick="nav(20)" style="display:none">Next →</button></div>
         </div>
       </div>
 
@@ -1520,7 +1618,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <button class="qopt" onclick="answer(3,3,this)">D. None. Each channel has to be updated separately</button>
           </div>
           <div class="q-fb" id="qfb-3"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q4 / 5</div><button class="btn btn-p" id="qnxt-3" onclick="nav(20)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q4 / 5</div><button class="btn btn-p" id="qnxt-3" onclick="nav(21)" style="display:none">Next →</button></div>
         </div>
       </div>
 
@@ -1552,7 +1650,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 21 (s-summary): SUMMARY. Every channel has a cost. -->
+      <!-- SLIDE 22 (s-summary): SUMMARY. Every channel has a cost. -->
       <div class="slide s-white" id="s-summary" style="justify-content:center;align-items:center;text-align:center;padding:44px;">
         <div>
           <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Take-away</div>
@@ -1621,26 +1719,27 @@ const SLIDE_IDS = [
   's-eco-mark',   //  5  § Section marker · The Dusit distribution ecosystem
   's-channels',   //  6  The four connected channels (hub + 4 arms)
   's-ota-tiers',  //  7  OTAs, in three tiers (Major 4 / Growing / Connected only)
-  's-b2b',        //  8  B2B partners by source market
-  's-non',        //  9  Non-connected players
-  's-map',        // 10  Map the booking to its channel (drag-drop)
-  's-sys-mark',   // 11  § Section marker · The systems behind every booking
-  's-which',      // 12  Which system does what (CRS · Channel Mgr · Opera)
-  's-gds',        // 13  GDS and metasearch
-  's-trace',      // 14  Trace the booking (4-stage branching)
-  's-kc',         // 15  Knowledge check — three checks before the quiz (GATE)
-  's-q1',         // 16  Q1
-  's-q2',         // 17  Q2
-  's-q3',         // 18  Q3
-  's-q4',         // 19  Q4
-  's-q5',         // 20  Q5 (also carries the results overlay)
-  's-summary'     // 21  Every channel has a cost
+  's-b2b-math',   //  8  How wholesale actually works (the math — animated chain)
+  's-b2b',        //  9  B2B partners by source market
+  's-non',        // 10  Non-connected players
+  's-map',        // 11  Map the booking to its channel (drag-drop)
+  's-sys-mark',   // 12  § Section marker · The systems behind every booking
+  's-which',      // 13  Which system does what (CRS · Channel Mgr · Opera)
+  's-gds',        // 14  GDS and metasearch
+  's-trace',      // 15  Trace the booking (4-stage branching)
+  's-kc',         // 16  Knowledge check — three checks before the quiz (GATE)
+  's-q1',         // 17  Q1
+  's-q2',         // 18  Q2
+  's-q3',         // 19  Q3
+  's-q4',         // 20  Q4
+  's-q5',         // 21  Q5 (also carries the results overlay)
+  's-summary'     // 22  Every channel has a cost
 ];
-const N = SLIDE_IDS.length;   // 22
-const CONTENT_END = 15;       // index of KC slide (gate)
-const QUIZ_START  = 16;       // index of Q1
+const N = SLIDE_IDS.length;   // 23
+const CONTENT_END = 16;       // index of KC slide (gate)
+const QUIZ_START  = 17;       // index of Q1
 
-const SIDEBAR_IDS = ['sbi-hook','sbi-loc','sbi-def','sbi-b2c-b2b','sbi-blurred','sbi-eco-mark','sbi-channels','sbi-ota-tiers','sbi-b2b','sbi-non','sbi-map','sbi-sys-mark','sbi-which','sbi-gds','sbi-trace','sbi-kc'];
+const SIDEBAR_IDS = ['sbi-hook','sbi-loc','sbi-def','sbi-b2c-b2b','sbi-blurred','sbi-eco-mark','sbi-channels','sbi-ota-tiers','sbi-b2b-math','sbi-b2b','sbi-non','sbi-map','sbi-sys-mark','sbi-which','sbi-gds','sbi-trace','sbi-kc'];
 
 const TITLES = [
   'Someone is booking your hotel right now',
@@ -1651,6 +1750,7 @@ const TITLES = [
   'The Dusit distribution ecosystem',
   'The four connected channels',
   'OTAs, in three tiers',
+  'How wholesale actually works',
   'B2B partners',
   'Non-connected players',
   'Map the booking',
@@ -2498,7 +2598,7 @@ const Cueline = {
   //   5 = Market Segment drill-down (s-2)
   //   6 = Source Codes drill-down (s-6)
   //   7 = Origin Codes drill-down (s-7)
-  noAutoAdvanceSlides: new Set([10, 14]),  // s-map (drag-drop) and s-trace (branching)
+  noAutoAdvanceSlides: new Set([11, 15]),  // s-map (drag-drop) and s-trace (branching), shifted +1 for new s-b2b-math
   forceAudioOff: false,  // Phase 2 · Section 1 audio rendered 2026-08-29 (George, multilingual_v2). Sections 2-3 still empty; the Cueline empty-registers just no-op.
 
   register(slideIdx, cueList){
@@ -2805,7 +2905,15 @@ Cueline.register(7, [ // s-ota-tiers · OTAs in three tiers
   {do:'reveal', target:'tier-connected',  cc:"And a third group that's simply live and connected. Gother. Hopper. Klook. The plumbing works; there's no dedicated account manager."},
   {do:'reveal', target:'tier-closer',     cc:"Same connection under the hood. Different depth of relationship."}
 ]);
-Cueline.register(8, [ // s-b2b · B2B partners
+Cueline.register(8, [ // s-b2b-math · How wholesale actually works — the math
+  {cc:"Say BAR is two hundred dollars."},
+  {do:'reveal', target:'chain-hotel',   cc:"You sell to your wholesale partner at a net rate. Twenty-three percent off. That's one hundred and fifty-four dollars."},
+  {do:'reveal', target:'chain-partner', cc:"The partner adds their margin. Sells to a travel agent at one hundred and eighty."},
+  {do:'reveal', target:'chain-agent',   cc:"The agent adds their own margin. Sells to the guest at two hundred."},
+  {do:'reveal', target:'chain-guest',   cc:"The guest pays what they'd have paid direct. You receive one hundred and fifty-four. The partner and the agent split the forty-six dollars in between."},
+  {do:'reveal', target:'math-summary',  cc:"Same room. Same guest. Different money in the bank."}
+]);
+Cueline.register(9, [ // s-b2b · B2B partners
   {cc:"Wholesale works differently from everything else, so it's worth slowing down."},
   {do:'reveal', target:'flow',            cc:"You give the partner a net rate. That's your number, the one you're content to receive. They add their own margin, sell it on to travel agents, who sell it to the guest. You don't see the final price, and you don't control it."},
   {do:'reveal', target:'portfolio',       cc:"Dusit has more than twenty connected wholesale partners. That sounds like a lot until you look at how they're organised, because the portfolio isn't built around size. It's built around markets."},
@@ -2813,19 +2921,19 @@ Cueline.register(8, [ // s-b2b · B2B partners
   {do:'reveal', target:'market-rest',     cc:"The rest are there because they own a market. Akbar, Ottila, GRN and Stuba reach the Indian travel trade. Almosafer, Happy Travel, iTrip and Nirvana reach the GCC. Hotelpass and Tidequare reach Korea. Asian Trails brings European tour business into Asia."},
   {do:'reveal', target:'b2b-rule',        cc:"Now the rule that matters. And it's the one worth taking away from this whole module. B-2-B rates are room-only products, and they belong in B-2-B channels. They must not be sold, directly or indirectly, to consumers."}
 ]);
-Cueline.register(9, [ // s-non · Non-connected players
+Cueline.register(10, [ // s-non · Non-connected players
   {cc:"Not everything plugs in. Plenty of business still arrives the old way."},
   {do:'reveal', target:'manual-list',     cc:"A local agent who emails. A corporate account with a negotiated rate. A small tour operator. A DMC arranging a group."},
   {do:'reveal', target:'manual-work',     cc:"None of that is automatic. Somebody at the hotel loads the rate, checks the availability, keys the booking in."},
   {do:'reveal', target:'risk',            cc:"Which means two things. It's slower. And when something goes wrong, it went wrong on your side, not in a system."}
 ]);
 
-Cueline.register(10, []); // s-map        · Map the booking to its channel (drag-drop)
-Cueline.register(11, []); // s-sys-mark   · § The systems behind every booking
-Cueline.register(12, []); // s-which      · Which system does what
-Cueline.register(13, []); // s-gds        · GDS and metasearch
-Cueline.register(14, []); // s-trace      · Trace the booking (branching)
-Cueline.register(15, []); // s-kc         · Knowledge check (gate)
+Cueline.register(11, []); // s-map        · Map the booking to its channel (drag-drop)
+Cueline.register(12, []); // s-sys-mark   · § The systems behind every booking
+Cueline.register(13, []); // s-which      · Which system does what
+Cueline.register(14, []); // s-gds        · GDS and metasearch
+Cueline.register(15, []); // s-trace      · Trace the booking (branching)
+Cueline.register(16, []); // s-kc         · Knowledge check (gate)
 // Slides 15-19 (s-q1 through s-q5) and 20 (s-summary) carry no auto-narration.
 
 
