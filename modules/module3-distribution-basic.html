@@ -526,19 +526,24 @@ body.cueline-active #s-loc [data-cue].reveal[fill]{filter:drop-shadow(0 2px 4px 
 
 /* ─── CC OVERLAY ─── */
 #cc-overlay{
-  position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
-  max-width:680px;min-width:200px;padding:10px 22px;
-  background:rgba(0,0,0,0.82);color:white;
-  font-family:'DusitText',sans-serif;font-size:14px;font-weight:500;line-height:1.45;
-  border-radius:8px;text-align:center;
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+  max-width:720px;min-width:200px;padding:11px 24px;
+  background:rgba(10,10,26,0.94);color:white;
+  font-family:'DusitText',sans-serif;font-size:14px;font-weight:500;line-height:1.5;
+  border-radius:10px;text-align:center;
+  border:1px solid rgba(201,168,76,0.35);
+  box-shadow:0 6px 20px rgba(0,0,0,0.28);
   opacity:0;transition:opacity 0.22s ease;
   pointer-events:none;z-index:80;
 }
 #cc-overlay.visible{opacity:1;}
 body.cc-off #cc-overlay{display:none;}
 
-/* Caption-safe bottom zone.mirrors Module 1's pattern */
-body.cueline-active:not(.cc-off) .s-inner{padding-bottom:70px;}
+/* Caption-safe bottom zone. Reserves space so slide content doesn't sit under
+   the CC overlay. Applies to any slide using .s-inner AND to the slides that
+   position content directly in .slide (like s-hook, which is a flex layout). */
+body.cueline-active:not(.cc-off) .s-inner{padding-bottom:100px;}
+body.cueline-active:not(.cc-off) #s-hook{padding-bottom:110px;}
 
 /* Preview-mode hint.visible when Cueline armed but no audio rendered yet */
 #cue-hint{
