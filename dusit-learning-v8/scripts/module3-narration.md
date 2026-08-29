@@ -295,7 +295,7 @@
 >
 > [pause 0.3s]
 >
-> OTAs. Ten of them, organised in three tiers. We'll come back to that.
+> OTAs. Ten and growing, organised in three tiers. We'll come back to that.
 >
 > [pause 0.3s]
 >
@@ -316,7 +316,7 @@
 | 0 | reveal  | hub-centre      | Connected is the word to hold on to. A connected channel talks to our systems automatically. Rates out, availability out, bookings back. Nobody types anything. |
 | 1 | narrate | .               | Four families of connected channel come off the Dusit hub. |
 | 2 | reveal  | channel-direct  | Direct. Your own website, phone, and central reservations. |
-| 3 | reveal  | channel-ota     | OTAs. Ten of them, organised in three tiers. We'll come back to that. |
+| 3 | reveal  | channel-ota     | OTAs. Ten and growing, organised in three tiers. We'll come back to that. |
 | 4 | reveal  | channel-b2b     | B-2-B. More than twenty wholesale partners. |
 | 5 | reveal  | channel-gds     | And the GDS. Amadeus, Galileo, Sabre, and Travelport. |
 | 6 | reveal  | key-note        | Everything on this diagram moves automatically. That is what makes it powerful. It is also why an error moves just as fast as a correction does. |
@@ -329,7 +329,7 @@
 
 ### Reading text (~50 sec)
 
-> Zooming in on the OTA side. Dusit is live with ten. But they are not all managed the same way, and that difference is worth understanding.
+> Zooming in on the OTA side. Dusit is live with ten today, and the list keeps growing. But they are not all managed the same way, and that difference is worth understanding.
 >
 > [pause 0.5s]
 >
@@ -351,7 +351,7 @@
 
 | # | Action  | Target         | Spoken line |
 |---|---------|----------------|-------------|
-| 0 | reveal  | tier-intro     | Zooming in on the OTA side. Dusit is live with ten. But they are not all managed the same way, and that difference is worth understanding. |
+| 0 | reveal  | tier-intro     | Zooming in on the OTA side. Dusit is live with ten today, and the list keeps growing. But they are not all managed the same way, and that difference is worth understanding. |
 | 1 | reveal  | tier-major     | Four of them sit closest. Expedia. Booking.com. Agoda. Trip.com. Each has a named account manager, we run contracted promotions with all four. You will hear these called the Major 4. |
 | 2 | reveal  | tier-growing   | A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Account management is in place; promotions being contracted now. |
 | 3 | reveal  | tier-connected | And a third group that is simply live and connected. Gother. Hopper. Klook. The plumbing works; there is no dedicated account manager. |
