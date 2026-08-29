@@ -560,7 +560,7 @@
 >
 > [pause 0.5s]
 >
-> The G-D-S. Global Distribution System. Amadeus. Sabre. Travelport. This is the network that corporate travel agents use to book flights, hotels, and cars in one place. Business travel runs on it.
+> The G-D-S. Global Distribution System. Amadeus. Galileo. Sabre. Travelport. This is the network that corporate travel agents use to book flights, hotels, and cars in one place. Business travel runs on it.
 >
 > [pause 0.6s]
 >
@@ -575,7 +575,7 @@
 | # | Action  | Target      | Spoken line |
 |---|---------|-------------|-------------|
 | 0 | reveal  | gds-block   | Two more players worth knowing. Both live in the connected side of the map, but they behave very differently. |
-| 1 | reveal  | gds-what    | The G-D-S. Global Distribution System. Amadeus. Sabre. Travelport. This is the network that corporate travel agents use to book flights, hotels, and cars in one place. Business travel runs on it. |
+| 1 | reveal  | gds-what    | The G-D-S. Global Distribution System. Amadeus. Galileo. Sabre. Travelport. This is the network that corporate travel agents use to book flights, hotels, and cars in one place. Business travel runs on it. |
 | 2 | reveal  | meta-what   | Metasearch. Google Hotel Ads. Trivago. TripAdvisor. Kayak. These aren't places you book. They compare prices across channels and send the guest onward — usually to dusit dot com, or to an O-T-A. |
 | 3 | reveal  | gds-closer  | G-D-S sells the room. Metasearch decides where the guest goes to buy it. |
 
