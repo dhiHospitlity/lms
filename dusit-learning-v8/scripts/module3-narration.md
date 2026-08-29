@@ -541,10 +541,6 @@
 > [pause 0.5s]
 >
 > One rate. One push. Everywhere at once. That's why the connected channels don't drift.
->
-> [pause 0.7s]
->
-> One more player, sitting on its own. Metasearch — Google Hotel Ads, Trivago, TripAdvisor, Kayak. It reads your public prices, but it doesn't sell the room. It compares, then hands the guest to whoever is selling.
 
 ### Cue map
 
@@ -556,9 +552,8 @@
 | 3 | reveal  | sys-guest     | Two more sit on the guest side. The booking engine powers dusit dot com. The G-D-S reaches corporate travel agents. |
 | 4 | reveal  | sys-cm        | And the channel manager. Its job is to distribute — to publish every rate and every restriction out to the trade. That's what feeds every O-T-A and every B-2-B partner. |
 | 5 | reveal  | sys-closer    | One rate. One push. Everywhere at once. That's why the connected channels don't drift. |
-| 6 | reveal  | sys-meta      | One more player, sitting on its own. Metasearch — Google Hotel Ads, Trivago, TripAdvisor, Kayak. It reads your public prices, but it doesn't sell the room. It compares, then hands the guest to whoever is selling. |
 
-**Actor notes:** Cues 0-1 set up the causal chain: a decision → SynXis. Cues 2-4 stack quickly (property → guest → trade). Cue 5 lands the takeaway. Cue 6 shifts tone — Metasearch is an aside, so deliver it slightly cooler, almost as a "one more thing".
+**Actor notes:** Cues 0-1 set up the causal chain: a decision → SynXis. Cues 2-4 stack quickly (property → guest → trade). Cue 5 lands the takeaway. Metasearch is covered in-depth on slide 14, so it's removed from this slide's flow.
 
 ---
 
