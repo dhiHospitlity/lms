@@ -59,9 +59,9 @@
 
 ---
 
-## Slide 1 (s-loc). Where this sits
+## Slide 1 (s-loc). The bigger picture
 
-### Reading text (~45 sec)
+### Reading text (~55 sec)
 
 > Before we get into channels, one piece of context.
 >
@@ -71,11 +71,31 @@
 >
 > [pause 0.5s]
 >
-> Rev-par growth. Market share. Digital delivery. Non-room revenue. Parity. Different levers, same centre.
+> Six levers pull on that number.
 >
-> [pause 0.6s]
+> [pause 0.3s]
 >
-> Distribution is one of those levers. This module sits inside one part of it. Retail and leisure distribution.
+> Drive rev-par growth.
+>
+> [pause 0.3s]
+>
+> Gain market share.
+>
+> [pause 0.3s]
+>
+> Grow digital delivery.
+>
+> [pause 0.3s]
+>
+> Grow non-room revenue.
+>
+> [pause 0.3s]
+>
+> Maintain parity.
+>
+> [pause 0.5s]
+>
+> And distribution. This module sits inside one part of it. Retail and leisure distribution.
 >
 > [pause 0.6s]
 >
@@ -87,11 +107,15 @@
 |---|---------|--------------|-------------|
 | 0 | narrate | .            | Before we get into channels, one piece of context. |
 | 1 | reveal  | wheel-centre | Everything your commercial team does rolls up to a single number. Grow profitable total hotel revenue. |
-| 2 | reveal  | wheel-ring   | Rev-par growth. Market share. Digital delivery. Non-room revenue. Parity. Different levers, same centre. |
-| 3 | reveal  | wheel-lit    | Distribution is one of those levers. This module sits inside one part of it. Retail and leisure distribution. |
-| 4 | reveal  | takeaway     | One thing worth carrying forward. When you make a channel decision, you are not adjusting a technical setting. You are pulling on that number in the middle. |
+| 2 | reveal  | lever-1      | Drive rev-par growth. |
+| 3 | reveal  | lever-2      | Gain market share. |
+| 4 | reveal  | lever-3      | Grow digital delivery. |
+| 5 | reveal  | lever-4      | Grow non-room revenue. |
+| 6 | reveal  | lever-5      | Maintain parity. |
+| 7 | reveal  | lever-6      | And distribution. This module sits inside one part of it. Retail and leisure distribution. |
+| 8 | reveal  | takeaway     | One thing worth carrying forward. When you make a channel decision, you are not adjusting a technical setting. You are pulling on that number in the middle. |
 
-**Actor notes:** Beat 2 is a list read with rhythm, not enumeration. Each lever gets equal weight, no rising intonation. Beat 4 lands with quiet conviction.
+**Actor notes:** Cues 2–6 are the pale-wedge levers. Each spoken as a short deliberate beat, wedge + list row light together. Cue 7 is the gold-wedge climax — same cadence as the previous five but slightly longer as the module's own home lights up. Cue 8 lands with quiet conviction.
 
 ---
 

@@ -528,6 +528,14 @@ body.cueline-active #s-blurred [data-cue].reveal{
 /* SVG paths inside the wheel: reveals swap the fill directly, no shadow needed. */
 body.cueline-active #s-loc [data-cue].reveal[fill]{filter:drop-shadow(0 2px 4px rgba(201,168,76,0.4));}
 
+/* Slide 1 · per-lever staggered reveals.
+   Each wedge + its numbered list row starts hidden and lights on its own cue. */
+body.cueline-active #s-loc .wheel-wedge{opacity:0;transition:opacity 0.5s ease, filter 0.5s ease;transform-origin:100px 100px;}
+body.cueline-active #s-loc .wheel-wedge.reveal{opacity:1;}
+body.cueline-active #s-loc .wheel-wedge-lit.reveal{filter:drop-shadow(0 3px 8px rgba(201,168,76,0.5));}
+body.cueline-active #s-loc .lever-row{opacity:0;transform:translateX(8px);transition:opacity 0.45s ease, transform 0.45s ease;}
+body.cueline-active #s-loc .lever-row.reveal{opacity:1;transform:translateX(0);}
+
 /* ─── CC OVERLAY ─── */
 #cc-overlay{
   position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
@@ -738,42 +746,59 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         <div class="s-inner" style="padding:18px 40px 0;text-align:center;">
           <h2 class="sh" style="margin-top:4px;margin-bottom:14px;">The bigger picture</h2>
 
-          <div style="display:grid;grid-template-columns:260px 1fr;gap:44px;align-items:center;max-width:720px;margin:0 auto;text-align:left;">
+          <div style="display:grid;grid-template-columns:290px 1fr;gap:44px;align-items:center;max-width:780px;margin:0 auto;text-align:left;">
 
-            <!-- Wheel (SVG). 6 equal wedges. Top-right (2 o'clock) = Retail & Leisure Distribution → lit gold. -->
-            <div style="position:relative;width:260px;height:260px;">
+            <!-- Wheel (SVG). 6 wedges each with its own data-cue so they light one at a time
+                 in sync with the narration. Positions run clockwise from 12 o'clock:
+                 lever-1 = Top, lever-2 = 2 o'clock, ..., lever-6 = 10 o'clock (GOLD). -->
+            <div style="position:relative;width:290px;height:290px;">
               <svg viewBox="0 0 200 200" style="width:100%;height:100%;overflow:visible;">
-                <!-- Five pale wedges (alternating tint). Revealed together with wheel-ring. -->
-                <g data-cue="wheel-ring">
-                  <path d="M 100 100 L 100 20 A 80 80 0 0 1 169.28 60 Z"    fill="#EEF6FD" stroke="var(--b700)" stroke-width="0.5"/>
-                  <path d="M 100 100 L 169.28 140 A 80 80 0 0 1 100 180 Z"  fill="#EEF6FD" stroke="var(--b700)" stroke-width="0.5"/>
-                  <path d="M 100 100 L 100 180 A 80 80 0 0 1 30.72 140 Z"   fill="#D8EAFB" stroke="var(--b700)" stroke-width="0.5"/>
-                  <path d="M 100 100 L 30.72 140 A 80 80 0 0 1 30.72 60 Z"  fill="#EEF6FD" stroke="var(--b700)" stroke-width="0.5"/>
-                  <path d="M 100 100 L 30.72 60 A 80 80 0 0 1 100 20 Z"     fill="#D8EAFB" stroke="var(--b700)" stroke-width="0.5"/>
-                </g>
-                <!-- The lit wedge (2 o'clock position) — Retail & Leisure Distribution -->
-                <path data-cue="wheel-lit" d="M 100 100 L 169.28 60 A 80 80 0 0 1 169.28 140 Z" fill="var(--gold)" stroke="var(--b900)" stroke-width="0.7"/>
+                <path data-cue="lever-1" class="wheel-wedge" d="M 100 100 L 100 20 A 80 80 0 0 1 169.28 60 Z"    fill="#EEF6FD" stroke="var(--b700)" stroke-width="0.5"/>
+                <path data-cue="lever-2" class="wheel-wedge" d="M 100 100 L 169.28 60 A 80 80 0 0 1 169.28 140 Z" fill="#D8EAFB" stroke="var(--b700)" stroke-width="0.5"/>
+                <path data-cue="lever-3" class="wheel-wedge" d="M 100 100 L 169.28 140 A 80 80 0 0 1 100 180 Z"  fill="#EEF6FD" stroke="var(--b700)" stroke-width="0.5"/>
+                <path data-cue="lever-4" class="wheel-wedge" d="M 100 100 L 100 180 A 80 80 0 0 1 30.72 140 Z"   fill="#D8EAFB" stroke="var(--b700)" stroke-width="0.5"/>
+                <path data-cue="lever-5" class="wheel-wedge" d="M 100 100 L 30.72 140 A 80 80 0 0 1 30.72 60 Z"  fill="#EEF6FD" stroke="var(--b700)" stroke-width="0.5"/>
+                <!-- Gold wedge (10 o'clock) — Retail & Leisure Distribution, revealed last -->
+                <path data-cue="lever-6" class="wheel-wedge wheel-wedge-lit" d="M 100 100 L 30.72 60 A 80 80 0 0 1 100 20 Z" fill="var(--gold)" stroke="var(--b900)" stroke-width="0.7"/>
                 <!-- Centre disc + label. "Total Hotel Revenue" reads as one phrase in gold. -->
-                <circle data-cue="wheel-centre" cx="100" cy="100" r="38" fill="var(--b900)"/>
+                <circle data-cue="wheel-centre" cx="100" cy="100" r="40" fill="var(--b900)"/>
                 <text data-cue="wheel-centre" x="100" y="93"  text-anchor="middle" fill="var(--white)" font-family="DusitDisplay,sans-serif" font-size="7" font-weight="800">Grow Profitable</text>
                 <text data-cue="wheel-centre" x="100" y="103" text-anchor="middle" fill="var(--gold)"  font-family="DusitDisplay,sans-serif" font-size="7" font-weight="800">Total Hotel</text>
                 <text data-cue="wheel-centre" x="100" y="113" text-anchor="middle" fill="var(--gold)"  font-family="DusitDisplay,sans-serif" font-size="7" font-weight="800">Revenue</text>
               </svg>
             </div>
 
-            <!-- Levers ledger. Retail & Leisure row gets the gold treatment via wheel-lit. -->
+            <!-- Levers ledger — bigger text (14px), numbered rows, each row lights with its wedge -->
             <div>
-              <div data-cue="wheel-ring" style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:10px;">The six levers</div>
-              <div style="display:flex;flex-direction:column;gap:6px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">
-                <div data-cue="wheel-ring" style="padding:5px 10px;border-left:2px solid var(--g100);">Drive RevPAR Growth</div>
-                <div data-cue="wheel-ring" style="padding:5px 10px;border-left:2px solid var(--g100);">Gain Market Share</div>
-                <div data-cue="wheel-ring" style="padding:5px 10px;border-left:2px solid var(--g100);">Grow Digital Delivery</div>
-                <div data-cue="wheel-ring" style="padding:5px 10px;border-left:2px solid var(--g100);">Grow Non-Room Revenue</div>
-                <div data-cue="wheel-ring" style="padding:5px 10px;border-left:2px solid var(--g100);">Maintain Parity</div>
-                <!-- The lit row: gold left rule, gold "This module" tag, bold navy title. Fires with wheel-lit. -->
-                <div data-cue="wheel-lit" style="padding:8px 12px;border-left:3px solid var(--gold);background:var(--gold-l);border-radius:0 var(--rs) var(--rs) 0;">
-                  <div style="font-family:'DusitDisplay',sans-serif;font-size:8px;font-weight:800;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:2px;">This module</div>
-                  <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);line-height:1.25;">Retail &amp; Leisure Distribution</div>
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;">The six levers</div>
+              <div style="display:flex;flex-direction:column;gap:8px;font-family:'DusitText',sans-serif;font-size:14px;color:var(--g700);">
+                <div data-cue="lever-1" class="lever-row" style="display:grid;grid-template-columns:22px 1fr;gap:14px;align-items:center;padding:6px 0;">
+                  <span style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--gold);">1</span>
+                  <span>Drive RevPAR Growth</span>
+                </div>
+                <div data-cue="lever-2" class="lever-row" style="display:grid;grid-template-columns:22px 1fr;gap:14px;align-items:center;padding:6px 0;">
+                  <span style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--gold);">2</span>
+                  <span>Gain Market Share</span>
+                </div>
+                <div data-cue="lever-3" class="lever-row" style="display:grid;grid-template-columns:22px 1fr;gap:14px;align-items:center;padding:6px 0;">
+                  <span style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--gold);">3</span>
+                  <span>Grow Digital Delivery</span>
+                </div>
+                <div data-cue="lever-4" class="lever-row" style="display:grid;grid-template-columns:22px 1fr;gap:14px;align-items:center;padding:6px 0;">
+                  <span style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--gold);">4</span>
+                  <span>Grow Non-Room Revenue</span>
+                </div>
+                <div data-cue="lever-5" class="lever-row" style="display:grid;grid-template-columns:22px 1fr;gap:14px;align-items:center;padding:6px 0;">
+                  <span style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--gold);">5</span>
+                  <span>Maintain Parity</span>
+                </div>
+                <!-- Sixth row: gold treatment, "This module" tag, revealed with the gold wedge. -->
+                <div data-cue="lever-6" class="lever-row" style="display:grid;grid-template-columns:22px 1fr;gap:14px;align-items:center;padding:10px 14px;background:var(--gold-l);border-left:3px solid var(--gold);border-radius:0 var(--rs) var(--rs) 0;margin-top:2px;">
+                  <span style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--gold);">6</span>
+                  <div>
+                    <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:2px;">This module</div>
+                    <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);line-height:1.25;">Retail &amp; Leisure Distribution</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2308,11 +2333,15 @@ Cueline.register(0, [ // s-hook · Someone is booking your hotel right now
   {do:'reveal', target:'channels',   cc:"That connection might be an OTA. Or a wholesaler. Or a travel agent. Or your own website. Each of those routes costs the hotel a different amount."},
   {do:'reveal', target:'headline',   cc:"Same room. Same guest. Same night. Different money in the bank. This module is about that journey."}
 ]);
-Cueline.register(1, [ // s-loc · The bigger picture
+Cueline.register(1, [ // s-loc · The bigger picture — per-lever staggered reveal
   {cc:"Before we get into channels, one piece of context."},
   {do:'reveal', target:'wheel-centre', cc:"Everything your commercial team does rolls up to a single number. Grow profitable total hotel revenue."},
-  {do:'reveal', target:'wheel-ring',   cc:"RevPAR growth. Market share. Digital delivery. Non-room revenue. Parity. Different levers, same centre."},
-  {do:'reveal', target:'wheel-lit',    cc:"Distribution is one of those levers. This module sits inside one part of it. Retail and leisure distribution."},
+  {do:'reveal', target:'lever-1',      cc:"Drive RevPAR growth."},
+  {do:'reveal', target:'lever-2',      cc:"Gain market share."},
+  {do:'reveal', target:'lever-3',      cc:"Grow digital delivery."},
+  {do:'reveal', target:'lever-4',      cc:"Grow non-room revenue."},
+  {do:'reveal', target:'lever-5',      cc:"Maintain parity."},
+  {do:'reveal', target:'lever-6',      cc:"And distribution. This module sits inside one part of it. Retail and leisure distribution."},
   {do:'reveal', target:'takeaway',     cc:"One thing worth carrying forward. When you make a channel decision, you are not adjusting a technical setting. You are pulling on that number in the middle."}
 ]);
 Cueline.register(2, [ // s-def · What distribution actually means
