@@ -134,17 +134,17 @@ slides.push({ no:"05", title:"Overview: your GDS production against the market",
   ],
   boxes:[
     { kind:"visual", lines:[
-      "Overview screenshot, placeholder capture. Ring the three headline cards, Revenue, Room Nights and ADR, each carrying penetration, opportunity, rank and index. Then ring the channel breakdown beneath: GDS, opening into Amadeus, Sabre and Travelport. Schematic, no figures highlighted.",
+      "Overview screenshot, placeholder capture. Ring the three headline cards, Revenue, Room Nights and ADR, each carrying penetration, opportunity, rank and index. Then ring the channel breakdown beneath: GDS, opening into Amadeus, Galileo, Sabre and Travelport. Schematic, no figures highlighted.",
     ]},
     { kind:"screen", lines:[
       "**The Overview is your headline read.**",
       "Your production, your comp set's, and the whole market's, side by side.",
       "**Penetration** tells you if you are above or below fair share. **Opportunity** tells you how much is out there you are not capturing. **Rank** tells you where you sit among your comp set.",
-      "And it splits by GDS: Amadeus, Sabre, Travelport. A weak system is a place to look.",
+      "And it splits by GDS: Amadeus, Galileo, Sabre, Travelport. A weak system is a place to look.",
     ]},
     { kind:"narration", lines:[
       { t:"*The Overview is where you start. It puts your production next to your comp set's and the whole market's, on revenue, room nights and rate. Each one carries the two numbers we just met: penetration, your share against fair share, and opportunity, what you are missing. It also gives you a rank, your place among the hotels in your comp set.*", italics:true },
-      { t:"*One more thing the Overview does: it breaks the GDS into the three systems agents actually use, Amadeus, Sabre and Travelport. If your penetration is fine in one and weak in another, that is a clue. It tells you which system the business is slipping through, and that is where you look next.*", italics:true },
+      { t:"*One more thing the Overview does: it breaks the GDS into the four systems agents actually use, Amadeus, Galileo, Sabre and Travelport. If your penetration is fine in one and weak in another, that is a clue. It tells you which system the business is slipping through, and that is where you look next.*", italics:true },
     ]},
   ]});
 
