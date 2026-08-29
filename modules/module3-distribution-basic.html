@@ -860,23 +860,20 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <h2 class="sh" style="margin-top:6px;">The line blurred</h2>
           </div>
 
-          <div style="display:flex;flex-direction:column;gap:8px;max-width:740px;margin:0 auto;width:100%;">
-            <!-- PAST band -->
-            <div data-cue="band-past" style="padding:10px 14px;background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);display:grid;grid-template-columns:70px 1fr;gap:12px;align-items:center;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--g500);letter-spacing:0.14em;text-transform:uppercase;">Past</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);line-height:1.45;">Two clean lanes. <b style="color:var(--b900);">B2B</b> sold only to trade partners. <b style="color:var(--b900);">B2C</b> sold only to guests.</div>
+          <!-- Three rows, no containers, no varying colors. Hairline separators + gold eyebrow
+               labels give the progression visual weight without decoration. -->
+          <div style="max-width:740px;margin:0 auto;width:100%;">
+            <div data-cue="band-past" style="padding:14px 4px;border-bottom:1px solid var(--g100);display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:baseline;">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;">Past</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:13px;color:var(--g700);line-height:1.5;">Two clean lanes. <b style="color:var(--b900);">B2B</b> sold only to trade partners. <b style="color:var(--b900);">B2C</b> sold only to guests.</div>
             </div>
-
-            <!-- TODAY band -->
-            <div data-cue="band-today" style="padding:10px 14px;background:var(--gold-l);border:1px solid var(--gold);border-radius:var(--rs);display:grid;grid-template-columns:70px 1fr;gap:12px;align-items:center;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;">Today</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);line-height:1.45;">Wholesalers reach guests through connected agents, affiliates, white-label sites. Consumer platforms run reseller tools. <b>The lanes cross.</b></div>
+            <div data-cue="band-today" style="padding:14px 4px;border-bottom:1px solid var(--g100);display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:baseline;">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;">Today</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:13px;color:var(--g700);line-height:1.5;">Wholesalers reach guests through connected agents, affiliates, white-label sites. Consumer platforms run reseller tools. <b style="color:var(--b900);">The lanes cross.</b></div>
             </div>
-
-            <!-- IMPACT band -->
-            <div data-cue="band-impact" style="padding:10px 14px;background:var(--white);border:1px solid var(--b400);border-radius:var(--rs);display:grid;grid-template-columns:70px 1fr;gap:12px;align-items:center;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--b700);letter-spacing:0.14em;text-transform:uppercase;">Impact</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);line-height:1.45;">A net rate you gave a wholesaler shows up on a public site <b style="color:var(--b900);">below your own price.</b> Your parity is gone. You did nothing wrong.</div>
+            <div data-cue="band-impact" style="padding:14px 4px;display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:baseline;">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;">Impact</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:13px;color:var(--g700);line-height:1.5;">A net rate you gave a wholesaler shows up on a public site <b style="color:var(--b900);">below your own price.</b> Your parity is gone. You did nothing wrong.</div>
             </div>
           </div>
 
