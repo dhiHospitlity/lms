@@ -925,20 +925,36 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <h2 class="sh" style="margin-top:6px;">The line blurred</h2>
           </div>
 
-          <!-- Three rows, no containers, no varying colors. Hairline separators + gold eyebrow
-               labels give the progression visual weight without decoration. -->
-          <div style="max-width:740px;margin:0 auto;width:100%;">
-            <div data-cue="band-past" style="padding:14px 4px;border-bottom:1px solid var(--g100);display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:baseline;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;">Past</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:13px;color:var(--g700);line-height:1.5;">Two clean lanes. <b style="color:var(--b900);">B2B</b> sold only to trade partners. <b style="color:var(--b900);">B2C</b> sold only to guests.</div>
+          <!-- Progression: Past (quiet baseline) → Today (warmer, lanes crossing) → Impact
+               (strongest, gold-tinted callout as the setup for the rate-leakage punchline).
+               Numeric prefixes carry the sequence; label typography scales with weight. -->
+          <div style="max-width:760px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:10px;">
+
+            <!-- 01 · PAST — muted baseline -->
+            <div data-cue="band-past" style="padding:14px 18px;background:var(--g50);border-radius:var(--rs);display:grid;grid-template-columns:90px 1fr;gap:20px;align-items:center;">
+              <div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--g500);letter-spacing:0.06em;line-height:1;">01</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--g500);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;">Past</div>
+              </div>
+              <div style="font-family:'DusitText',sans-serif;font-size:14px;color:var(--g700);line-height:1.5;">Two clean lanes. <b style="color:var(--b900);">B2B</b> sold only to trade partners. <b style="color:var(--b900);">B2C</b> sold only to guests.</div>
             </div>
-            <div data-cue="band-today" style="padding:14px 4px;border-bottom:1px solid var(--g100);display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:baseline;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;">Today</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:13px;color:var(--g700);line-height:1.5;">Wholesalers reach guests through connected agents, affiliates, white-label sites. Consumer platforms run reseller tools. <b style="color:var(--b900);">The lanes cross.</b></div>
+
+            <!-- 02 · TODAY — warmer, subtle escalation. Content lands with more emphasis. -->
+            <div data-cue="band-today" style="padding:14px 18px;background:var(--white);border:1px solid var(--gold);border-radius:var(--rs);display:grid;grid-template-columns:90px 1fr;gap:20px;align-items:center;">
+              <div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold);letter-spacing:0.06em;line-height:1;">02</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;">Today</div>
+              </div>
+              <div style="font-family:'DusitText',sans-serif;font-size:14px;color:var(--b900);line-height:1.5;">Wholesalers reach guests through connected agents, affiliates, white-label sites. Consumer platforms run reseller tools. <b>The lanes cross.</b></div>
             </div>
-            <div data-cue="band-impact" style="padding:14px 4px;display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:baseline;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;">Impact</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:13px;color:var(--g700);line-height:1.5;">A net rate you gave a wholesaler shows up on a public site <b style="color:var(--b900);">below your own price.</b> Your parity is gone. You did nothing wrong.</div>
+
+            <!-- 03 · IMPACT — strongest visual, gold-l bg. The consequence lands here. -->
+            <div data-cue="band-impact" style="padding:16px 18px;background:var(--gold-l);border-radius:var(--rs);display:grid;grid-template-columns:90px 1fr;gap:20px;align-items:center;">
+              <div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b700);letter-spacing:0.06em;line-height:1;">03</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--b900);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;">Impact</div>
+              </div>
+              <div style="font-family:'DusitText',sans-serif;font-size:14px;color:var(--b900);line-height:1.5;">A net rate you gave a wholesaler shows up on a public site <b>below your own price.</b> Your parity is gone. And you did nothing wrong.</div>
             </div>
           </div>
 
