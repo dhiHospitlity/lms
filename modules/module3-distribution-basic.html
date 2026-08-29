@@ -518,12 +518,19 @@ body.cueline-active #s-b2c-b2b [data-cue],
 body.cueline-active #s-blurred [data-cue]{
   opacity:1;transform:none;transition:box-shadow 0.5s ease, transform 0.5s ease, filter 0.5s ease;
 }
+/* Reveal is a one-shot pulse — brief acknowledgment of the beat, then back to rest.
+   Persistent glow was leaving every fired element highlighted, which read as noise. */
 body.cueline-active #s-hook [data-cue].reveal,
 body.cueline-active #s-loc [data-cue].reveal,
 body.cueline-active #s-def [data-cue].reveal,
 body.cueline-active #s-b2c-b2b [data-cue].reveal,
 body.cueline-active #s-blurred [data-cue].reveal{
-  box-shadow:0 4px 20px rgba(201,168,76,0.28);transform:translateY(-1px);
+  animation: revealPulse 1.4s ease-out;
+}
+@keyframes revealPulse {
+  0%   { box-shadow: none; transform: none; }
+  25%  { box-shadow: 0 4px 20px rgba(201,168,76,0.35); transform: translateY(-1px); }
+  100% { box-shadow: none; transform: none; }
 }
 /* SVG paths inside the wheel: reveals swap the fill directly, no shadow needed. */
 body.cueline-active #s-loc [data-cue].reveal[fill]{filter:drop-shadow(0 2px 4px rgba(201,168,76,0.4));}
@@ -862,8 +869,9 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
             <!-- B2C side -->
             <div style="display:flex;flex-direction:column;gap:14px;">
-              <!-- Big header, no container. -->
-              <div data-cue="col-b2c" style="text-align:left;">
+              <!-- Big header, no container. min-height keeps both columns' cards aligned
+                   regardless of whether the title wraps to one line or two. -->
+              <div data-cue="col-b2c" style="text-align:left;min-height:82px;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold);letter-spacing:0.24em;text-transform:uppercase;margin-bottom:8px;">B2C · business to consumer</div>
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:var(--b900);line-height:1.2;letter-spacing:-0.01em;">The customer is the guest.</div>
               </div>
@@ -884,8 +892,8 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
             <!-- B2B side -->
             <div style="display:flex;flex-direction:column;gap:14px;">
-              <!-- Big header, no container. -->
-              <div data-cue="col-b2b" style="text-align:left;">
+              <!-- Big header, no container. Same min-height as the B2C side. -->
+              <div data-cue="col-b2b" style="text-align:left;min-height:82px;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold);letter-spacing:0.24em;text-transform:uppercase;margin-bottom:8px;">B2B · business to business</div>
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:var(--b900);line-height:1.2;letter-spacing:-0.01em;">The customer is a business, not the guest.</div>
               </div>
