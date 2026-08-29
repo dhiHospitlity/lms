@@ -516,39 +516,49 @@
 
 ---
 
-## Slide 13 (s-which). Which system does what · CRS · Channel Manager · Opera
+## Slide 13 (s-which). Which system does what · SynXis + downstream
 
-### Reading text (~55 sec)
+### Reading text (~75 sec)
 
-> The C-R-S. Central Reservation System. This is where the rate lives. Every price, every rate plan, every restriction. One source of truth.
+> It starts with a pricing decision. Revenue management makes the call — sometimes with a system that recommends the rate, sometimes by hand.
 >
 > [pause 0.6s]
 >
-> The channel manager. Its job is to publish. The moment the rate changes in the C-R-S, the channel manager pushes it out to every connected channel.
->
-> [pause 0.6s]
->
-> And Opera. The property management system. Opera runs what happens on-property. Check-in, check-out, folios, housekeeping status.
+> That decision enters SynXis. SynXis is Dusit's central platform. It holds every rate, every restriction, and sends it everywhere it needs to go.
 >
 > [pause 0.7s]
 >
-> Watch what happens on a rate change. C-R-S updates. Channel manager fans it out to every partner. Every connected channel is on the new rate within seconds.
+> Two systems sit on the property side. The C-R-S handles reservations. Opera runs the hotel — check-in, check-out, folios, housekeeping.
+>
+> [pause 0.6s]
+>
+> Two more sit on the guest side. The booking engine powers dusit dot com. The G-D-S reaches corporate travel agents.
+>
+> [pause 0.6s]
+>
+> And the channel manager. Its job is to distribute — to publish every rate and every restriction out to the trade. That's what feeds every O-T-A and every B-2-B partner.
 >
 > [pause 0.5s]
 >
-> One rate. One push. Everywhere at once. That is why the connected channels can't drift.
+> One rate. One push. Everywhere at once. That's why the connected channels don't drift.
+>
+> [pause 0.7s]
+>
+> One more player, sitting on its own. Metasearch — Google Hotel Ads, Trivago, TripAdvisor, Kayak. It reads your public prices, but it doesn't sell the room. It compares, then hands the guest to whoever is selling.
 
 ### Cue map
 
-| # | Action  | Target      | Spoken line |
-|---|---------|-------------|-------------|
-| 0 | reveal  | sys-crs     | The C-R-S. Central Reservation System. This is where the rate lives. Every price, every rate plan, every restriction. One source of truth. |
-| 1 | reveal  | sys-cm      | The channel manager. Its job is to publish. The moment the rate changes in the C-R-S, the channel manager pushes it out to every connected channel. |
-| 2 | reveal  | sys-opera   | And Opera. The property management system. Opera runs what happens on-property. Check-in, check-out, folios, housekeeping status. |
-| 3 | reveal  | sys-flow    | Watch what happens on a rate change. C-R-S updates. Channel manager fans it out to every partner. Every connected channel is on the new rate within seconds. |
-| 4 | reveal  | sys-closer  | One rate. One push. Everywhere at once. That is why the connected channels can't drift. |
+| # | Action  | Target        | Spoken line |
+|---|---------|---------------|-------------|
+| 0 | reveal  | sys-pricing   | It starts with a pricing decision. Revenue management makes the call — sometimes with a system that recommends the rate, sometimes by hand. |
+| 1 | reveal  | sys-synxis    | That decision enters SynXis. SynXis is Dusit's central platform. It holds every rate, every restriction, and sends it everywhere it needs to go. |
+| 2 | reveal  | sys-property  | Two systems sit on the property side. The C-R-S handles reservations. Opera runs the hotel — check-in, check-out, folios, housekeeping. |
+| 3 | reveal  | sys-guest     | Two more sit on the guest side. The booking engine powers dusit dot com. The G-D-S reaches corporate travel agents. |
+| 4 | reveal  | sys-cm        | And the channel manager. Its job is to distribute — to publish every rate and every restriction out to the trade. That's what feeds every O-T-A and every B-2-B partner. |
+| 5 | reveal  | sys-closer    | One rate. One push. Everywhere at once. That's why the connected channels don't drift. |
+| 6 | reveal  | sys-meta      | One more player, sitting on its own. Metasearch — Google Hotel Ads, Trivago, TripAdvisor, Kayak. It reads your public prices, but it doesn't sell the room. It compares, then hands the guest to whoever is selling. |
 
-**Actor notes:** Cues 0-2 introduce each system with even weight. Cue 3 opens the loop-animation — deliver with a slight lift, watching the diagram fire. Cue 4 lands the takeaway line quietly, no theatricality.
+**Actor notes:** Cues 0-1 set up the causal chain: a decision → SynXis. Cues 2-4 stack quickly (property → guest → trade). Cue 5 lands the takeaway. Cue 6 shifts tone — Metasearch is an aside, so deliver it slightly cooler, almost as a "one more thing".
 
 ---
 
