@@ -303,7 +303,7 @@
 >
 > [pause 0.3s]
 >
-> And the GDS. Amadeus, Sabre, and Travelport.
+> And the GDS. Amadeus, Galileo, Sabre, and Travelport.
 >
 > [pause 0.6s]
 >
@@ -318,7 +318,7 @@
 | 2 | reveal  | channel-direct  | Direct. Your own website, phone, and central reservations. |
 | 3 | reveal  | channel-ota     | OTAs. Ten of them, organised in three tiers. We'll come back to that. |
 | 4 | reveal  | channel-b2b     | B-2-B. More than twenty wholesale partners. |
-| 5 | reveal  | channel-gds     | And the GDS. Amadeus, Sabre, and Travelport. |
+| 5 | reveal  | channel-gds     | And the GDS. Amadeus, Galileo, Sabre, and Travelport. |
 | 6 | reveal  | key-note        | Everything on this diagram moves automatically. That is what makes it powerful. It is also why an error moves just as fast as a correction does. |
 
 **Actor notes:** Cues 2–5 are the four families. Each one short and deliberate. Cue 3 (OTAs) teases the next slide — light lift on "we'll come back to that." Cue 6 lands the "error moves as fast as a correction" line with weight.

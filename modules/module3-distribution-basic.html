@@ -706,9 +706,13 @@ body.cueline-active #s-gds [data-cue].reveal{
 #s-kc .kc-fb.no{color:#B71C1C;font-weight:700;}
 #s-kc .kc-done{font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--b900);line-height:1.4;padding:6px 0;}
 @keyframes revealPulse {
-  0%   { box-shadow: none; transform: none; }
-  25%  { box-shadow: 0 4px 20px rgba(201,168,76,0.35); transform: translateY(-1px); }
-  100% { box-shadow: none; transform: none; }
+  /* NO transform — the previous translateY(-1px) was clobbering the
+     translateX(-50%) centering on absolutely-positioned cards (see slide 6),
+     causing them to jump sideways on reveal. drop-shadow works on both HTML
+     and SVG and needs no transform. */
+  0%   { filter: drop-shadow(0 0 0 rgba(201,168,76,0)); }
+  30%  { filter: drop-shadow(0 4px 14px rgba(201,168,76,0.55)); }
+  100% { filter: drop-shadow(0 0 0 rgba(201,168,76,0)); }
 }
 /* SVG paths inside the wheel: reveals swap the fill directly, no shadow needed. */
 body.cueline-active #s-loc [data-cue].reveal[fill]{filter:drop-shadow(0 2px 4px rgba(201,168,76,0.4));}
@@ -1232,9 +1236,9 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             </div>
 
             <!-- BOTTOM: GDS -->
-            <div data-cue="channel-gds" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:250px;padding:10px 14px;background:var(--white);border:1.5px solid var(--b400);border-radius:var(--rs);text-align:center;">
+            <div data-cue="channel-gds" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:290px;padding:10px 14px;background:var(--white);border:1.5px solid var(--b400);border-radius:var(--rs);text-align:center;">
               <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">GDS</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g500);margin-top:2px;">Amadeus · Sabre · Travelport</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g500);margin-top:2px;">Amadeus · Galileo · Sabre · Travelport</div>
             </div>
           </div>
 
@@ -3140,7 +3144,7 @@ Cueline.register(6, [ // s-channels · The four connected channels
   {do:'reveal', target:'channel-direct',  cc:"Direct. Your own website, phone, and central reservations."},
   {do:'reveal', target:'channel-ota',     cc:"OTAs. Ten of them, organised in three tiers. We'll come back to that."},
   {do:'reveal', target:'channel-b2b',     cc:"B-2-B. More than twenty wholesale partners."},
-  {do:'reveal', target:'channel-gds',     cc:"And the GDS. Amadeus, Sabre, and Travelport."},
+  {do:'reveal', target:'channel-gds',     cc:"And the GDS. Amadeus, Galileo, Sabre, and Travelport."},
   {do:'reveal', target:'key-note',        cc:"Everything on this diagram moves automatically. That's the power. It's also why an error moves just as fast as a correction does."}
 ]);
 Cueline.register(7, [ // s-ota-tiers · OTAs in three tiers
