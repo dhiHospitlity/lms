@@ -2996,10 +2996,9 @@ const Cueline = {
     const slideNode = (typeof slideEl === 'function') ? slideEl(this.currentSlide) : null;
     if(!slideNode) return;
     if(cue.do === 'lit' || cue.do === 'reveal'){
-      // Slide 13 is spotlight-style: only the container currently being narrated
-      // stays lit. Clear siblings' `.reveal` first; on the final closer beat,
-      // relight every group so the whole diagram lands together.
-      if(cue.do === 'reveal' && slideIdx === 13){
+      // Slide 13 spotlight: only the container being narrated stays lit; the
+      // final closer beat relights everyone so the whole picture lands.
+      if(cue.do === 'reveal' && this.currentSlide === 13){
         const groups = slideNode.querySelectorAll('[data-cue]');
         if(cue.target === 'sys-closer'){
           groups.forEach(el => el.classList.add('reveal'));
