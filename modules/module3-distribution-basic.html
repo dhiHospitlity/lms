@@ -1625,12 +1625,12 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
       <!-- SLIDE 13 (s-which): CONCEPT. Rework 4 — matches Dusit's ACTUAL tech
            stack per client reference. RMS makes the pricing call; it lands
            in the PMS (property brain); PMS syncs UP to SynXis (the CRS —
-           feeds dusit.com + GDS) and DOWN to D-edge (the channel manager —
+           feeds dusit.com + GDS) and DOWN to d-edge (the channel manager —
            feeds OTAs + wholesale). Every connection is OXI. -->
       <div class="slide s-white" id="s-which">
         <div class="s-inner" style="padding:14px 20px 0;text-align:center;">
           <h2 class="sh" style="margin-top:0;margin-bottom:2px;">Which system does what</h2>
-          <div style="max-width:760px;margin:0 auto 8px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.45;">A pricing decision starts in <b style="color:var(--b900);">RMS</b>, moves through the <b style="color:var(--b900);">PMS</b>, and lands via <b style="color:var(--b900);">SynXis</b> and <b style="color:var(--b900);">D-edge</b> on every channel — all over the <span style="color:var(--gold);font-weight:700;">OXI</span> interface.</div>
+          <div style="max-width:760px;margin:0 auto 8px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.45;">A pricing decision starts in <b style="color:var(--b900);">RMS</b>, moves through the <b style="color:var(--b900);">PMS</b>, and lands via <b style="color:var(--b900);">SynXis</b> and <b style="color:var(--b900);">d-edge</b> on every channel — all over the <span style="color:var(--gold);font-weight:700;">OXI</span> interface.</div>
 
           <svg viewBox="0 0 900 430" preserveAspectRatio="xMidYMid meet" width="900" height="430" style="width:100%;height:auto;display:block;max-width:900px;margin:0 auto;">
             <defs>
@@ -1648,36 +1648,36 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <text x="85" y="225" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="20" font-weight="800" fill="var(--b900)">RMS</text>
               <!-- Sub-role OUTSIDE box (per client reference) -->
               <text x="85" y="264" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Revenue</text>
-              <!-- OXI arrow to PMS -->
+              <!-- OXI arrow to PMS · pill container matches the other two OXI badges -->
               <line x1="150" y1="215" x2="195" y2="215" stroke="var(--gold)" stroke-width="1.5" marker-end="url(#ah)"/>
-              <text x="172" y="207" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="11" font-weight="800" fill="var(--gold)" letter-spacing="1">OXI</text>
+              <rect x="155" y="206" width="34" height="18" rx="4" fill="var(--white)" stroke="var(--gold)" stroke-width="1"/>
+              <text x="172" y="219" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="11" font-weight="800" fill="var(--gold)" letter-spacing="1">OXI</text>
             </g>
 
             <!-- Column B · PMS -->
             <g data-cue="sys-pms">
               <rect x="200" y="170" width="170" height="90" rx="12" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.75"/>
-              <text x="285" y="215" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="24" font-weight="800" fill="var(--b900)">PMS</text>
-              <text x="285" y="238" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">Opera</text>
+              <text x="285" y="222" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="26" font-weight="800" fill="var(--b900)">PMS</text>
               <!-- Roles OUTSIDE box, stacked so nothing collides with the OXI badge -->
               <text x="285" y="274" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Reservation</text>
               <text x="285" y="288" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Revenue</text>
               <text x="285" y="302" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Distribution Platform</text>
             </g>
 
-            <!-- Right-angle OXI routing · PMS → SynXis (top) and → D-edge (bottom).
+            <!-- Right-angle OXI routing · PMS → SynXis (top) and → d-edge (bottom).
                  Trombone pattern: horizontal stub out of PMS meets a vertical trunk,
                  then horizontal stubs into each destination. OXI labels sit ON the
                  vertical trunk (not near the box edges) so they read cleanly. -->
             <g stroke="var(--b900)" stroke-width="1.5" fill="none">
               <path d="M370 215 L395 215 L395 95  L420 95"  marker-end="url(#ahb)"/>
-              <path d="M370 215 L395 215 L395 335 L420 335" marker-end="url(#ahb)"/>
+              <path d="M370 215 L395 215 L395 320 L420 320" marker-end="url(#ahb)"/>
             </g>
             <!-- OXI labels · placed on the vertical trunk with a white pill behind
                  so they never get lost against the diagram lines or arrowheads. -->
             <rect x="378" y="146" width="34" height="18" rx="4" fill="var(--white)" stroke="var(--gold)" stroke-width="1"/>
             <text x="395" y="159" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="11" font-weight="800" fill="var(--gold)" letter-spacing="1">OXI</text>
-            <rect x="378" y="266" width="34" height="18" rx="4" fill="var(--white)" stroke="var(--gold)" stroke-width="1"/>
-            <text x="395" y="279" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="11" font-weight="800" fill="var(--gold)" letter-spacing="1">OXI</text>
+            <rect x="378" y="258" width="34" height="18" rx="4" fill="var(--white)" stroke="var(--gold)" stroke-width="1"/>
+            <text x="395" y="271" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="11" font-weight="800" fill="var(--gold)" letter-spacing="1">OXI</text>
 
             <!-- Column C top · SynXis (CRS) -->
             <g data-cue="sys-crs">
@@ -1703,19 +1703,19 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <text x="765" y="142" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Amadeus · Galileo · Sabre · Travelport</text>
             </g>
 
-            <!-- Column C bottom · D-edge (CM) -->
+            <!-- Column C bottom · d-edge (CM) · pulled up 15px so its footprint sits between OTAs and Wholesale -->
             <g data-cue="sys-cm">
-              <rect x="420" y="290" width="180" height="90" rx="12" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.75"/>
-              <text x="510" y="335" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="24" font-weight="800" fill="var(--b900)">D-edge</text>
-              <text x="510" y="358" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">CM · Trade distribution</text>
+              <rect x="420" y="275" width="180" height="90" rx="12" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.75"/>
+              <text x="510" y="320" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="24" font-weight="800" fill="var(--b900)">d-edge</text>
+              <text x="510" y="343" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">CM · Trade distribution</text>
               <!-- Roles OUTSIDE box, stacked (matches PMS/SynXis pattern) -->
-              <text x="510" y="394" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Hotel Distribution</text>
-              <text x="510" y="408" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Distribution Platform</text>
-              <text x="510" y="422" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" font-weight="700" fill="var(--gold)">10% via SynXis</text>
+              <text x="510" y="380" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Hotel Distribution</text>
+              <text x="510" y="394" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Distribution Platform</text>
+              <text x="510" y="408" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" font-weight="700" fill="var(--gold)">10% via SynXis</text>
 
-              <!-- Right-angle routing · D-edge → OTAs + Wholesale -->
-              <path d="M600 335 L625 335 L625 245 L650 245" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
-              <path d="M600 335 L625 335 L625 340 L650 340" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
+              <!-- Right-angle routing · d-edge → OTAs + Wholesale -->
+              <path d="M600 320 L625 320 L625 245 L650 245" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
+              <path d="M600 320 L625 320 L625 340 L650 340" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
 
               <!-- Column D lower · OTAs + Wholesale -->
               <rect x="650" y="220" width="230" height="50" rx="10" fill="var(--white)" stroke="var(--gold)" stroke-width="1.4"/>
@@ -2050,7 +2050,7 @@ const QFB = [
   'Volume is worthless if the rate leaks onto a public site and undercuts your own. Every new B2B partner starts with two questions: what is the net rate, and where will those rooms end up being sold?',
   'B2B rates are room-only products by contract. Changing the rate code to include breakfast breaks the partner agreement, corrupts reporting, and puts the parity conversation in the wrong place. Offer breakfast as a paid add-on.',
   'That is rate leakage — a B2B net rate that has ended up on a consumer channel, below your own dusit.com price. It is exactly what the B2B channel rule exists to prevent. Report it to Corporate Distribution the same day.',
-  'Connected channels update automatically. When the rate lands in SynXis (the CRS), SynXis feeds dusit.com and the GDS directly, and D-edge — the channel manager — publishes it out to every OTA and wholesale partner. The only channels sitting on the old rate are the non-connected ones — the local agent and the corporate account on email — until someone tells them.',
+  'Connected channels update automatically. When the rate lands in SynXis (the CRS), SynXis feeds dusit.com and the GDS directly, and d-edge — the channel manager — publishes it out to every OTA and wholesale partner. The only channels sitting on the old rate are the non-connected ones — the local agent and the corporate account on email — until someone tells them.',
   'The guest pays the same either way. The hotel does not receive the same. Commission comes off the OTA-net; the direct booking lands full. That is the single sentence to remember about channel choice.'
 ];
 const answered = Array(5).fill(false);
@@ -3214,7 +3214,7 @@ Cueline.register(13, [ // s-which · Which system does what — actual Dusit sta
   {do:'reveal', target:'sys-rms',    cc:"It starts with revenue management. R-M-S is where the pricing call gets made — a system recommends the number, a human confirms it."},
   {do:'reveal', target:'sys-pms',    cc:"The rate moves into the P-M-S — the property brain. Dusit runs Opera here. It coordinates reservations, revenue, and distribution on the property side."},
   {do:'reveal', target:'sys-crs',    cc:"The P-M-S syncs up to SynXis, Dusit's C-R-S. From SynXis, the rate reaches our own site — dusit.com through the booking engine — and the G-D-S, where corporate travel agents book."},
-  {do:'reveal', target:'sys-cm',     cc:"It also syncs down to D-edge, the channel manager. From D-edge, the rate publishes out to every O-T-A and every wholesale partner. About ninety percent of channel-management flows through D-edge; the other ten percent still runs directly via SynXis."},
+  {do:'reveal', target:'sys-cm',     cc:"It also syncs down to d-edge, the channel manager. From d-edge, the rate publishes out to every O-T-A and every wholesale partner. About ninety percent of channel-management flows through d-edge; the other ten percent still runs directly via SynXis."},
   {do:'reveal', target:'sys-closer', cc:"Every arrow you see is OXI — the interface these systems use to talk to each other. One change upstream, everywhere downstream. Automatically."}
 ]);
 Cueline.register(14, [ // s-gds · GDS and metasearch

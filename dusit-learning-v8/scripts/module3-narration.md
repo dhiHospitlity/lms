@@ -18,7 +18,7 @@
    - Booking.com / dusit.com = read as-is (never "dot com")
    - Sabre = "SAY-ber"
    - SynXis = "SIN-sis"
-   - D-Edge = "D-edge" (letter + word)
+   - D-Edge = "d-edge" (letter + word)
 6. Register: measured, warm, senior-colleague-explaining. Flat-to-warm energy.
 
 ---
@@ -532,7 +532,7 @@
 >
 > [pause 0.7s]
 >
-> It also syncs down to D-edge, the channel manager. From D-edge, the rate publishes out to every O-T-A and every wholesale partner. About ninety percent of channel-management flows through D-edge; the other ten percent still runs directly via SynXis.
+> It also syncs down to d-edge, the channel manager. From d-edge, the rate publishes out to every O-T-A and every wholesale partner. About ninety percent of channel-management flows through d-edge; the other ten percent still runs directly via SynXis.
 >
 > [pause 0.6s]
 >
@@ -545,10 +545,10 @@
 | 0 | reveal  | sys-rms     | It starts with revenue management. R-M-S is where the pricing call gets made — a system recommends the number, a human confirms it. |
 | 1 | reveal  | sys-pms     | The rate moves into the P-M-S — the property brain. Dusit runs Opera here. It coordinates reservations, revenue, and distribution on the property side. |
 | 2 | reveal  | sys-crs     | The P-M-S syncs up to SynXis, Dusit's C-R-S. From SynXis, the rate reaches our own site — dusit.com through the booking engine — and the G-D-S, where corporate travel agents book. |
-| 3 | reveal  | sys-cm      | It also syncs down to D-edge, the channel manager. From D-edge, the rate publishes out to every O-T-A and every wholesale partner. About ninety percent of channel-management flows through D-edge; the other ten percent still runs directly via SynXis. |
+| 3 | reveal  | sys-cm      | It also syncs down to d-edge, the channel manager. From d-edge, the rate publishes out to every O-T-A and every wholesale partner. About ninety percent of channel-management flows through d-edge; the other ten percent still runs directly via SynXis. |
 | 4 | reveal  | sys-closer  | Every arrow you see is OXI — the interface these systems use to talk to each other. One change upstream, everywhere downstream. Automatically. |
 
-**Actor notes:** Diagram matches Dusit's actual technical stack per client reference. Cue 0 (RMS) is a quiet setup. Cue 1 (PMS) with a slight lift on 'property brain'. Cues 2-3 track the split: up to SynXis (direct + GDS), down to D-edge (OTAs + wholesale). Cue 4 is the OXI takeaway — deliver the word 'OXI' clearly since it's spelled as letters.
+**Actor notes:** Diagram matches Dusit's actual technical stack per client reference. Cue 0 (RMS) is a quiet setup. Cue 1 (PMS) with a slight lift on 'property brain'. Cues 2-3 track the split: up to SynXis (direct + GDS), down to d-edge (OTAs + wholesale). Cue 4 is the OXI takeaway — deliver the word 'OXI' clearly since it's spelled as letters.
 
 ---
 
