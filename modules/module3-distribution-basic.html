@@ -1660,13 +1660,15 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <text x="285" y="252" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g700)">Reservations · Revenue · Distribution</text>
             </g>
 
-            <!-- Diagonal OXI arrows from PMS to SynXis (up-right) and D-edge (down-right) -->
+            <!-- Right-angle OXI routing · PMS → SynXis (top) and → D-edge (bottom).
+                 Trombone pattern: horizontal stub out of PMS meets a vertical trunk,
+                 then horizontal stubs into each destination. -->
             <g stroke="var(--b900)" stroke-width="1.5" fill="none">
-              <path d="M370 190 L420 100" marker-end="url(#ahb)"/>
-              <path d="M370 240 L420 330" marker-end="url(#ahb)"/>
+              <path d="M370 215 L395 215 L395 95  L420 95"  marker-end="url(#ahb)"/>
+              <path d="M370 215 L395 215 L395 335 L420 335" marker-end="url(#ahb)"/>
             </g>
-            <text x="405" y="150" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)" letter-spacing="1">OXI</text>
-            <text x="405" y="290" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)" letter-spacing="1">OXI</text>
+            <text x="410" y="85" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)" letter-spacing="1">OXI</text>
+            <text x="410" y="352" font-family="DusitDisplay,sans-serif" font-size="9" font-weight="800" fill="var(--gold)" letter-spacing="1">OXI</text>
 
             <!-- Column C top · SynXis (CRS) -->
             <g data-cue="sys-crs">
@@ -1676,9 +1678,9 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <text x="510" y="112" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Central rate + reservations</text>
               <text x="510" y="132" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g700)">Reservations · Revenue · Distribution</text>
 
-              <!-- Arrows from SynXis right (600, 95) to Dusit.com + GDS -->
-              <path d="M600 78 L650 60" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
-              <path d="M600 115 L650 132" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
+              <!-- Right-angle routing · SynXis → dusit.com + GDS -->
+              <path d="M600 95 L625 95 L625 60  L650 60"  stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
+              <path d="M600 95 L625 95 L625 130 L650 130" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
 
               <!-- Column D upper · Dusit.com + GDS -->
               <rect x="650" y="35" width="230" height="50" rx="10" fill="var(--white)" stroke="var(--gold)" stroke-width="1.4"/>
@@ -1698,9 +1700,9 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <text x="510" y="352" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Trade distribution</text>
               <text x="510" y="372" text-anchor="middle" font-family="DusitText,sans-serif" font-size="9" fill="var(--g700)">~90% of CM · 10% via SynXis</text>
 
-              <!-- Arrows from D-edge right (600, 335) to OTAs + Wholesale -->
-              <path d="M600 320 L650 245" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
-              <path d="M600 350 L650 340" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
+              <!-- Right-angle routing · D-edge → OTAs + Wholesale -->
+              <path d="M600 335 L625 335 L625 245 L650 245" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
+              <path d="M600 335 L625 335 L625 340 L650 340" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
 
               <!-- Column D lower · OTAs + Wholesale -->
               <rect x="650" y="220" width="230" height="50" rx="10" fill="var(--white)" stroke="var(--gold)" stroke-width="1.4"/>
