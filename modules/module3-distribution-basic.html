@@ -1360,7 +1360,22 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             </tbody>
           </table>
 
-          <div data-cue="tier-closer" style="max-width:600px;margin:14px auto 0;font-family:'DusitText',sans-serif;font-size:13px;color:var(--g500);line-height:1.5;text-align:center;">Same connection under the hood. <b style="color:var(--b900);">Different depth of relationship.</b></div>
+          <!-- Rate-types context (per Hathairat's 2026-09-01 review, item 2). Pure OTAs
+               like Booking take B2C only; merchant-model OTAs like Expedia and Trip
+               distribute to B2B as well, so they take three rate types. Sits between
+               the tier table and the closer as a compact 2-card strip. -->
+          <div data-cue="tier-rates" style="max-width:820px;margin:12px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div style="padding:10px 14px;background:var(--white);border:1.5px solid var(--gold);border-radius:var(--rs);text-align:left;">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:3px;">Booking.com</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:11.5px;color:var(--b900);line-height:1.45;">Purely an OTA. Dusit offers <b>B2C rates only</b>.</div>
+            </div>
+            <div style="padding:10px 14px;background:var(--gold-l);border:1.5px solid var(--gold);border-radius:var(--rs);text-align:left;">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:3px;">Expedia · Trip.com</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:11.5px;color:var(--b900);line-height:1.45;">Also distribute to B2B as merchant sites. Dusit offers <b>B2C, Package, and B2B</b>.</div>
+            </div>
+          </div>
+
+          <div data-cue="tier-closer" style="max-width:600px;margin:12px auto 0;font-family:'DusitText',sans-serif;font-size:13px;color:var(--g500);line-height:1.5;text-align:center;">Same connection under the hood. <b style="color:var(--b900);">Different depth of relationship.</b></div>
         </div>
       </div>
 
@@ -3202,6 +3217,7 @@ Cueline.register(7, [ // s-ota-tiers · OTAs in three tiers
   {do:'reveal', target:'tier-major',      cc:"Four of them sit closest. Expedia. Booking.com. Agoda. Trip.com. Each has a named account manager, we run contracted promotions with all four. You'll hear these called the Major 4."},
   {do:'reveal', target:'tier-growing',    cc:"A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Tripbtoz. Klook. Hopper. Six regional players with account management in place; promotions being contracted now."},
   {do:'reveal', target:'tier-connected',  cc:"And a smaller localised group — Gother in Thailand, Rakuten in Japan. Live and connected, matched to their home market."},
+  {do:'reveal', target:'tier-rates',      cc:"Rate types matter too. Booking.com is a pure OTA — Dusit offers it B2C rates only. Expedia and Trip.com also distribute to B2B as merchant sites, so they take three rate types: B2C, Package, and B2B."},
   {do:'reveal', target:'tier-closer',     cc:"Same connection under the hood. Different depth of relationship."}
 ]);
 Cueline.register(8, [ // s-b2b-math · How wholesale actually works — the math

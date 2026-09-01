@@ -345,6 +345,10 @@
 >
 > [pause 0.6s]
 >
+> Rate types matter too. Booking.com is a pure OTA — Dusit offers it B2C rates only. Expedia and Trip.com also distribute to B2B as merchant sites, so they take three rate types: B2C, Package, and B2B.
+>
+> [pause 0.6s]
+>
 > Same connection under the hood. Different depth of relationship.
 
 ### Cue map
@@ -355,7 +359,8 @@
 | 1 | reveal  | tier-major     | Four of them sit closest. Expedia. Booking.com. Agoda. Trip.com. Each has a named account manager, we run contracted promotions with all four. You will hear these called the Major 4. |
 | 2 | reveal  | tier-growing   | A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Tripbtoz. Klook. Hopper. Six regional players with account management in place; promotions being contracted now. |
 | 3 | reveal  | tier-connected | And a smaller localised group — Gother in Thailand, Rakuten in Japan. Live and connected, matched to their home market. |
-| 4 | reveal  | tier-closer    | Same connection under the hood. Different depth of relationship. |
+| 4 | reveal  | tier-rates     | Rate types matter too. Booking.com is a pure OTA — Dusit offers it B2C rates only. Expedia and Trip.com also distribute to B2B as merchant sites, so they take three rate types: B2C, Package, and B2B. |
+| 5 | reveal  | tier-closer    | Same connection under the hood. Different depth of relationship. |
 
 **Actor notes:** Cues 1–3 escalate warmth on Major 4 (closest partners), settle on Growing, and cool toward "connected only." Cue 4 lands the summarising line quietly.
 
