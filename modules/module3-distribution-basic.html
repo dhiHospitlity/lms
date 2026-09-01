@@ -39,7 +39,7 @@ html,body{height:100%;overflow:hidden;font-family:'DusitText',sans-serif;backgro
 .sb-item:hover:not(.locked):not(.active){background:rgba(255,255,255,0.04);}
 .sb-item.active{background:rgba(201,168,76,0.12);border-color:rgba(201,168,76,0.28);}
 .sb-item.visited .sb-dot{background:var(--gold);}
-.sb-item.locked{cursor:not-allowed;opacity:0.4;}
+.sb-item.locked{cursor:not-allowed;opacity:0.4;pointer-events:none;}
 .sb-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.18);flex-shrink:0;transition:background 0.2s;}
 .sb-item.active .sb-dot{background:var(--gold);}
 .sb-text{flex:1;}
@@ -2075,6 +2075,30 @@ let quizUnlocked = false;
 const visited = Array(N).fill(false);
 visited[0] = true;
 
+// Sequential-progression gate (Prakash: 'people shouldn't be able to skip any
+// slide. its mandatory to finish the slide prior to moving on'). A slide is
+// 'completed' when:
+//   - Content slides with cues → all cues have fired (Cueline._fire hook below)
+//   - Interactive slides (map / trace / KC) → the exercise finished
+//   - Quiz slides → the question was answered
+//   - Summary slide → arrival
+// nav() blocks forward jumps beyond the furthest reachable slide; backward
+// navigation to a previously-visited slide is always allowed.
+const completed = Array(N).fill(false);
+function markSlideCompleted(idx){
+  if(idx < 0 || idx >= N || completed[idx]) return;
+  completed[idx] = true;
+  if(typeof buildDots === 'function') buildDots();
+  if(typeof syncUI === 'function') syncUI();
+}
+function maxReachable(){
+  // Walk forward from 0 — first uncompleted slide is the furthest reachable
+  // (the user can be ON the first incomplete slide, working on it).
+  let i = 0;
+  while(i < N && completed[i]) i++;
+  return Math.min(i, N - 1);
+}
+
 function slideEl(idx){ return document.getElementById(SLIDE_IDS[idx]); }
 
 // Quiz · Module 3 · OTA1 Distribution Basic Knowledge · answers keyed 0-indexed
@@ -2093,6 +2117,9 @@ let quizDone = false;
 
 function nav(n) {
   if(n < 0 || n >= N) return;
+  // Sequential gate: forward jumps beyond the furthest reachable slide are
+  // blocked. Backward navigation to any earlier slide is always allowed.
+  if(n > cur && n > maxReachable()){ flashLock(); return; }
   if(n >= QUIZ_START && !quizUnlocked){ flashLock(); return; }
   if(n >= QUIZ_START && quizDone && n < N-1){ n = N-1; }
 
@@ -2101,6 +2128,8 @@ function nav(n) {
   cur = n;
   visited[cur] = true;
   slideEl(cur).classList.add('on');
+  // Summary slide auto-completes on arrival (no interaction to gate on).
+  if(cur === N - 1) completed[cur] = true;
 
   syncUI();
   checkUnlock();
@@ -2148,22 +2177,38 @@ function syncUI(){
 
   const atStart = cur === 0;
   const atEnd   = cur === N-1;
-  const nextBlocked = atEnd || (cur === CONTENT_END && !quizUnlocked);
+  // Next is disabled until the current slide is completed — enforces the
+  // sequential gate on the primary navigation control too.
+  const nextBlocked = atEnd || (cur === CONTENT_END && !quizUnlocked) || !completed[cur];
   ['prevBtn','fsPrev'].forEach(id=>{ const e=document.getElementById(id); if(e) e.disabled=atStart; });
   ['nextBtn','fsNext'].forEach(id=>{ const e=document.getElementById(id); if(e) e.disabled=nextBlocked; });
+
+  // Sidebar: lock any item beyond the furthest reachable slide.
+  const mr = maxReachable();
+  SIDEBAR_IDS.forEach((sbId, i) => {
+    const el = document.getElementById(sbId);
+    if(!el) return;
+    // Preserve the pre-existing quiz-lock behaviour (sbi-quiz gets its own
+    // .locked toggle in kcUnlock / checkUnlock); only touch content items.
+    if(sbId === 'sbi-quiz') return;
+    el.classList.toggle('locked', i > mr);
+  });
 
   buildDots();
 }
 
 function buildDots(){
   const sets=[{id:'navDots',cls:'ndot'},{id:'fsNdots',cls:'fs-ndot'}];
+  const mr = maxReachable();
   sets.forEach(({id,cls})=>{
     const c=document.getElementById(id);
     if(!c) return;
     c.innerHTML='';
     for(let i=0;i<N;i++){
       const d=document.createElement('div');
-      const locked=i>=QUIZ_START&&!quizUnlocked;
+      // A dot is locked when: (a) it's a quiz slide before quizUnlocked, or
+      // (b) it sits beyond the sequential-progression frontier.
+      const locked=(i>=QUIZ_START&&!quizUnlocked) || i>mr;
       let c2=cls;
       if(i===cur) c2+=' on';
       else if(locked) c2+=' locked';
@@ -2784,6 +2829,8 @@ function answer(qi,chosen,btn){
   fb.textContent=(ok?'Correct.':'Not quite.')+QFB[qi];
   fb.style.display='block';
   document.getElementById('qnxt-'+qi).style.display='inline-block';
+  // Answering the question completes this quiz slide (unlocks nav to next Q).
+  markSlideCompleted(QUIZ_START + qi);
   updateQDots();
 }
 
@@ -2804,6 +2851,7 @@ function finishQuiz(){
   const qi=document.getElementById('sbi-quiz');
   if(qi) qi.classList.add('visited');
   visited[N-1]=true;
+  completed[N-1]=true;
   document.getElementById('sbFill').style.width='100%';
   syncUI();
 }
@@ -3035,6 +3083,15 @@ const Cueline = {
       });
     }
     if(cue.cc) this._showCaption(cue.cc);
+    // Sequential-progression signal: mark the slide as completed once every
+    // cue on it has fired. Skipped for interactive slides — those complete
+    // via the exercise itself (map/trace/KC/quiz handlers do the marking).
+    const list = this.cues[this.currentSlide];
+    if(list && list.every(c => c.fired) &&
+       !this.noAutoAdvanceSlides.has(this.currentSlide) &&
+       typeof markSlideCompleted === 'function'){
+      markSlideCompleted(this.currentSlide);
+    }
   },
 
   _loadAudio(slideIdx, cueIdx){
@@ -3315,7 +3372,7 @@ function initMapDragDrop(){
         zone.classList.add('full');
         placed++;
         counter.textContent = placed;
-        if(placed === 8) done.style.display = 'block';
+        if(placed === 8){ done.style.display = 'block'; markSlideCompleted(11); }
       } else {
         dragged.classList.add('shake');
         setTimeout(() => dragged.classList.remove('shake'), 420);
@@ -3367,6 +3424,7 @@ function renderTraceStage(){
   if(!wrap) return;
   if(traceIdx >= TRACE_STAGES.length){
     document.getElementById('trace-done').style.display = 'block';
+    markSlideCompleted(15);
     return;
   }
   const s = TRACE_STAGES[traceIdx];
@@ -3447,8 +3505,9 @@ function kcAnswer(picked, btn){
       if(kcIdx < KC_QS.length){
         renderKC();
       } else {
-        // All three answered — enable quiz gate
+        // All three answered — enable quiz gate + mark slide 16 completed
         kcUnlock();
+        markSlideCompleted(16);
         const wrap = document.getElementById('kc-wrap');
         wrap.innerHTML = '<div class="kc-count">All three · complete</div>' +
                          '<div class="kc-done">Quiz unlocked. <span style="color:var(--gold);">Click Next when you\'re ready.</span></div>';
