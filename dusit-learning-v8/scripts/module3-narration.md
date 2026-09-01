@@ -516,44 +516,39 @@
 
 ---
 
-## Slide 13 (s-which). Which system does what · SynXis + downstream
+## Slide 13 (s-which). Which system does what · actual Dusit stack
 
-### Reading text (~75 sec)
+### Reading text (~65 sec)
 
-> It starts with a pricing decision. Revenue management makes the call — sometimes with a system that recommends the rate, sometimes by hand.
+> It starts with revenue management. R-M-S is where the pricing call gets made — a system recommends the number, a human confirms it.
 >
 > [pause 0.6s]
 >
-> That decision enters SynXis. SynXis is Dusit's central platform. It holds every rate, every restriction, and sends it everywhere it needs to go.
+> The rate moves into the P-M-S — the property brain. Dusit runs Opera here. It coordinates reservations, revenue, and distribution on the property side.
+>
+> [pause 0.6s]
+>
+> The P-M-S syncs up to SynXis, Dusit's C-R-S. From SynXis, the rate reaches our own site — dusit.com through the booking engine — and the G-D-S, where corporate travel agents book.
 >
 > [pause 0.7s]
 >
-> Two systems sit on the property side. The C-R-S handles reservations. Opera runs the hotel — check-in, check-out, folios, housekeeping.
+> It also syncs down to D-edge, the channel manager. From D-edge, the rate publishes out to every O-T-A and every wholesale partner. About ninety percent of channel-management flows through D-edge; the other ten percent still runs directly via SynXis.
 >
 > [pause 0.6s]
 >
-> Two more sit on the guest side. The booking engine powers dusit dot com. The G-D-S reaches corporate travel agents.
->
-> [pause 0.6s]
->
-> And the channel manager. Its job is to distribute — to publish every rate and every restriction out to the trade. That's what feeds every O-T-A and every B-2-B partner.
->
-> [pause 0.5s]
->
-> One rate. One push. Everywhere at once. That's why the connected channels don't drift.
+> Every arrow you see is OXI — the interface these systems use to talk to each other. One change upstream, everywhere downstream. Automatically.
 
 ### Cue map
 
-| # | Action  | Target        | Spoken line |
-|---|---------|---------------|-------------|
-| 0 | reveal  | sys-pricing   | It starts with a pricing decision. Revenue management makes the call — sometimes with a system that recommends the rate, sometimes by hand. |
-| 1 | reveal  | sys-synxis    | That decision enters SynXis. SynXis is Dusit's central platform. It holds every rate, every restriction, and sends it everywhere it needs to go. |
-| 2 | reveal  | sys-property  | Two systems sit on the property side. The C-R-S handles reservations. Opera runs the hotel — check-in, check-out, folios, housekeeping. |
-| 3 | reveal  | sys-guest     | Two more sit on the guest side. The booking engine powers dusit dot com. The G-D-S reaches corporate travel agents. |
-| 4 | reveal  | sys-cm        | And the channel manager. Its job is to distribute — to publish every rate and every restriction out to the trade. That's what feeds every O-T-A and every B-2-B partner. |
-| 5 | reveal  | sys-closer    | One rate. One push. Everywhere at once. That's why the connected channels don't drift. |
+| # | Action  | Target      | Spoken line |
+|---|---------|-------------|-------------|
+| 0 | reveal  | sys-rms     | It starts with revenue management. R-M-S is where the pricing call gets made — a system recommends the number, a human confirms it. |
+| 1 | reveal  | sys-pms     | The rate moves into the P-M-S — the property brain. Dusit runs Opera here. It coordinates reservations, revenue, and distribution on the property side. |
+| 2 | reveal  | sys-crs     | The P-M-S syncs up to SynXis, Dusit's C-R-S. From SynXis, the rate reaches our own site — dusit.com through the booking engine — and the G-D-S, where corporate travel agents book. |
+| 3 | reveal  | sys-cm      | It also syncs down to D-edge, the channel manager. From D-edge, the rate publishes out to every O-T-A and every wholesale partner. About ninety percent of channel-management flows through D-edge; the other ten percent still runs directly via SynXis. |
+| 4 | reveal  | sys-closer  | Every arrow you see is OXI — the interface these systems use to talk to each other. One change upstream, everywhere downstream. Automatically. |
 
-**Actor notes:** Cues 0-1 set up the causal chain: a decision → SynXis. Cues 2-4 stack quickly (property → guest → trade). Cue 5 lands the takeaway. Metasearch is covered in-depth on slide 14, so it's removed from this slide's flow.
+**Actor notes:** Diagram matches Dusit's actual technical stack per client reference. Cue 0 (RMS) is a quiet setup. Cue 1 (PMS) with a slight lift on 'property brain'. Cues 2-3 track the split: up to SynXis (direct + GDS), down to D-edge (OTAs + wholesale). Cue 4 is the OXI takeaway — deliver the word 'OXI' clearly since it's spelled as letters.
 
 ---
 
