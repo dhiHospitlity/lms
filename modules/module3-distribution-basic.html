@@ -1670,14 +1670,14 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
                  vertical trunk (not near the box edges) so they read cleanly. -->
             <g stroke="var(--b900)" stroke-width="1.5" fill="none">
               <path d="M370 215 L395 215 L395 95  L420 95"  marker-end="url(#ahb)"/>
-              <path d="M370 215 L395 215 L395 320 L420 320" marker-end="url(#ahb)"/>
+              <path d="M370 215 L395 215 L395 335 L420 335" marker-end="url(#ahb)"/>
             </g>
             <!-- OXI labels · placed on the vertical trunk with a white pill behind
                  so they never get lost against the diagram lines or arrowheads. -->
             <rect x="378" y="146" width="34" height="18" rx="4" fill="var(--white)" stroke="var(--gold)" stroke-width="1"/>
             <text x="395" y="159" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="11" font-weight="800" fill="var(--gold)" letter-spacing="1">OXI</text>
-            <rect x="378" y="258" width="34" height="18" rx="4" fill="var(--white)" stroke="var(--gold)" stroke-width="1"/>
-            <text x="395" y="271" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="11" font-weight="800" fill="var(--gold)" letter-spacing="1">OXI</text>
+            <rect x="378" y="252" width="34" height="18" rx="4" fill="var(--white)" stroke="var(--gold)" stroke-width="1"/>
+            <text x="395" y="265" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="11" font-weight="800" fill="var(--gold)" letter-spacing="1">OXI</text>
 
             <!-- Column C top · SynXis (CRS) -->
             <g data-cue="sys-crs">
@@ -1703,27 +1703,28 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <text x="765" y="142" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Amadeus · Galileo · Sabre · Travelport</text>
             </g>
 
-            <!-- Column C bottom · d-edge (CM) · pulled up 15px so its footprint sits between OTAs and Wholesale -->
+            <!-- Column C bottom · d-edge (CM) · '10% via SynXis' now sits ABOVE the box
+                 (was crowding the roles list below) -->
             <g data-cue="sys-cm">
-              <rect x="420" y="275" width="180" height="90" rx="12" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.75"/>
-              <text x="510" y="320" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="24" font-weight="800" fill="var(--b900)">d-edge</text>
-              <text x="510" y="343" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">CM · Trade distribution</text>
+              <text x="510" y="284" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" font-weight="700" fill="var(--gold)">10% via SynXis</text>
+              <rect x="420" y="290" width="180" height="90" rx="12" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.75"/>
+              <text x="510" y="335" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="24" font-weight="800" fill="var(--b900)">d-edge</text>
+              <text x="510" y="358" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">CM · Trade distribution</text>
               <!-- Roles OUTSIDE box, stacked (matches PMS/SynXis pattern) -->
-              <text x="510" y="380" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Hotel Distribution</text>
-              <text x="510" y="394" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Distribution Platform</text>
-              <text x="510" y="408" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" font-weight="700" fill="var(--gold)">10% via SynXis</text>
+              <text x="510" y="395" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Hotel Distribution</text>
+              <text x="510" y="409" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Distribution Platform</text>
 
-              <!-- Right-angle routing · d-edge → OTAs + Wholesale -->
-              <path d="M600 320 L625 320 L625 245 L650 245" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
-              <path d="M600 320 L625 320 L625 340 L650 340" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
+              <!-- Right-angle routing · d-edge → OTAs + Wholesale Dynamics -->
+              <path d="M600 335 L625 335 L625 245 L650 245" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
+              <path d="M600 335 L625 335 L625 340 L650 340" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
 
-              <!-- Column D lower · OTAs + Wholesale -->
+              <!-- Column D lower · OTAs + Wholesale Dynamics -->
               <rect x="650" y="220" width="230" height="50" rx="10" fill="var(--white)" stroke="var(--gold)" stroke-width="1.4"/>
               <text x="765" y="240" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--b900)">OTAs</text>
               <text x="765" y="257" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Booking.com · Agoda · Expedia · Trip.com…</text>
 
               <rect x="650" y="315" width="230" height="50" rx="10" fill="var(--white)" stroke="var(--gold)" stroke-width="1.4"/>
-              <text x="765" y="335" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--b900)">Wholesale</text>
+              <text x="765" y="335" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="14" font-weight="800" fill="var(--b900)">Wholesale Dynamics</text>
               <text x="765" y="352" text-anchor="middle" font-family="DusitText,sans-serif" font-size="10" fill="var(--g500)">Hotelbeds · WebBeds · TBO · Dida…</text>
             </g>
           </svg>
