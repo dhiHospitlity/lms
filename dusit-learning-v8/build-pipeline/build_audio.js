@@ -126,8 +126,9 @@ const PRONUNCIATION_OVERRIDES = [
   // "Dusit" reads as "DEW-sit" by default. Should be "DOO-sit" (IPA /ˈduː.sɪt/).
   { pattern: /\bDusit\b/g,  replacement: 'Doosit' },
   // "SynXis" reads inconsistently ("SIN-ziss" / "sin-EKS-iss") by default.
-  // Should be "SIN-ksis" (rhymes with 'axis' with a 'sin' onset).
-  { pattern: /\bSynXis\b/g, replacement: 'Sinksis' }
+  // Should be "sin-EK-sis" — three syllables, X reads as 'eks', not 'ks'.
+  // Was 'Sinksis' first (two syllables) — Prakash corrected: it's three.
+  { pattern: /\bSynXis\b/g, replacement: 'Sineksis' }
 ];
 
 function applyPronunciationOverrides(text){
