@@ -119,14 +119,15 @@ function extractVoiceTag(text){
 // to the API; captions and narration source keep the correct spelling.
 // Extend as we hit more mis-pronunciations across modules.
 const PRONUNCIATION_OVERRIDES = [
-  // "Dusit" reads as "DEW-sit" by default. Should be "DOO-sit."
-  // Whole-word only (case-insensitive on the first letter), preserves possessives.
+  // Rule of thumb: prefer a single-word phonetic spelling, no hyphen.
+  // Hyphens in the replacement make ElevenLabs v2 insert a micro-pause
+  // between syllables on some renders (Sep 2026 s7-c4 regression).
   //
-  // History: started as 'Doo-sit'. The hyphen made ElevenLabs v2 insert an
-  // audible micro-pause between syllables on some renders (Sep 2026, s7-c4
-  // regression flagged by Prakash). Switched to 'Doosit' — reads as one word,
-  // model handles stress correctly, no pause artefact.
-  { pattern: /\bDusit\b/g, replacement: 'Doosit' }
+  // "Dusit" reads as "DEW-sit" by default. Should be "DOO-sit" (IPA /ˈduː.sɪt/).
+  { pattern: /\bDusit\b/g,  replacement: 'Doosit' },
+  // "SynXis" reads inconsistently ("SIN-ziss" / "sin-EKS-iss") by default.
+  // Should be "SIN-ksis" (rhymes with 'axis' with a 'sin' onset).
+  { pattern: /\bSynXis\b/g, replacement: 'Sinksis' }
 ];
 
 function applyPronunciationOverrides(text){
