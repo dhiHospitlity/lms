@@ -121,7 +121,12 @@ function extractVoiceTag(text){
 const PRONUNCIATION_OVERRIDES = [
   // "Dusit" reads as "DEW-sit" by default. Should be "DOO-sit."
   // Whole-word only (case-insensitive on the first letter), preserves possessives.
-  { pattern: /\bDusit\b/g, replacement: 'Doo-sit' }
+  //
+  // History: started as 'Doo-sit'. The hyphen made ElevenLabs v2 insert an
+  // audible micro-pause between syllables on some renders (Sep 2026, s7-c4
+  // regression flagged by Prakash). Switched to 'Doosit' — reads as one word,
+  // model handles stress correctly, no pause artefact.
+  { pattern: /\bDusit\b/g, replacement: 'Doosit' }
 ];
 
 function applyPronunciationOverrides(text){
