@@ -524,9 +524,21 @@ body.cueline-active #s-channels [data-cue],
 body.cueline-active #s-ota-tiers [data-cue],
 body.cueline-active #s-b2b [data-cue],
 body.cueline-active #s-non [data-cue],
-body.cueline-active #s-which [data-cue],
 body.cueline-active #s-gds [data-cue]{
   opacity:1;transform:none;transition:box-shadow 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+}
+/* Slide 13 · Spotlight — only the container being narrated is lit; the rest
+   dim to keep the eye on the active step. Cueline clears sibling `.reveal`
+   before applying the new one for slideIdx===13 (see _runCue branch). On the
+   final closer beat, every group receives `.reveal` so the whole diagram
+   lights back up alongside the takeaway line. */
+body.cueline-active #s-which [data-cue]{
+  opacity: 0.28;
+  transition: opacity 0.5s ease, filter 0.5s ease;
+}
+body.cueline-active #s-which [data-cue].reveal{
+  opacity: 1;
+  filter: drop-shadow(0 3px 10px rgba(201,168,76,0.45));
 }
 /* Slide 4 · Past — two dots travel their own lanes, never cross. Continuous loop. */
 body.cueline-active #s-blurred .lane-dot-past-a,
@@ -654,10 +666,10 @@ body.cueline-active #s-channels [data-cue].reveal,
 body.cueline-active #s-ota-tiers [data-cue].reveal,
 body.cueline-active #s-b2b [data-cue].reveal,
 body.cueline-active #s-non [data-cue].reveal,
-body.cueline-active #s-which [data-cue].reveal,
 body.cueline-active #s-gds [data-cue].reveal{
   animation: revealPulse 1.4s ease-out;
 }
+/* Slide 13 uses persistent spotlight (see rule above) — no one-shot pulse. */
 
 /* s-trace · Sequential stage cards. Each stage: prompt + 4 buttons. Wrong → red,
    right → green + next stage animates in. */
@@ -2984,6 +2996,17 @@ const Cueline = {
     const slideNode = (typeof slideEl === 'function') ? slideEl(this.currentSlide) : null;
     if(!slideNode) return;
     if(cue.do === 'lit' || cue.do === 'reveal'){
+      // Slide 13 is spotlight-style: only the container currently being narrated
+      // stays lit. Clear siblings' `.reveal` first; on the final closer beat,
+      // relight every group so the whole diagram lands together.
+      if(cue.do === 'reveal' && slideIdx === 13){
+        const groups = slideNode.querySelectorAll('[data-cue]');
+        if(cue.target === 'sys-closer'){
+          groups.forEach(el => el.classList.add('reveal'));
+        } else {
+          groups.forEach(el => el.classList.remove('reveal'));
+        }
+      }
       slideNode.querySelectorAll('[data-cue="' + cue.target + '"]')
         .forEach(el => el.classList.add(cue.do === 'lit' ? 'lit' : 'reveal'));
     } else if(cue.do === 'pulse'){
@@ -3139,17 +3162,17 @@ Cueline.register(2, [ // s-def · What distribution actually means
   {cc:"Four families of route."},
   {do:'reveal', target:'card-direct', cc:"Direct. Your website. Your phone. Your front desk."},
   {do:'reveal', target:'card-ota',    cc:"OTA. The big online travel agencies. Booking.com, Expedia, Agoda, Trip.com."},
-  {do:'reveal', target:'card-b2b',    cc:"B-2-B. Wholesalers who sell your rooms on to travel agents."},
+  {do:'reveal', target:'card-b2b',    cc:"B2B. Wholesalers who sell your rooms on to travel agents."},
   {do:'reveal', target:'card-gds',    cc:"GDS. The network that corporate travel bookers work inside."},
   {do:'reveal', target:'closer',      cc:"Every booking your hotel takes arrives through one of those four. The rest of this module is about telling them apart, and knowing what each one costs you."}
 ]);
 Cueline.register(3, [ // s-b2c-b2b · B2C and B2B, who is the customer?
   {cc:"Here is the split that everything else hangs off. Who is the customer?"},
-  {do:'reveal', target:'col-b2c',      cc:"In B-2-C, the customer is the guest. They see a rate. They book it. They pay it. They turn up."},
-  {do:'reveal', target:'b2c-examples', cc:"Your website is B-2-C. So is the front desk. And so is an OTA, because the guest is still the one choosing and paying. The OTA just sits in the middle."},
-  {do:'reveal', target:'col-b2b',      cc:"In B-2-B, the customer is not the guest. It is a business. A wholesaler. A bedbank. A tour operator."},
+  {do:'reveal', target:'col-b2c',      cc:"In B2C, the customer is the guest. They see a rate. They book it. They pay it. They turn up."},
+  {do:'reveal', target:'b2c-examples', cc:"Your website is B2C. So is the front desk. And so is an OTA, because the guest is still the one choosing and paying. The OTA just sits in the middle."},
+  {do:'reveal', target:'col-b2b',      cc:"In B2B, the customer is not the guest. It is a business. A wholesaler. A bedbank. A tour operator."},
   {do:'reveal', target:'b2b-examples', cc:"They buy your rooms at a net rate. Then they resell them to their own customers, usually travel agents, at whatever price they choose."},
-  {do:'reveal', target:'pull-quote',   cc:"In B-2-C you control the price the guest sees. In B-2-B you control the price your partner pays. After that it is out of your hands. Which is exactly where the problems start."}
+  {do:'reveal', target:'pull-quote',   cc:"In B2C you control the price the guest sees. In B2B you control the price your partner pays. After that it is out of your hands. Which is exactly where the problems start."}
 ]);
 Cueline.register(4, [ // s-blurred · The line blurred
   {do:'reveal', target:'band-past',     cc:"Now the honest version. That clean split we walked through on the last slide isn't how it works any more."},
@@ -3169,7 +3192,7 @@ Cueline.register(6, [ // s-channels · The four connected channels
   {cc:"Four families of connected channel come off the Dusit hub."},
   {do:'reveal', target:'channel-direct',  cc:"Direct. Your own website, phone, and central reservations."},
   {do:'reveal', target:'channel-ota',     cc:"OTAs. Ten and growing, organised in three tiers. We'll come back to that."},
-  {do:'reveal', target:'channel-b2b',     cc:"B-2-B. More than twenty wholesale partners."},
+  {do:'reveal', target:'channel-b2b',     cc:"B2B. More than twenty wholesale partners."},
   {do:'reveal', target:'channel-gds',     cc:"And the GDS. Amadeus, Galileo, Sabre, and Travelport."},
   {do:'reveal', target:'key-note',        cc:"Everything on this diagram moves automatically. That's the power. It's also why an error moves just as fast as a correction does."}
 ]);
@@ -3194,7 +3217,7 @@ Cueline.register(9, [ // s-b2b · B2B partners
   {do:'reveal', target:'portfolio',       cc:"Dusit has more than twenty connected wholesale partners. That sounds like a lot until you look at how they're organised, because the portfolio isn't built around size. It's built around markets."},
   {do:'reveal', target:'market-global',   cc:"A handful are genuinely global — they reach every market. The names are on the row."},
   {do:'reveal', target:'market-rest',     cc:"The rest are there because they own a particular market. India. The GCC. Korea. And European tour business flowing into Asia."},
-  {do:'reveal', target:'b2b-rule',        cc:"Now the rule that matters. And it's the one worth taking away from this whole module. B-2-B rates are room-only products, and they belong in B-2-B channels. They must not be sold, directly or indirectly, to consumers."}
+  {do:'reveal', target:'b2b-rule',        cc:"Now the rule that matters. And it's the one worth taking away from this whole module. B2B rates are room-only products, and they belong in B2B channels. They must not be sold, directly or indirectly, to consumers."}
 ]);
 Cueline.register(10, [ // s-non · Non-connected players
   {cc:"Not everything plugs in. Plenty of business still arrives the old way."},
@@ -3212,17 +3235,17 @@ Cueline.register(12, [ // s-sys-mark · § Section marker · The systems behind 
   {cc:"Three systems make everything you just saw actually move."}
 ]);
 Cueline.register(13, [ // s-which · Which system does what — actual Dusit stack
-  {do:'reveal', target:'sys-rms',    cc:"It starts with revenue management. R-M-S is where the pricing call gets made — a system recommends the number, a human confirms it."},
-  {do:'reveal', target:'sys-pms',    cc:"The rate moves into the P-M-S — the property brain. Dusit runs Opera here. It coordinates reservations, revenue, and distribution on the property side."},
-  {do:'reveal', target:'sys-crs',    cc:"The P-M-S syncs up to SynXis, Dusit's C-R-S. From SynXis, the rate reaches our own site — dusit.com through the booking engine — and the G-D-S, where corporate travel agents book."},
-  {do:'reveal', target:'sys-cm',     cc:"It also syncs down to d-edge, the channel manager. From d-edge, the rate publishes out to every O-T-A and every wholesale partner. About ninety percent of channel-management flows through d-edge; the other ten percent still runs directly via SynXis."},
+  {do:'reveal', target:'sys-rms',    cc:"It starts with revenue management. RMS is where the pricing call gets made — a system recommends the number, a human confirms it."},
+  {do:'reveal', target:'sys-pms',    cc:"The rate moves into the PMS — the property brain. Dusit runs Opera here. It coordinates reservations, revenue, and distribution on the property side."},
+  {do:'reveal', target:'sys-crs',    cc:"The PMS syncs up to SynXis, Dusit's CRS. From SynXis, the rate reaches our own site — dusit.com through the booking engine — and the GDS, where corporate travel agents book."},
+  {do:'reveal', target:'sys-cm',     cc:"It also syncs down to d-edge, the channel manager. From d-edge, the rate publishes out to every OTA and every wholesale partner. About ninety percent of channel-management flows through d-edge; the other ten percent still runs directly via SynXis."},
   {do:'reveal', target:'sys-closer', cc:"Every arrow you see is OXI — the interface these systems use to talk to each other. One change upstream, everywhere downstream. Automatically."}
 ]);
 Cueline.register(14, [ // s-gds · GDS and metasearch
   {do:'reveal', target:'gds-block',     cc:"Two more players worth knowing. Both live in the connected side of the map, but they behave very differently."},
-  {do:'reveal', target:'gds-what',      cc:"The G-D-S. Global Distribution System. Amadeus. Galileo. Sabre. Travelport. This is the network that corporate travel agents use to book flights, hotels, and cars in one place. Business travel runs on it."},
-  {do:'reveal', target:'meta-what',     cc:"Metasearch. Google Hotel Ads. Trivago. TripAdvisor. Kayak. These aren't places you book. They compare prices across channels and send the guest onward — usually to dusit dot com, or to an O-T-A."},
-  {do:'reveal', target:'gds-closer',    cc:"G-D-S sells the room. Metasearch decides where the guest goes to buy it."}
+  {do:'reveal', target:'gds-what',      cc:"The GDS. Global Distribution System. Amadeus. Galileo. Sabre. Travelport. This is the network that corporate travel agents use to book flights, hotels, and cars in one place. Business travel runs on it."},
+  {do:'reveal', target:'meta-what',     cc:"Metasearch. Google Hotel Ads. Trivago. TripAdvisor. Kayak. These aren't places you book. They compare prices across channels and send the guest onward — usually to dusit dot com, or to an OTA."},
+  {do:'reveal', target:'gds-closer',    cc:"GDS sells the room. Metasearch decides where the guest goes to buy it."}
 ]);
 Cueline.register(15, [ // s-trace · Trace the booking (branching)
   {cc:"One booking. Four decisions."},
