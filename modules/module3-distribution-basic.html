@@ -1656,8 +1656,10 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <rect x="200" y="170" width="170" height="90" rx="12" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.75"/>
               <text x="285" y="215" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="24" font-weight="800" fill="var(--b900)">PMS</text>
               <text x="285" y="238" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">Opera</text>
-              <!-- Roles OUTSIDE box (per client reference) -->
-              <text x="285" y="280" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Reservation · Revenue · Distribution Platform</text>
+              <!-- Roles OUTSIDE box, stacked so nothing collides with the OXI badge -->
+              <text x="285" y="274" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Reservation</text>
+              <text x="285" y="288" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Revenue</text>
+              <text x="285" y="302" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Distribution Platform</text>
             </g>
 
             <!-- Right-angle OXI routing · PMS → SynXis (top) and → D-edge (bottom).
@@ -1680,8 +1682,10 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <rect x="420" y="50" width="180" height="90" rx="12" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.75"/>
               <text x="510" y="95" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="24" font-weight="800" fill="var(--b900)">SynXis</text>
               <text x="510" y="118" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">CRS · Central rate + reservations</text>
-              <!-- Roles OUTSIDE box (per client reference) -->
-              <text x="510" y="160" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Reservation · Revenue · Distribution Platform</text>
+              <!-- Roles OUTSIDE box, stacked so nothing collides with the OXI badge -->
+              <text x="510" y="154" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Reservation</text>
+              <text x="510" y="168" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Revenue</text>
+              <text x="510" y="182" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Distribution Platform</text>
 
               <!-- Right-angle routing · SynXis → dusit.com + GDS -->
               <path d="M600 95 L625 95 L625 60  L650 60"  stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
@@ -1702,8 +1706,10 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <rect x="420" y="290" width="180" height="90" rx="12" fill="var(--gold-l)" stroke="var(--gold)" stroke-width="1.75"/>
               <text x="510" y="335" text-anchor="middle" font-family="DusitDisplay,sans-serif" font-size="24" font-weight="800" fill="var(--b900)">D-edge</text>
               <text x="510" y="358" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g500)">CM · Trade distribution</text>
-              <!-- Sub-note OUTSIDE box (per client reference) -->
-              <text x="510" y="400" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Hotel Distribution · Distribution Platform · <tspan fill="var(--gold)" font-weight="700">10% via SynXis</tspan></text>
+              <!-- Roles OUTSIDE box, stacked (matches PMS/SynXis pattern) -->
+              <text x="510" y="394" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Hotel Distribution</text>
+              <text x="510" y="408" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" fill="var(--g700)">Distribution Platform</text>
+              <text x="510" y="422" text-anchor="middle" font-family="DusitText,sans-serif" font-size="11" font-weight="700" fill="var(--gold)">10% via SynXis</text>
 
               <!-- Right-angle routing · D-edge → OTAs + Wholesale -->
               <path d="M600 335 L625 335 L625 245 L650 245" stroke="var(--gold)" stroke-width="1.4" fill="none" marker-end="url(#ah)"/>
