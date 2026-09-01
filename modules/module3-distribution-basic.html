@@ -1328,18 +1328,21 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
                   <span class="ota-check off"></span>
                 </td>
                 <td style="padding:12px 20px;background:#FBF3DE;border-top-right-radius:var(--rs);border-bottom-right-radius:var(--rs);vertical-align:middle;">
-                  <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
-                    <span style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">MakeMyTrip</span>
-                    <span style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">tiket.com</span>
-                    <span style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Traveloka</span>
+                  <div style="display:flex;align-items:center;gap:14px 18px;flex-wrap:wrap;">
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:12.5px;font-weight:800;color:var(--b900);">MakeMyTrip</span>
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:12.5px;font-weight:800;color:var(--b900);">tiket.com</span>
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:12.5px;font-weight:800;color:var(--b900);">Traveloka</span>
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:12.5px;font-weight:800;color:var(--b900);">Tripbtoz</span>
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:12.5px;font-weight:800;color:var(--b900);">Klook</span>
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:12.5px;font-weight:800;color:var(--b900);">Hopper</span>
                   </div>
                 </td>
               </tr>
-              <!-- TIER 03 · CONNECTED ONLY -->
+              <!-- TIER 03 · LOCALISED OTAs -->
               <tr data-cue="tier-connected">
                 <td style="padding:11px 16px;background:var(--white);border:1px solid var(--g100);border-right:0;border-top-left-radius:var(--rs);border-bottom-left-radius:var(--rs);vertical-align:middle;">
                   <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--g500);letter-spacing:0.18em;text-transform:uppercase;">Tier 03</div>
-                  <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);margin-top:2px;">Connected only</div>
+                  <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);margin-top:2px;">Localised OTAs</div>
                 </td>
                 <td style="padding:11px 8px;background:var(--white);border-top:1px solid var(--g100);border-bottom:1px solid var(--g100);text-align:center;vertical-align:middle;">
                   <span class="ota-check off"></span>
@@ -1350,8 +1353,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
                 <td style="padding:11px 20px;background:var(--white);border:1px solid var(--g100);border-left:0;border-top-right-radius:var(--rs);border-bottom-right-radius:var(--rs);vertical-align:middle;">
                   <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
                     <span style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Gother</span>
-                    <span style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Hopper</span>
-                    <span style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Klook</span>
+                    <span style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Rakuten</span>
                   </div>
                 </td>
               </tr>
@@ -3198,8 +3200,8 @@ Cueline.register(6, [ // s-channels · The four connected channels
 Cueline.register(7, [ // s-ota-tiers · OTAs in three tiers
   {do:'reveal', target:'tier-intro',      cc:"Zooming in on the OTA side. Dusit is live with ten today, and the list keeps growing. But they're not all managed the same way, and that difference is worth understanding."},
   {do:'reveal', target:'tier-major',      cc:"Four of them sit closest. Expedia. Booking.com. Agoda. Trip.com. Each has a named account manager, we run contracted promotions with all four. You'll hear these called the Major 4."},
-  {do:'reveal', target:'tier-growing',    cc:"A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Account management is in place; promotions being contracted now."},
-  {do:'reveal', target:'tier-connected',  cc:"And a third group that's simply live and connected. Gother. Hopper. Klook. The plumbing works; there's no dedicated account manager."},
+  {do:'reveal', target:'tier-growing',    cc:"A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Tripbtoz. Klook. Hopper. Six regional players with account management in place; promotions being contracted now."},
+  {do:'reveal', target:'tier-connected',  cc:"And a smaller localised group — Gother in Thailand, Rakuten in Japan. Live and connected, matched to their home market."},
   {do:'reveal', target:'tier-closer',     cc:"Same connection under the hood. Different depth of relationship."}
 ]);
 Cueline.register(8, [ // s-b2b-math · How wholesale actually works — the math

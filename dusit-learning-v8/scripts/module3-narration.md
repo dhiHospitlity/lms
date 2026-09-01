@@ -337,11 +337,11 @@
 >
 > [pause 0.5s]
 >
-> A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Account management is in place; promotions being contracted now.
+> A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Tripbtoz. Klook. Hopper. Six regional players with account management in place; promotions being contracted now.
 >
 > [pause 0.5s]
 >
-> And a third group that is simply live and connected. Gother. Hopper. Klook. The plumbing works; there is no dedicated account manager.
+> And a smaller localised group — Gother in Thailand, Rakuten in Japan. Live and connected, matched to their home market.
 >
 > [pause 0.6s]
 >
@@ -353,8 +353,8 @@
 |---|---------|----------------|-------------|
 | 0 | reveal  | tier-intro     | Zooming in on the OTA side. Dusit is live with ten today, and the list keeps growing. But they are not all managed the same way, and that difference is worth understanding. |
 | 1 | reveal  | tier-major     | Four of them sit closest. Expedia. Booking.com. Agoda. Trip.com. Each has a named account manager, we run contracted promotions with all four. You will hear these called the Major 4. |
-| 2 | reveal  | tier-growing   | A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Account management is in place; promotions being contracted now. |
-| 3 | reveal  | tier-connected | And a third group that is simply live and connected. Gother. Hopper. Klook. The plumbing works; there is no dedicated account manager. |
+| 2 | reveal  | tier-growing   | A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Tripbtoz. Klook. Hopper. Six regional players with account management in place; promotions being contracted now. |
+| 3 | reveal  | tier-connected | And a smaller localised group — Gother in Thailand, Rakuten in Japan. Live and connected, matched to their home market. |
 | 4 | reveal  | tier-closer    | Same connection under the hood. Different depth of relationship. |
 
 **Actor notes:** Cues 1–3 escalate warmth on Major 4 (closest partners), settle on Growing, and cool toward "connected only." Cue 4 lands the summarising line quietly.
