@@ -91,9 +91,10 @@ const VOICES = {
 };
 
 const MODULE_VOICES = {
-  module1: 'charlotte',   // shipped, do not change
-  module2: 'charlotte',   // shipped, do not change (roster locked after render)
-  module3: 'george',      // OTA1 · Distribution Basic Knowledge — rotation kicks in here
+  module1: 'charlotte',       // shipped as 'Rate Architecture'; preserved untouched as reference
+  'module1-rmf': 'charlotte', // Module 1 rebadge → 'Revenue Management Foundation' (v2, active development)
+  module2: 'charlotte',       // shipped, do not change (roster locked after render)
+  module3: 'george',          // OTA1 · Distribution Basic Knowledge — rotation kicks in here
   module4: 'charlotte',
   module5: 'george'
   // Continue alternating for every new module entry.
