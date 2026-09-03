@@ -10,10 +10,13 @@
 
 | Path | Title | Status |
 |------|-------|--------|
-| `modules/module1-rate-architecture.html` | Rate Architecture & Market Segmentation | Complete |
-| `modules/module2-segmentation.html` | Revenue Tracking Segmentation | In progress |
+| `modules/module1-revenue-management-foundation.html` | Revenue Management Foundation | Complete |
+| `modules/module2-segmentation.html` | Revenue Tracking Segmentation | Complete |
+| `modules/module3-distribution-basic.html` | OTA1 · Distribution Basic Knowledge | Complete |
 
-Root `/` redirects to Module 1.
+Root `/` redirects to the landing page (`index.html`), which links every module.
+
+`modules/module1-rate-architecture.html` remains in the repo as a reference to the original "Rate Architecture" build; it is not linked from the landing page.
 
 ## Workflow
 

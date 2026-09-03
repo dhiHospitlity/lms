@@ -125,14 +125,14 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .sh{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--dark);line-height:1.25;margin-bottom:10px;}
 .why-lt{font-size:12px;color:var(--g700);line-height:1.78;margin-bottom:14px;}
 .why-lt b{color:var(--b900);font-weight:700;}
-.why-lt i{font-style:italic;color:var(--g500);}
+.why-lt i{font-style:normal;font-weight:600;color:var(--g500);}
 .sp{font-size:12px;color:var(--g500);line-height:1.7;}
 .deep-n{font-family:'DusitDisplay',sans-serif;font-size:38px;font-weight:800;color:var(--gold-l);line-height:1;margin-bottom:2px;}
 .deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);margin-bottom:8px;opacity:0.7;}
 .deep-title{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--white);line-height:1.2;margin-bottom:10px;}
 .deep-why{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.78;}
 .deep-why b{color:var(--gold-l);font-weight:600;}
-.deep-why em{font-style:italic;color:rgba(255,255,255,0.8);}
+.deep-why em{font-style:normal;font-weight:600;color:rgba(255,255,255,0.85);}
 
 /* ── OVERVIEW GRID ── */
 .ov-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px;}
@@ -510,13 +510,14 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
     <div class="sb-item" id="sbi-5" onclick="nav(5)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Right Channel</div></div></div>
     <div class="sb-item" id="sbi-6" onclick="nav(6)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Right Price</div></div></div>
     <div class="sb-item" id="sbi-7" onclick="nav(7)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Right Room</div></div></div>
-    <div class="sb-item" id="sbi-8" onclick="nav(8)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The System</div></div></div>
-    <div class="sb-item" id="sbi-9" onclick="nav(9)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Do / Don't</div></div></div>
-    <div class="sb-item" id="sbi-10" onclick="nav(10)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Checklist</div></div></div>
+    <div class="sb-item" id="sbi-8" onclick="nav(8)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Conditions on top of BAR</div></div></div>
+    <div class="sb-item" id="sbi-9" onclick="nav(9)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The System</div></div></div>
+    <div class="sb-item" id="sbi-10" onclick="nav(10)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Do / Don't</div></div></div>
+    <div class="sb-item" id="sbi-11" onclick="nav(11)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Checklist</div></div></div>
     <div class="sb-divider"></div>
     <div class="sb-section">Quiz</div>
     <!-- Single quiz entry in sidebar. Locked until content done. -->
-    <div class="sb-item locked" id="sbi-quiz" onclick="nav(11)">
+    <div class="sb-item locked" id="sbi-quiz" onclick="nav(12)">
       <div class="sb-dot"></div>
       <div class="sb-text"><div class="sb-stitle">Quiz · 5 Questions</div></div>
       <div class="sb-lock" id="quizLock">🔒</div>
@@ -635,7 +636,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <div class="vs-card" data-cue="card-direct"><div class="vs-hdr a">Direct.dusit.com</div><div class="vs-body"><div class="vs-price a">$200</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>Hotel receives full $200</li><li class="vs-fact"><span class="vfi">●</span>No commission</li></ul></div></div>
             <div class="vs-card" data-cue="card-ota"><div class="vs-hdr b">OTA. Booking.com</div><div class="vs-body"><div class="vs-price b">$200</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>OTA takes ~$30 (15%)</li><li class="vs-fact"><span class="vfi">●</span>Hotel nets ~$170</li></ul></div></div>
           </div>
-          <div class="key-box" data-cue="key-channel"><strong>Key principle:</strong> OTAs and direct sell at the <em>same rate</em> — that's rate parity. The commission the OTA takes is what changes the hotel's take-home, not the price the guest sees.</div>
+          <div class="key-box" data-cue="key-channel"><strong>Key principle:</strong> OTAs and direct sell at the <strong>same rate</strong> — that's rate parity. The commission the OTA takes is what changes the hotel's take-home, not the price the guest sees.</div>
         </div>
       </div>
 
@@ -667,12 +668,97 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <div class="room-rung dlx" data-cue="rung-dlx"><div><div class="rr-name">Deluxe Room</div><div class="rr-sup">+ $20 fixed supplement</div></div><div class="rr-price">$220</div></div>
             <div class="room-rung ste" data-cue="rung-ste"><div><div class="rr-name">Suite</div><div class="rr-sup">+ $50 fixed supplement</div></div><div class="rr-price">$250</div></div>
           </div>
-          <div class="key-box" data-cue="key-room"><strong>Critical rule:</strong> Supplement is added to the <em>derived rate</em>, after the segment discount. Corporate Deluxe = (BAR × 0.85) + $20. Not BAR + $20, then discounted.</div>
+          <div class="key-box" data-cue="key-room"><strong>Critical rule:</strong> Supplement is added to the <strong>derived rate</strong>, after the segment discount. Corporate Deluxe = (BAR × 0.85) + $20. Not BAR + $20, then discounted.</div>
         </div>
       </div>
 
+      <!-- SLIDE 5b: RATE ARCHITECTURE — Conditions on top of BAR (Advance Saver + Stay Longer).
+           This is where the term 'rate architecture' lands with Dusit's specific meaning:
+           BAR is the anchor; each condition product is a % off BAR in exchange for a
+           commitment from the guest. Inserted as slide index 8, before The System. -->
+      <div class="slide s-split" id="s-8">
+        <div class="split-left">
+          <div class="deep-n">05b</div>
+          <div class="deep-label">Rate architecture · in motion</div>
+          <h2 class="deep-title">Conditions on top of BAR</h2>
+          <p class="deep-why" data-cue="cond-why">BAR is the anchor. Every rate condition Dusit sells — Advance Saver, Stay Longer — is a percentage off BAR in exchange for a <strong>commitment</strong> from the guest.</p>
+          <div class="key-box" data-cue="cond-key">Move BAR, and every conditioned rate moves with it. <strong>No spreadsheets. No manual re-quotes.</strong> The commitment stays the same; only the money moves.</div>
+        </div>
+        <div class="split-right" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 30px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">Tap BAR to move it</div>
+
+          <div id="cond-bar-hub" onclick="condTriggerAnim()" style="width:120px;height:120px;border-radius:50%;background:var(--b900);border:3px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;margin-bottom:22px;">
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--gold-l);margin-bottom:2px;">BAR</div>
+            <div id="cond-bar-val" style="font-family:'DusitDisplay',sans-serif;font-size:24px;font-weight:800;color:#fff;transition:all 0.3s;">$200</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.5);margin-top:3px;letter-spacing:0.04em;">tap to update</div>
+          </div>
+
+          <div data-cue="cond-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;max-width:520px;">
+            <div class="cond-card" id="cond-0" style="background:var(--white);border:1.75px solid var(--g100);border-radius:12px;padding:14px 16px 12px;transition:border-color 0.35s,background 0.35s;box-shadow:0 1px 6px rgba(0,60,150,0.06);">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Advance Saver</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.06em;">−10%</div>
+              </div>
+              <div class="cond-rate" id="cond-v-0" style="font-family:'DusitDisplay',sans-serif;font-size:26px;font-weight:800;color:var(--b900);line-height:1;margin-bottom:8px;">$180</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g500);line-height:1.4;padding-top:7px;border-top:1px solid var(--g100);"><strong style="color:var(--b900);">Prepaid at booking.</strong> Non-refundable. The guest trades flexibility for a lower rate.</div>
+            </div>
+            <div class="cond-card" id="cond-1" style="background:var(--white);border:1.75px solid var(--g100);border-radius:12px;padding:14px 16px 12px;transition:border-color 0.35s,background 0.35s;box-shadow:0 1px 6px rgba(0,60,150,0.06);">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Stay Longer</div>
+                <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.06em;">−15%</div>
+              </div>
+              <div class="cond-rate" id="cond-v-1" style="font-family:'DusitDisplay',sans-serif;font-size:26px;font-weight:800;color:var(--b900);line-height:1;margin-bottom:8px;">$170</div>
+              <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g500);line-height:1.4;padding-top:7px;border-top:1px solid var(--g100);"><strong style="color:var(--b900);">Minimum 3-night stay.</strong> The guest trades a short trip for a deeper discount.</div>
+            </div>
+          </div>
+        </div>
+
+        <style>
+          #s-8 .cond-card.updated{border-color:var(--gold);background:var(--gold-l);}
+          #s-8 .cond-card.flash{animation:condFlash 0.55s ease;}
+          @keyframes condFlash{0%{background:#F0E5C4;}100%{background:var(--gold-l);}}
+          #cond-bar-hub.hub-firing{animation:condHubPulse 0.6s ease-out;}
+          @keyframes condHubPulse{0%{box-shadow:0 0 0 0 rgba(201,168,76,0.6);}70%{box-shadow:0 0 0 24px rgba(201,168,76,0);}100%{box-shadow:0 0 0 0 rgba(201,168,76,0);}}
+        </style>
+
+        <script>
+          (function(){
+            const CBARS = [200, 250, 175, 225];
+            const CDISCS = [0.90, 0.85];
+            const CCARDS = ['cond-0','cond-1'];
+            const CVALS  = ['cond-v-0','cond-v-1'];
+            let cbi = 0;
+            let cAnimating = false;
+            const cfmt = n => '$' + Math.round(n).toLocaleString();
+            window.condTriggerAnim = function(){
+              if(cAnimating) return;
+              cAnimating = true;
+              cbi = (cbi + 1) % CBARS.length;
+              const nb = CBARS[cbi];
+              const hub = document.getElementById('cond-bar-hub');
+              hub.classList.add('hub-firing');
+              hub.style.transform = 'scale(1.06)';
+              setTimeout(() => { hub.style.transform = 'scale(1)'; }, 300);
+              setTimeout(() => hub.classList.remove('hub-firing'), 700);
+              setTimeout(() => { document.getElementById('cond-bar-val').textContent = cfmt(nb); }, 180);
+              CCARDS.forEach((cid, i) => {
+                const delay = 340 + i * 200;
+                setTimeout(() => {
+                  document.getElementById(cid).classList.add('updated','flash');
+                  document.getElementById(CVALS[i]).textContent = cfmt(nb * CDISCS[i]);
+                }, delay);
+              });
+              setTimeout(() => {
+                cAnimating = false;
+                CCARDS.forEach(cid => { document.getElementById(cid).classList.remove('flash'); });
+              }, 340 + 2*200 + 900);
+            };
+          })();
+        </script>
+      </div>
+
       <!-- SLIDE 6: THE SYSTEM. Animated BAR propagation -->
-      <div class="slide s-dark" id="s-8">
+      <div class="slide s-dark" id="s-9">
         <div style="display:grid;grid-template-columns:268px 1fr;height:100%;">
 
           <!-- LEFT: context panel -->
@@ -680,12 +766,12 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);opacity:0.7;margin-bottom:8px;display:block;">The connected system</span>
             <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:18px;">One change.<br>Every rate.<br>Automatic.</h2>
             <div class="sys-demo" data-cue="sys-demo" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:11px 13px;">
-              <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-l);margin-bottom:8px;">Watch BAR move: ฿4,000 → ฿5,000</div>
+              <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-l);margin-bottom:8px;">Watch BAR move: $200 → $250</div>
               <div style="display:flex;flex-direction:column;gap:5px;">
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Corporate −15%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">฿3,400 → ฿4,250</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">OTA (parity)</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">฿4,000 → ฿5,000</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Dusit Gold −15%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">฿3,400 → ฿4,250</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Direct BAR</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">฿4,000 → ฿5,000</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Corporate −15%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">$170 → $213</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">OTA (parity)</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">$200 → $250</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Dusit Gold −15%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">$170 → $213</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Direct BAR</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">$200 → $250</span></div>
               </div>
               <div style="margin-top:8px;padding-top:7px;border-top:1px solid rgba(255,255,255,0.08);font-size:9px;color:rgba(255,255,255,0.28);text-align:center;">All updated automatically · No manual work</div>
             </div>
@@ -722,7 +808,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <!-- BAR HUB (centre) -->
               <div id="bar-hub" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:var(--b900);border:3px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:10;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;" onclick="triggerAnim()">
                 <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--gold-l);margin-bottom:2px;">BAR</div>
-                <div id="bar-val" style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;transition:all 0.3s;">฿4,000</div>
+                <div id="bar-val" style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;transition:all 0.3s;">$200</div>
                 <div style="font-size:8px;color:rgba(255,255,255,0.45);margin-top:1px;">tap to update</div>
               </div>
 
@@ -731,37 +817,37 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <div class="ch-card" id="ch-0" style="position:absolute;left:0;top:18px;width:112px;">
                 <div class="ch-label">Corporate</div>
                 <div class="ch-disc">−15%</div>
-                <div class="ch-rate" id="cv-0">฿3,400</div>
+                <div class="ch-rate" id="cv-0">$170</div>
               </div>
               <!-- ML: OTA -->
               <div class="ch-card" id="ch-1" style="position:absolute;left:0;top:50%;transform:translateY(-50%);width:112px;">
                 <div class="ch-label">OTA</div>
                 <div class="ch-disc">BAR (parity)</div>
-                <div class="ch-rate" id="cv-1">฿4,000</div>
+                <div class="ch-rate" id="cv-1">$200</div>
               </div>
               <!-- BL: Dusit Gold -->
               <div class="ch-card" id="ch-2" style="position:absolute;left:0;bottom:18px;width:112px;">
                 <div class="ch-label">Dusit Gold</div>
                 <div class="ch-disc">−15%</div>
-                <div class="ch-rate" id="cv-2">฿3,400</div>
+                <div class="ch-rate" id="cv-2">$170</div>
               </div>
               <!-- TR: Direct -->
               <div class="ch-card" id="ch-3" style="position:absolute;right:0;top:18px;width:112px;">
                 <div class="ch-label">Direct</div>
                 <div class="ch-disc">BAR rate</div>
-                <div class="ch-rate" id="cv-3">฿4,000</div>
+                <div class="ch-rate" id="cv-3">$200</div>
               </div>
               <!-- MR: GDS -->
               <div class="ch-card" id="ch-4" style="position:absolute;right:0;top:50%;transform:translateY(-50%);width:112px;">
                 <div class="ch-label">GDS</div>
                 <div class="ch-disc">BAR (parity)</div>
-                <div class="ch-rate" id="cv-4">฿4,000</div>
+                <div class="ch-rate" id="cv-4">$200</div>
               </div>
               <!-- BR: Wholesale -->
               <div class="ch-card" id="ch-5" style="position:absolute;right:0;bottom:18px;width:112px;">
                 <div class="ch-label">Wholesale</div>
                 <div class="ch-disc">−23%</div>
-                <div class="ch-rate" id="cv-5">฿3,080</div>
+                <div class="ch-rate" id="cv-5">$154</div>
               </div>
 
             </div><!-- /sys-anim -->
@@ -795,7 +881,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
       <script>
         (function(){
-          const BARS  = [4000, 5000, 3500, 4500];
+          const BARS  = [200, 250, 175, 225];
           // DISCS index mirrors CARDS (ch-0..ch-5). Locked per Dusit segment rules:
           //   0 Corporate    = BAR × 0.85   (15% off, contracted)
           //   1 OTA          = BAR           (parity, commission taken on hotel-net side)
@@ -810,7 +896,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           let barIdx  = 0;
           let animating = false;
 
-          function fmt(n){ return '฿'+Math.round(n).toLocaleString(); }
+          function fmt(n){ return '$'+Math.round(n).toLocaleString(); }
 
           function triggerAnim(){
             if(animating) return;
@@ -884,7 +970,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           window.triggerAnim = triggerAnim;
 
           // Auto-trigger once when slide becomes visible
-          const slide = document.getElementById('s-8');
+          const slide = document.getElementById('s-9');
           const obs = new MutationObserver(()=>{
             if(slide.classList.contains('on')){
               setTimeout(triggerAnim, 700);
@@ -895,7 +981,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
       </script>
 
       <!-- SLIDE 9: DO / DON'T.the guardrails, revealed as two blocks on cue -->
-      <div class="slide s-light" id="s-9">
+      <div class="slide s-light" id="s-10">
         <div class="s-inner s-centre">
           <span class="eye" style="margin-bottom:12px;">On every shift</span>
           <h2 class="sh" style="margin-bottom:18px;">Do / Don't</h2>
@@ -919,11 +1005,11 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
       </div>
 
       <!-- SLIDE 10: CHECKLIST.reveal items on cue, click to tick unlocks quiz -->
-      <div class="slide s-off" id="s-10">
+      <div class="slide s-off" id="s-11">
         <div class="s-inner s-centre">
           <span class="eye" style="margin-bottom:8px;">Before the quiz</span>
           <h2 class="sh" style="margin-bottom:6px;">Quick checklist</h2>
-          <p style="font-size:12px;color:var(--g500);margin-bottom:14px;">Tick all five <em>and</em> visit all content slides, then the quiz unlocks.</p>
+          <p style="font-size:12px;color:var(--g500);margin-bottom:14px;">Tick all five <strong>and</strong> visit all content slides, then the quiz unlocks.</p>
           <ul class="chklist" id="checklistItems">
             <li class="chi" data-cue="chk-1" onclick="tick(this)"><div class="chbox"></div>I can name the 5 questions: right guest, time, channel, conditions, room</li>
             <li class="chi" data-cue="chk-2" onclick="tick(this)"><div class="chbox"></div>I understand BAR is the single source of truth all rates link to</li>
@@ -938,7 +1024,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
       <!-- SLIDES 9–13: QUIZ (one per slide) -->
       <!-- Q1 -->
-      <div class="slide s-quiz" id="s-11">
+      <div class="slide s-quiz" id="s-12">
         <div class="quiz-wrap">
           <div class="quiz-header">
             <div class="q-meta"><div class="q-label">Quiz · Question 1 of 5</div><div class="q-dots" id="qd-0"></div></div>
@@ -951,11 +1037,11 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <button class="qopt" onclick="answer(0,3,this)">D. OTAs and corporate accounts negotiate the same rate as walk-ins</button>
           </div>
           <div class="q-fb" id="qfb-0"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q1 / 5</div><button class="btn btn-p" id="qnxt-0" onclick="nav(12)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q1 / 5</div><button class="btn btn-p" id="qnxt-0" onclick="nav(13)" style="display:none">Next →</button></div>
         </div>
       </div>
       <!-- Q2 -->
-      <div class="slide s-quiz" id="s-12">
+      <div class="slide s-quiz" id="s-13">
         <div class="quiz-wrap">
           <div class="quiz-header">
             <div class="q-meta"><div class="q-label">Quiz · Question 2 of 5</div><div class="q-dots" id="qd-1"></div></div>
@@ -968,15 +1054,15 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <button class="qopt" onclick="answer(1,3,this)">D. The prepaid rate is a promotional mistake that should be corrected</button>
           </div>
           <div class="q-fb" id="qfb-1"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q2 / 5</div><button class="btn btn-p" id="qnxt-1" onclick="nav(13)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q2 / 5</div><button class="btn btn-p" id="qnxt-1" onclick="nav(14)" style="display:none">Next →</button></div>
         </div>
       </div>
       <!-- Q3 -->
-      <div class="slide s-quiz" id="s-13">
+      <div class="slide s-quiz" id="s-14">
         <div class="quiz-wrap">
           <div class="quiz-header">
             <div class="q-meta"><div class="q-label">Quiz · Question 3 of 5</div><div class="q-dots" id="qd-2"></div></div>
-            <div class="q-text">A guest books on Booking.com and finds the same room for ฿800 less than the front desk is quoting. The Revenue Manager updated BAR this morning. What most likely happened?</div>
+            <div class="q-text">A guest books on Booking.com and finds the same room for $50 less than the front desk is quoting. The Revenue Manager updated BAR this morning. What most likely happened?</div>
           </div>
           <div class="quiz-opts">
             <button class="qopt" onclick="answer(2,0,this)">A. The front desk is quoting incorrectly from memory</button>
@@ -985,11 +1071,11 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <button class="qopt" onclick="answer(2,3,this)">D. The guest used a secret promo code on the OTA</button>
           </div>
           <div class="q-fb" id="qfb-2"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q3 / 5</div><button class="btn btn-p" id="qnxt-2" onclick="nav(14)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q3 / 5</div><button class="btn btn-p" id="qnxt-2" onclick="nav(15)" style="display:none">Next →</button></div>
         </div>
       </div>
       <!-- Q4 -->
-      <div class="slide s-quiz" id="s-14">
+      <div class="slide s-quiz" id="s-15">
         <div class="quiz-wrap">
           <div class="quiz-header">
             <div class="q-meta"><div class="q-label">Quiz · Question 4 of 5</div><div class="q-dots" id="qd-3"></div></div>
@@ -1002,11 +1088,11 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <button class="qopt" onclick="answer(3,3,this)">D. The RM decides which guests deserve a discount based on loyalty status</button>
           </div>
           <div class="q-fb" id="qfb-3"></div>
-          <div class="quiz-foot"><div class="quiz-foot-left">Q4 / 5</div><button class="btn btn-p" id="qnxt-3" onclick="nav(15)" style="display:none">Next →</button></div>
+          <div class="quiz-foot"><div class="quiz-foot-left">Q4 / 5</div><button class="btn btn-p" id="qnxt-3" onclick="nav(16)" style="display:none">Next →</button></div>
         </div>
       </div>
       <!-- Q5.results render here when done -->
-      <div class="slide s-quiz" id="s-15">
+      <div class="slide s-quiz" id="s-16">
         <div class="quiz-wrap">
           <div class="quiz-header">
             <div class="q-meta"><div class="q-label">Quiz · Question 5 of 5</div><div class="q-dots" id="qd-4"></div></div>
@@ -1090,15 +1176,16 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 // One counter. One model.
 // ═══════════════════════════════════════════
 
-const N = 16; // total navigable slides (2 intro + 9 content + 5 quiz)
-const CONTENT_END = 10; // last content slide index
-const QUIZ_START  = 11; // first quiz slide index
+const N = 17; // total navigable slides (2 intro + 10 content + 5 quiz)
+const CONTENT_END = 11; // last content slide index (Checklist)
+const QUIZ_START  = 12; // first quiz slide index (Q1)
 
 const TITLES = [
   'Every rate has a reason',
   'What you\'ll learn today',
   'Overview. The 5 Questions',
   'Right Guest', 'Right Time', 'Right Channel', 'Right Price', 'Right Room',
+  'Conditions on top of BAR',
   'The System', 'Do / Don\'t', 'Checklist',
   'Quiz · Q1', 'Quiz · Q2', 'Quiz · Q3', 'Quiz · Q4', 'Quiz · Q5'
 ];
@@ -1127,7 +1214,7 @@ let quizDone = false;
 function nav(n) {
   if(n < 0 || n >= N) return;
   if(n >= QUIZ_START && !quizUnlocked) { flashLock(); return; }
-  if(n >= QUIZ_START && quizDone && n < 15) { n = 15; } // always jump to results after quiz done
+  if(n >= QUIZ_START && quizDone && n < 16) { n = 16; } // always jump to results after quiz done
 
   document.getElementById('s-'+cur).classList.remove('on');
   visited[cur] = true;
@@ -1446,7 +1533,11 @@ const Cueline = {
   _audioUnlocked: false,    // flipped true after first successful audio.play()
   _autoAdvanceTimer: null,  // pending nav() timeout, cancelled on manual nav / pause
   autoAdvanceDelay: 1800,   // ms to linger on a completed slide before advancing
-  autoAdvanceMaxSlide: 9,   // auto-advance up to (and INCLUDING) slide 9; stop at 10 (checklist)
+  autoAdvanceMaxSlide: 10,  // auto-advance up to (and INCLUDING) slide 10 (Do / Don't); stop at 11 (Checklist)
+  // Slides the learner is expected to interact with — no auto-advance even if the
+  // slide is within autoAdvanceMaxSlide. Slide 8 = Conditions on top of BAR (tap
+  // the BAR hub to move it); slide 9 = The System (tap the BAR hub to re-propagate).
+  noAutoAdvanceSlides: new Set([8, 9]),
 
   register(slideIdx, cueList) {
     this.cues[slideIdx] = cueList.map(c => Object.assign({ fired: false }, c));
@@ -1578,6 +1669,7 @@ const Cueline = {
       if(!this.aborted &&
          this.currentSlide !== null &&
          this.currentSlide <= this.autoAdvanceMaxSlide &&
+         !this.noAutoAdvanceSlides.has(this.currentSlide) &&
          typeof nav === 'function' &&
          typeof N !== 'undefined' &&
          this.currentSlide + 1 < N){
@@ -1845,24 +1937,31 @@ Cueline.register(7, [
   { do:'reveal', target:'key-room', cc:"The supplement is added to the derived rate, after the segment discount. Corporate Deluxe equals BAR times zero point eight five, then plus twenty dollars. Not BAR plus twenty, then discounted. Get this order wrong and margins leak." }
 ]);
 
-// Slide 8. The System (BAR propagation.animation self-triggers 700ms after slide activates)
+// Slide 8. Conditions on top of BAR (rate architecture, Dusit-narrow sense)
 Cueline.register(8, [
+  { do:'reveal', target:'cond-why',   cc:"This is where the term rate architecture starts to matter in a Dusit-specific way. BAR is the anchor. Every condition we sell is a percentage off BAR in exchange for a commitment from the guest." },
+  { do:'reveal', target:'cond-cards', cc:"Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. They trade flexibility for a lower rate. Stay Longer takes fifteen percent off, but the guest commits to a minimum three-night stay. A short trip for a deeper discount." },
+  { do:'reveal', target:'cond-key',   cc:"Move BAR, and every conditioned rate moves with it. No spreadsheets, no manual re-quotes. The commitment stays the same; only the money moves. Tap the BAR hub on the right to see it happen." }
+]);
+
+// Slide 9. The System (BAR propagation.animation self-triggers 700ms after slide activates)
+Cueline.register(9, [
   { do:'narrate', cc:"So far we've looked at each question in isolation. Now let's see how they connect." },
   { do:'narrate', cc:"BAR is the single source of truth. Every channel rate you saw is a fixed percentage of BAR." },
-  { do:'reveal', target:'sys-demo', cc:"Watch what happens when the Revenue Manager moves BAR from ฿4,000 to ฿5,000." },
+  { do:'reveal', target:'sys-demo', cc:"Watch what happens when the Revenue Manager moves BAR from two hundred dollars to two hundred and fifty dollars." },
   { do:'narrate', cc:"Corporate updates. OTA updates. Member updates. Direct updates. GDS updates. Wholesale updates. Every rate at your hotel moves, in seconds, with zero manual work." },
   { do:'narrate', cc:"Tap the BAR hub on the right to run the propagation again. This is the whole system, and this is why architecture matters." }
 ]);
 
-// Slide 9. Do / Don't
-Cueline.register(9, [
+// Slide 10. Do / Don't
+Cueline.register(10, [
   { do:'narrate', cc:"Before you head into the quiz, here are the guardrails that keep this system honest on your shift." },
   { do:'reveal', target:'dos',   cc:"The do's. Treat rate as a connected system. Flag discrepancies to the RM immediately. Use the correct market segment code. And always be able to explain why a guest pays what they pay." },
   { do:'reveal', target:'donts', cc:"The don'ts. Never override rates without RM approval. Never assume all channels show the same price. Never quote from memory. And never, ever, tell a guest a rate 'is just how it is.' If you're operating inside this system, you can always explain it." }
 ]);
 
-// Slide 10. Checklist (reveals items on cue; user still clicks to tick each)
-Cueline.register(10, [
+// Slide 11. Checklist (reveals items on cue; user still clicks to tick each)
+Cueline.register(11, [
   { do:'narrate', cc:"Last stop before the quiz. Five statements, tick each one you can confidently say is true for you." },
   { do:'reveal', target:'chk-1', cc:"You can name the five questions: right guest, right time, right channel, right price, right room." },
   { do:'reveal', target:'chk-2', cc:"You understand BAR is the single source of truth all rates link to." },

@@ -3,6 +3,14 @@
 
 ---
 
+> **2026-09-04 note.** Module 1 has been rebadged from **"Rate Architecture"** to **"Revenue Management Foundation"** — the old name over-claimed the module's scope. Per Dusit, *rate architecture* means specifically BAR + derived condition products (Advance Saver, Stay Longer); the module actually teaches the broader five-questions revenue-management framework. The rebadge:
+> - New file: `modules/module1-revenue-management-foundation.html`
+> - Original file: `modules/module1-rate-architecture.html` — preserved as a reference; unlinked from the landing page.
+> - Curriculum table below: rows 1–4 previously listed "Rate Architecture" as the track/category — that column now reads "Revenue Management".
+> - Section 4 below (*Module 1 — What Was Built*) is a snapshot of the ORIGINAL build; the current live Module 1 has additional content (new slide 8 *Conditions on top of BAR*) and shipped as v2.
+
+---
+
 ## 1. Project Overview
 
 **Client:** Dusit Hotels & Resorts
@@ -41,10 +49,10 @@
 
 | # | Category | Topic | Sub-topic | Duration | GM | DOS | DOR | DOM |
 |---|---|---|---|---|---|---|---|---|
-| 1 | Rate Architecture | Dusit Rate Architecture | Rationale Rate Structure | 45 min | ✓ | ✓ | ✓ | ✓ |
-| 2 | Rate Architecture | Dusit Tracking | Golden Rules of Tracking | 30 min | ✓ | | ✓ | |
-| 3 | Rate Architecture | Dusit Rationale Pricing Strategy | Pricing Methods | 45 min | ✓ | ✓ | ✓ | ✓ |
-| 4 | Rate Architecture | Rate Loading and Channel Management | Synxis and D-Edge | 30 min | ✓ | | ✓ | |
+| 1 | Revenue Management | Revenue Management Foundation | Rationale Rate Structure | 45 min | ✓ | ✓ | ✓ | ✓ |
+| 2 | Revenue Management | Dusit Tracking | Golden Rules of Tracking | 30 min | ✓ | | ✓ | |
+| 3 | Revenue Management | Dusit Rationale Pricing Strategy | Pricing Methods | 45 min | ✓ | ✓ | ✓ | ✓ |
+| 4 | Revenue Management | Rate Loading and Channel Management | Synxis and D-Edge | 30 min | ✓ | | ✓ | |
 | 5 | Market | Understanding your Market | Defining your Comp Set | 30 min | ✓ | ✓ | ✓ | ✓ |
 | 6 | Market | Driving RGI | Reading your Index | 30 min | ✓ | ✓ | ✓ | |
 | 7 | Data | DDP Reports | List of reports | 60 min | ✓ | ✓ | ✓ | ✓ |

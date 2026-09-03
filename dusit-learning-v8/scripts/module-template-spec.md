@@ -1,6 +1,6 @@
 # Dusit LMS module template — canonical shell for all 40+ modules
 
-**Status:** Locked 2026-08-28 after Module 1 (Rate Architecture) and Module 2 (Tracking Segmentation) shipped. Every new module clones from the most recent shipped module. Deviations from this shell require sign-off from Prakash.
+**Status:** Locked 2026-08-28 after Module 1 (shipped originally as "Rate Architecture", rebadged 2026-09-04 to "Revenue Management Foundation") and Module 2 (Tracking Segmentation) shipped. Every new module clones from the most recent shipped module. Deviations from this shell require sign-off from Prakash.
 
 **Sister docs:**
 - [tone-rubric.md](tone-rubric.md) — voice, vocabulary, on-slide copy rules

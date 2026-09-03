@@ -311,11 +311,40 @@
 | 5 | narrate |.         | Now, you might expect the supplement is added to BAR directly. It isn't. And the order matters. |
 | 6 | reveal  | key-room  | The supplement is added to the derived rate, after the segment discount. Corporate Deluxe equals BAR times zero point eight five, then plus twenty dollars. Not BAR plus twenty, then discounted. Get this order wrong and margins leak. |
 
-**Notes for the actor:** Cue 5 is a *preempt-the-confusion* beat, deliver with a small warning intonation, then a beat of silence before cue 6 lands the correction.
+**Notes for the actor:** Cue 5 is a preempt-the-confusion beat, deliver with a small warning intonation, then a beat of silence before cue 6 lands the correction.
 
 ---
 
-## Slide 8. The System (BAR propagation)
+## Slide 8. Conditions on top of BAR (Rate architecture, Dusit-narrow sense)
+
+### Reading text (~40 sec)
+
+> This is where the term rate architecture starts to matter in a Dusit-specific way. BAR is the anchor. Every condition we sell is a percentage off BAR in exchange for a commitment from the guest.
+>
+> [pause 0.5s]
+>
+> Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. They trade flexibility for a lower rate. Stay Longer takes fifteen percent off, but the guest commits to a minimum three-night stay. A short trip for a deeper discount.
+>
+> [pause 0.5s]
+>
+> Move BAR, and every conditioned rate moves with it. No spreadsheets, no manual re-quotes. The commitment stays the same; only the money moves. Tap the BAR hub on the right to see it happen.
+
+### Cue map
+
+| # | Action  | Target      | Spoken line |
+|---|---------|-------------|-------------|
+| 0 | reveal  | cond-why    | This is where the term rate architecture starts to matter in a Dusit-specific way. BAR is the anchor. Every condition we sell is a percentage off BAR in exchange for a commitment from the guest. |
+| 1 | reveal  | cond-cards  | Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. They trade flexibility for a lower rate. Stay Longer takes fifteen percent off, but the guest commits to a minimum three-night stay. A short trip for a deeper discount. |
+| 2 | reveal  | cond-key    | Move BAR, and every conditioned rate moves with it. No spreadsheets, no manual re-quotes. The commitment stays the same; only the money moves. Tap the BAR hub on the right to see it happen. |
+
+**Notes for the actor:** Cue 0 is a definitional beat — deliver 'rate architecture' with quiet emphasis; this is the first time the term lands with its precise Dusit meaning after the module has held it back. Cue 1 is a comparison; slight lift on 'trades' each time to point at the commitment/discount pairing. Cue 2 lands warmly and invites interaction on the final line.
+
+---
+
+## Slide 9. The System (BAR propagation)
+
+*(Renumbered from Slide 8 on 2026-09-04 when Slide 8 was inserted for
+'Conditions on top of BAR' — rate architecture in the Dusit-narrow sense.)*
 
 ### Reading text (~40 sec spoken)
 
@@ -327,7 +356,7 @@
 >
 > [pause 0.5s]
 >
-> Watch what happens when the Revenue Manager moves BAR from ฿4,000 to ฿5,000.
+> Watch what happens when the Revenue Manager moves BAR from two hundred dollars to two hundred and fifty dollars.
 >
 > [pause 0.6s, animation begins auto-playing on the right]
 >
@@ -343,7 +372,7 @@
 |---|---------|-----------|-------------|
 | 0 | narrate |.         | So far we've looked at each question in isolation. Now let's see how they connect. |
 | 1 | narrate |.         | BAR is the single source of truth. Every channel rate you saw is a fixed percentage of BAR. |
-| 2 | reveal  | sys-demo  | Watch what happens when the Revenue Manager moves BAR from ฿4,000 to ฿5,000. |
+| 2 | reveal  | sys-demo  | Watch what happens when the Revenue Manager moves BAR from two hundred dollars to two hundred and fifty dollars. |
 | 3 | narrate |.         | Corporate updates. OTA updates. Member updates. Direct updates. GDS updates. Wholesale updates. Every rate at your hotel moves, in seconds, with zero manual work. |
 | 4 | narrate |.         | Tap the BAR hub on the right to run the propagation again. This is the whole system, and this is why architecture matters. |
 
@@ -351,7 +380,7 @@
 
 ---
 
-## Slide 9. Do / Don't
+## Slide 10. Do / Don't
 
 ### Reading text (~35 sec spoken)
 
@@ -375,7 +404,7 @@
 
 ---
 
-## Slide 10. Checklist (before the quiz)
+## Slide 11. Checklist (before the quiz)
 
 ### Reading text (~35 sec spoken)
 
