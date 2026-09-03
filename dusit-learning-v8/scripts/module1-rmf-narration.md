@@ -125,7 +125,7 @@
 >
 > [pause 0.5s]
 >
-> Here's what that looks like on the system. The Gold member's rate comes in at one hundred and thirteen dollars, a fifteen percent discount, applied automatically. The walk-in pays the Best Available Rate. $133.
+> Here's what that looks like on the system. The Gold member's rate comes in at one hundred and seventy dollars, a fifteen percent discount, applied automatically. The walk-in pays the Best Available Rate — two hundred dollars.
 >
 > [pause 0.4s]
 >
@@ -143,8 +143,8 @@
 | 1 | narrate |.            | Imagine your hotel tonight, two hundred rooms. Two people arrive to check in. Same standard room, same date. One is a Dusit Gold member. The other is a walk-in tourist. |
 | 2 | narrate |.            | Should they pay the same rate?                                                                                                                                        |
 | 3 | narrate |.            | The answer is no. And it's not unfair. The Gold member has a loyalty relationship the hotel wants to reward. The walk-in has no qualifying account, yet.            |
-| 4 | reveal  | card-gold    | Here's what that looks like on the system. The Gold member's rate comes in at one hundred and thirteen dollars, a fifteen percent discount, applied automatically.                                  |
-| 5 | reveal  | card-walkin  | The walk-in pays the Best Available Rate. $133.                                                                                                                     |
+| 4 | reveal  | card-gold    | Here's what that looks like on the system. The Gold member's rate comes in at one hundred and seventy dollars, a fifteen percent discount, applied automatically.                                  |
+| 5 | reveal  | card-walkin  | The walk-in pays the Best Available Rate — two hundred dollars.                                                                                                     |
 | 6 | narrate |.            | Same room. Different guests. Different rates. And notice, the segment tag is different too. That's how the system remembers which discount to apply, every single time. |
 | 7 | reveal  | key-1        | The rate difference isn't generosity. It's the pricing system recognising who qualifies for what.                                                                     |
 
@@ -203,11 +203,11 @@
 >
 > [pause 0.5s]
 >
-> A guest who books on dusit.com pays $133. The hotel keeps the full $133.
+> A guest who books on dusit.com pays two hundred dollars. The hotel keeps the full amount.
 >
 > [pause 0.4s]
 >
-> A guest who books on Booking.com also pays $133, but the OTA takes around $20 in commission. The hotel nets only about $113.
+> A guest who books on Booking.com also pays two hundred dollars — but the OTA takes around thirty dollars in commission. The hotel nets only about one hundred and seventy.
 >
 > [pause 0.5s]
 >
@@ -215,7 +215,7 @@
 >
 > [pause 0.5s]
 >
-> OTA rates are set as a percentage below BAR, so the hotel stays competitive without cannibalising direct bookings or breaking rate parity.
+> Rate parity: OTAs and direct show the guest the same price. Commission is what changes what the hotel actually keeps.
 
 ### Cue map
 
@@ -223,10 +223,10 @@
 |---|---------|--------------|-------------|
 | 0 | narrate |.            | Third question, the right channel. |
 | 1 | narrate |.            | Where a guest books from changes what the hotel actually earns. Same room, same rate on the screen, but very different amounts land in the hotel's account. |
-| 2 | reveal  | card-direct  | A guest who books on dusit.com pays $133. The hotel keeps the full $133. |
-| 3 | reveal  | card-ota     | A guest who books on Booking.com also pays $133, but the OTA takes around $20 in commission. The hotel nets only about $113. |
+| 2 | reveal  | card-direct  | A guest who books on dusit.com pays two hundred dollars. The hotel keeps the full amount. |
+| 3 | reveal  | card-ota     | A guest who books on Booking.com also pays two hundred dollars — but the OTA takes around thirty dollars in commission. The hotel nets only about one hundred and seventy. |
 | 4 | narrate |.            | This is why we call it the channel-cost principle. Same room, different acquisition cost, different net revenue. |
-| 5 | reveal  | key-channel  | OTA rates are set as a percentage below BAR, so the hotel stays competitive without cannibalising direct bookings or breaking rate parity. |
+| 5 | reveal  | key-channel  | Rate parity: OTAs and direct show the guest the same price. Commission is what changes what the hotel actually keeps. |
 
 ---
 
@@ -246,11 +246,11 @@
 >
 > [pause 0.5s]
 >
-> The flexible guest pays $133, full BAR. Because the hotel is holding a room that might empty out at the last minute. That risk is priced in.
+> The flexible guest pays two hundred dollars, full BAR. Because the hotel is holding a room that might empty out at the last minute. That risk is priced in.
 >
 > [pause 0.4s]
 >
-> The Saver guest prepaid, non-refundable. They pay $120, a 10 percent discount. The hotel gets certainty; the guest gets a lower rate.
+> The Saver guest prepaid, non-refundable. They pay one hundred and eighty dollars, a ten percent discount. The hotel gets certainty; the guest gets a lower rate.
 >
 > [pause 0.5s]
 >
@@ -263,8 +263,8 @@
 | 0 | narrate |.           | Fourth question, the right price. |
 | 1 | narrate |.           | Two guests. Same room. Same night. One can cancel anytime, full refund. The other prepaid and cannot cancel. Should they pay the same? |
 | 2 | narrate |.           | The answer is no. Certainty and flexibility carry different value. |
-| 3 | reveal  | card-flex   | The flexible guest pays $133, full BAR. Because the hotel is holding a room that might empty out at the last minute. That risk is priced in. |
-| 4 | reveal  | card-saver  | The Saver guest prepaid, non-refundable. They pay $120, a 10 percent discount. The hotel gets certainty; the guest gets a lower rate. |
+| 3 | reveal  | card-flex   | The flexible guest pays two hundred dollars, full BAR. Because the hotel is holding a room that might empty out at the last minute. That risk is priced in. |
+| 4 | reveal  | card-saver  | The Saver guest prepaid, non-refundable. They pay one hundred and eighty dollars, a ten percent discount. The hotel gets certainty; the guest gets a lower rate. |
 | 5 | reveal  | key-cond    | Three levels: Flexible, Saver ten percent off, and Stay Longer fifteen percent off. Each rewards a different kind of commitment. |
 
 ---
@@ -281,15 +281,15 @@
 >
 > [pause 0.5s]
 >
-> Standard room: $133, the base derived rate. No supplement.
+> Standard room: two hundred dollars, the base derived rate. No supplement.
 >
 > [pause 0.3s]
 >
-> Deluxe room: $150, that's $17 added on top.
+> Deluxe room: two hundred and twenty — that's twenty dollars added on top.
 >
 > [pause 0.3s]
 >
-> Suite: $183. $50 added on top of Standard.
+> Suite: two hundred and fifty — fifty dollars added on top of Standard.
 >
 > [pause 0.7s]
 >
@@ -297,7 +297,7 @@
 >
 > [pause 0.7s]
 >
-> The supplement is added to the derived rate, after the segment discount. Corporate Deluxe equals BAR times 0.85, then plus $17. Not BAR plus $17, then discounted. Get this order wrong and margins leak.
+> The supplement is added to the derived rate, after the segment discount. Corporate Deluxe equals BAR times zero point eight five, then plus twenty dollars. Not BAR plus twenty, then discounted. Get this order wrong and margins leak.
 
 ### Cue map
 
@@ -305,11 +305,11 @@
 |---|---------|-----------|-------------|
 | 0 | narrate |.         | Fifth and final question, the right room. |
 | 1 | narrate |.         | A Standard room and a Suite are not the same product. The room ladder prices each type relative to the one below it. |
-| 2 | reveal  | rung-std  | Standard room: $133, the base derived rate. No supplement. |
-| 3 | reveal  | rung-dlx  | Deluxe room: $150, that's $17 added on top. |
-| 4 | reveal  | rung-ste  | Suite: $183. $50 added on top of Standard. |
+| 2 | reveal  | rung-std  | Standard room: two hundred dollars, the base derived rate. No supplement. |
+| 3 | reveal  | rung-dlx  | Deluxe room: two hundred and twenty — that's twenty dollars added on top. |
+| 4 | reveal  | rung-ste  | Suite: two hundred and fifty — fifty dollars added on top of Standard. |
 | 5 | narrate |.         | Now, you might expect the supplement is added to BAR directly. It isn't. And the order matters. |
-| 6 | reveal  | key-room  | The supplement is added to the derived rate, after the segment discount. Corporate Deluxe equals BAR times 0.85, then plus $17. Not BAR plus $17, then discounted. Get this order wrong and margins leak. |
+| 6 | reveal  | key-room  | The supplement is added to the derived rate, after the segment discount. Corporate Deluxe equals BAR times zero point eight five, then plus twenty dollars. Not BAR plus twenty, then discounted. Get this order wrong and margins leak. |
 
 **Notes for the actor:** Cue 5 is a *preempt-the-confusion* beat, deliver with a small warning intonation, then a beat of silence before cue 6 lands the correction.
 

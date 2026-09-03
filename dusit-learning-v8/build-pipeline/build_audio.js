@@ -125,7 +125,10 @@ const PRONUNCIATION_OVERRIDES = [
   // between syllables on some renders (Sep 2026 s7-c4 regression).
   //
   // "Dusit" reads as "DEW-sit" by default. Should be "DOO-sit" (IPA /ˈduː.sɪt/).
-  { pattern: /\bDusit\b/g,  replacement: 'Doosit' },
+  // Case-insensitive so 'dusit.com' (lowercase, part of a URL) also gets the
+  // fix — Prakash flagged Sep 4 that module 1's 'dusit.com' cues still read
+  // 'DEW-sit dot com' because the previous \bDusit\b was case-sensitive.
+  { pattern: /\bDusit\b/gi, replacement: 'Doosit' },
   // "SynXis" reads inconsistently ("SIN-ziss" / "sin-EKS-iss") by default.
   // Should be "sin-EK-sis" — three syllables, X reads as 'eks', not 'ks'.
   // Was 'Sinksis' first (two syllables) — Prakash corrected: it's three.
