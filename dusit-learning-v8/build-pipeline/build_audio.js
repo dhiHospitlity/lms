@@ -128,7 +128,14 @@ const PRONUNCIATION_OVERRIDES = [
   // "SynXis" reads inconsistently ("SIN-ziss" / "sin-EKS-iss") by default.
   // Should be "sin-EK-sis" — three syllables, X reads as 'eks', not 'ks'.
   // Was 'Sinksis' first (two syllables) — Prakash corrected: it's three.
-  { pattern: /\bSynXis\b/g, replacement: 'Sineksis' }
+  { pattern: /\bSynXis\b/g, replacement: 'Sineksis' },
+  // Horizontal ellipsis (U+2026, "…") at cue boundaries gets read as a
+  // stumbled "ih" sound by Charlotte (Prakash flagged Module 1 s2-c5:
+  // "i… through the right channel"). Strip leading / trailing ellipses
+  // before the API call — captions and narration source keep them for the
+  // visual "trailing off" effect between fragment cues.
+  { pattern: /^\s*…\s*/,   replacement: '' },
+  { pattern: /\s*…\s*$/,   replacement: '' }
 ];
 
 function applyPronunciationOverrides(text){
