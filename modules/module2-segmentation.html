@@ -1179,6 +1179,11 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 </div><!-- /content -->
 </div><!-- /shell -->
 
+<!-- SCORM 1.2 API wrapper. Loaded before the module script.
+     Locates the LMS API in parent frames; falls back to localStorage
+     when running standalone (preview site / plain file). -->
+<script src="../assets/scorm-api.js"></script>
+
 <script>
 // ── NAVIGATION MODEL ──
 // Uses an ordered ID array so non-sequential IDs (s-1b, s-1c) work cleanly
@@ -1271,6 +1276,9 @@ function nav(n) {
   // Re-arm narration engine for this slide. Cues fire on Space; audio (if
   // available) auto-chains via Cueline.playAll() after first user gesture.
   if(typeof Cueline !== 'undefined' && Cueline.arm) Cueline.arm(cur);
+
+  // Bookmark for the LMS so resume returns to this slide next session.
+  if(typeof SCORM !== 'undefined') SCORM.setLocation(cur);
 }
 
 function prev(){ nav(cur-1); }
@@ -1975,6 +1983,15 @@ function finishQuiz(){
   markSlideCompleted(N-1);
   document.getElementById('sbFill').style.width='100%';
   syncUI();
+
+  // Report score + status to LMS (falls back to localStorage in standalone mode).
+  // Scale 0–5 quiz to 0–100 so it matches the mastery threshold in imsmanifest.xml.
+  if(typeof SCORM !== 'undefined'){
+    const scaled = s * 20;                 // 5→100, 4→80, 3→60 (mastery), 2→40, 1→20, 0→0
+    SCORM.setScore(scaled, 100, 0);
+    SCORM.setStatus(s >= 3 ? 'passed' : 'failed');
+    SCORM.commit();
+  }
 }
 
 function retryQuiz(){
@@ -2448,8 +2465,27 @@ Cueline.register(11, [
 ]);
 // Quiz slides (11-15 index) carry no narration.
 
-// Boot Cueline after everything else is up
-Cueline.init().then(() => { Cueline.arm(cur); });
+// SCORM handshake — must happen before Cueline.init so a bookmark restore
+// below can read SCORM.getLocation() before we arm the first slide.
+if(typeof SCORM !== 'undefined') SCORM.init();
+
+// Boot Cueline after everything else is up. Cueline.init() is async (probes
+// for audio); restore bookmark / arm first slide only AFTER the probe
+// completes so audio state is known before arm().
+Cueline.init().then(() => {
+  let start = 0;
+  if(typeof SCORM !== 'undefined'){
+    const loc = parseInt(SCORM.getLocation(), 10);
+    if(!isNaN(loc) && loc > 0 && loc < N) start = loc;
+  }
+  if(start === 0) Cueline.arm(0);
+  else {
+    // Honour SCORM bookmark: mark all prior slides completed so the
+    // sequential gate lets us jump back to where the learner left off.
+    for(let i = 0; i < start; i++) completed[i] = true;
+    nav(start);
+  }
+});
 
 // Fix code-grid display
 document.querySelectorAll('.code-grid').forEach(g=>g.style.display='flex');
