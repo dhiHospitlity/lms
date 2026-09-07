@@ -331,7 +331,7 @@
 >
 > [pause 0.5s]
 >
-> Standard room: two hundred dollars, the base derived rate. No supplement.
+> Standard room: two hundred dollars, the base derived rate.
 >
 > [pause 0.3s]
 >
@@ -361,7 +361,7 @@
 | 1 | lit     | rung-std  | A Standard room… |
 | 2 | lit     | rung-ste  | …and a Suite are not the same product. |
 | 3 | narrate |.         | The room ladder prices each type relative to the one below it. |
-| 4 | reveal  | rung-std  | Standard room: two hundred dollars, the base derived rate. No supplement. |
+| 4 | reveal  | rung-std  | Standard room: two hundred dollars, the base derived rate. |
 | 5 | reveal  | rung-dlx  | Deluxe room: two hundred and twenty — that's twenty dollars added on top. |
 | 6 | reveal  | rung-ste  | Suite: two hundred and fifty — fifty dollars added on top of Standard. |
 | 7 | narrate |.         | Now, you might expect the supplement is added to BAR directly. It isn't. And the order matters. |

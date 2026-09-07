@@ -676,7 +676,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         <div class="split-right">
           <p style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Room ladder. BAR $200 base</p>
           <div class="room-ladder">
-            <div class="room-rung std" data-cue="rung-std"><div><div class="rr-name">Standard Room</div><div class="rr-sup">No supplement. Base derived rate.</div></div><div class="rr-price">$200</div></div>
+            <div class="room-rung std" data-cue="rung-std"><div><div class="rr-name">Standard Room</div><div class="rr-sup">Base derived rate</div></div><div class="rr-price">$200</div></div>
             <div class="room-rung dlx" data-cue="rung-dlx"><div><div class="rr-name">Deluxe Room</div><div class="rr-sup">+ $20 fixed supplement</div></div><div class="rr-price">$220</div></div>
             <div class="room-rung ste" data-cue="rung-ste"><div><div class="rr-name">Suite</div><div class="rr-sup">+ $50 fixed supplement</div></div><div class="rr-price">$250</div></div>
           </div>
@@ -1948,7 +1948,7 @@ Cueline.register(7, [
   { do:'lit',    target:'rung-std', cc:"A Standard room…" },
   { do:'lit',    target:'rung-ste', cc:"…and a Suite are not the same product." },
   { do:'narrate', cc:"The room ladder prices each type relative to the one below it." },
-  { do:'reveal', target:'rung-std', cc:"Standard room: two hundred dollars, the base derived rate. No supplement." },
+  { do:'reveal', target:'rung-std', cc:"Standard room: two hundred dollars, the base derived rate." },
   { do:'reveal', target:'rung-dlx', cc:"Deluxe room: two hundred and twenty — that's twenty dollars added on top." },
   { do:'reveal', target:'rung-ste', cc:"Suite: two hundred and fifty — fifty dollars added on top of Standard." },
   { do:'narrate', cc:"Now, you might expect the supplement is added to BAR directly. It isn't. And the order matters." },
