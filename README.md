@@ -12,7 +12,7 @@
 |------|-------|--------|
 | `modules/module1-revenue-management-foundation.html` | Revenue Management Foundation | Complete |
 | `modules/module2-segmentation.html` | Revenue Tracking Segmentation | Complete |
-| `modules/module3-distribution-basic.html` | OTA1 · Distribution Basic Knowledge | Complete |
+| `modules/module3-distribution-foundation.html` | OTA1 · Distribution Foundation | Complete |
 
 Root `/` redirects to the landing page (`index.html`), which links every module.
 

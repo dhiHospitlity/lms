@@ -91,7 +91,7 @@ British accent is the anchor. Two voices rotate module-to-module so learners nev
 **Deployment:** *Alternate primary voice per module.*
 - Module 1 (Revenue Management Foundation, originally shipped as "Rate Architecture"): Charlotte ✓
 - Module 2 (Tracking Segmentation): Charlotte ✓
-- Module 3 (OTA1 · Distribution Basic Knowledge): **George**
+- Module 3 (OTA1 · Distribution Foundation, originally shipped as "Distribution Basic Knowledge"): **George**
 - Module 4: Charlotte
 - Module 5: George
 - …continue.

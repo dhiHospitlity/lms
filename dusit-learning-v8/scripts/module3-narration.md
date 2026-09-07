@@ -1,6 +1,6 @@
-# Module 3. OTA1 · Distribution Basic Knowledge · Narration Script
+# Module 3. OTA1 · Distribution Foundation · Narration Script
 
-**Target build:** [modules/module3-distribution-basic.html](../../modules/module3-distribution-basic.html)
+**Target build:** [modules/module3-distribution-foundation.html](../../modules/module3-distribution-foundation.html)
 **Voice:** George · ElevenLabs (ID `JBFqnCBsd6RMkjVDRZzb`) · warm British baritone
 **Model:** `eleven_multilingual_v2` · `stability: 0.5 · style: 0.45 · similarity_boost: 0.75 · speaker_boost: on`
 **Pace target:** 140 wpm · **Total runtime target:** ~24 min content · ~7 min quiz + KC

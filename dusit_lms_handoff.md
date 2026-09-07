@@ -8,6 +8,8 @@
 > - Original file: `modules/module1-rate-architecture.html` — preserved as a reference; unlinked from the landing page.
 > - Curriculum table below: rows 1–4 previously listed "Rate Architecture" as the track/category — that column now reads "Revenue Management".
 > - Section 4 below (*Module 1 — What Was Built*) is a snapshot of the ORIGINAL build; the current live Module 1 has additional content (new slide 8 *Conditions on top of BAR*) and shipped as v2.
+>
+> **2026-09-07 note.** Module 3 renamed **"Distribution Basic Knowledge"** → **"Distribution Foundation"** to align with the `X Foundation` naming pattern. Label-only change (no content or scope reframe). File renamed in place: `modules/module3-distribution-basic.html` → `modules/module3-distribution-foundation.html` (git history preserves the pre-rename state; the old URL 404s — anyone bookmarked to it needs the new path).
 
 ---
 
