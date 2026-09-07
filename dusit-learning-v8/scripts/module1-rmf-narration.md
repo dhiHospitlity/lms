@@ -388,11 +388,11 @@
 >
 > [pause 0.4s]
 >
-> Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. Flexibility, for a lower rate.
+> Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. The trade is simple — commit early, save ten percent.
 >
 > [pause 0.4s]
 >
-> Stay Longer takes fifteen percent off. The guest commits to a minimum three-night stay. A short trip, for a deeper discount.
+> Stay Longer takes fifteen percent off. The guest commits to a minimum three-night stay, also non-refundable. The trade is the same shape — commit longer, save fifteen percent.
 >
 > [pause 0.4s]
 >
@@ -409,8 +409,8 @@
 | 0 | reveal  | ra-why      | Section two. Rate architecture. Dusit runs one of the simplest rate architectures in the industry. Just BAR, plus two conditioned rates on top. |
 | 1 | reveal  | ra-bar      | BAR is the anchor. It's the number every other rate is derived from. |
 | 2 | reveal  | ra-trunk    | From BAR, two conditioned rates cascade. |
-| 3 | reveal  | ra-adv      | Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. Flexibility, for a lower rate. |
-| 4 | reveal  | ra-stay     | Stay Longer takes fifteen percent off. The guest commits to a minimum three-night stay. A short trip, for a deeper discount. |
+| 3 | reveal  | ra-adv      | Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. The trade is simple — commit early, save ten percent. |
+| 4 | reveal  | ra-stay     | Stay Longer takes fifteen percent off. The guest commits to a minimum three-night stay, also non-refundable. The trade is the same shape — commit longer, save fifteen percent. |
 | 5 | reveal  | ra-caption  | That's the whole architecture. |
 | 6 | reveal  | ra-key      | Deliberately minimal. Enough to serve every market, every connected partner — and nothing extra to maintain. |
 
