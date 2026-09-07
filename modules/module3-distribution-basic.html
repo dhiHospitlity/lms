@@ -856,7 +856,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
     </div>
     <div class="tb-right">
       <button class="btn-icon" id="play-btn" onclick="Cueline.toggleTransport()" title="Play / pause narration">▶</button>
-      <button class="btn-icon" id="skip-btn" onclick="Cueline.step()" title="Skip to next beat">⏭</button>
+      <button class="btn-icon" id="skip-btn" onclick="Cueline.step()" title="Forward">⏭</button>
       <button class="btn-icon" id="cc-btn" onclick="Cueline.toggleCC()" title="Toggle captions">CC</button>
       <button class="btn-icon" onclick="toggleFS()" title="Fullscreen">⛶</button>
     </div>
@@ -1977,7 +1977,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
     </div>
     <div style="display:flex;gap:6px;align-items:center;">
       <button class="fs-exit" id="fs-play-btn" onclick="Cueline.toggleTransport()" title="Play / pause narration">▶</button>
-      <button class="fs-exit" id="fs-skip-btn" onclick="Cueline.step()" title="Skip to next beat">⏭</button>
+      <button class="fs-exit" id="fs-skip-btn" onclick="Cueline.step()" title="Forward">⏭</button>
       <button class="fs-exit" id="fs-cc-btn" onclick="Cueline.toggleCC()" title="Toggle captions">CC</button>
       <button class="fs-exit" onclick="toggleFS()">✕ Exit Fullscreen</button>
     </div>
@@ -2975,17 +2975,40 @@ const Cueline = {
   },
 
   async step(){
+    // Advance to the next unfired cue. If playAll() is currently chaining
+    // audio, we need to unwind its loop BEFORE we start the next cue —
+    // otherwise both step() and playAll()'s next iteration race to fire
+    // and play, producing overlapping audio. Fix: abort playAll first,
+    // wait for its finally-block to flip this.playing = false, then
+    // either re-enter playAll (auto-chain mode) or play a single cue.
     const now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
     if(this._lastStepAt && (now - this._lastStepAt) < 200) return;
     this._lastStepAt = now;
     const list = this.cues[this.currentSlide];
     if(!list) return;
-    const idx = list.findIndex(c => !c.fired);
-    if(idx < 0) return;
+
+    const wasPlaying = this.playing;
+    if(wasPlaying) this.aborted = true;
     if(this.currentAudio && !this.currentAudio.paused){
       try{ this.currentAudio.pause(); }catch(_){}
-      await Promise.resolve();
     }
+    // Wait for playAll's loop to unwind (its finally clears this.playing).
+    // The audio 'pause' event resolves playAll's inner await, then the
+    // aborted flag makes the while-loop break out on the next iteration.
+    let guard = 0;
+    while(this.playing && guard++ < 50) await new Promise(r => setTimeout(r, 0));
+
+    const idx = list.findIndex(c => !c.fired);
+    if(idx < 0){ this._updatePlayButton('play'); return; }
+
+    if(wasPlaying){
+      // Resume auto-chain from the next unfired cue — playAll picks it up
+      // naturally, and no overlap because we just unwound the previous loop.
+      this.playAll();
+      return;
+    }
+
+    // Manual mode: fire + play exactly one cue.
     const cue = list[idx];
     this._fire(cue);
     if(this.audioAvailable){
