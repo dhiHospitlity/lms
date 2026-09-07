@@ -14,17 +14,13 @@
 
 ## Slide 0. Every rate has a reason (Module intro)
 
-### Reading text (~20 sec spoken)
+### Reading text (~14 sec spoken)
 
 > Before we get into it, let's answer the simplest question first.
 >
 > [pause 0.6s]
 >
 > Every rate at Dusit is an answer to five questions — asked and answered for every booking, automatically. This module walks you through each one.
->
-> [pause 0.5s]
->
-> It works on every booking. In every channel. For every guest.
 
 ### Cue map
 
@@ -32,9 +28,10 @@
 |---|---------|---------|------------------------------------------------------------------------------------------------------------------------------------|
 | 0 | narrate |.       | Before we get into it, let's answer the simplest question first.                                                                   |
 | 1 | reveal  | def-1   | Every rate at Dusit is an answer to five questions — asked and answered for every booking, automatically. This module walks you through each one.         |
-| 2 | reveal  | def-2   | It works on every booking. In every channel. For every guest.                                                                      |
 
-**Notes for the actor:** The three short phrases at the end ("On every booking. In every channel. For every guest.") land as three deliberate beats, not run together. The "It works on" lead-in stitches them to the definition above so the delivery flows as one thought instead of a bullet list.
+**Notes for the actor:** Land the definition warmly. This is the module's opening thesis — say it as a considered thought, not a headline.
+
+*(The original slide had a third cue — "It works on every booking. In every channel. For every guest." — removed 2026-09-07 because it was redundant with the "automatically" clause in the main definition and the visual size/colour split was reading as a font mismatch.)*
 
 ---
 

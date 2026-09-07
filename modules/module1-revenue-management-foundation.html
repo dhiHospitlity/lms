@@ -370,10 +370,6 @@ body.cueline-active .key-box[data-cue].reveal{opacity:1;transform:translateY(0);
    sub (smaller, lighter grey) reads as supporting amplifier.never heavier. */
 .intro-def{
   font-size:17px;color:var(--dark);line-height:1.55;
-  max-width:640px;margin-bottom:12px;font-weight:400;
-}
-.intro-def-sub{
-  font-size:14px;color:var(--g700);line-height:1.55;
   max-width:640px;font-weight:400;
 }
 
@@ -392,13 +388,11 @@ body.cueline-active .key-box[data-cue].reveal{opacity:1;transform:translateY(0);
 }
 
 /* Staging for intro reveals.definitions and agenda items */
-body.cueline-active .intro-def[data-cue],
-body.cueline-active .intro-def-sub[data-cue]{
+body.cueline-active .intro-def[data-cue]{
   opacity:0;transform:translateY(10px);
   transition:opacity 0.55s ease, transform 0.55s cubic-bezier(0.22,0.61,0.36,1);
 }
-body.cueline-active .intro-def[data-cue].reveal,
-body.cueline-active .intro-def-sub[data-cue].reveal{opacity:1;transform:translateY(0);}
+body.cueline-active .intro-def[data-cue].reveal{opacity:1;transform:translateY(0);}
 
 body.cueline-active .agenda-item[data-cue]{
   opacity:0;transform:translateX(-14px);
@@ -573,7 +567,6 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           <span class="eye-lt">Module 1 · Revenue Management Foundation</span>
           <h2 class="intro-headline">Every rate has a reason</h2>
           <p class="intro-def" data-cue="def-1">Every rate at Dusit is an answer to five questions — asked and answered for every booking, automatically. This module walks you through each one.</p>
-          <p class="intro-def-sub" data-cue="def-2">It works on every booking. In every channel. For every guest.</p>
         </div>
       </div>
 
@@ -1891,8 +1884,7 @@ const Cueline = {
 // Slide 0. Every rate has a reason (module intro)
 Cueline.register(0, [
   { do:'narrate', cc:"Before we get into it, let's answer the simplest question first." },
-  { do:'reveal',  target:'def-1', cc:"Every rate at Dusit is an answer to five questions — asked and answered for every booking, automatically. This module walks you through each one." },
-  { do:'reveal',  target:'def-2', cc:"It works on every booking. In every channel. For every guest." }
+  { do:'reveal',  target:'def-1', cc:"Every rate at Dusit is an answer to five questions — asked and answered for every booking, automatically. This module walks you through each one." }
 ]);
 
 // Slide 1. What you'll learn today
