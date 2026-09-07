@@ -42,7 +42,7 @@ html,body{height:100%;overflow:hidden;font-family:'DusitText',sans-serif;backgro
 .sb-item:hover:not(.locked):not(.active){background:rgba(255,255,255,0.04);}
 .sb-item.active{background:rgba(201,168,76,0.12);border-color:rgba(201,168,76,0.28);}
 .sb-item.visited .sb-dot{background:var(--gold);}
-.sb-item.locked{cursor:not-allowed;opacity:0.4;}
+.sb-item.locked{cursor:not-allowed;opacity:0.4;pointer-events:none;}
 .sb-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.18);flex-shrink:0;transition:background 0.2s;}
 .sb-item.active .sb-dot{background:var(--gold);}
 .sb-text{flex:1;}
@@ -552,7 +552,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
     </div>
     <div class="tb-right">
       <button class="btn-icon" id="play-btn" onclick="Cueline.toggleTransport()" title="Play / pause narration">▶</button>
-      <button class="btn-icon" id="skip-btn" onclick="Cueline.step()" title="Skip to next beat">⏭</button>
+      <button class="btn-icon" id="skip-btn" onclick="Cueline.step()" title="Forward">⏭</button>
       <button class="btn-icon" id="cc-btn" onclick="Cueline.toggleCC()" title="Toggle captions">CC</button>
       <button class="btn-icon" onclick="toggleFS()" title="Fullscreen">⛶</button>
     </div>
@@ -692,7 +692,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
            Dusit meaning and shows the whole architecture as a hierarchy tree. -->
       <div class="slide s-split" id="s-8">
         <div class="split-left">
-          <div class="deep-label">Section 2</div>
+          <div class="deep-label">Section 3</div>
           <h2 class="deep-title">Rate Architecture · Intro</h2>
           <p class="deep-why" data-cue="ra-why">Dusit runs one of the <strong>simplest rate architectures</strong> in the industry. BAR is the anchor. Two conditioned rates cascade from it — <strong>Advance Saver</strong> and <strong>Stay Longer</strong>. That's the whole set.</p>
           <div class="key-box" data-cue="ra-key">Deliberately minimal. Enough to serve <strong>every market</strong> and <strong>every connected partner</strong>, with nothing extra to maintain.</div>
@@ -1148,7 +1148,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
     </div>
     <div style="display:flex;align-items:center;gap:6px;">
       <button class="fs-exit" id="fs-play-btn" onclick="Cueline.toggleTransport()" title="Play / pause narration">▶</button>
-      <button class="fs-exit" id="fs-skip-btn" onclick="Cueline.step()" title="Skip to next beat">⏭</button>
+      <button class="fs-exit" id="fs-skip-btn" onclick="Cueline.step()" title="Forward">⏭</button>
       <button class="fs-exit" id="fs-cc-btn" onclick="Cueline.toggleCC()" title="Toggle captions">CC</button>
       <button class="fs-exit" onclick="toggleFS()">✕ Exit Fullscreen</button>
     </div>
@@ -1207,6 +1207,23 @@ let quizUnlocked = false;
 const visited = Array(N).fill(false);
 visited[0] = true;
 
+// Sequential progression: a slide is 'completed' when its cues have all fired
+// (or its interactive exercise is done — quiz answer, results arrival). nav()
+// blocks forward jumps past the first-uncompleted slide; backward navigation
+// stays open. Standing rule: no skipping.
+const completed = Array(N).fill(false);
+function markSlideCompleted(idx){
+  if(idx < 0 || idx >= N || completed[idx]) return;
+  completed[idx] = true;
+  if(typeof buildDots === 'function') buildDots();
+  if(typeof syncUI === 'function') syncUI();
+}
+function maxReachable(){
+  let i = 0;
+  while(i < N && completed[i]) i++;
+  return Math.min(i, N - 1);
+}
+
 // Quiz answers
 const QA = [1,2,1,1,1]; // correct answer index per question
 const QFB = [
@@ -1224,6 +1241,9 @@ let quizDone = false;
 // ── Core navigation ──
 function nav(n) {
   if(n < 0 || n >= N) return;
+  // Sequential gate: block forward jumps past the furthest reachable slide.
+  // Backward navigation to any earlier slide is always allowed.
+  if(n > cur && n > maxReachable()){ flashLock(); return; }
   if(n >= QUIZ_START && !quizUnlocked) { flashLock(); return; }
   if(n >= QUIZ_START && quizDone && n < 16) { n = 16; } // always jump to results after quiz done
 
@@ -1278,10 +1298,20 @@ function syncUI() {
 
   const atStart = cur === 0;
   const atEnd   = cur === N-1;
-  const nextBlocked = atEnd || (cur === CONTENT_END && !quizUnlocked);
+  // Next is disabled until the current slide is completed — enforces the
+  // sequential gate on the primary navigation control too.
+  const nextBlocked = atEnd || (cur === CONTENT_END && !quizUnlocked) || !completed[cur];
 
   ['prevBtn','fsPrev'].forEach(id => { const e=document.getElementById(id); if(e) e.disabled = atStart; });
   ['nextBtn','fsNext'].forEach(id => { const e=document.getElementById(id); if(e) e.disabled = nextBlocked; });
+
+  // Sidebar: lock content items past the furthest reachable slide. sbi-quiz
+  // keeps its own quizUnlocked lock (managed by checkUnlock).
+  const mr = maxReachable();
+  for(let i = 0; i <= CONTENT_END; i++){
+    const el = document.getElementById('sbi-'+i);
+    if(el) el.classList.toggle('locked', i > mr);
+  }
 
   buildDots();
 }
@@ -1292,13 +1322,16 @@ function buildDots() {
     { id:'navDots', cls:'ndot' },
     { id:'fsNdots', cls:'fs-ndot' }
   ];
+  const mr = maxReachable();
   sets.forEach(({ id, cls }) => {
     const c = document.getElementById(id);
     if(!c) return;
     c.innerHTML = '';
     for(let i = 0; i < N; i++) {
       const d = document.createElement('div');
-      const locked = i >= QUIZ_START && !quizUnlocked;
+      // Locked when: (a) quiz slide before quizUnlocked, or (b) sits beyond
+      // the sequential-progression frontier.
+      const locked = (i >= QUIZ_START && !quizUnlocked) || i > mr;
       let c2 = cls;
       if(i === cur)        c2 += ' on';
       else if(locked)      c2 += ' locked';
@@ -1394,6 +1427,7 @@ function answer(qi, chosen, btn) {
 
   document.getElementById('qnxt-'+qi).style.display = 'inline-block';
   updateQDots();
+  markSlideCompleted(QUIZ_START + qi);
 }
 
 function finishQuiz() {
@@ -1416,6 +1450,7 @@ function finishQuiz() {
   // Mark quiz sidebar item as complete
   document.getElementById('sbi-quiz').classList.add('visited');
   visited[15] = true;
+  markSlideCompleted(N-1);
 
   // Final progress.100%
   document.getElementById('sbFill').style.width = '100%';
@@ -1548,7 +1583,7 @@ const Cueline = {
   // Slides the learner is expected to interact with — no auto-advance even if the
   // slide is within autoAdvanceMaxSlide. Slide 8 = Conditions on top of BAR (tap
   // the BAR hub to move it); slide 9 = The System (tap the BAR hub to re-propagate).
-  noAutoAdvanceSlides: new Set([8, 9]),
+  noAutoAdvanceSlides: new Set([8, 9]),  // editorial pacing — cues still mark completion (soft interaction, no hard gate)
 
   register(slideIdx, cueList) {
     this.cues[slideIdx] = cueList.map(c => Object.assign({ fired: false }, c));
@@ -1600,21 +1635,40 @@ const Cueline = {
   // If a cue is currently playing, cut it cleanly and advance.this makes
   // Space and ⏭ feel like YouTube's "skip forward," not "wait your turn."
   async step() {
+    // Advance to the next unfired cue. If playAll() is currently chaining
+    // audio, we must unwind its loop BEFORE starting the next cue — otherwise
+    // step() and playAll()'s next iteration race to fire and play, producing
+    // overlapping audio. Fix: abort playAll first, wait for its finally-block
+    // to flip this.playing = false, then either re-enter playAll (auto-chain
+    // mode) or play a single cue (manual mode). Ported from M3 (2026-09-07).
     const now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : new Date().getTime();
     if(this._lastStepAt && (now - this._lastStepAt) < 200) return;   // debounce
     this._lastStepAt = now;
-
     const list = this.cues[this.currentSlide];
     if(!list) return;
-    const idx = list.findIndex(c => !c.fired);
-    if(idx < 0) return;
 
-    // Stop any currently-playing audio before starting the next cue.
+    const wasPlaying = this.playing;
+    if(wasPlaying) this.aborted = true;
     if(this.currentAudio && !this.currentAudio.paused){
       try { this.currentAudio.pause(); } catch(_){}
-      await Promise.resolve();
+    }
+    // Wait for playAll's loop to unwind (its finally clears this.playing).
+    // The audio 'pause' event resolves playAll's inner await, then aborted
+    // makes the while-loop break out on the next iteration.
+    let guard = 0;
+    while(this.playing && guard++ < 50) await new Promise(r => setTimeout(r, 0));
+
+    const idx = list.findIndex(c => !c.fired);
+    if(idx < 0){ this._updatePlayButton('play'); return; }
+
+    if(wasPlaying){
+      // Resume auto-chain from the next unfired cue — playAll picks it up
+      // naturally, and no overlap because we just unwound the previous loop.
+      this.playAll();
+      return;
     }
 
+    // Manual mode: fire + play exactly one cue.
     const cue = list[idx];
     this._fire(cue);
     if(this.audioAvailable){
@@ -1730,6 +1784,13 @@ const Cueline = {
       });
     }
     if(cue.cc) this._showCaption(cue.cc);
+    // Sequential-progression signal: mark the slide completed once every cue
+    // on it has fired. Interactive slides (quiz, results) mark themselves.
+    const list = this.cues[this.currentSlide];
+    if(list && list.every(c => c.fired) &&
+       typeof markSlideCompleted === 'function'){
+      markSlideCompleted(this.currentSlide);
+    }
   },
 
   _loadAudio(slideIdx, cueIdx){
@@ -1970,7 +2031,7 @@ Cueline.register(7, [
 // BAR at the top; Advance Saver + Stay Longer cascade from it. Six cues walk the
 // learner up the tree, then land the 'deliberately simple' payoff.
 Cueline.register(8, [
-  { do:'reveal', target:'ra-why',     cc:"Section two. Rate architecture. Dusit runs one of the simplest rate architectures in the industry. Just BAR, plus two conditioned rates on top." },
+  { do:'reveal', target:'ra-why',     cc:"Section three. Rate architecture. Dusit runs one of the simplest rate architectures in the industry. Just BAR, plus two conditioned rates on top." },
   { do:'reveal', target:'ra-bar',     cc:"BAR is the anchor. It's the number every other rate is derived from." },
   { do:'reveal', target:'ra-trunk',   cc:"From BAR, two conditioned rates cascade." },
   { do:'reveal', target:'ra-adv',     cc:"Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. The trade is simple — commit early, save ten percent." },
@@ -2042,7 +2103,13 @@ Cueline.init().then(() => {
     if(!isNaN(loc) && loc > 0 && loc < N) start = loc;
   }
   if(start === 0) Cueline.arm(0);
-  else nav(start);
+  else {
+    // Honour SCORM bookmark: mark all prior slides completed so the sequential
+    // gate lets us jump back to where the learner left off. Without this the
+    // nav(start) call is blocked and the bookmark restore silently fails.
+    for(let i = 0; i < start; i++) completed[i] = true;
+    nav(start);
+  }
 });
 </script>
 </body>

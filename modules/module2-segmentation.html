@@ -39,7 +39,7 @@ html,body{height:100%;overflow:hidden;font-family:'DusitText',sans-serif;backgro
 .sb-item:hover:not(.locked):not(.active){background:rgba(255,255,255,0.04);}
 .sb-item.active{background:rgba(201,168,76,0.12);border-color:rgba(201,168,76,0.28);}
 .sb-item.visited .sb-dot{background:var(--gold);}
-.sb-item.locked{cursor:not-allowed;opacity:0.4;}
+.sb-item.locked{cursor:not-allowed;opacity:0.4;pointer-events:none;}
 .sb-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.18);flex-shrink:0;transition:background 0.2s;}
 .sb-item.active .sb-dot{background:var(--gold);}
 .sb-text{flex:1;}
@@ -603,7 +603,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
     </div>
     <div class="tb-right">
       <button class="btn-icon" id="play-btn" onclick="Cueline.toggleTransport()" title="Play / pause narration">▶</button>
-      <button class="btn-icon" id="skip-btn" onclick="Cueline.step()" title="Skip to next beat">⏭</button>
+      <button class="btn-icon" id="skip-btn" onclick="Cueline.step()" title="Forward">⏭</button>
       <button class="btn-icon" id="cc-btn" onclick="Cueline.toggleCC()" title="Toggle captions">CC</button>
       <button class="btn-icon" onclick="toggleFS()" title="Fullscreen">⛶</button>
     </div>
@@ -1153,7 +1153,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
     </div>
     <div style="display:flex;gap:6px;align-items:center;">
       <button class="fs-exit" id="fs-play-btn" onclick="Cueline.toggleTransport()" title="Play / pause narration">▶</button>
-      <button class="fs-exit" id="fs-skip-btn" onclick="Cueline.step()" title="Skip to next beat">⏭</button>
+      <button class="fs-exit" id="fs-skip-btn" onclick="Cueline.step()" title="Forward">⏭</button>
       <button class="fs-exit" id="fs-cc-btn" onclick="Cueline.toggleCC()" title="Toggle captions">CC</button>
       <button class="fs-exit" onclick="toggleFS()">✕ Exit Fullscreen</button>
     </div>
@@ -1210,6 +1210,23 @@ let quizUnlocked = false;
 const visited = Array(N).fill(false);
 visited[0] = true;
 
+// Sequential progression: a slide is 'completed' when its cues have all fired
+// (or its interactive exercise is done — quiz answer, results arrival). nav()
+// blocks forward jumps past the first-uncompleted slide; backward navigation
+// stays open. Standing rule: no skipping.
+const completed = Array(N).fill(false);
+function markSlideCompleted(idx){
+  if(idx < 0 || idx >= N || completed[idx]) return;
+  completed[idx] = true;
+  if(typeof buildDots === 'function') buildDots();
+  if(typeof syncUI === 'function') syncUI();
+}
+function maxReachable(){
+  let i = 0;
+  while(i < N && completed[i]) i++;
+  return Math.min(i, N - 1);
+}
+
 function slideEl(idx){ return document.getElementById(SLIDE_IDS[idx]); }
 
 // Quiz
@@ -1228,6 +1245,9 @@ let quizDone = false;
 
 function nav(n) {
   if(n < 0 || n >= N) return;
+  // Sequential gate: block forward jumps past the furthest reachable slide.
+  // Backward navigation to any earlier slide is always allowed.
+  if(n > cur && n > maxReachable()){ flashLock(); return; }
   if(n >= QUIZ_START && !quizUnlocked){ flashLock(); return; }
   if(n >= QUIZ_START && quizDone && n < N-1){ n = N-1; }
 
@@ -1283,22 +1303,36 @@ function syncUI(){
 
   const atStart = cur === 0;
   const atEnd   = cur === N-1;
-  const nextBlocked = atEnd || (cur === CONTENT_END && !quizUnlocked);
+  // Next is disabled until the current slide is completed — enforces the
+  // sequential gate on the primary navigation control too.
+  const nextBlocked = atEnd || (cur === CONTENT_END && !quizUnlocked) || !completed[cur];
   ['prevBtn','fsPrev'].forEach(id=>{ const e=document.getElementById(id); if(e) e.disabled=atStart; });
   ['nextBtn','fsNext'].forEach(id=>{ const e=document.getElementById(id); if(e) e.disabled=nextBlocked; });
+
+  // Sidebar: lock content items past the furthest reachable slide. sbi-quiz
+  // keeps its own quizUnlocked lock (managed by checkUnlock).
+  const mr = maxReachable();
+  SIDEBAR_IDS.forEach((sbId, i) => {
+    const el = document.getElementById(sbId);
+    if(!el || sbId === 'sbi-quiz') return;
+    el.classList.toggle('locked', i > mr);
+  });
 
   buildDots();
 }
 
 function buildDots(){
   const sets=[{id:'navDots',cls:'ndot'},{id:'fsNdots',cls:'fs-ndot'}];
+  const mr = maxReachable();
   sets.forEach(({id,cls})=>{
     const c=document.getElementById(id);
     if(!c) return;
     c.innerHTML='';
     for(let i=0;i<N;i++){
       const d=document.createElement('div');
-      const locked=i>=QUIZ_START&&!quizUnlocked;
+      // Locked when: (a) quiz slide before quizUnlocked, or (b) sits beyond
+      // the sequential-progression frontier.
+      const locked=(i>=QUIZ_START&&!quizUnlocked) || i>mr;
       let c2=cls;
       if(i===cur) c2+=' on';
       else if(locked) c2+=' locked';
@@ -1918,6 +1952,7 @@ function answer(qi,chosen,btn){
   fb.style.display='block';
   document.getElementById('qnxt-'+qi).style.display='inline-block';
   updateQDots();
+  markSlideCompleted(QUIZ_START + qi);
 }
 
 function finishQuiz(){
@@ -1937,6 +1972,7 @@ function finishQuiz(){
   const qi=document.getElementById('sbi-quiz');
   if(qi) qi.classList.add('visited');
   visited[N-1]=true;
+  markSlideCompleted(N-1);
   document.getElementById('sbFill').style.width='100%';
   syncUI();
 }
@@ -2038,7 +2074,7 @@ const Cueline = {
   //   5 = Market Segment drill-down (s-2)
   //   6 = Source Codes drill-down (s-6)
   //   7 = Origin Codes drill-down (s-7)
-  noAutoAdvanceSlides: new Set([5, 6, 7]),
+  noAutoAdvanceSlides: new Set([5, 6, 7]),  // editorial pacing (soft drill-down explorations) — cues still mark completion
   forceAudioOff: false,  // Module 2 audio rendered 2026-08-28 (Charlotte, multilingual_v2)
 
   register(slideIdx, cueList){
@@ -2068,17 +2104,37 @@ const Cueline = {
   },
 
   async step(){
+    // Advance to the next unfired cue. If playAll() is currently chaining
+    // audio, we must unwind its loop BEFORE starting the next cue — otherwise
+    // step() and playAll()'s next iteration race to fire and play, producing
+    // overlapping audio. Fix: abort playAll first, wait for its finally-block
+    // to flip this.playing = false, then either re-enter playAll (auto-chain
+    // mode) or play a single cue (manual mode). Ported from M3 (2026-09-07).
     const now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
     if(this._lastStepAt && (now - this._lastStepAt) < 200) return;
     this._lastStepAt = now;
     const list = this.cues[this.currentSlide];
     if(!list) return;
-    const idx = list.findIndex(c => !c.fired);
-    if(idx < 0) return;
+
+    const wasPlaying = this.playing;
+    if(wasPlaying) this.aborted = true;
     if(this.currentAudio && !this.currentAudio.paused){
       try{ this.currentAudio.pause(); }catch(_){}
-      await Promise.resolve();
     }
+    let guard = 0;
+    while(this.playing && guard++ < 50) await new Promise(r => setTimeout(r, 0));
+
+    const idx = list.findIndex(c => !c.fired);
+    if(idx < 0){ this._updatePlayButton('play'); return; }
+
+    if(wasPlaying){
+      // Resume auto-chain from the next unfired cue — playAll picks it up
+      // naturally, and no overlap because we just unwound the previous loop.
+      this.playAll();
+      return;
+    }
+
+    // Manual mode: fire + play exactly one cue.
     const cue = list[idx];
     this._fire(cue);
     if(this.audioAvailable){
@@ -2158,6 +2214,13 @@ const Cueline = {
       });
     }
     if(cue.cc) this._showCaption(cue.cc);
+    // Sequential-progression signal: mark the slide completed once every cue
+    // on it has fired. Interactive slides (quiz, results) mark themselves.
+    const list = this.cues[this.currentSlide];
+    if(list && list.every(c => c.fired) &&
+       typeof markSlideCompleted === 'function'){
+      markSlideCompleted(this.currentSlide);
+    }
   },
 
   _loadAudio(slideIdx, cueIdx){

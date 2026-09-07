@@ -376,7 +376,7 @@
 
 ### Reading text (~50 sec)
 
-> Section two. Rate architecture. Dusit runs one of the simplest rate architectures in the industry. Just BAR, plus two conditioned rates on top.
+> Section three. Rate architecture. Dusit runs one of the simplest rate architectures in the industry. Just BAR, plus two conditioned rates on top.
 >
 > [pause 0.5s]
 >
@@ -406,7 +406,7 @@
 
 | # | Action  | Target      | Spoken line |
 |---|---------|-------------|-------------|
-| 0 | reveal  | ra-why      | Section two. Rate architecture. Dusit runs one of the simplest rate architectures in the industry. Just BAR, plus two conditioned rates on top. |
+| 0 | reveal  | ra-why      | Section three. Rate architecture. Dusit runs one of the simplest rate architectures in the industry. Just BAR, plus two conditioned rates on top. |
 | 1 | reveal  | ra-bar      | BAR is the anchor. It's the number every other rate is derived from. |
 | 2 | reveal  | ra-trunk    | From BAR, two conditioned rates cascade. |
 | 3 | reveal  | ra-adv      | Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. The trade is simple — commit early, save ten percent. |
@@ -414,7 +414,7 @@
 | 5 | reveal  | ra-caption  | That's the whole architecture. |
 | 6 | reveal  | ra-key      | Deliberately minimal. Enough to serve every market, every connected partner — and nothing extra to maintain. |
 
-**Notes for the actor:** Cue 0 lands the section title — deliver "Section two. Rate architecture." with the quiet weight of a chapter opener, then transition into the definition. Cue 1 is the anchor beat; small emphasis on "anchor" and "derived". Cues 3 and 4 are structurally parallel (product + trade-off); mirror the cadence between them so the pair reads as one design pattern. Cue 6 lands the "deliberately simple" thesis warmly — this is the takeaway.
+**Notes for the actor:** Cue 0 lands the section title — deliver "Section three. Rate architecture." with the quiet weight of a chapter opener, then transition into the definition. Cue 1 is the anchor beat; small emphasis on "anchor" and "derived". Cues 3 and 4 are structurally parallel (product + trade-off); mirror the cadence between them so the pair reads as one design pattern. Cue 6 lands the "deliberately simple" thesis warmly — this is the takeaway.
 
 ---
 

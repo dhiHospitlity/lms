@@ -39,7 +39,11 @@
 >
 > [pause 0.5s]
 >
-> That connection might be an O-T-A. Or a wholesaler. Or a travel agent. Or your own website. Each of those routes costs the hotel a different amount.
+> That connection could be one of four.
+>
+> [pause 0.3s]
+>
+> An O-T-A. Or a wholesaler. Or a travel agent. Or your own website. Each of those routes costs the hotel a different amount.
 >
 > [pause 0.6s]
 >
@@ -47,15 +51,22 @@
 
 ### Cue map
 
-| # | Action  | Target       | Spoken line |
-|---|---------|--------------|-------------|
-| 0 | reveal  | phone        | Right now, somewhere, a guest is looking at your hotel on their phone. They find it, they like the look of it. They tap Book Now. |
-| 1 | reveal  | invisible    | What happens next is invisible to them. It is invisible to most of your team as well. |
-| 2 | reveal  | systems      | Before that reservation lands in Opera, it has passed through three systems. Availability was checked. A rate was pulled from a central database. And the booking was routed through a connection. |
-| 3 | reveal  | channels     | That connection might be an O-T-A. Or a wholesaler. Or a travel agent. Or your own website. Each of those routes costs the hotel a different amount. |
-| 4 | reveal  | headline     | Same room. Same guest. Same night. Different money in the bank. This module is about that journey. |
+| # | Action  | Target          | Spoken line |
+|---|---------|-----------------|-------------|
+| 0 | reveal  | phone           | Right now, somewhere, a guest is looking at your hotel on their phone. They find it, they like the look of it. They tap Book Now. |
+| 1 | reveal  | invisible       | What happens next is invisible to them. It is invisible to most of your team as well. |
+| 2 | reveal  | systems         | Before that reservation lands in Opera, it has passed through three systems. Availability was checked. A rate was pulled from a central database. And the booking was routed through a connection. |
+| 3 | reveal  | channels        | That connection could be one of four. |
+| 4 | lit     | chip-ota        | An O-T-A. |
+| 5 | lit     | chip-wholesaler | Or a wholesaler. |
+| 6 | lit     | chip-agent      | Or a travel agent. |
+| 7 | lit     | chip-direct     | Or your own website. |
+| 8 | narrate | —               | Each of those routes costs the hotel a different amount. |
+| 9 | reveal  | headline        | Same room. Same guest. Same night. Different money in the bank. This module is about that journey. |
 
-**Actor notes:** Slow, deliberate open. Beats 0 and 1 are almost conspiratorial — bring the learner in. Beat 2 shifts into explanatory mode. Beat 4 lands the take-away flat, no lift on "different money."
+**Actor notes:** Slow, deliberate open. Beats 0 and 1 are almost conspiratorial — bring the learner in. Beat 2 shifts into explanatory mode. Beats 4–7 are the four chips lighting one at a time as each is named — quick, even, no ramp. Beat 9 lands the take-away flat, no lift on "different money."
+
+**Path A note:** each channel chip has its own cue so the pill under the narrator's finger lights on the name-drop. Standard pattern (see `feedback_per_mention_highlighting.md`).
 
 ---
 
@@ -333,7 +344,11 @@
 >
 > [pause 0.5s]
 >
-> Four of them sit closest. Expedia. Booking.com. Agoda. Trip.com. Each has a named account manager, we run contracted promotions with all four. You will hear these called the Major 4.
+> Four of them sit closest. You'll hear these called the Major 4.
+>
+> [pause 0.3s]
+>
+> Expedia. Booking.com. Agoda. Trip.com. Each of the four has a named account manager, and we run contracted promotions with all of them.
 >
 > [pause 0.5s]
 >
@@ -355,14 +370,20 @@
 
 | # | Action  | Target         | Spoken line |
 |---|---------|----------------|-------------|
-| 0 | reveal  | tier-intro     | Zooming in on the OTA side. Dusit is live with ten today, and the list keeps growing. But they are not all managed the same way, and that difference is worth understanding. |
-| 1 | reveal  | tier-major     | Four of them sit closest. Expedia. Booking.com. Agoda. Trip.com. Each has a named account manager, we run contracted promotions with all four. You will hear these called the Major 4. |
-| 2 | reveal  | tier-growing   | A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Tripbtoz. Klook. Hopper. Six regional players with account management in place; promotions being contracted now. |
-| 3 | reveal  | tier-connected | And a smaller localised group — Gother in Thailand, Rakuten in Japan. Live and connected, matched to their home market. |
-| 4 | reveal  | tier-rates     | Rate types matter too. Booking.com is a pure OTA — Dusit offers it B2C rates only. Expedia and Trip.com also distribute to B2B as merchant sites, so they take three rate types: B2C, Package, and B2B. |
-| 5 | reveal  | tier-closer    | Same connection under the hood. Different depth of relationship. |
+| 0 | reveal  | tier-intro     | Zooming in on the OTA side. Dusit is live with ten today, and the list keeps growing. But they're not all managed the same way, and that difference is worth understanding. |
+| 1 | reveal  | tier-major     | Four of them sit closest. You'll hear these called the Major 4. |
+| 2 | lit     | ota-expedia    | Expedia. |
+| 3 | lit     | ota-booking    | Booking.com. |
+| 4 | lit     | ota-agoda      | Agoda. |
+| 5 | lit     | ota-tripcom    | Trip.com. Each of the four has a named account manager, and we run contracted promotions with all of them. |
+| 6 | reveal  | tier-growing   | A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Tripbtoz. Klook. Hopper. Six regional players with account management in place; promotions being contracted now. |
+| 7 | reveal  | tier-connected | And a smaller localised group — Gother in Thailand, Rakuten in Japan. Live and connected, matched to their home market. |
+| 8 | reveal  | tier-rates     | Rate types matter too. Booking.com is a pure OTA — Dusit offers it B2C rates only. Expedia and Trip.com also distribute to B2B as merchant sites, so they take three rate types: B2C, Package, and B2B. |
+| 9 | reveal  | tier-closer    | Same connection under the hood. Different depth of relationship. |
 
-**Actor notes:** Cues 1–3 escalate warmth on Major 4 (closest partners), settle on Growing, and cool toward "connected only." Cue 4 lands the summarising line quietly.
+**Actor notes:** Cues 2–5 are the four Major-4 brands, each said quickly and cleanly so the logo pops as the name lands. Cue 5 carries the "named account manager…" tail. Cues 6–7 settle on Growing and cool toward "connected only." Cue 8 lands the summarising line quietly.
+
+**Path A note:** each Major-4 brand has its own cue so the logo lights on the name-drop. Growing/Connected tiers stay as bulk reveals — the lists are too long to justify per-name splits.
 
 ---
 

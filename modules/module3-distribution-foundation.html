@@ -655,6 +655,19 @@ body.cueline-active #s-b2b-math [data-cue="chain-guest"].reveal   ~ .wholesale-c
 #s-map .mz-slot .map-chip::before{font-size:11px;left:6px;}
 /* Reveal is a one-shot pulse — brief acknowledgment of the beat, then back to rest.
    Persistent glow was leaving every fired element highlighted, which read as noise. */
+/* Chip-row per-mention highlight on the s-hook slide — chip pops gold as
+   its name is spoken. Overrides the shared revealPulse for these specific chips. */
+body.cueline-active #s-hook .chn-chip[data-cue].lit{
+  background:var(--gold);color:var(--white);
+  transform:scale(1.08);
+  box-shadow:0 3px 12px rgba(201,168,76,0.35);
+}
+/* Major-4 OTA per-brand highlight on the s-ota-tiers slide — each brand
+   logo pops as the narrator says its name. */
+body.cueline-active #s-ota-tiers .ota-brand[data-cue].lit{
+  transform:scale(1.14);
+  filter:drop-shadow(0 3px 8px rgba(201,168,76,0.5));
+}
 body.cueline-active #s-hook [data-cue].reveal,
 body.cueline-active #s-loc [data-cue].reveal,
 body.cueline-active #s-def [data-cue].reveal,
@@ -932,13 +945,13 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           </div>
         </div>
 
-        <!-- Channel chip row -->
+        <!-- Channel chip row · per-chip data-cue for Path A per-mention highlighting -->
         <div data-cue="channels" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:8px 0;">
           <span style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);align-self:center;">That connection could be:</span>
-          <span style="background:var(--gold-l);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;">OTA</span>
-          <span style="background:var(--gold-l);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;">Wholesaler</span>
-          <span style="background:var(--gold-l);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;">Travel agent</span>
-          <span style="background:var(--gold-l);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;">dusit.com</span>
+          <span data-cue="chip-ota"        class="chn-chip" style="background:var(--gold-l);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;transition:transform 0.2s,box-shadow 0.2s;">OTA</span>
+          <span data-cue="chip-wholesaler" class="chn-chip" style="background:var(--gold-l);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;transition:transform 0.2s,box-shadow 0.2s;">Wholesaler</span>
+          <span data-cue="chip-agent"      class="chn-chip" style="background:var(--gold-l);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;transition:transform 0.2s,box-shadow 0.2s;">Travel agent</span>
+          <span data-cue="chip-direct"     class="chn-chip" style="background:var(--gold-l);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;transition:transform 0.2s,box-shadow 0.2s;">dusit.com</span>
         </div>
 
         <!-- Headline -->
@@ -1305,16 +1318,16 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
                 <td style="padding:10px 20px;background:var(--gold-l);border-top-right-radius:var(--rs);border-bottom-right-radius:var(--rs);vertical-align:middle;">
                   <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
                     <!-- Expedia -->
-                    <span style="display:inline-flex;align-items:center;gap:7px;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">
+                    <span data-cue="ota-expedia" class="ota-brand" style="display:inline-flex;align-items:center;gap:7px;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);transition:transform 0.25s,filter 0.25s;">
                       <span style="width:22px;height:22px;color:#000099;display:inline-block;flex:0 0 22px;"><svg viewBox="0 0 1514 1512" style="width:100%;height:100%;display:block;"><path fill="currentColor" d="m1149.3 698c-3.2-49.1-15.8-97.2-37.3-141.5-21.4-44.4-51.2-84.2-87.7-117.3-36.5-33.1-79.1-58.8-125.4-75.8-46.3-16.9-95.4-24.8-144.7-23.2-52.9 1-105 12.5-153.5 33.6-48.5 21.2-92.3 51.6-129 89.7-36.7 38-65.5 82.9-84.8 132.1-19.4 49.2-28.8 101.7-27.8 154.5 0 247.8 171.5 425.2 465.5 425.2h557.5c-33.6 51.9-73.5 99.3-118.9 141.2-45.4 41.9-95.9 77.9-150.3 107.2-54.4 29.3-112.3 51.6-172.2 66.5-60 14.8-121.7 22.1-183.5 21.6-305.9-0.1-581.8-184.2-698.8-466.5-117.1-282.3-52.4-607.3 164-823.3 216.3-216.1 541.7-280.8 824.3-163.8 282.7 116.9 467 392.4 467.1 698q-0.4 29.9-2.9 59.7-2.5 29.8-7.1 59.3-4.6 29.6-11.3 58.8-6.7 29.1-15.5 57.7h-842.4v-82.6l297-9.1c150.1-6.1 217.5-82.7 217.7-202z"/></svg></span>
                       Expedia
                     </span>
                     <!-- Booking.com (full branded badge, wordmark included in SVG) -->
-                    <img src="../assets/logos/ota/booking.svg" alt="Booking.com" style="height:22px;width:auto;display:inline-block;">
+                    <img data-cue="ota-booking" class="ota-brand" src="../assets/logos/ota/booking.svg" alt="Booking.com" style="height:22px;width:auto;display:inline-block;transition:transform 0.25s,filter 0.25s;">
                     <!-- Agoda (wordmark logo, no separate text) -->
-                    <img src="../assets/logos/ota/agoda.svg" alt="Agoda" style="height:20px;width:auto;display:inline-block;">
+                    <img data-cue="ota-agoda" class="ota-brand" src="../assets/logos/ota/agoda.svg" alt="Agoda" style="height:20px;width:auto;display:inline-block;transition:transform 0.25s,filter 0.25s;">
                     <!-- Trip.com (wordmark logo, no separate text) -->
-                    <img src="../assets/logos/ota/tripcom.svg" alt="Trip.com" style="height:18px;width:auto;display:inline-block;">
+                    <img data-cue="ota-tripcom" class="ota-brand" src="../assets/logos/ota/tripcom.svg" alt="Trip.com" style="height:18px;width:auto;display:inline-block;transition:transform 0.25s,filter 0.25s;">
                   </div>
                 </td>
               </tr>
@@ -2945,7 +2958,7 @@ const Cueline = {
   //   5 = Market Segment drill-down (s-2)
   //   6 = Source Codes drill-down (s-6)
   //   7 = Origin Codes drill-down (s-7)
-  noAutoAdvanceSlides: new Set([11, 15, 16]),  // s-map (drag-drop), s-trace (branching), s-kc (knowledge-check gate)
+  noAutoAdvanceSlides: new Set([11, 15, 16]),  // s-map (drag-drop), s-trace (branching), s-kc (knowledge-check gate) · hard gate — exercise handler marks completion, cues do NOT
   forceAudioOff: false,  // Phase 2 · Section 1 audio rendered 2026-08-29 (George, multilingual_v2). Sections 2-3 still empty; the Cueline empty-registers just no-op.
 
   register(slideIdx, cueList){
@@ -3229,11 +3242,16 @@ const Cueline = {
 // PHASE 1 SCAFFOLD: all slides registered empty — Phase 2+ fills the cues.
 
 Cueline.register(0, [ // s-hook · Someone is booking your hotel right now
-  {do:'reveal', target:'phone',      cc:"Right now, somewhere, a guest is looking at your hotel on their phone. They find it, they like the look of it. They tap Book Now."},
-  {do:'reveal', target:'invisible',  cc:"What happens next is invisible to them. It is invisible to most of your team as well."},
-  {do:'reveal', target:'systems',    cc:"Before that reservation lands in Opera, it has passed through three systems. Availability was checked. A rate was pulled from a central database. And the booking was routed through a connection."},
-  {do:'reveal', target:'channels',   cc:"That connection might be an OTA. Or a wholesaler. Or a travel agent. Or your own website. Each of those routes costs the hotel a different amount."},
-  {do:'reveal', target:'headline',   cc:"Same room. Same guest. Same night. Different money in the bank. This module is about that journey."}
+  {do:'reveal', target:'phone',        cc:"Right now, somewhere, a guest is looking at your hotel on their phone. They find it, they like the look of it. They tap Book Now."},
+  {do:'reveal', target:'invisible',    cc:"What happens next is invisible to them. It is invisible to most of your team as well."},
+  {do:'reveal', target:'systems',      cc:"Before that reservation lands in Opera, it has passed through three systems. Availability was checked. A rate was pulled from a central database. And the booking was routed through a connection."},
+  {do:'reveal', target:'channels',     cc:"That connection could be one of four."},
+  {do:'lit',    target:'chip-ota',        cc:"An O-T-A."},
+  {do:'lit',    target:'chip-wholesaler', cc:"Or a wholesaler."},
+  {do:'lit',    target:'chip-agent',      cc:"Or a travel agent."},
+  {do:'lit',    target:'chip-direct',     cc:"Or your own website."},
+  {do:'narrate', cc:"Each of those routes costs the hotel a different amount."},
+  {do:'reveal', target:'headline',     cc:"Same room. Same guest. Same night. Different money in the bank. This module is about that journey."}
 ]);
 Cueline.register(1, [ // s-loc · The bigger picture — bridge beat + numbered per-lever reveals
   {cc:"Before we get into channels, one piece of context."},
@@ -3287,9 +3305,16 @@ Cueline.register(6, [ // s-channels · The four connected channels
   {do:'reveal', target:'channel-gds',     cc:"And the GDS. Amadeus, Galileo, Sabre, and Travelport."},
   {do:'reveal', target:'key-note',        cc:"Everything on this diagram moves automatically. That's the power. It's also why an error moves just as fast as a correction does."}
 ]);
-Cueline.register(7, [ // s-ota-tiers · OTAs in three tiers
+Cueline.register(7, [ // s-ota-tiers · OTAs in three tiers.
+  // Path A per-mention: Major-4 splits into 4 brand-lits so each logo pops
+  // as the narrator says the name. Growing + Localised stay as bulk tier
+  // reveals (list too long to justify per-name splits, per Option B scope).
   {do:'reveal', target:'tier-intro',      cc:"Zooming in on the OTA side. Dusit is live with ten today, and the list keeps growing. But they're not all managed the same way, and that difference is worth understanding."},
-  {do:'reveal', target:'tier-major',      cc:"Four of them sit closest. Expedia. Booking.com. Agoda. Trip.com. Each has a named account manager, we run contracted promotions with all four. You'll hear these called the Major 4."},
+  {do:'reveal', target:'tier-major',      cc:"Four of them sit closest. You'll hear these called the Major 4."},
+  {do:'lit',    target:'ota-expedia',     cc:"Expedia."},
+  {do:'lit',    target:'ota-booking',     cc:"Booking.com."},
+  {do:'lit',    target:'ota-agoda',       cc:"Agoda."},
+  {do:'lit',    target:'ota-tripcom',     cc:"Trip.com. Each of the four has a named account manager, and we run contracted promotions with all of them."},
   {do:'reveal', target:'tier-growing',    cc:"A second group is growing into that. MakeMyTrip. tiket.com. Traveloka. Tripbtoz. Klook. Hopper. Six regional players with account management in place; promotions being contracted now."},
   {do:'reveal', target:'tier-connected',  cc:"And a smaller localised group — Gother in Thailand, Rakuten in Japan. Live and connected, matched to their home market."},
   {do:'reveal', target:'tier-rates',      cc:"Rate types matter too. Booking.com is a pure OTA — Dusit offers it B2C rates only. Expedia and Trip.com also distribute to B2B as merchant sites, so they take three rate types: B2C, Package, and B2B."},
