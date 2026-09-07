@@ -27,10 +27,10 @@ const OUTPUT_DIR = path.join(REPO_ROOT, 'dist', 'scorm');
 // One entry per module we can package. Adding a new module = one entry here.
 const MODULES = {
   module1: {
-    identifier: 'dusit_module1_rate_architecture',
-    title:      'Module 1 — Dusit Rate Architecture',
-    htmlPath:   'modules/module1-rate-architecture.html',
-    masteryScore: 60,       // percent required to pass — matches finishQuiz scaling
+    identifier: 'dusit_module1_revenue_management_foundation',
+    title:      'Module 1 — Revenue Management Foundation',
+    htmlPath:   'modules/module1-revenue-management-foundation.html',
+    masteryScore: 60,       // percent required to pass — matches finishQuiz scaling (3 of 5)
     duration:   'PT15M'
   },
   module2: {
@@ -38,12 +38,12 @@ const MODULES = {
     title:      'Module 2 — Revenue Tracking Segmentation',
     htmlPath:   'modules/module2-segmentation.html',
     masteryScore: 60,
-    duration:   'PT20M'
+    duration:   'PT25M'     // matches landing page (index.html)
   },
   module3: {
-    identifier: 'dusit_module3_distribution_basic',
-    title:      'Module 3 — OTA1 · Distribution Basic Knowledge',
-    htmlPath:   'modules/module3-distribution-basic.html',
+    identifier: 'dusit_module3_distribution_foundation',
+    title:      'Module 3 — Distribution Foundation',
+    htmlPath:   'modules/module3-distribution-foundation.html',
     masteryScore: 80,       // blueprint spec: 4 of 5 to pass
     duration:   'PT31M'
   }
