@@ -93,6 +93,7 @@ const VOICES = {
 const MODULE_VOICES = {
   module1: 'charlotte',       // shipped as 'Rate Architecture'; preserved untouched as reference
   'module1-rmf': 'charlotte', // Module 1 rebadge → 'Revenue Management Foundation' (v2, active development)
+  'module1-rmf-preview': 'charlotte', // Preview branch — testing new transition slide before merging to live
   module2: 'charlotte',       // shipped, do not change (roster locked after render)
   module3: 'george',          // OTA1 · Distribution Foundation — rotation kicks in here (was 'Distribution Basic Knowledge' pre-2026-09-07)
   module4: 'charlotte',
