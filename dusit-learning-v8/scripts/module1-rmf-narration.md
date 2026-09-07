@@ -113,7 +113,15 @@
 >
 > [pause 0.5s]
 >
-> Imagine your hotel tonight, two hundred rooms. Two people arrive to check in. Same standard room, same date. One is a Dusit Gold member. The other is a walk-in tourist.
+> Imagine your hotel tonight, two hundred rooms. Two people arrive to check in. Same standard room, same date.
+>
+> [pause 0.3s]
+>
+> One is a Dusit Gold member.
+>
+> [pause 0.2s]
+>
+> The other is a walk-in tourist.
 >
 > [pause 0.6s]
 >
@@ -121,7 +129,15 @@
 >
 > [pause 1.5s]
 >
-> The answer is no. And it's not unfair. The Gold member has a loyalty relationship the hotel wants to reward. The walk-in has no qualifying account, yet.
+> The answer is no. And it's not unfair.
+>
+> [pause 0.3s]
+>
+> The Gold member has a loyalty relationship the hotel wants to reward.
+>
+> [pause 0.2s]
+>
+> The walk-in has no qualifying account, yet.
 >
 > [pause 0.5s]
 >
@@ -139,36 +155,48 @@
 
 | # | Action  | Target       | Spoken line                                                                                                                                                          |
 |---|---------|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 0 | narrate |.            | So let's take the first question. The right guest.                                                                                                                    |
-| 1 | narrate |.            | Imagine your hotel tonight, two hundred rooms. Two people arrive to check in. Same standard room, same date. One is a Dusit Gold member. The other is a walk-in tourist. |
-| 2 | narrate |.            | Should they pay the same rate?                                                                                                                                        |
-| 3 | narrate |.            | The answer is no. And it's not unfair. The Gold member has a loyalty relationship the hotel wants to reward. The walk-in has no qualifying account, yet.            |
-| 4 | reveal  | card-gold    | Here's what that looks like on the system. The Gold member's rate comes in at one hundred and seventy dollars, a fifteen percent discount, applied automatically.                                  |
-| 5 | reveal  | card-walkin  | The walk-in pays the Best Available Rate — two hundred dollars.                                                                                                     |
-| 6 | narrate |.            | Same room. Different guests. Different rates. And notice, the segment tag is different too. That's how the system remembers which discount to apply, every single time. |
-| 7 | reveal  | key-1        | The rate difference isn't generosity. It's the pricing system recognising who qualifies for what.                                                                     |
+| 0  | narrate |.            | So let's take the first question. The right guest.                                                                                                                    |
+| 1  | narrate |.            | Imagine your hotel tonight, two hundred rooms. Two people arrive to check in. Same standard room, same date.                                                          |
+| 2  | lit     | card-gold    | One is a Dusit Gold member.                                                                                                                                            |
+| 3  | lit     | card-walkin  | The other is a walk-in tourist.                                                                                                                                        |
+| 4  | narrate |.            | Should they pay the same rate?                                                                                                                                        |
+| 5  | narrate |.            | The answer is no. And it's not unfair.                                                                                                                                 |
+| 6  | lit     | card-gold    | The Gold member has a loyalty relationship the hotel wants to reward.                                                                                                  |
+| 7  | lit     | card-walkin  | The walk-in has no qualifying account, yet.                                                                                                                            |
+| 8  | reveal  | card-gold    | Here's what that looks like on the system. The Gold member's rate comes in at one hundred and seventy dollars, a fifteen percent discount, applied automatically.     |
+| 9  | reveal  | card-walkin  | The walk-in pays the Best Available Rate — two hundred dollars.                                                                                                        |
+| 10 | narrate |.            | Same room. Different guests. Different rates. And notice, the segment tag is different too. That's how the system remembers which discount to apply, every single time. |
+| 11 | reveal  | key-1        | The rate difference isn't generosity. It's the pricing system recognising who qualifies for what.                                                                     |
 
-**Notes for the actor:** The 1.5-second pause after "Should they pay the same rate?" is deliberate, it's the Socratic beat. Do not fill it. Let the silence sit.
+**Notes for the actor:** The 1.5-second pause after "Should they pay the same rate?" is deliberate, it's the Socratic beat. Do not fill it. Let the silence sit. Cues 2/3 and 6/7 are the name-drop beats — say each guest's name at a slightly slower cadence so the visual highlight on the card lands with the word.
 
 ---
 
 ## Slide 4. Right Time
 
-### Reading text (~40 sec spoken)
+### Reading text (~42 sec spoken)
 
 > That's the first question. Let's move to the second, the right time.
 >
 > [pause 0.5s]
 >
-> Same standard room. Same hotel. But a quiet Tuesday in February is not the same product as New Year's Eve.
->
-> [pause 0.5s]
->
-> On a slow Tuesday, demand is low. The hotel needs bookings. BAR comes down. $110 gets more heads on pillows.
+> Same standard room. Same hotel.
 >
 > [pause 0.4s]
 >
-> On New Year's Eve, demand far exceeds supply. BAR rises to $280, and every linked rate follows automatically.
+> But a quiet Tuesday in February…
+>
+> [pause 0.2s]
+>
+> …is not the same product as New Year's Eve.
+>
+> [pause 0.5s]
+>
+> On a slow Tuesday, demand is low. The hotel needs bookings. BAR comes down. One hundred and ten dollars gets more heads on pillows.
+>
+> [pause 0.4s]
+>
+> On New Year's Eve, demand far exceeds supply. BAR rises to two hundred and eighty dollars, and every linked rate follows automatically.
 >
 > [pause 0.4s]
 >
@@ -183,11 +211,13 @@
 | # | Action  | Target    | Spoken line |
 |---|---------|-----------|-------------|
 | 0 | narrate |.         | That's the first question. Let's move to the second, the right time. |
-| 1 | narrate |.         | Same standard room. Same hotel. But a quiet Tuesday in February is not the same product as New Year's Eve. |
-| 2 | reveal  | card-feb  | On a slow Tuesday, demand is low. The hotel needs bookings. BAR comes down. $110 gets more heads on pillows. |
-| 3 | reveal  | card-nye  | On New Year's Eve, demand far exceeds supply. BAR rises to $280, and every linked rate follows automatically. |
-| 4 | narrate |.         | This isn't overcharging. It's how every market in the world works. |
-| 5 | reveal  | key-time  | BAR is not a fixed price. When the Revenue Manager moves it, every derived rate, corporate, OTA, member, moves with it. |
+| 1 | narrate |.         | Same standard room. Same hotel. |
+| 2 | lit     | card-feb  | But a quiet Tuesday in February… |
+| 3 | lit     | card-nye  | …is not the same product as New Year's Eve. |
+| 4 | reveal  | card-feb  | On a slow Tuesday, demand is low. The hotel needs bookings. BAR comes down. One hundred and ten dollars gets more heads on pillows. |
+| 5 | reveal  | card-nye  | On New Year's Eve, demand far exceeds supply. BAR rises to two hundred and eighty dollars, and every linked rate follows automatically. |
+| 6 | narrate |.         | This isn't overcharging. It's how every market in the world works. |
+| 7 | reveal  | key-time  | BAR is not a fixed price. When the Revenue Manager moves it, every derived rate, corporate, OTA, member, moves with it. |
 
 ---
 
@@ -232,13 +262,25 @@
 
 ## Slide 6. Right Price
 
-### Reading text (~40 sec spoken)
+### Reading text (~42 sec spoken)
 
 > Fourth question, the right price.
 >
 > [pause 0.5s]
 >
-> Two guests. Same room. Same night. One can cancel anytime, full refund. The other prepaid and cannot cancel. Should they pay the same?
+> Two guests. Same room. Same night.
+>
+> [pause 0.3s]
+>
+> One can cancel anytime, full refund.
+>
+> [pause 0.2s]
+>
+> The other prepaid and cannot cancel.
+>
+> [pause 0.4s]
+>
+> Should they pay the same?
 >
 > [pause 1.2s]
 >
@@ -261,23 +303,34 @@
 | # | Action  | Target      | Spoken line |
 |---|---------|-------------|-------------|
 | 0 | narrate |.           | Fourth question, the right price. |
-| 1 | narrate |.           | Two guests. Same room. Same night. One can cancel anytime, full refund. The other prepaid and cannot cancel. Should they pay the same? |
-| 2 | narrate |.           | The answer is no. Certainty and flexibility carry different value. |
-| 3 | reveal  | card-flex   | The flexible guest pays two hundred dollars, full BAR. Because the hotel is holding a room that might empty out at the last minute. That risk is priced in. |
-| 4 | reveal  | card-saver  | The Saver guest prepaid, non-refundable. They pay one hundred and eighty dollars, a ten percent discount. The hotel gets certainty; the guest gets a lower rate. |
-| 5 | reveal  | key-cond    | Three levels: Flexible, Saver ten percent off, and Stay Longer fifteen percent off. Each rewards a different kind of commitment. |
+| 1 | narrate |.           | Two guests. Same room. Same night. |
+| 2 | lit     | card-flex   | One can cancel anytime, full refund. |
+| 3 | lit     | card-saver  | The other prepaid and cannot cancel. |
+| 4 | narrate |.           | Should they pay the same? |
+| 5 | narrate |.           | The answer is no. Certainty and flexibility carry different value. |
+| 6 | reveal  | card-flex   | The flexible guest pays two hundred dollars, full BAR. Because the hotel is holding a room that might empty out at the last minute. That risk is priced in. |
+| 7 | reveal  | card-saver  | The Saver guest prepaid, non-refundable. They pay one hundred and eighty dollars, a ten percent discount. The hotel gets certainty; the guest gets a lower rate. |
+| 8 | reveal  | key-cond    | Three levels: Flexible, Saver ten percent off, and Stay Longer fifteen percent off. Each rewards a different kind of commitment. |
 
 ---
 
 ## Slide 7. Right Room
 
-### Reading text (~50 sec spoken)
+### Reading text (~52 sec spoken)
 
 > Fifth and final question, the right room.
 >
 > [pause 0.5s]
 >
-> A Standard room and a Suite are not the same product. The room ladder prices each type relative to the one below it.
+> A Standard room…
+>
+> [pause 0.2s]
+>
+> …and a Suite are not the same product.
+>
+> [pause 0.3s]
+>
+> The room ladder prices each type relative to the one below it.
 >
 > [pause 0.5s]
 >
@@ -304,12 +357,14 @@
 | # | Action  | Target    | Spoken line |
 |---|---------|-----------|-------------|
 | 0 | narrate |.         | Fifth and final question, the right room. |
-| 1 | narrate |.         | A Standard room and a Suite are not the same product. The room ladder prices each type relative to the one below it. |
-| 2 | reveal  | rung-std  | Standard room: two hundred dollars, the base derived rate. No supplement. |
-| 3 | reveal  | rung-dlx  | Deluxe room: two hundred and twenty — that's twenty dollars added on top. |
-| 4 | reveal  | rung-ste  | Suite: two hundred and fifty — fifty dollars added on top of Standard. |
-| 5 | narrate |.         | Now, you might expect the supplement is added to BAR directly. It isn't. And the order matters. |
-| 6 | reveal  | key-room  | The supplement is added to the derived rate, after the segment discount. Corporate Deluxe equals BAR times zero point eight five, then plus twenty dollars. Not BAR plus twenty, then discounted. Get this order wrong and margins leak. |
+| 1 | lit     | rung-std  | A Standard room… |
+| 2 | lit     | rung-ste  | …and a Suite are not the same product. |
+| 3 | narrate |.         | The room ladder prices each type relative to the one below it. |
+| 4 | reveal  | rung-std  | Standard room: two hundred dollars, the base derived rate. No supplement. |
+| 5 | reveal  | rung-dlx  | Deluxe room: two hundred and twenty — that's twenty dollars added on top. |
+| 6 | reveal  | rung-ste  | Suite: two hundred and fifty — fifty dollars added on top of Standard. |
+| 7 | narrate |.         | Now, you might expect the supplement is added to BAR directly. It isn't. And the order matters. |
+| 8 | reveal  | key-room  | The supplement is added to the derived rate, after the segment discount. Corporate Deluxe equals BAR times zero point eight five, then plus twenty dollars. Not BAR plus twenty, then discounted. Get this order wrong and margins leak. |
 
 **Notes for the actor:** Cue 5 is a preempt-the-confusion beat, deliver with a small warning intonation, then a beat of silence before cue 6 lands the correction.
 
@@ -323,7 +378,11 @@
 >
 > [pause 0.5s]
 >
-> Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. They trade flexibility for a lower rate. Stay Longer takes fifteen percent off, but the guest commits to a minimum three-night stay. A short trip for a deeper discount.
+> Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. They trade flexibility for a lower rate.
+>
+> [pause 0.4s]
+>
+> Stay Longer takes fifteen percent off, but the guest commits to a minimum three-night stay. A short trip for a deeper discount.
 >
 > [pause 0.5s]
 >
@@ -334,8 +393,9 @@
 | # | Action  | Target      | Spoken line |
 |---|---------|-------------|-------------|
 | 0 | reveal  | cond-why    | This is where the term rate architecture starts to matter in a Dusit-specific way. BAR is the anchor. Every condition we sell is a percentage off BAR in exchange for a commitment from the guest. |
-| 1 | reveal  | cond-cards  | Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. They trade flexibility for a lower rate. Stay Longer takes fifteen percent off, but the guest commits to a minimum three-night stay. A short trip for a deeper discount. |
-| 2 | reveal  | cond-key    | Move BAR, and every conditioned rate moves with it. No spreadsheets, no manual re-quotes. The commitment stays the same; only the money moves. Tap the BAR hub on the right to see it happen. |
+| 1 | reveal  | cond-0      | Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. They trade flexibility for a lower rate. |
+| 2 | reveal  | cond-1      | Stay Longer takes fifteen percent off, but the guest commits to a minimum three-night stay. A short trip for a deeper discount. |
+| 3 | reveal  | cond-key    | Move BAR, and every conditioned rate moves with it. No spreadsheets, no manual re-quotes. The commitment stays the same; only the money moves. Tap the BAR hub on the right to see it happen. |
 
 **Notes for the actor:** Cue 0 is a definitional beat — deliver 'rate architecture' with quiet emphasis; this is the first time the term lands with its precise Dusit meaning after the module has held it back. Cue 1 is a comparison; slight lift on 'trades' each time to point at the commitment/discount pairing. Cue 2 lands warmly and invites interaction on the final line.
 

@@ -332,6 +332,16 @@ body.cueline-active .vs-card[data-cue]{
              border-color 0.4s ease,
              box-shadow 0.4s ease;
 }
+/* .lit = softer highlight, fires when narrator FIRST mentions the card
+   (name-drop beat). .reveal below = bolder highlight, fires when the card's
+   pricing / detail is spoken (the pay-off beat). Two intensities so the
+   learner sees introduction → deep-dive as a visual crescendo, not a
+   single on/off. */
+body.cueline-active .vs-card[data-cue].lit{
+  border-color:rgba(201,168,76,0.65);
+  transform:scale(1.012);
+  box-shadow:0 3px 12px rgba(201,168,76,0.18);
+}
 body.cueline-active .vs-card[data-cue].reveal{
   border-color:var(--gold);
   transform:scale(1.025);
@@ -397,6 +407,15 @@ body.cueline-active .agenda-item[data-cue]{
 body.cueline-active .agenda-item[data-cue].reveal{opacity:1;transform:translateX(0);}
 
 /* Room ladder rungs.fully visible from load, focus on cue */
+/* .lit = softer highlight when narrator first mentions the room type
+   (e.g. "Standard room and a Suite"). .reveal below = bolder highlight for
+   the price-reveal beat. */
+body.cueline-active .room-rung[data-cue].lit{
+  opacity:1;
+  border-color:rgba(201,168,76,0.65);
+  transform:translateX(0) scale(1.005);
+  box-shadow:0 2px 10px rgba(201,168,76,0.15);
+}
 body.cueline-active .room-rung[data-cue]{
   opacity:1;
   transition:transform 0.4s ease, box-shadow 0.4s ease;
@@ -693,8 +712,8 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <div style="font-size:9px;color:rgba(255,255,255,0.5);margin-top:3px;letter-spacing:0.04em;">tap to update</div>
           </div>
 
-          <div data-cue="cond-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;max-width:520px;">
-            <div class="cond-card" id="cond-0" style="background:var(--white);border:1.75px solid var(--g100);border-radius:12px;padding:14px 16px 12px;transition:border-color 0.35s,background 0.35s;box-shadow:0 1px 6px rgba(0,60,150,0.06);">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;max-width:520px;">
+            <div class="cond-card" id="cond-0" data-cue="cond-0" style="background:var(--white);border:1.75px solid var(--g100);border-radius:12px;padding:14px 16px 12px;transition:border-color 0.35s,background 0.35s,transform 0.3s,box-shadow 0.3s;box-shadow:0 1px 6px rgba(0,60,150,0.06);">
               <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Advance Saver</div>
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.06em;">−10%</div>
@@ -702,7 +721,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <div class="cond-rate" id="cond-v-0" style="font-family:'DusitDisplay',sans-serif;font-size:26px;font-weight:800;color:var(--b900);line-height:1;margin-bottom:8px;">$180</div>
               <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g500);line-height:1.4;padding-top:7px;border-top:1px solid var(--g100);"><strong style="color:var(--b900);">Prepaid at booking.</strong> Non-refundable. The guest trades flexibility for a lower rate.</div>
             </div>
-            <div class="cond-card" id="cond-1" style="background:var(--white);border:1.75px solid var(--g100);border-radius:12px;padding:14px 16px 12px;transition:border-color 0.35s,background 0.35s;box-shadow:0 1px 6px rgba(0,60,150,0.06);">
+            <div class="cond-card" id="cond-1" data-cue="cond-1" style="background:var(--white);border:1.75px solid var(--g100);border-radius:12px;padding:14px 16px 12px;transition:border-color 0.35s,background 0.35s,transform 0.3s,box-shadow 0.3s;box-shadow:0 1px 6px rgba(0,60,150,0.06);">
               <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Stay Longer</div>
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.06em;">−15%</div>
@@ -719,6 +738,19 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           @keyframes condFlash{0%{background:#F0E5C4;}100%{background:var(--gold-l);}}
           #cond-bar-hub.hub-firing{animation:condHubPulse 0.6s ease-out;}
           @keyframes condHubPulse{0%{box-shadow:0 0 0 0 rgba(201,168,76,0.6);}70%{box-shadow:0 0 0 24px rgba(201,168,76,0);}100%{box-shadow:0 0 0 0 rgba(201,168,76,0);}}
+          /* Cueline narration highlights (distinct from the tap-BAR '.updated'
+             animation above): .lit = soft border when narrator first names
+             the product; .reveal = stronger highlight for the deeper beat. */
+          body.cueline-active #s-8 .cond-card[data-cue].lit{
+            border-color:rgba(201,168,76,0.65);
+            transform:scale(1.012);
+            box-shadow:0 3px 12px rgba(201,168,76,0.18);
+          }
+          body.cueline-active #s-8 .cond-card[data-cue].reveal{
+            border-color:var(--gold);
+            transform:scale(1.02);
+            box-shadow:0 6px 20px rgba(201,168,76,0.28);
+          }
         </style>
 
         <script>
@@ -1884,24 +1916,33 @@ Cueline.register(2, [
   { do:'pulse',  target:'.ov-grid', cc:"Five questions. Every rate at your hotel is an answer to all five. Revenue management is the system that answers them, automatically, one question at a time." }
 ]);
 
-// Slide 3. Right Guest
+// Slide 3. Right Guest — Path A per-mention highlighting: each guest card
+// is 'lit' the moment its name is spoken, then 'reveal' when its pricing
+// beat lands. Twelve cues (was 8).
 Cueline.register(3, [
   { do:'narrate', cc:"So let's take the first question. The right guest." },
-  { do:'narrate', cc:"Imagine your hotel tonight, two hundred rooms. Two people arrive to check in. Same standard room, same date. One is a Dusit Gold member. The other is a walk-in tourist." },
+  { do:'narrate', cc:"Imagine your hotel tonight, two hundred rooms. Two people arrive to check in. Same standard room, same date." },
+  { do:'lit',    target:'card-gold',   cc:"One is a Dusit Gold member." },
+  { do:'lit',    target:'card-walkin', cc:"The other is a walk-in tourist." },
   { do:'narrate', cc:"Should they pay the same rate?" },
-  { do:'narrate', cc:"The answer is no. And it's not unfair. The Gold member has a loyalty relationship the hotel wants to reward. The walk-in has no qualifying account, yet." },
+  { do:'narrate', cc:"The answer is no. And it's not unfair." },
+  { do:'lit',    target:'card-gold',   cc:"The Gold member has a loyalty relationship the hotel wants to reward." },
+  { do:'lit',    target:'card-walkin', cc:"The walk-in has no qualifying account, yet." },
   { do:'reveal', target:'card-gold',   cc:"Here's what that looks like on the system. The Gold member's rate comes in at one hundred and seventy dollars, a fifteen percent discount, applied automatically." },
   { do:'reveal', target:'card-walkin', cc:"The walk-in pays the Best Available Rate — two hundred dollars." },
   { do:'narrate', cc:"Same room. Different guests. Different rates. And notice, the segment tag is different too. That's how the system remembers which discount to apply, every single time." },
   { do:'reveal', target:'key-1',       cc:"The rate difference isn't generosity. It's the pricing system recognising who qualifies for what." }
 ]);
 
-// Slide 4. Right Time
+// Slide 4. Right Time — Path A: each time-scenario card is 'lit' when named,
+// then 'reveal' when its BAR beat lands. Eight cues (was 6).
 Cueline.register(4, [
   { do:'narrate', cc:"That's the first question. Let's move to the second: the right time." },
-  { do:'narrate', cc:"Same standard room. Same hotel. But a quiet Tuesday in February is not the same product as New Year's Eve." },
-  { do:'reveal', target:'card-feb', cc:"On a slow Tuesday, demand is low. The hotel needs bookings. BAR comes down.$110 gets more heads on pillows." },
-  { do:'reveal', target:'card-nye', cc:"On New Year's Eve, demand far exceeds supply. BAR rises to $280, and every linked rate follows automatically." },
+  { do:'narrate', cc:"Same standard room. Same hotel." },
+  { do:'lit',    target:'card-feb', cc:"But a quiet Tuesday in February…" },
+  { do:'lit',    target:'card-nye', cc:"…is not the same product as New Year's Eve." },
+  { do:'reveal', target:'card-feb', cc:"On a slow Tuesday, demand is low. The hotel needs bookings. BAR comes down. One hundred and ten dollars gets more heads on pillows." },
+  { do:'reveal', target:'card-nye', cc:"On New Year's Eve, demand far exceeds supply. BAR rises to two hundred and eighty dollars, and every linked rate follows automatically." },
   { do:'narrate', cc:"This isn't overcharging. It's how every market in the world works." },
   { do:'reveal', target:'key-time', cc:"BAR is not a fixed price. When the Revenue Manager moves it, every derived rate, corporate, OTA, member, moves with it." }
 ]);
@@ -1916,20 +1957,29 @@ Cueline.register(5, [
   { do:'reveal', target:'key-channel', cc:"Rate parity: OTAs and direct show the guest the same price. Commission is what changes what the hotel actually keeps." }
 ]);
 
-// Slide 6. Right Price
+// Slide 6. Right Price — Path A: each rate-plan card is 'lit' when named,
+// then 'reveal' when its pricing beat lands. Nine cues (was 6).
 Cueline.register(6, [
   { do:'narrate', cc:"Fourth question: the right price." },
-  { do:'narrate', cc:"Two guests. Same room. Same night. One can cancel anytime, full refund. The other prepaid and cannot cancel. Should they pay the same?" },
+  { do:'narrate', cc:"Two guests. Same room. Same night." },
+  { do:'lit',    target:'card-flex',  cc:"One can cancel anytime, full refund." },
+  { do:'lit',    target:'card-saver', cc:"The other prepaid and cannot cancel." },
+  { do:'narrate', cc:"Should they pay the same?" },
   { do:'narrate', cc:"The answer is no. Certainty and flexibility carry different value." },
-  { do:'reveal', target:'card-flex', cc:"The flexible guest pays two hundred dollars, full BAR. Because the hotel is holding a room that might empty out at the last minute. That risk is priced in." },
+  { do:'reveal', target:'card-flex',  cc:"The flexible guest pays two hundred dollars, full BAR. Because the hotel is holding a room that might empty out at the last minute. That risk is priced in." },
   { do:'reveal', target:'card-saver', cc:"The Saver guest prepaid, non-refundable. They pay one hundred and eighty dollars, a ten percent discount. The hotel gets certainty; the guest gets a lower rate." },
-  { do:'reveal', target:'key-cond', cc:"Three levels: Flexible, Saver ten percent off, and Stay Longer fifteen percent off. Each rewards a different kind of commitment." }
+  { do:'reveal', target:'key-cond',   cc:"Three levels: Flexible, Saver ten percent off, and Stay Longer fifteen percent off. Each rewards a different kind of commitment." }
 ]);
 
-// Slide 7. Right Room (has the 'supplement after discount' trap.preempt-the-confusion beat)
+// Slide 7. Right Room — Path A: Standard/Suite are 'lit' as named in the
+// intro sentence, then each rung is 'reveal'ed with its price beat. Has the
+// 'supplement after discount' trap preempt-the-confusion beat at cue 7.
+// Nine cues (was 7).
 Cueline.register(7, [
   { do:'narrate', cc:"Fifth and final question: the right room." },
-  { do:'narrate', cc:"A Standard room and a Suite are not the same product. The room ladder prices each type relative to the one below it." },
+  { do:'lit',    target:'rung-std', cc:"A Standard room…" },
+  { do:'lit',    target:'rung-ste', cc:"…and a Suite are not the same product." },
+  { do:'narrate', cc:"The room ladder prices each type relative to the one below it." },
   { do:'reveal', target:'rung-std', cc:"Standard room: two hundred dollars, the base derived rate. No supplement." },
   { do:'reveal', target:'rung-dlx', cc:"Deluxe room: two hundred and twenty — that's twenty dollars added on top." },
   { do:'reveal', target:'rung-ste', cc:"Suite: two hundred and fifty — fifty dollars added on top of Standard." },
@@ -1938,9 +1988,12 @@ Cueline.register(7, [
 ]);
 
 // Slide 8. Conditions on top of BAR (rate architecture, Dusit-narrow sense)
+// Path A: cond-cards wrapper reveal replaced with per-card cues so each
+// product highlights as the narrator walks through it. Four cues (was 3).
 Cueline.register(8, [
   { do:'reveal', target:'cond-why',   cc:"This is where the term rate architecture starts to matter in a Dusit-specific way. BAR is the anchor. Every condition we sell is a percentage off BAR in exchange for a commitment from the guest." },
-  { do:'reveal', target:'cond-cards', cc:"Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. They trade flexibility for a lower rate. Stay Longer takes fifteen percent off, but the guest commits to a minimum three-night stay. A short trip for a deeper discount." },
+  { do:'reveal', target:'cond-0',     cc:"Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. They trade flexibility for a lower rate." },
+  { do:'reveal', target:'cond-1',     cc:"Stay Longer takes fifteen percent off, but the guest commits to a minimum three-night stay. A short trip for a deeper discount." },
   { do:'reveal', target:'cond-key',   cc:"Move BAR, and every conditioned rate moves with it. No spreadsheets, no manual re-quotes. The commitment stays the same; only the money moves. Tap the BAR hub on the right to see it happen." }
 ]);
 
