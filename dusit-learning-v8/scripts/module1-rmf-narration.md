@@ -289,11 +289,11 @@
 >
 > [pause 0.4s]
 >
-> The Saver guest prepaid, non-refundable. They pay one hundred and eighty dollars, a ten percent discount. The hotel gets certainty; the guest gets a lower rate.
+> The Advance Saver guest prepaid, non-refundable. They pay one hundred and eighty dollars, a ten percent discount. The hotel gets certainty; the guest gets a lower rate.
 >
 > [pause 0.5s]
 >
-> Three levels: Flexible, Saver ten percent off, and Stay Longer fifteen percent off. Each rewards a different kind of commitment.
+> That's the whole architecture. BAR at full flexibility, Advance Saver ten percent off with prepayment, Stay Longer fifteen percent off with a minimum stay. Two conditioned rates on top of BAR — deliberately simple.
 
 ### Cue map
 
@@ -306,8 +306,8 @@
 | 4 | narrate |.           | Should they pay the same? |
 | 5 | narrate |.           | The answer is no. Certainty and flexibility carry different value. |
 | 6 | reveal  | card-flex   | The flexible guest pays two hundred dollars, full BAR. Because the hotel is holding a room that might empty out at the last minute. That risk is priced in. |
-| 7 | reveal  | card-saver  | The Saver guest prepaid, non-refundable. They pay one hundred and eighty dollars, a ten percent discount. The hotel gets certainty; the guest gets a lower rate. |
-| 8 | reveal  | key-cond    | Three levels: Flexible, Saver ten percent off, and Stay Longer fifteen percent off. Each rewards a different kind of commitment. |
+| 7 | reveal  | card-saver  | The Advance Saver guest prepaid, non-refundable. They pay one hundred and eighty dollars, a ten percent discount. The hotel gets certainty; the guest gets a lower rate. |
+| 8 | reveal  | key-cond    | That's the whole architecture. BAR at full flexibility, Advance Saver ten percent off with prepayment, Stay Longer fifteen percent off with a minimum stay. Two conditioned rates on top of BAR — deliberately simple. |
 
 ---
 
@@ -348,6 +348,10 @@
 > [pause 0.7s]
 >
 > The supplement is added to the derived rate, after the segment discount. Corporate Deluxe equals BAR times zero point eight five, then plus twenty dollars. Not BAR plus twenty, then discounted. Get this order wrong and margins leak.
+>
+> [pause 0.8s]
+>
+> That's the five questions — guest, time, channel, price, room. Every rate at Dusit is built from those five.
 
 ### Cue map
 
@@ -362,39 +366,55 @@
 | 6 | reveal  | rung-ste  | Suite: two hundred and fifty — fifty dollars added on top of Standard. |
 | 7 | narrate |.         | Now, you might expect the supplement is added to BAR directly. It isn't. And the order matters. |
 | 8 | reveal  | key-room  | The supplement is added to the derived rate, after the segment discount. Corporate Deluxe equals BAR times zero point eight five, then plus twenty dollars. Not BAR plus twenty, then discounted. Get this order wrong and margins leak. |
+| 9 | narrate |.         | That's the five questions — guest, time, channel, price, room. Every rate at Dusit is built from those five. |
 
-**Notes for the actor:** Cue 5 is a preempt-the-confusion beat, deliver with a small warning intonation, then a beat of silence before cue 6 lands the correction.
+**Notes for the actor:** Cue 7 is a preempt-the-confusion beat, deliver with a small warning intonation, then a beat of silence before cue 8 lands the correction. Cue 9 is the section-1 closer — land it warmly, as a settled thought, since it's the last beat before section 2 opens.
 
 ---
 
-## Slide 8. Conditions on top of BAR (Rate architecture, Dusit-narrow sense)
+## Slide 8. Rate architecture · Intro (Dusit-narrow sense: BAR + 2 conditioned rates)
 
-### Reading text (~40 sec)
+### Reading text (~50 sec)
 
-> This is where the term rate architecture starts to matter in a Dusit-specific way. BAR is the anchor. Every condition we sell is a percentage off BAR in exchange for a commitment from the guest.
+> Section two. Rate architecture. Dusit runs one of the simplest rate architectures in the industry. Just BAR, plus two conditioned rates on top.
 >
 > [pause 0.5s]
 >
-> Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. They trade flexibility for a lower rate.
+> BAR is the anchor. It's the number every other rate is derived from.
 >
 > [pause 0.4s]
 >
-> Stay Longer takes fifteen percent off, but the guest commits to a minimum three-night stay. A short trip for a deeper discount.
+> From BAR, two conditioned rates cascade.
 >
-> [pause 0.5s]
+> [pause 0.4s]
 >
-> Move BAR, and every conditioned rate moves with it. No spreadsheets, no manual re-quotes. The commitment stays the same; only the money moves. Tap the BAR hub on the right to see it happen.
+> Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. Flexibility, for a lower rate.
+>
+> [pause 0.4s]
+>
+> Stay Longer takes fifteen percent off. The guest commits to a minimum three-night stay. A short trip, for a deeper discount.
+>
+> [pause 0.4s]
+>
+> That's the whole architecture.
+>
+> [pause 0.4s]
+>
+> Deliberately minimal. Enough to serve every market, every connected partner — and nothing extra to maintain.
 
 ### Cue map
 
 | # | Action  | Target      | Spoken line |
 |---|---------|-------------|-------------|
-| 0 | reveal  | cond-why    | This is where the term rate architecture starts to matter in a Dusit-specific way. BAR is the anchor. Every condition we sell is a percentage off BAR in exchange for a commitment from the guest. |
-| 1 | reveal  | cond-0      | Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. They trade flexibility for a lower rate. |
-| 2 | reveal  | cond-1      | Stay Longer takes fifteen percent off, but the guest commits to a minimum three-night stay. A short trip for a deeper discount. |
-| 3 | reveal  | cond-key    | Move BAR, and every conditioned rate moves with it. No spreadsheets, no manual re-quotes. The commitment stays the same; only the money moves. Tap the BAR hub on the right to see it happen. |
+| 0 | reveal  | ra-why      | Section two. Rate architecture. Dusit runs one of the simplest rate architectures in the industry. Just BAR, plus two conditioned rates on top. |
+| 1 | reveal  | ra-bar      | BAR is the anchor. It's the number every other rate is derived from. |
+| 2 | reveal  | ra-trunk    | From BAR, two conditioned rates cascade. |
+| 3 | reveal  | ra-adv      | Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. Flexibility, for a lower rate. |
+| 4 | reveal  | ra-stay     | Stay Longer takes fifteen percent off. The guest commits to a minimum three-night stay. A short trip, for a deeper discount. |
+| 5 | reveal  | ra-caption  | That's the whole architecture. |
+| 6 | reveal  | ra-key      | Deliberately minimal. Enough to serve every market, every connected partner — and nothing extra to maintain. |
 
-**Notes for the actor:** Cue 0 is a definitional beat — deliver 'rate architecture' with quiet emphasis; this is the first time the term lands with its precise Dusit meaning after the module has held it back. Cue 1 is a comparison; slight lift on 'trades' each time to point at the commitment/discount pairing. Cue 2 lands warmly and invites interaction on the final line.
+**Notes for the actor:** Cue 0 lands the section title — deliver "Section two. Rate architecture." with the quiet weight of a chapter opener, then transition into the definition. Cue 1 is the anchor beat; small emphasis on "anchor" and "derived". Cues 3 and 4 are structurally parallel (product + trade-off); mirror the cadence between them so the pair reads as one design pattern. Cue 6 lands the "deliberately simple" thesis warmly — this is the takeaway.
 
 ---
 
@@ -405,11 +425,11 @@
 
 ### Reading text (~40 sec spoken)
 
-> So far we've looked at each question in isolation. Now let's see how they connect.
+> The system. This is where BAR, Advance Saver, Stay Longer, and every channel rate meet — and stay in sync automatically.
 >
 > [pause 0.6s]
 >
-> BAR is the single source of truth. Every channel rate you saw is a fixed percentage of BAR.
+> BAR is the single source of truth. Every channel rate you see is a fixed percentage of BAR.
 >
 > [pause 0.5s]
 >
@@ -422,18 +442,23 @@
 > [pause 0.5s]
 >
 > Tap the BAR hub on the right to run the propagation again. This is the whole system, and this is why architecture matters.
+>
+> [pause 0.8s]
+>
+> We'll go deeper on the system architecture — how rates actually flow through Dusit's stack — in upcoming modules.
 
 ### Cue map
 
 | # | Action  | Target    | Spoken line |
 |---|---------|-----------|-------------|
-| 0 | narrate |.         | So far we've looked at each question in isolation. Now let's see how they connect. |
-| 1 | narrate |.         | BAR is the single source of truth. Every channel rate you saw is a fixed percentage of BAR. |
+| 0 | narrate |.         | The system. This is where BAR, Advance Saver, Stay Longer, and every channel rate meet — and stay in sync automatically. |
+| 1 | narrate |.         | BAR is the single source of truth. Every channel rate you see is a fixed percentage of BAR. |
 | 2 | reveal  | sys-demo  | Watch what happens when the Revenue Manager moves BAR from two hundred dollars to two hundred and fifty dollars. |
 | 3 | narrate |.         | Corporate updates. OTA updates. Member updates. Direct updates. GDS updates. Wholesale updates. Every rate at your hotel moves, in seconds, with zero manual work. |
 | 4 | narrate |.         | Tap the BAR hub on the right to run the propagation again. This is the whole system, and this is why architecture matters. |
+| 5 | narrate |.         | We'll go deeper on the system architecture — how rates actually flow through Dusit's stack — in upcoming modules. |
 
-**Notes for the actor + timing:** The right-side BAR propagation animation self-triggers 700 ms after this slide activates and runs for about 2.5 seconds. Time cue 3 so the narration lands *during* the propagation, not after, the visual and the words should feel synchronous.
+**Notes for the actor + timing:** Cue 0 is now a self-sufficient opener — no back-reference to the previous slide. The right-side BAR propagation animation self-triggers 700 ms after this slide activates and runs for about 2.5 seconds. Time cue 3 so the narration lands *during* the propagation, not after, the visual and the words should feel synchronous. Cue 5 is a forward-reference to future modules — deliver as a warm invitation, not a hurried outro.
 
 ---
 
@@ -485,7 +510,7 @@
 >
 > [pause 0.4s]
 >
-> And you know the three rate levels: Flexible, Saver at ten percent off, and Stay Longer at fifteen percent off.
+> And you know Dusit's rate architecture: BAR at full flexibility, Advance Saver at ten percent off, and Stay Longer at fifteen percent off.
 >
 > [pause 0.6s]
 >
@@ -500,7 +525,7 @@
 | 2 | reveal  | chk-2   | You understand BAR is the single source of truth all rates link to. |
 | 3 | reveal  | chk-3   | You can explain why different guests pay different rates for the same room. |
 | 4 | reveal  | chk-4   | You know who to call the moment you spot a rate discrepancy between channels. |
-| 5 | reveal  | chk-5   | And you know the three rate levels: Flexible, Saver at ten percent off, and Stay Longer at fifteen percent off. |
+| 5 | reveal  | chk-5   | And you know Dusit's rate architecture: BAR at full flexibility, Advance Saver at ten percent off, and Stay Longer at fifteen percent off. |
 | 6 | narrate |.       | Tick all five, then press Next to take the quiz. |
 
 **Total narrated length across all 11 content slides:** approximately **6 minutes** of spoken audio (excluding pauses). Fits neatly under the module's `PT30M` upper bound while leaving the learner ample time to think, click, and re-read.

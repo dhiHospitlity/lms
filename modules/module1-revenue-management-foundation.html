@@ -523,7 +523,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
     <div class="sb-item" id="sbi-5" onclick="nav(5)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Right Channel</div></div></div>
     <div class="sb-item" id="sbi-6" onclick="nav(6)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Right Price</div></div></div>
     <div class="sb-item" id="sbi-7" onclick="nav(7)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Right Room</div></div></div>
-    <div class="sb-item" id="sbi-8" onclick="nav(8)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Conditions on top of BAR</div></div></div>
+    <div class="sb-item" id="sbi-8" onclick="nav(8)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Rate architecture · Intro</div></div></div>
     <div class="sb-item" id="sbi-9" onclick="nav(9)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">The System</div></div></div>
     <div class="sb-item" id="sbi-10" onclick="nav(10)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Do / Don't</div></div></div>
     <div class="sb-item" id="sbi-11" onclick="nav(11)"><div class="sb-dot"></div><div class="sb-text"><div class="sb-stitle">Checklist</div></div></div>
@@ -661,9 +661,9 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         <div class="split-right">
           <div class="vs-grid">
             <div class="vs-card" data-cue="card-flex"><div class="vs-hdr a">Flexible Rate</div><div class="vs-body"><div class="vs-price a">$200</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>Cancel anytime, full refund</li><li class="vs-fact"><span class="vfi">●</span>Hotel carries cancellation risk</li></ul></div></div>
-            <div class="vs-card" data-cue="card-saver"><div class="vs-hdr b">Saver Rate</div><div class="vs-body"><div class="vs-price b">$180</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>Prepaid, non-refundable</li><li class="vs-fact"><span class="vfi">●</span>10% off BAR — in return for certainty</li></ul></div></div>
+            <div class="vs-card" data-cue="card-saver"><div class="vs-hdr b">Advance Saver</div><div class="vs-body"><div class="vs-price b">$180</div><ul class="vs-facts"><li class="vs-fact"><span class="vfi">●</span>Prepaid, non-refundable</li><li class="vs-fact"><span class="vfi">●</span>10% off BAR — in return for certainty</li></ul></div></div>
           </div>
-          <div class="key-box" data-cue="key-cond"><strong>2026 levels:</strong> <strong>Flexible</strong> (no discount), <strong>Saver</strong> (10% off, prepaid), <strong>Stay Longer</strong> (15% off, min stay). Each rewards a different commitment.</div>
+          <div class="key-box" data-cue="key-cond">Dusit's rate architecture is deliberately simple. <strong>BAR</strong> is the anchor (full flexibility). <strong>Advance Saver</strong> takes 10% off in exchange for prepayment. <strong>Stay Longer</strong> takes 15% off in exchange for a minimum stay. Two conditioned rates on top of BAR — that's the whole set.</div>
         </div>
       </div>
 
@@ -684,102 +684,78 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         </div>
       </div>
 
-      <!-- SLIDE 5b: RATE ARCHITECTURE — Conditions on top of BAR (Advance Saver + Stay Longer).
-           This is where the term 'rate architecture' lands with Dusit's specific meaning:
-           BAR is the anchor; each condition product is a % off BAR in exchange for a
-           commitment from the guest. Inserted as slide index 8, before The System. -->
+      <!-- SLIDE 8: RATE ARCHITECTURE · INTRO — Dusit's simplest rate architecture.
+           BAR at the top; two conditioned rates cascade from it (Advance Saver + Stay
+           Longer). This slide introduces the term 'rate architecture' with its precise
+           Dusit meaning and shows the whole architecture as a hierarchy tree. -->
       <div class="slide s-split" id="s-8">
         <div class="split-left">
-          <div class="deep-n">05b</div>
-          <div class="deep-label">Rate architecture · in motion</div>
-          <h2 class="deep-title">Conditions on top of BAR</h2>
-          <p class="deep-why" data-cue="cond-why">BAR is the anchor. Every rate condition Dusit sells — Advance Saver, Stay Longer — is a percentage off BAR in exchange for a <strong>commitment</strong> from the guest.</p>
-          <div class="key-box" data-cue="cond-key">Move BAR, and every conditioned rate moves with it. <strong>No spreadsheets. No manual re-quotes.</strong> The commitment stays the same; only the money moves.</div>
+          <div class="deep-label">Section 2</div>
+          <h2 class="deep-title">Rate architecture · Intro</h2>
+          <p class="deep-why" data-cue="ra-why">Dusit runs one of the <strong>simplest rate architectures</strong> in the industry. BAR is the anchor. Two conditioned rates cascade from it — <strong>Advance Saver</strong> and <strong>Stay Longer</strong>. That's the whole set.</p>
+          <div class="key-box" data-cue="ra-key">Deliberately minimal. Enough to serve <strong>every market</strong> and <strong>every connected partner</strong>, with nothing extra to maintain.</div>
         </div>
-        <div class="split-right" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 30px;">
-          <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">Tap BAR to move it</div>
+        <div class="split-right" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 26px;background:var(--white);">
 
-          <div id="cond-bar-hub" onclick="condTriggerAnim()" style="width:120px;height:120px;border-radius:50%;background:var(--b900);border:3px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;margin-bottom:22px;">
-            <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--gold-l);margin-bottom:2px;">BAR</div>
-            <div id="cond-bar-val" style="font-family:'DusitDisplay',sans-serif;font-size:24px;font-weight:800;color:#fff;transition:all 0.3s;">$200</div>
-            <div style="font-size:9px;color:rgba(255,255,255,0.5);margin-top:3px;letter-spacing:0.04em;">tap to update</div>
-          </div>
+          <!-- Hierarchy tree · BAR at top, branches to Advance Saver + Stay Longer -->
+          <svg viewBox="0 0 460 320" style="width:100%;max-width:460px;height:auto;overflow:visible;font-family:'DusitDisplay',sans-serif;">
 
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;max-width:520px;">
-            <div class="cond-card" id="cond-0" data-cue="cond-0" style="background:var(--white);border:1.75px solid var(--g100);border-radius:12px;padding:14px 16px 12px;transition:border-color 0.35s,background 0.35s,transform 0.3s,box-shadow 0.3s;box-shadow:0 1px 6px rgba(0,60,150,0.06);">
-              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Advance Saver</div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.06em;">−10%</div>
-              </div>
-              <div class="cond-rate" id="cond-v-0" style="font-family:'DusitDisplay',sans-serif;font-size:26px;font-weight:800;color:var(--b900);line-height:1;margin-bottom:8px;">$180</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g500);line-height:1.4;padding-top:7px;border-top:1px solid var(--g100);"><strong style="color:var(--b900);">Prepaid at booking.</strong> Non-refundable. The guest trades flexibility for a lower rate.</div>
-            </div>
-            <div class="cond-card" id="cond-1" data-cue="cond-1" style="background:var(--white);border:1.75px solid var(--g100);border-radius:12px;padding:14px 16px 12px;transition:border-color 0.35s,background 0.35s,transform 0.3s,box-shadow 0.3s;box-shadow:0 1px 6px rgba(0,60,150,0.06);">
-              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Stay Longer</div>
-                <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.06em;">−15%</div>
-              </div>
-              <div class="cond-rate" id="cond-v-1" style="font-family:'DusitDisplay',sans-serif;font-size:26px;font-weight:800;color:var(--b900);line-height:1;margin-bottom:8px;">$170</div>
-              <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g500);line-height:1.4;padding-top:7px;border-top:1px solid var(--g100);"><strong style="color:var(--b900);">Minimum 3-night stay.</strong> The guest trades a short trip for a deeper discount.</div>
-            </div>
-          </div>
+            <!-- BAR anchor node (top, centred) -->
+            <g data-cue="ra-bar">
+              <rect x="170" y="18" width="120" height="76" rx="12" fill="var(--b900)" stroke="var(--gold)" stroke-width="2"/>
+              <text x="230" y="42" text-anchor="middle" font-size="10" font-weight="800" fill="var(--gold-l)" letter-spacing="2">BAR</text>
+              <text x="230" y="68" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">$200</text>
+              <text x="230" y="86" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)" letter-spacing="1">the anchor</text>
+            </g>
+
+            <!-- Trunk (BAR → junction) -->
+            <path data-cue="ra-trunk" d="M 230 94 L 230 140" stroke="var(--gold)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- Junction split -->
+            <path data-cue="ra-trunk" d="M 110 140 L 350 140" stroke="var(--gold)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- Left branch (down to Advance Saver) -->
+            <path data-cue="ra-trunk" d="M 110 140 L 110 172" stroke="var(--gold)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- Right branch (down to Stay Longer) -->
+            <path data-cue="ra-trunk" d="M 350 140 L 350 172" stroke="var(--gold)" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+            <!-- Advance Saver card (left child) -->
+            <g data-cue="ra-adv">
+              <rect x="16" y="172" width="188" height="128" rx="10" fill="var(--white)" stroke="var(--g100)" stroke-width="1.5"/>
+              <text x="30" y="194" font-size="12" font-weight="800" fill="var(--b900)">Advance Saver</text>
+              <text x="188" y="194" text-anchor="end" font-size="10" font-weight="700" fill="var(--gold)" letter-spacing="0.6">−10%</text>
+              <line x1="26" y1="204" x2="194" y2="204" stroke="var(--g100)" stroke-width="1"/>
+              <text x="30" y="235" font-size="22" font-weight="800" fill="var(--b900)">$180</text>
+              <text x="30" y="260" font-size="10" font-weight="700" fill="var(--b900)">Prepaid at booking</text>
+              <text x="30" y="276" font-size="9.5" fill="var(--g500)">Non-refundable.</text>
+              <text x="30" y="290" font-size="9.5" fill="var(--g500)">Flexibility for a lower rate.</text>
+            </g>
+
+            <!-- Stay Longer card (right child) -->
+            <g data-cue="ra-stay">
+              <rect x="256" y="172" width="188" height="128" rx="10" fill="var(--white)" stroke="var(--g100)" stroke-width="1.5"/>
+              <text x="270" y="194" font-size="12" font-weight="800" fill="var(--b900)">Stay Longer</text>
+              <text x="428" y="194" text-anchor="end" font-size="10" font-weight="700" fill="var(--gold)" letter-spacing="0.6">−15%</text>
+              <line x1="266" y1="204" x2="434" y2="204" stroke="var(--g100)" stroke-width="1"/>
+              <text x="270" y="235" font-size="22" font-weight="800" fill="var(--b900)">$170</text>
+              <text x="270" y="260" font-size="10" font-weight="700" fill="var(--b900)">Minimum 3-night stay</text>
+              <text x="270" y="276" font-size="9.5" fill="var(--g500)">A short trip for</text>
+              <text x="270" y="290" font-size="9.5" fill="var(--g500)">a deeper discount.</text>
+            </g>
+          </svg>
+
+          <div data-cue="ra-caption" style="font-size:10px;color:var(--g500);margin-top:14px;text-align:center;letter-spacing:0.02em;font-style:normal;">BAR is the anchor. Two rates cascade from it.</div>
         </div>
 
         <style>
-          #s-8 .cond-card.updated{border-color:var(--gold);background:var(--gold-l);}
-          #s-8 .cond-card.flash{animation:condFlash 0.55s ease;}
-          @keyframes condFlash{0%{background:#F0E5C4;}100%{background:var(--gold-l);}}
-          #cond-bar-hub.hub-firing{animation:condHubPulse 0.6s ease-out;}
-          @keyframes condHubPulse{0%{box-shadow:0 0 0 0 rgba(201,168,76,0.6);}70%{box-shadow:0 0 0 24px rgba(201,168,76,0);}100%{box-shadow:0 0 0 0 rgba(201,168,76,0);}}
-          /* Cueline narration highlights (distinct from the tap-BAR '.updated'
-             animation above): .lit = soft border when narrator first names
-             the product; .reveal = stronger highlight for the deeper beat. */
-          body.cueline-active #s-8 .cond-card[data-cue].lit{
-            border-color:rgba(201,168,76,0.65);
-            transform:scale(1.012);
-            box-shadow:0 3px 12px rgba(201,168,76,0.18);
-          }
-          body.cueline-active #s-8 .cond-card[data-cue].reveal{
-            border-color:var(--gold);
-            transform:scale(1.02);
-            box-shadow:0 6px 20px rgba(201,168,76,0.28);
-          }
+          /* Hierarchy tree — nodes and paths fade + rise in on cue.
+             Persistent state (not one-shot pulses) so learner sees the whole
+             tree assembled once all cues have fired. */
+          body.cueline-active #s-8 [data-cue]{opacity:0;transform:translateY(6px);transition:opacity 0.55s ease, transform 0.55s ease;}
+          body.cueline-active #s-8 [data-cue].reveal{opacity:1;transform:translateY(0);}
+          /* Highlight — softer 'lit' as narrator names it, bolder '.reveal' for the pay-off.
+             On SVG groups, we intensify the child rect's stroke via CSS. */
+          body.cueline-active #s-8 g[data-cue].reveal rect{stroke-width:2.5;stroke:var(--gold);filter:drop-shadow(0 3px 10px rgba(201,168,76,0.35));}
+          body.cueline-active #s-8 g[data-cue].lit rect{stroke-width:2;stroke:rgba(201,168,76,0.7);filter:drop-shadow(0 2px 6px rgba(201,168,76,0.2));}
         </style>
-
-        <script>
-          (function(){
-            const CBARS = [200, 250, 175, 225];
-            const CDISCS = [0.90, 0.85];
-            const CCARDS = ['cond-0','cond-1'];
-            const CVALS  = ['cond-v-0','cond-v-1'];
-            let cbi = 0;
-            let cAnimating = false;
-            const cfmt = n => '$' + Math.round(n).toLocaleString();
-            window.condTriggerAnim = function(){
-              if(cAnimating) return;
-              cAnimating = true;
-              cbi = (cbi + 1) % CBARS.length;
-              const nb = CBARS[cbi];
-              const hub = document.getElementById('cond-bar-hub');
-              hub.classList.add('hub-firing');
-              hub.style.transform = 'scale(1.06)';
-              setTimeout(() => { hub.style.transform = 'scale(1)'; }, 300);
-              setTimeout(() => hub.classList.remove('hub-firing'), 700);
-              setTimeout(() => { document.getElementById('cond-bar-val').textContent = cfmt(nb); }, 180);
-              CCARDS.forEach((cid, i) => {
-                const delay = 340 + i * 200;
-                setTimeout(() => {
-                  document.getElementById(cid).classList.add('updated','flash');
-                  document.getElementById(CVALS[i]).textContent = cfmt(nb * CDISCS[i]);
-                }, delay);
-              });
-              setTimeout(() => {
-                cAnimating = false;
-                CCARDS.forEach(cid => { document.getElementById(cid).classList.remove('flash'); });
-              }, 340 + 2*200 + 900);
-            };
-          })();
-        </script>
       </div>
 
       <!-- SLIDE 6: THE SYSTEM. Animated BAR propagation -->
@@ -1040,7 +1016,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <li class="chi" data-cue="chk-2" onclick="tick(this)"><div class="chbox"></div>I understand BAR is the single source of truth all rates link to</li>
             <li class="chi" data-cue="chk-3" onclick="tick(this)"><div class="chbox"></div>I can explain why different guests pay different rates for the same room</li>
             <li class="chi" data-cue="chk-4" onclick="tick(this)"><div class="chbox"></div>I know who to call immediately if I spot a rate discrepancy between channels</li>
-            <li class="chi" data-cue="chk-5" onclick="tick(this)"><div class="chbox"></div>I know the 3 rate levels: Flexible, Saver (10%), Stay Longer (15%)</li>
+            <li class="chi" data-cue="chk-5" onclick="tick(this)"><div class="chbox"></div>I know Dusit's rate architecture: BAR (full flex), Advance Saver (10% off), Stay Longer (15% off)</li>
           </ul>
           <div id="unlockNote" style="display:none;margin-top:14px;background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:10px 14px;font-size:11px;color:var(--b900);">✓ <strong>Quiz unlocked.</strong> Press Next to begin.</div>
           <div id="visitNote" style="display:none;margin-top:10px;font-size:10px;color:var(--gold);">↑ Visit all slides first. Some are still unvisited.</div>
@@ -1210,7 +1186,7 @@ const TITLES = [
   'What you\'ll learn today',
   'Overview. The 5 Questions',
   'Right Guest', 'Right Time', 'Right Channel', 'Right Price', 'Right Room',
-  'Conditions on top of BAR',
+  'Rate architecture · Intro',
   'The System', 'Do / Don\'t', 'Checklist',
   'Quiz · Q1', 'Quiz · Q2', 'Quiz · Q3', 'Quiz · Q4', 'Quiz · Q5'
 ];
@@ -1959,8 +1935,8 @@ Cueline.register(6, [
   { do:'narrate', cc:"Should they pay the same?" },
   { do:'narrate', cc:"The answer is no. Certainty and flexibility carry different value." },
   { do:'reveal', target:'card-flex',  cc:"The flexible guest pays two hundred dollars, full BAR. Because the hotel is holding a room that might empty out at the last minute. That risk is priced in." },
-  { do:'reveal', target:'card-saver', cc:"The Saver guest prepaid, non-refundable. They pay one hundred and eighty dollars, a ten percent discount. The hotel gets certainty; the guest gets a lower rate." },
-  { do:'reveal', target:'key-cond',   cc:"Three levels: Flexible, Saver ten percent off, and Stay Longer fifteen percent off. Each rewards a different kind of commitment." }
+  { do:'reveal', target:'card-saver', cc:"The Advance Saver guest prepaid, non-refundable. They pay one hundred and eighty dollars, a ten percent discount. The hotel gets certainty; the guest gets a lower rate." },
+  { do:'reveal', target:'key-cond',   cc:"That's the whole architecture. BAR at full flexibility, Advance Saver ten percent off with prepayment, Stay Longer fifteen percent off with a minimum stay. Two conditioned rates on top of BAR — deliberately simple." }
 ]);
 
 // Slide 7. Right Room — Path A: Standard/Suite are 'lit' as named in the
@@ -1976,26 +1952,34 @@ Cueline.register(7, [
   { do:'reveal', target:'rung-dlx', cc:"Deluxe room: two hundred and twenty — that's twenty dollars added on top." },
   { do:'reveal', target:'rung-ste', cc:"Suite: two hundred and fifty — fifty dollars added on top of Standard." },
   { do:'narrate', cc:"Now, you might expect the supplement is added to BAR directly. It isn't. And the order matters." },
-  { do:'reveal', target:'key-room', cc:"The supplement is added to the derived rate, after the segment discount. Corporate Deluxe equals BAR times zero point eight five, then plus twenty dollars. Not BAR plus twenty, then discounted. Get this order wrong and margins leak." }
+  { do:'reveal', target:'key-room', cc:"The supplement is added to the derived rate, after the segment discount. Corporate Deluxe equals BAR times zero point eight five, then plus twenty dollars. Not BAR plus twenty, then discounted. Get this order wrong and margins leak." },
+  { do:'narrate', cc:"That's the five questions — guest, time, channel, price, room. Every rate at Dusit is built from those five." }
 ]);
 
-// Slide 8. Conditions on top of BAR (rate architecture, Dusit-narrow sense)
-// Path A: cond-cards wrapper reveal replaced with per-card cues so each
-// product highlights as the narrator walks through it. Four cues (was 3).
+// Slide 8. Rate architecture · Intro — Dusit's simplest architecture as a hierarchy.
+// BAR at the top; Advance Saver + Stay Longer cascade from it. Six cues walk the
+// learner up the tree, then land the 'deliberately simple' payoff.
 Cueline.register(8, [
-  { do:'reveal', target:'cond-why',   cc:"This is where the term rate architecture starts to matter in a Dusit-specific way. BAR is the anchor. Every condition we sell is a percentage off BAR in exchange for a commitment from the guest." },
-  { do:'reveal', target:'cond-0',     cc:"Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. They trade flexibility for a lower rate." },
-  { do:'reveal', target:'cond-1',     cc:"Stay Longer takes fifteen percent off, but the guest commits to a minimum three-night stay. A short trip for a deeper discount." },
-  { do:'reveal', target:'cond-key',   cc:"Move BAR, and every conditioned rate moves with it. No spreadsheets, no manual re-quotes. The commitment stays the same; only the money moves. Tap the BAR hub on the right to see it happen." }
+  { do:'reveal', target:'ra-why',     cc:"Section two. Rate architecture. Dusit runs one of the simplest rate architectures in the industry. Just BAR, plus two conditioned rates on top." },
+  { do:'reveal', target:'ra-bar',     cc:"BAR is the anchor. It's the number every other rate is derived from." },
+  { do:'reveal', target:'ra-trunk',   cc:"From BAR, two conditioned rates cascade." },
+  { do:'reveal', target:'ra-adv',     cc:"Advance Saver takes ten percent off. The guest prepays at booking, non-refundable. Flexibility, for a lower rate." },
+  { do:'reveal', target:'ra-stay',    cc:"Stay Longer takes fifteen percent off. The guest commits to a minimum three-night stay. A short trip, for a deeper discount." },
+  { do:'reveal', target:'ra-caption', cc:"That's the whole architecture." },
+  { do:'reveal', target:'ra-key',     cc:"Deliberately minimal. Enough to serve every market, every connected partner — and nothing extra to maintain." }
 ]);
 
-// Slide 9. The System (BAR propagation.animation self-triggers 700ms after slide activates)
+// Slide 9. The System — BAR propagation across every channel. Self-sufficient
+// opener (no reference to the previous slide) + forward-reference to upcoming
+// modules for the deep system architecture. Animation self-triggers 700ms
+// after slide activates.
 Cueline.register(9, [
-  { do:'narrate', cc:"So far we've looked at each question in isolation. Now let's see how they connect." },
-  { do:'narrate', cc:"BAR is the single source of truth. Every channel rate you saw is a fixed percentage of BAR." },
+  { do:'narrate', cc:"The system. This is where BAR, Advance Saver, Stay Longer, and every channel rate meet — and stay in sync automatically." },
+  { do:'narrate', cc:"BAR is the single source of truth. Every channel rate you see is a fixed percentage of BAR." },
   { do:'reveal', target:'sys-demo', cc:"Watch what happens when the Revenue Manager moves BAR from two hundred dollars to two hundred and fifty dollars." },
   { do:'narrate', cc:"Corporate updates. OTA updates. Member updates. Direct updates. GDS updates. Wholesale updates. Every rate at your hotel moves, in seconds, with zero manual work." },
-  { do:'narrate', cc:"Tap the BAR hub on the right to run the propagation again. This is the whole system, and this is why architecture matters." }
+  { do:'narrate', cc:"Tap the BAR hub on the right to run the propagation again. This is the whole system, and this is why architecture matters." },
+  { do:'narrate', cc:"We'll go deeper on the system architecture — how rates actually flow through Dusit's stack — in upcoming modules." }
 ]);
 
 // Slide 10. Do / Don't
@@ -2012,7 +1996,7 @@ Cueline.register(11, [
   { do:'reveal', target:'chk-2', cc:"You understand BAR is the single source of truth all rates link to." },
   { do:'reveal', target:'chk-3', cc:"You can explain why different guests pay different rates for the same room." },
   { do:'reveal', target:'chk-4', cc:"You know who to call the moment you spot a rate discrepancy between channels." },
-  { do:'reveal', target:'chk-5', cc:"And you know the three rate levels: Flexible, Saver at ten percent off, and Stay Longer at fifteen percent off." },
+  { do:'reveal', target:'chk-5', cc:"And you know Dusit's rate architecture: BAR at full flexibility, Advance Saver at ten percent off, and Stay Longer at fifteen percent off." },
   { do:'narrate', cc:"Tick all five, then press Next to take the quiz." }
 ]);
 
