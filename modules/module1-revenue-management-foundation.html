@@ -815,37 +815,37 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
               <!-- CHANNEL CARDS.positioned absolutely around the hub -->
               <!-- TL: Corporate -->
-              <div class="ch-card" id="ch-0" style="position:absolute;left:0;top:18px;width:112px;">
+              <div class="ch-card" id="ch-0" data-cue="ch-0" style="position:absolute;left:0;top:18px;width:112px;">
                 <div class="ch-label">Corporate</div>
                 <div class="ch-disc">−15%</div>
                 <div class="ch-rate" id="cv-0">$170</div>
               </div>
               <!-- ML: OTA -->
-              <div class="ch-card" id="ch-1" style="position:absolute;left:0;top:50%;transform:translateY(-50%);width:112px;">
+              <div class="ch-card" id="ch-1" data-cue="ch-1" style="position:absolute;left:0;top:50%;transform:translateY(-50%);width:112px;">
                 <div class="ch-label">OTA</div>
                 <div class="ch-disc">BAR (parity)</div>
                 <div class="ch-rate" id="cv-1">$200</div>
               </div>
               <!-- BL: Dusit Gold -->
-              <div class="ch-card" id="ch-2" style="position:absolute;left:0;bottom:18px;width:112px;">
+              <div class="ch-card" id="ch-2" data-cue="ch-2" style="position:absolute;left:0;bottom:18px;width:112px;">
                 <div class="ch-label">Dusit Gold</div>
                 <div class="ch-disc">−15%</div>
                 <div class="ch-rate" id="cv-2">$170</div>
               </div>
               <!-- TR: Direct -->
-              <div class="ch-card" id="ch-3" style="position:absolute;right:0;top:18px;width:112px;">
+              <div class="ch-card" id="ch-3" data-cue="ch-3" style="position:absolute;right:0;top:18px;width:112px;">
                 <div class="ch-label">Direct</div>
                 <div class="ch-disc">BAR rate</div>
                 <div class="ch-rate" id="cv-3">$200</div>
               </div>
               <!-- MR: GDS -->
-              <div class="ch-card" id="ch-4" style="position:absolute;right:0;top:50%;transform:translateY(-50%);width:112px;">
+              <div class="ch-card" id="ch-4" data-cue="ch-4" style="position:absolute;right:0;top:50%;transform:translateY(-50%);width:112px;">
                 <div class="ch-label">GDS</div>
                 <div class="ch-disc">BAR (parity)</div>
                 <div class="ch-rate" id="cv-4">$200</div>
               </div>
               <!-- BR: Wholesale -->
-              <div class="ch-card" id="ch-5" style="position:absolute;right:0;bottom:18px;width:112px;">
+              <div class="ch-card" id="ch-5" data-cue="ch-5" style="position:absolute;right:0;bottom:18px;width:112px;">
                 <div class="ch-label">Wholesale</div>
                 <div class="ch-disc">−23%</div>
                 <div class="ch-rate" id="cv-5">$154</div>
@@ -867,6 +867,14 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         }
         .ch-card.updated{border-color:var(--gold);background:var(--g50);}
         .ch-card.flash{animation:cardflash 0.5s ease;}
+        /* Cueline narration highlight — fires as narrator names each channel.
+           Distinct from the tap-BAR '.updated' state above: adds a gold outer
+           ring so the currently-spoken card stands out even if all cards are
+           already '.updated' from the auto-BAR propagation animation. */
+        body.cueline-active #s-9 .ch-card[data-cue].lit,
+        body.cueline-active #s-9 .ch-card[data-cue].reveal{
+          box-shadow:0 0 0 3px var(--gold), 0 4px 14px rgba(201,168,76,0.35);
+        }
         @keyframes cardflash{0%{background:var(--g100);}100%{background:var(--g50);}}
         .ch-label{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b900);margin-bottom:2px;}
         .ch-disc{font-size:9px;color:var(--g500);margin-bottom:4px;}
@@ -1969,15 +1977,23 @@ Cueline.register(8, [
   { do:'reveal', target:'ra-key',     cc:"Deliberately minimal. Enough to serve every market, every connected partner — and nothing extra to maintain." }
 ]);
 
-// Slide 9. The System — BAR propagation across every channel. Self-sufficient
-// opener (no reference to the previous slide) + forward-reference to upcoming
-// modules for the deep system architecture. Animation self-triggers 700ms
-// after slide activates.
+// Slide 9. The System — BAR propagation across every channel. Path A per-mention
+// highlighting on the channel walk (cues 3-8): each cue lights its ch-* card
+// with a gold outer ring, distinct from the '.updated' gold-fill left by the
+// auto-BAR animation. Self-sufficient opener (no reference to the previous
+// slide) + forward-reference to upcoming modules for the deep system
+// architecture. Auto-animation self-triggers 700ms after slide activates.
 Cueline.register(9, [
   { do:'narrate', cc:"The system. This is where BAR, Advance Saver, Stay Longer, and every channel rate meet — and stay in sync automatically." },
   { do:'narrate', cc:"BAR is the single source of truth. Every channel rate you see is a fixed percentage of BAR." },
   { do:'reveal', target:'sys-demo', cc:"Watch what happens when the Revenue Manager moves BAR from two hundred dollars to two hundred and fifty dollars." },
-  { do:'narrate', cc:"Corporate updates. OTA updates. Member updates. Direct updates. GDS updates. Wholesale updates. Every rate at your hotel moves, in seconds, with zero manual work." },
+  { do:'lit',    target:'ch-0',    cc:"Corporate updates." },
+  { do:'lit',    target:'ch-1',    cc:"OTA updates." },
+  { do:'lit',    target:'ch-2',    cc:"Member updates." },
+  { do:'lit',    target:'ch-3',    cc:"Direct updates." },
+  { do:'lit',    target:'ch-4',    cc:"GDS updates." },
+  { do:'lit',    target:'ch-5',    cc:"Wholesale updates." },
+  { do:'narrate', cc:"Every rate at your hotel moves, in seconds, with zero manual work." },
   { do:'narrate', cc:"Tap the BAR hub on the right to run the propagation again. This is the whole system, and this is why architecture matters." },
   { do:'narrate', cc:"We'll go deeper on the system architecture — how rates actually flow through Dusit's stack — in upcoming modules." }
 ]);

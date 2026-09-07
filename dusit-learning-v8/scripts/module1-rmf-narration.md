@@ -437,7 +437,31 @@
 >
 > [pause 0.6s, animation begins auto-playing on the right]
 >
-> Corporate updates. OTA updates. Member updates. Direct updates. GDS updates. Wholesale updates. Every rate at your hotel moves, in seconds, with zero manual work.
+> Corporate updates.
+>
+> [pause 0.2s]
+>
+> OTA updates.
+>
+> [pause 0.2s]
+>
+> Member updates.
+>
+> [pause 0.2s]
+>
+> Direct updates.
+>
+> [pause 0.2s]
+>
+> GDS updates.
+>
+> [pause 0.2s]
+>
+> Wholesale updates.
+>
+> [pause 0.4s]
+>
+> Every rate at your hotel moves, in seconds, with zero manual work.
 >
 > [pause 0.5s]
 >
@@ -451,12 +475,18 @@
 
 | # | Action  | Target    | Spoken line |
 |---|---------|-----------|-------------|
-| 0 | narrate |.         | The system. This is where BAR, Advance Saver, Stay Longer, and every channel rate meet — and stay in sync automatically. |
-| 1 | narrate |.         | BAR is the single source of truth. Every channel rate you see is a fixed percentage of BAR. |
-| 2 | reveal  | sys-demo  | Watch what happens when the Revenue Manager moves BAR from two hundred dollars to two hundred and fifty dollars. |
-| 3 | narrate |.         | Corporate updates. OTA updates. Member updates. Direct updates. GDS updates. Wholesale updates. Every rate at your hotel moves, in seconds, with zero manual work. |
-| 4 | narrate |.         | Tap the BAR hub on the right to run the propagation again. This is the whole system, and this is why architecture matters. |
-| 5 | narrate |.         | We'll go deeper on the system architecture — how rates actually flow through Dusit's stack — in upcoming modules. |
+| 0  | narrate |.         | The system. This is where BAR, Advance Saver, Stay Longer, and every channel rate meet — and stay in sync automatically. |
+| 1  | narrate |.         | BAR is the single source of truth. Every channel rate you see is a fixed percentage of BAR. |
+| 2  | reveal  | sys-demo  | Watch what happens when the Revenue Manager moves BAR from two hundred dollars to two hundred and fifty dollars. |
+| 3  | lit     | ch-0      | Corporate updates. |
+| 4  | lit     | ch-1      | OTA updates. |
+| 5  | lit     | ch-2      | Member updates. |
+| 6  | lit     | ch-3      | Direct updates. |
+| 7  | lit     | ch-4      | GDS updates. |
+| 8  | lit     | ch-5      | Wholesale updates. |
+| 9  | narrate |.         | Every rate at your hotel moves, in seconds, with zero manual work. |
+| 10 | narrate |.         | Tap the BAR hub on the right to run the propagation again. This is the whole system, and this is why architecture matters. |
+| 11 | narrate |.         | We'll go deeper on the system architecture — how rates actually flow through Dusit's stack — in upcoming modules. |
 
 **Notes for the actor + timing:** Cue 0 is now a self-sufficient opener — no back-reference to the previous slide. The right-side BAR propagation animation self-triggers 700 ms after this slide activates and runs for about 2.5 seconds. Time cue 3 so the narration lands *during* the propagation, not after, the visual and the words should feel synchronous. Cue 5 is a forward-reference to future modules — deliver as a warm invitation, not a hurried outro.
 
