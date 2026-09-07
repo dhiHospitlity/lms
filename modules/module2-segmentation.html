@@ -1362,8 +1362,8 @@ const HV_DATA = {
       {id:'retail-int', num:'01', name:'Retail Internal', meta:'3 CODES',
        codes:[
          {b:'DBRRT',l:'Best Flexible Rate',d:'Highest publicly available rate. <b>BAR equivalent in the PMS.</b>',
-          ex:'A couple books a Deluxe room for their anniversary weekend directly through dusit.com at ฿4,500/night. No discounts applied.paying the Best Available Rate.'},
-         {b:'ADVPC',l:'Advance Purchase',d:'Discounted, less flexible.prepaid, minimum length of stay.',
+          ex:'A couple books a Deluxe room for their anniversary weekend directly through dusit.com at ฿4,500/night. No discounts applied. Paying the Best Available Rate.'},
+         {b:'ADVPC',l:'Advance Purchase',d:'Discounted, less flexible. Prepaid, minimum length of stay.',
           ex:'A business traveller books 30 days ahead on dusit.com. Prepaid, non-refundable, 2-night minimum. Qualifies for 15% Advance Purchase discount vs BAR.'},
          {b:'HTPCK',l:'Package',d:'Room + value-added inclusions (breakfast, spa, transfers).',
           ex:'Guest books the "Spa Escape Package" at ฿6,500/night including room, two spa treatments, and daily breakfast. Priced as a bundle, not a discount.'}
@@ -1381,7 +1381,7 @@ const HV_DATA = {
          {b:'DLOYAL',l:'Loyalty Program',d:'<b>Dusit Gold members only.</b> Private sales, free-night redemptions, BRG.',
           ex:'A Dusit Gold member redeems 20,000 points for one free night in a Standard room. Membership verified at check-in. Coded DLOYAL.'},
          {b:'PROMO',l:'Promotion &amp; Partnership',d:'Short-term promos, airline and credit-card partnerships.',
-          ex:'Guest books a limited-time "Songkran Splash" rate during the April festival. Campaign-specific promo code.coded PROMO.'},
+          ex:'Guest books a limited-time "Songkran Splash" rate during the April festival. Campaign-specific promo code. Coded PROMO.'},
          {b:'AIRLP',l:'Airline Programs',d:'Airline stopover programs (Royal Orchid, Emirates Holidays).',
           ex:'Thai Airways stopover guest books a 1-night transit stay charged to Royal Orchid Holidays. Coded AIRLP.not AIRCW.'}
        ]},
@@ -1420,7 +1420,7 @@ const HV_DATA = {
       {id:'whole-dyn', num:'08', name:'Wholesale Dynamic', meta:'1 CODE',
        codes:[
          {b:'WHODM',l:'Wholesale Dynamic',d:'Dynamic / margin XML (Expedia, Trip.com package plans).',
-          ex:'Guest books "flight + hotel" through Expedia Package. Margin-based dynamic XML rate.coded WHODM.'}
+          ex:'Guest books "flight + hotel" through Expedia Package. Margin-based dynamic XML rate. Coded WHODM.'}
        ]},
       {id:'whole-stat', num:'09', name:'Wholesale Static', meta:'3 CODES',
        codes:[
@@ -1429,7 +1429,7 @@ const HV_DATA = {
          {b:'WHOLN',l:'Wholesale Static Contract',d:'Signed static-rate contract with a specific wholesaler.',
           ex:'A Japanese wholesaler has a signed contract for 100 rooms/month at an agreed static rate.'},
          {b:'WHOPM',l:'Wholesale Promotion',d:'Tactical short-term campaigns with wholesale partners.',
-          ex:'A 48-hour flash sale with Agoda wholesale offering 25% off.coded WHOPM for the campaign period.'}
+          ex:'A 48-hour flash sale with Agoda wholesale offering 25% off. Coded WHOPM for the campaign period.'}
        ]}
     ]},
   'group': { num:'05', name:'Group', sub:'Block bookings.business and leisure',
@@ -1468,7 +1468,7 @@ const HV_DATA = {
          {b:'RESDA',l:'Residence Contract A2',d:'<b>Residence brand only.</b> 30–365 consecutive nights.',
           ex:'A Dusit Residence tenant signs a 90-night contract at the Residence long-stay rate.'},
          {b:'RESDB',l:'Residence Contract B2',d:'<b>Residence brand only.</b> 366+ consecutive nights.',
-          ex:'A permanent Dusit Residence tenant on a 2-year contract.coded RESDB for all nights.'},
+          ex:'A permanent Dusit Residence tenant on a 2-year contract. Coded RESDB for all nights.'},
          {b:'AIRCW',l:'Airline Crew',d:'Long-term back-to-back airline crew contract.',
           ex:'Emirates cabin crew occupies an allocated 10-room block each night for scheduled layovers.'},
          {b:'DELAYF',l:'Delayed Flights',d:'Ad-hoc stays booked by airline for delayed/cancelled flights.',
@@ -1487,7 +1487,7 @@ const HV_DATA = {
          {b:'HOUSP',l:'House Use Permanent',d:'Long-term staff housing (e.g. GM), part of employment package.',
           ex:'The General Manager occupies a permanent on-property suite as part of their employment contract.'},
          {b:'HOUST',l:'House Use Temporary',d:'Short-term staff, vendor, or contractor accommodation.',
-          ex:'An external IT consultant stays 5 nights during a PMS upgrade.coded HOUST.'},
+          ex:'An external IT consultant stays 5 nights during a PMS upgrade. Coded HOUST.'},
          {b:'ACT',l:'Adjustment',d:'<b>Finance Dept. only.</b> PM room + ACTINT rate code exclusively.',
           ex:'Finance uses a PM room with the ACTINT rate code to post an adjustment. ACT is never used for a real guest.'}
        ]}
@@ -1534,7 +1534,7 @@ const SRC_DATA = {
   ibe: { num:'03', name:'Internet Booking Engine', sub:'dusit.com &amp; Dusit web portals (auto)', alloc:'Auto',
     codes:[
       {b:'BKG',l:'Booking Engine',d:'Guest books via dusit.com directly.',
-       ex:'Guest completes a direct booking on dusit.com.the IBE auto-assigns BKG to the reservation.'},
+       ex:'Guest completes a direct booking on dusit.com. The IBE auto-assigns BKG to the reservation.'},
       {b:'TMG',l:'Tour Manager',d:'Travel agent books via the Dusit agent web portal.',
        ex:'A travel agent uses the Dusit Agent Portal to book 2 rooms for a client. System auto-codes TMG.'},
       {b:'SHP',l:'Dusit Shop',d:'Guest purchases via Dusit Shop storefront.',
@@ -1695,7 +1695,7 @@ function orgRender(){
         <div class="hv-hero-eyebrow">Module 2 · Origin Codes</div>
         <h1 class="hv-hero-title">Origin of Business</h1>
         <div class="hv-hero-divider"></div>
-        <p class="hv-hero-intro">Two codes. One question: <b>is there an intermediary between the guest and the hotel?</b> Both are <b>set automatically by SynXis</b>.but knowing what they mean matters when you read a report.</p>
+        <p class="hv-hero-intro">Two codes. One question: <b>is there an intermediary between the guest and the hotel?</b> Both are <b>set automatically by SynXis</b>. But knowing what they mean matters when you read a report.</p>
         <div class="hv-hero-stats">
           <div class="hv-hero-stat"><b>2</b><span>Codes</span></div>
           <div class="hv-hero-stat"><b>Auto</b><span>Via SynXis</span></div>

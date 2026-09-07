@@ -4,7 +4,7 @@
 
 **Live:** https://lmsdusit.dhihospitality.com/
 **LMS:** dusitlearning.com (Moodle)
-**Last updated:** 22 April 2026
+**Last updated:** 7 September 2026
 
 ## Modules
 
@@ -35,7 +35,7 @@ git push
 
 ```
 .
-├── index.html                  redirect to modules/module1-...
+├── index.html                  LMS landing page (two tracks · Revenue + Distribution)
 ├── CNAME                       lmsdusit.dhihospitality.com
 ├── modules/                    module HTML files
 ├── assets/                     fonts, logos, fonts.css

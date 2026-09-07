@@ -17,7 +17,7 @@
    - RevPAR = "rev-par"
    - Booking.com / dusit.com = read as-is (never "dot com")
    - Sabre = "SAY-ber"
-   - SynXis = "SIN-sis"
+   - SynXis = "sin-EK-sis" (three syllables — X reads as 'eks'). Pipeline auto-overrides `SynXis` → `Sineksis` before render; do not phonetically respell here.
    - D-Edge = "d-edge" (letter + word)
 6. Register: measured, warm, senior-colleague-explaining. Flat-to-warm energy.
 
