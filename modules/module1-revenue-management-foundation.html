@@ -1261,6 +1261,11 @@ function nav(n) {
   // Scroll slide content to top
   const inner = document.querySelector('#s-'+cur+' .s-inner, #s-'+cur+' .split-right, #s-'+cur+' .quiz-wrap');
   if(inner) inner.scrollTop = 0;
+
+  // Re-arm narration engine for this slide. Resets cue.fired flags so cues
+  // can replay when the learner returns to a previously-visited slide.
+  // Audio (if available) auto-chains via Cueline.playAll() after first gesture.
+  if(typeof Cueline !== 'undefined' && Cueline.arm) Cueline.arm(cur);
 }
 
 function prev() { nav(cur - 1); }
@@ -1579,7 +1584,8 @@ const Cueline = {
   _audioUnlocked: false,    // flipped true after first successful audio.play()
   _autoAdvanceTimer: null,  // pending nav() timeout, cancelled on manual nav / pause
   autoAdvanceDelay: 1800,   // ms to linger on a completed slide before advancing
-  autoAdvanceMaxSlide: 10,  // auto-advance up to (and INCLUDING) slide 10 (Do / Don't); stop at 11 (Checklist)
+  autoAdvanceMaxSlide: CONTENT_END - 1,  // auto-advance up to (and INCLUDING) the slide before Checklist; stop at Checklist itself
+  forceAudioOff: false,  // Module 1 audio rendered (Charlotte, multilingual_v2). Set true to force silent mode.
   // Slides the learner is expected to interact with — no auto-advance even if the
   // slide is within autoAdvanceMaxSlide. Slide 8 = Conditions on top of BAR (tap
   // the BAR hub to move it); slide 9 = The System (tap the BAR hub to re-propagate).
@@ -1890,6 +1896,7 @@ const Cueline = {
 
   async _probeAudio(){
     // Try to fetch the very first clip. If it 200s, we have audio for this module.
+    if(this.forceAudioOff){ this.audioAvailable = false; return; }
     try {
       const res = await fetch(this.audioBase + 's0-c0.mp3', { method: 'HEAD' });
       this.audioAvailable = res.ok;
