@@ -53,6 +53,13 @@ const MODULES = {
     htmlPath:   'modules/module4-contracted-otas.html',
     masteryScore: 80,       // blueprint spec: 4 of 5 to pass
     duration:   'PT43M'
+  },
+  module5: {
+    identifier: 'dusit_module5_pricing_strategy',
+    title:      'Module 5 — Dusit Rationale Pricing Strategy',
+    htmlPath:   'modules/module5-pricing-strategy.html',
+    masteryScore: 80,       // blueprint spec: 4 of 5 to pass
+    duration:   'PT45M'
   }
   // Future entries follow the same shape.
 };
