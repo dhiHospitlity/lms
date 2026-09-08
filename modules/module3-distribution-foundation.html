@@ -2882,16 +2882,20 @@ function finishQuiz(){
 function retryQuiz(){
   score=0; quizDone=false;
   for(let i=0;i<5;i++){answered[i]=false;correct[i]=false;}
-  // Reset quiz slides by ID
-  ['s-12','s-13','s-14','s-15','s-16'].forEach((sid,qi)=>{
-    const sl=document.getElementById(sid);
-    if(!sl) return;
+  // Reset quiz slides. Derive the IDs from SLIDE_IDS so this can never drift
+  // out of sync with the slide array — the previous hardcoded list ('s-12'…'s-16')
+  // was left over from Module 2 and matched nothing here, so retry reset nothing.
+  for(let qi=0; qi<5; qi++){
+    const sl=slideEl(QUIZ_START+qi);
+    if(!sl) continue;
     sl.querySelectorAll('.qopt').forEach(o=>{o.disabled=false;o.className='qopt';});
     const fb=document.getElementById('qfb-'+qi);
     if(fb){fb.style.display='none';fb.className='q-fb';}
     const nb=document.getElementById('qnxt-'+qi);
     if(nb) nb.style.display='none';
-  });
+    // Re-open the sequential gate on the quiz slides so the retry has to earn them again.
+    completed[QUIZ_START+qi]=false;
+  }
   document.getElementById('res-overlay').classList.remove('on');
   nav(QUIZ_START);
 }

@@ -1476,11 +1476,14 @@ function retryQuiz() {
   for(let i=0;i<5;i++){answered[i]=false;correct[i]=false;}
   for(let i=QUIZ_START;i<=QUIZ_START+4;i++){
     const sl=document.getElementById('s-'+i);
+    if(!sl) continue;
     sl.querySelectorAll('.qopt').forEach(o=>{o.disabled=false;o.className='qopt';});
     const fb=document.getElementById('qfb-'+(i-QUIZ_START));
     if(fb){fb.style.display='none';fb.className='q-fb';}
     const nb=document.getElementById('qnxt-'+(i-QUIZ_START));
     if(nb) nb.style.display='none';
+    // Re-open the sequential gate on the quiz slides so the retry has to earn them again.
+    completed[i]=false;
   }
   document.getElementById('res-overlay').classList.remove('on');
   nav(QUIZ_START);
