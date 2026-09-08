@@ -46,6 +46,13 @@ const MODULES = {
     htmlPath:   'modules/module3-distribution-foundation.html',
     masteryScore: 80,       // blueprint spec: 4 of 5 to pass
     duration:   'PT31M'
+  },
+  module4: {
+    identifier: 'dusit_module4_contracted_otas',
+    title:      'Module 4 — Contracted OTAs & Promotions',
+    htmlPath:   'modules/module4-contracted-otas.html',
+    masteryScore: 80,       // blueprint spec: 4 of 5 to pass
+    duration:   'PT43M'
   }
   // Future entries follow the same shape.
 };
