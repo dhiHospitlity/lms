@@ -107,15 +107,29 @@ function build(moduleKey){
   fs.writeFileSync(path.join(stageDir, 'index.html'), rewritten);
   console.log('  ✓ index.html          (' + kb(rewritten.length) + ')');
 
-  // 3. Copy assets folder — flatten to sit alongside index.html
+  // 3. Copy assets folder — flatten to sit alongside index.html.
+  //    Only this module's own audio ships. assets/audio/ holds a folder per
+  //    module, and copying all of them put ~50MB of never-played narration in
+  //    every package (and grew with each new module). The folder name is read
+  //    from the module's own Cueline audioBase so it cannot drift out of sync,
+  //    and a new module needs no change here.
+  const audioMatch = srcHtml.match(/audioBase:\s*['"]\.\.\/assets\/audio\/([^/'"]+)\//);
+  const ownAudioDir = audioMatch ? audioMatch[1] : null;
+  if(!ownAudioDir){
+    throw new Error('Could not read audioBase from ' + mod.htmlPath + ' — refusing to guess which audio to ship.');
+  }
+
   const assetsSrc = path.join(REPO_ROOT, 'assets');
   const assetsDst = path.join(stageDir, 'assets');
   copyDir(assetsSrc, assetsDst, {
     // Skip files that don't belong in a delivered SCORM package
     skipExts: ['.ai', '.eps'],
-    skipNames: ['build_fonts_css.py', 'desktop.ini']
+    skipNames: ['build_fonts_css.py', 'desktop.ini'],
+    // Drop every audio folder except this module's
+    skipDir: rel => rel.startsWith('audio/') && rel !== 'audio/' + ownAudioDir
   });
   const assetCount = countFiles(assetsDst);
+  console.log('  ✓ audio/' + ownAudioDir + '        (only this module\'s narration)');
   console.log('  ✓ assets/             (' + assetCount + ' files, ' + kb(dirSize(assetsDst)) + ')');
 
   // 4. Generate imsmanifest.xml (must enumerate every file for strict LMSs)
@@ -172,17 +186,21 @@ ${fileEntries}
 }
 
 // ── Filesystem helpers ──────────────────────────────────────────────────
-function copyDir(src, dst, opts){
+function copyDir(src, dst, opts, relBase){
   opts = opts || {};
+  relBase = relBase || '';
   const skipExts  = new Set((opts.skipExts  || []).map(x => x.toLowerCase()));
   const skipNames = new Set(opts.skipNames || []);
+  const skipDir   = opts.skipDir || (() => false);
   fs.mkdirSync(dst, { recursive: true });
   for(const item of fs.readdirSync(src, { withFileTypes: true })){
     if(skipNames.has(item.name)) continue;
     const srcPath = path.join(src, item.name);
     const dstPath = path.join(dst, item.name);
+    const relPath = relBase ? relBase + '/' + item.name : item.name;
     if(item.isDirectory()){
-      copyDir(srcPath, dstPath, opts);
+      if(skipDir(relPath)) continue;
+      copyDir(srcPath, dstPath, opts, relPath);
     } else {
       const ext = path.extname(item.name).toLowerCase();
       if(skipExts.has(ext)) continue;
