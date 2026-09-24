@@ -35,3 +35,6 @@ Downloads from Dusit/
 # Internal specs
 *-ide-build-spec*.md
 
+
+# Headless audit scratch files written into modules/ by the caption test harness
+modules/__*.html
