@@ -71,6 +71,31 @@ Bottom-right, common to every module:
 - ✕ — Exit fullscreen (`toggleFS()`)
 - Keyboard: **Space** = play/pause, **ESC** = exit
 
+### Captions roll; they never dump
+
+A cue's `cc:` string is narration, not a caption — some run to four lines and
+would sit on top of the slide. The caption engine splits each cue into chunks
+that fit the box and advances them as the audio plays:
+
+- `#cc-overlay` is hard-capped at **two lines** (`-webkit-line-clamp:2`). Never
+  remove the clamp to "fit more text" — raise nothing, the engine re-chunks.
+- `_splitCaption()` breaks on sentence boundaries first, then word boundaries,
+  then re-packs neighbours up to `ccCharBudget` (150 chars ≈ 2 lines at 14px).
+  A full stop only ends a sentence when a space + capital follows, so `Trip.com`
+  and `dusit.com` stay intact.
+- `_attachCaptionAudio()` is called from `_playCue()`. Chunk boundaries sit
+  proportionally to character count across the cue's audio duration and are
+  driven by `timeupdate`, so pause, resume, scrub and `playbackRate` stay in
+  sync with no extra bookkeeping.
+- With no audio rendered yet, `_driveCaptionByTimer()` paces at `ccMsPerChar`
+  (~16 chars/sec) so preview mode still reads correctly.
+- Caption-safe zone is `padding-bottom:var(--cc-reserve,92px)` on `.slide` —
+  sized for the 2-line box. A slide that needs more room sets `--cc-reserve`
+  on itself rather than editing the blanket rule.
+
+Writing longer narration is fine — the engine handles it. Do not pre-chunk cue
+text by hand into short fragments; that breaks the per-mention highlight cues.
+
 ## Interactive patterns (reuse; don't invent)
 
 - **State-machine drill-down** — `hvRender()` pattern. Root → group → item, 2 or 3 layers. Back button on non-root levels. Owner slide goes in `noAutoAdvanceSlides`.
