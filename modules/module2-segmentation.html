@@ -513,13 +513,19 @@ body.cueline-active [data-cue][data-cue-panel].reveal{
   font-family:'DusitText',sans-serif;font-size:14px;font-weight:500;line-height:1.45;
   border-radius:8px;text-align:center;
   opacity:0;transition:opacity 0.22s ease;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;
   pointer-events:none;z-index:80;
 }
 #cc-overlay.visible{opacity:1;}
+@keyframes ccSwap{
+  from{opacity:0.3;transform:translateX(-50%) translateY(4px);}
+  to{opacity:1;transform:translateX(-50%) translateY(0);}
+}
+#cc-overlay.cc-swap{animation:ccSwap 0.2s ease-out;}
 body.cc-off #cc-overlay{display:none;}
 
 /* Caption-safe bottom zone.mirrors Module 1's pattern */
-body.cueline-active:not(.cc-off) .s-inner{padding-bottom:70px;}
+body.cueline-active:not(.cc-off) .slide{padding-bottom:var(--cc-reserve,110px) !important;}
 
 /* Preview-mode hint.visible when Cueline armed but no audio rendered yet */
 #cue-hint{
@@ -2080,6 +2086,16 @@ const Cueline = {
   aborted: false,
   captionOn: true,
   ccEl: null,
+  // Rolling-caption state. One cue's narration is split into <=2-line chunks and
+  // advanced in step with the audio, instead of dumping the whole paragraph on
+  // screen at once and overlapping the slide.
+  ccCharBudget: 150,    // ~2 lines in the caption box at 14px
+  ccMsPerChar: 62,      // preview-mode reading pace (~16 chars/sec)
+  _ccChunks: [],
+  _ccIdx: -1,
+  _ccTimer: null,
+  _ccAudio: null,
+  _ccOnTime: null,
   hintEl: null,
   playbackRate: 1.0,
   slidePlaybackRates: {},   // fill per-slide overrides as Module 2 renders reveal
@@ -2262,6 +2278,7 @@ const Cueline = {
       const list = this.cues[slideIdx];
       if(list && cueIdx + 1 < list.length) this._loadAudio(slideIdx, cueIdx + 1);
       this.currentAudio = audio;
+      this._attachCaptionAudio(audio);
       audio.currentTime = 0;
       const onDone = () => { cleanup(); resolve(); };
       const onErr  = () => { cleanup(); console.warn('Audio failed:', audio.src); resolve(); };
@@ -2288,14 +2305,132 @@ const Cueline = {
   },
 
   _showCaption(text){
+    this._stopCaptionTimers();
     if(!this.ccEl || !this.captionOn) return;
-    this.ccEl.textContent = text;
-    this.ccEl.classList.add('visible');
+    this._ccChunks = this._splitCaption(text);
+    this._ccIdx = -1;
+    this._renderCaptionChunk(0);
+    // Preview mode (no audio yet): pace off a reading-rate timer. When the cue's
+    // audio starts, _attachCaptionAudio takes over and cancels this.
+    if(this._ccChunks.length > 1) this._driveCaptionByTimer();
   },
+
+  // Break one cue's narration into chunks that each fit the 2-line caption box.
+  // Sentence boundaries first, then word boundaries for any sentence still too
+  // long, then greedily re-pack neighbours up to the budget so we never flash a
+  // four-word chunk on its own.
+  _splitCaption(text){
+    const budget = this.ccCharBudget;
+    const clean = String(text).replace(/\s+/g, ' ').trim();
+    if(clean.length <= budget) return [clean];
+    const sentences = [];
+    let start = 0;
+    for(let i = 0; i < clean.length; i++){
+      if('.!?'.indexOf(clean[i]) < 0) continue;
+      let j = i;
+      while(j + 1 < clean.length && '.!?'.indexOf(clean[j + 1]) > -1) j++;
+      const nxt = clean[j + 1];
+      // A full stop only ends a sentence when a space and a capital follow —
+      // otherwise it is a domain ("Trip.com") or a decimal, and stays put.
+      if(nxt === undefined || (nxt === ' ' && /[A-Z0-9"'(\u201C]/.test(clean[j + 2] || ''))){
+        sentences.push(clean.slice(start, j + 1).trim());
+        start = j + 2;
+      }
+      i = j;
+    }
+    if(start < clean.length) sentences.push(clean.slice(start).trim());
+    if(!sentences.length) sentences.push(clean);
+    const parts = [];
+    sentences.forEach(raw => {
+      const s = raw.trim();
+      if(!s) return;
+      if(s.length <= budget){ parts.push(s); return; }
+      let line = '';
+      s.split(' ').forEach(w => {
+        if(line && (line + ' ' + w).length > budget){ parts.push(line); line = w; }
+        else line = line ? line + ' ' + w : w;
+      });
+      if(line) parts.push(line);
+    });
+    const chunks = [];
+    parts.forEach(p => {
+      const last = chunks[chunks.length - 1];
+      if(last && (last + ' ' + p).length <= budget) chunks[chunks.length - 1] = last + ' ' + p;
+      else chunks.push(p);
+    });
+    return chunks.length ? chunks : [clean];
+  },
+
+  _renderCaptionChunk(i){
+    if(!this.ccEl || !this._ccChunks || this._ccChunks[i] == null) return;
+    if(i === this._ccIdx) return;
+    this._ccIdx = i;
+    this.ccEl.textContent = this._ccChunks[i];
+    this.ccEl.classList.add('visible');
+    // Re-trigger the swap animation on every chunk change.
+    this.ccEl.classList.remove('cc-swap');
+    void this.ccEl.offsetWidth;
+    this.ccEl.classList.add('cc-swap');
+  },
+
+  // Playback mode: chunk boundaries sit proportionally to character count across
+  // the cue's audio duration, driven by timeupdate — so pause, resume, scrub and
+  // playbackRate all stay in sync for free.
+  _attachCaptionAudio(audio){
+    if(!this.ccEl || !this.captionOn || !audio) return;
+    if(!this._ccChunks || this._ccChunks.length < 2) return;
+    this._stopCaptionTimers();
+    const chunks = this._ccChunks;
+    const total = chunks.reduce((n, c) => n + c.length, 0) || 1;
+    const starts = [];
+    let acc = 0;
+    chunks.forEach(c => { starts.push(acc / total); acc += c.length; });
+    const onTime = () => {
+      if(this._ccChunks !== chunks) return;   // cue has moved on
+      const d = audio.duration;
+      if(!isFinite(d) || d <= 0) return;
+      const f = audio.currentTime / d;
+      let idx = 0;
+      for(let i = 0; i < starts.length; i++){ if(f >= starts[i]) idx = i; }
+      this._renderCaptionChunk(idx);
+    };
+    this._ccAudio = audio;
+    this._ccOnTime = onTime;
+    audio.addEventListener('timeupdate', onTime);
+  },
+
+  _driveCaptionByTimer(){
+    const chunks = this._ccChunks;
+    const step = () => {
+      if(this._ccChunks !== chunks) return;
+      const next = this._ccIdx + 1;
+      if(next >= chunks.length) return;
+      const hold = Math.max(1500, chunks[this._ccIdx].length * this.ccMsPerChar);
+      this._ccTimer = setTimeout(() => {
+        this._ccTimer = null;
+        this._renderCaptionChunk(next);
+        step();
+      }, hold);
+    };
+    step();
+  },
+
+  _stopCaptionTimers(){
+    if(this._ccTimer){ clearTimeout(this._ccTimer); this._ccTimer = null; }
+    if(this._ccAudio && this._ccOnTime){
+      try{ this._ccAudio.removeEventListener('timeupdate', this._ccOnTime); }catch(_){}
+    }
+    this._ccAudio = null;
+    this._ccOnTime = null;
+  },
+
   _clearCaption(){
+    this._stopCaptionTimers();
+    this._ccChunks = [];
+    this._ccIdx = -1;
     if(!this.ccEl) return;
     this.ccEl.textContent = '';
-    this.ccEl.classList.remove('visible');
+    this.ccEl.classList.remove('visible','cc-swap');
   },
 
   _updatePlayButton(state){
