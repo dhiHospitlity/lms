@@ -77,12 +77,22 @@ A cue's `cc:` string is narration, not a caption — some run to four lines and
 would sit on top of the slide. The caption engine splits each cue into chunks
 that fit the box and advances them as the audio plays:
 
-- `#cc-overlay` is hard-capped at **two lines** (`-webkit-line-clamp:2`). Never
-  remove the clamp to "fit more text" — raise nothing, the engine re-chunks.
-- `_splitCaption()` breaks on sentence boundaries first, then word boundaries,
-  then re-packs neighbours up to `ccCharBudget` (150 chars ≈ 2 lines at 14px).
-  A full stop only ends a sentence when a space + capital follows, so `Trip.com`
-  and `dusit.com` stay intact.
+- **The box is measured, never guessed.** `_splitCaption()` grows `#cc-probe` —
+  an invisible twin sharing `#cc-overlay`'s exact box metrics — word by word,
+  and cuts where it would spill past `ccMaxLines` (2). A character budget cannot
+  know the real capacity; `ccCharBudget` survives only as a no-DOM fallback.
+- Never give `#cc-probe` a `max-height`: that caps `clientHeight`, and every
+  measurement then reports "fits". Never add `-webkit-line-clamp` back to
+  `#cc-overlay` either — a clamp hides the overflow instead of preventing it,
+  which is exactly the bug it looked like it was solving.
+- `#cc-overlay` centres with `left:0;right:0;margin:auto` and **not**
+  `left:50%;transform:translateX(-50%)`. Under the old rule its shrink-to-fit
+  width was capped by the space left of the canvas edge — 450px of the 900px
+  canvas — so `max-width:720px` never applied and captions silently ran long.
+- `_splitCaption()` prefers sentence boundaries, falling back to word
+  boundaries for any sentence too long for the box. A full stop only ends a
+  sentence when a space + capital follows, so `Trip.com` and `dusit.com` stay
+  intact. Results are cached per cue string.
 - `_attachCaptionAudio()` is called from `_playCue()`. Chunk boundaries sit
   proportionally to character count across the cue's audio duration and are
   driven by `timeupdate`, so pause, resume, scrub and `playbackRate` stay in
@@ -95,6 +105,12 @@ that fit the box and advances them as the audio plays:
 
 Writing longer narration is fine — the engine handles it. Do not pre-chunk cue
 text by hand into short fragments; that breaks the per-mention highlight cues.
+
+Regression test: `scratchpad/audit.js` renders every module in headless Chrome,
+runs each module's own `_splitCaption()` over its own cues and measures every
+resulting chunk in the real box. It must report `maxLines:2`, `over2:0` and
+`lossy:0` for all modules. Run it after any change to the caption CSS or engine
+— pixel-width reasoning is what produced the clipped-third-line bug.
 
 ## Interactive patterns (reuse; don't invent)
 
