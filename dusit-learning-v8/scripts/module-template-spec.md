@@ -106,7 +106,8 @@ that fit the box and advances them as the audio plays:
 Writing longer narration is fine — the engine handles it. Do not pre-chunk cue
 text by hand into short fragments; that breaks the per-mention highlight cues.
 
-Regression test: `scratchpad/audit.js` renders every module in headless Chrome,
+Regression test: `node dusit-learning-v8/build-pipeline/test_captions.js`
+renders every module in headless Chrome,
 runs each module's own `_splitCaption()` over its own cues and measures every
 resulting chunk in the real box. It must report `maxLines:2`, `over2:0` and
 `lossy:0` for all modules. Run it after any change to the caption CSS or engine
