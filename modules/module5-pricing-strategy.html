@@ -88,8 +88,8 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .slide.s-split.on{display:flex;}
 
 .split-left{
-  width:300px;min-width:300px;flex-shrink:0;
-  background:var(--dark);padding:28px 26px;
+  width:360px;min-width:360px;flex-shrink:0;
+  background:var(--dark);padding:30px 28px;
   display:flex;flex-direction:column;justify-content:center;overflow:hidden;
 }
 .split-right{
@@ -719,7 +719,10 @@ body.cc-off #cc-overlay{display:none;}
    quiz, summary) regardless of whether the body uses .s-inner or its own
    flex layout. !important so inline padding on individual slides can't defeat
    the safe zone — the CC has to be free of collisions module-wide. */
-body.cueline-active:not(.cc-off) .slide{padding-bottom:var(--cc-reserve,92px) !important;}
+body.cueline-active:not(.cc-off) .slide:not(.s-split){padding-bottom:92px !important;}
+/* Split slides keep their panels full-bleed; the reserve goes on the content inside. */
+body.cueline-active:not(.cc-off) .s-split .split-left,
+body.cueline-active:not(.cc-off) .s-split .split-right{padding-bottom:92px;}
 /* Quiz slides use their own quiz-foot bar; keep them out of the blanket rule. */
 body.cueline-active:not(.cc-off) .slide.s-quiz{padding-bottom:0 !important;}
 
@@ -894,61 +897,55 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
       </div>
 
       <!-- SLIDE 1 (s-math): CONCEPT + CALCULATOR — GATE.
-           Reworked to the M1 rules: containers are earned, not default, and the
-           slide carries exactly one focal point. The formula and the variable-cost
-           note were both boxed, which made an aside look as important as the
-           principle; they are now typography separated by a hairline. On the right,
-           the discount value and the break-even result were both large and gold and
-           fought each other — the discount is now a control label and the break-even
-           uplift is the single focal number, unboxed on white.
+           Left panel is 40% (360px of 900). The formula runs on a single line.
+           One focal point: the break-even uplift. Everything else is support.
            Cue targets dm-why / dm-key unchanged; audio unaffected. -->
       <div class="slide s-split" id="s-math">
-        <div class="split-left">
+        <div class="split-left" style="justify-content:center;">
           <div class="deep-label">Section 1 &middot; The cost of discounting</div>
-          <h2 class="deep-title">The maths of discounting</h2>
-          <p class="deep-why" data-cue="dm-why">Every discount has a break-even point: the extra room nights you must sell just to stand still.</p>
+          <h2 class="deep-title" style="font-size:20px;line-height:1.2;margin-bottom:12px;">The maths of discounting</h2>
+          <p class="deep-why" data-cue="dm-why" style="font-size:12px;line-height:1.7;">Every discount has a break-even point: the extra room nights you must sell just to stand still.</p>
 
-          <!-- The formula, as type. Hairline instead of a box. -->
-          <div style="margin-top:22px;padding-top:16px;border-top:1px solid rgba(201,168,76,0.3);">
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:9px;">The formula</div>
-            <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:700;color:var(--white);line-height:1.6;letter-spacing:-0.005em;">
-              Break-even uplift<br>
-              <span style="color:var(--gold-l);">= Discount % &divide; (1 &minus; Discount %)</span>
+          <!-- The formula, on one line. Hairline instead of a box. -->
+          <div style="margin-top:24px;padding-top:18px;border-top:1px solid rgba(201,168,76,0.28);">
+            <div style="font-size:8.5px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:11px;">The formula</div>
+            <div style="font-family:'DusitDisplay',sans-serif;font-size:12.5px;font-weight:700;color:var(--white);line-height:1.4;letter-spacing:-0.01em;white-space:nowrap;">
+              Uplift <span style="color:var(--gold-l);">=</span> Discount % <span style="color:var(--gold-l);">&divide;</span> (1 &minus; Discount %)
             </div>
           </div>
 
-          <!-- Secondary. Demoted to muted type, no container. -->
-          <p data-cue="dm-key" style="margin-top:18px;font-size:11px;color:rgba(255,255,255,0.45);line-height:1.7;">
+          <!-- Secondary. Muted type, no container. -->
+          <p data-cue="dm-key" style="margin-top:20px;font-size:10.5px;color:rgba(255,255,255,0.42);line-height:1.75;">
             Variable cost bites too. At $200 with a $40 room cost, contribution is $160. At $180 it is $140, so you need more rooms again to recover the same contribution.
           </p>
         </div>
 
-        <div class="split-right" style="display:flex;flex-direction:column;justify-content:center;padding:30px 38px;background:var(--white);">
+        <div class="split-right" style="display:flex;flex-direction:column;justify-content:center;padding:32px 44px;background:var(--white);">
 
-          <!-- Control. Deliberately quiet so it does not compete with the result. -->
-          <div style="font-size:11px;color:var(--g500);line-height:1.5;margin-bottom:14px;">Move the slider to see what each discount level costs you in volume.</div>
+          <!-- Control. Quiet, so it never competes with the result. -->
+          <div style="font-size:11px;color:var(--g500);line-height:1.5;margin-bottom:16px;">Move the slider to see what each discount level costs you in volume.</div>
 
           <div style="display:flex;align-items:baseline;gap:8px;">
-            <span style="font-family:'DusitDisplay',sans-serif;font-size:19px;font-weight:800;color:var(--b900);line-height:1;" id="dc-pct">10%</span>
+            <span style="font-family:'DusitDisplay',sans-serif;font-size:18px;font-weight:800;color:var(--b900);line-height:1;" id="dc-pct">10%</span>
             <span style="font-size:11px;color:var(--g500);">discount</span>
           </div>
 
           <input type="range" id="dc-slider" min="5" max="30" step="5" value="10"
-                 style="width:100%;margin:12px 0 30px;accent-color:var(--gold);cursor:pointer;">
+                 style="width:100%;max-width:400px;margin:12px 0 34px;accent-color:var(--gold);cursor:pointer;">
 
-          <!-- The one focal point on this slide. No box, no fill. -->
-          <div style="font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--g500);margin-bottom:10px;">Room nights needed, just to break even</div>
+          <!-- The one focal point on this slide. -->
+          <div style="font-size:8.5px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--g500);margin-bottom:12px;">Room nights needed, just to break even</div>
 
-          <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;">
-            <span style="font-family:'DusitDisplay',sans-serif;font-size:52px;font-weight:800;color:var(--gold);line-height:0.9;letter-spacing:-0.02em;" id="dc-uplift">+11.1%</span>
-            <span style="font-size:12px;color:var(--g700);line-height:1.4;" id="dc-rooms">100 rooms becomes 112</span>
+          <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:16px;">
+            <span style="font-family:'DusitDisplay',sans-serif;font-size:56px;font-weight:800;color:var(--gold);line-height:0.85;letter-spacing:-0.025em;" id="dc-uplift">+11.1%</span>
+            <span style="font-size:12.5px;color:var(--g700);line-height:1.4;" id="dc-rooms">100 rooms becomes 112</span>
           </div>
 
-          <div style="height:6px;background:var(--g100);border-radius:3px;overflow:hidden;max-width:340px;">
+          <div style="height:5px;background:var(--g100);border-radius:3px;overflow:hidden;max-width:400px;">
             <div id="dc-bar" style="height:100%;width:26%;background:var(--gold);border-radius:3px;transition:width 0.35s cubic-bezier(0.22,0.61,0.36,1);"></div>
           </div>
 
-          <div style="margin-top:16px;font-size:12px;color:var(--g700);line-height:1.6;max-width:360px;" id="dc-note">A ten percent discount needs eleven percent more rooms sold before you gain a single dollar.</div>
+          <div style="margin-top:18px;font-size:12px;color:var(--g700);line-height:1.6;max-width:400px;" id="dc-note">A ten percent discount needs eleven percent more rooms sold before you gain a single dollar.</div>
         </div>
       </div>
 
