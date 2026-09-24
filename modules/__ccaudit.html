@@ -2080,5 +2080,55 @@ Cueline.init().then(() => {
   else nav(start);
 });
 </script>
+
+<script>
+(function(){
+  function run(){
+    var out = {err:null};
+    try{
+      Cueline.ccEl = Cueline.ccEl || document.getElementById('cc-overlay');
+      var probe = Cueline._ensureCaptionProbe();
+      var ov = document.getElementById('cc-overlay');
+      var all = [];
+      Object.keys(Cueline.cues).forEach(function(k){
+        Cueline.cues[k].forEach(function(c){ if(c.cc) all.push(c.cc); });
+      });
+      function linesOf(t){
+        probe.textContent = t;
+        var cs = getComputedStyle(probe);
+        var lh = parseFloat(cs.lineHeight);
+        var inner = probe.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+        return Math.round(inner / lh);
+      }
+      var chunks = 0, over = 0, maxLines = 0, multi = 0, lossy = 0;
+      var worst = [];
+      all.forEach(function(t){
+        var parts = Cueline._splitCaption(t);
+        chunks += parts.length;
+        if(parts.length > 1) multi++;
+        if(parts.join(' ').replace(/\s+/g,' ').trim() !== t.replace(/\s+/g,' ').trim()) lossy++;
+        parts.forEach(function(p){
+          var L = linesOf(p);
+          if(L > maxLines) maxLines = L;
+          if(L > 2){ over++; if(worst.length < 3) worst.push(L + ' lines | ' + p); }
+        });
+      });
+      // widest the box can actually get, with long text in it
+      ov.textContent = all.join(' ').slice(0, 400) || 'x';
+      out.boxW = ov.offsetWidth;
+      out.probeW = probe.offsetWidth;
+      ov.textContent = '';
+      out.cues = all.length; out.chunks = chunks; out.multi = multi;
+      out.over = over; out.maxLines = maxLines; out.lossy = lossy; out.worst = worst;
+    }catch(e){ out.err = e.message; }
+    var pre = document.createElement('pre');
+    pre.id = 'ccaudit';
+    pre.textContent = 'CCAUDIT' + JSON.stringify(out) + 'ENDCC';
+    document.body.appendChild(pre);
+  }
+  if(document.readyState === 'complete') setTimeout(run, 300);
+  else window.addEventListener('load', function(){ setTimeout(run, 300); });
+})();
+</script>
 </body>
 </html>

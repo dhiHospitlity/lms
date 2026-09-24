@@ -674,8 +674,8 @@ body.cueline-active #s-pos-pkg [data-cue="pp-exp-pkg"].lit{
 }
 
 /* ─── CC OVERLAY ─── */
-#cc-overlay{
-  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+#cc-overlay,#cc-probe{
+  position:absolute;bottom:14px;left:0;right:0;margin-left:auto;margin-right:auto;width:-webkit-fit-content;width:fit-content;
   max-width:720px;min-width:200px;padding:11px 24px;
   background:rgba(10,10,26,0.94);color:white;
   font-family:'DusitText',sans-serif;font-size:14px;font-weight:500;line-height:1.5;
@@ -683,15 +683,23 @@ body.cueline-active #s-pos-pkg [data-cue="pp-exp-pkg"].lit{
   border:1px solid rgba(201,168,76,0.35);
   box-shadow:0 6px 20px rgba(0,0,0,0.28);
   opacity:0;transition:opacity 0.22s ease;
-  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;
   pointer-events:none;z-index:80;
 }
 #cc-overlay.visible{opacity:1;}
 @keyframes ccSwap{
-  from{opacity:0.3;transform:translateX(-50%) translateY(4px);}
-  to{opacity:1;transform:translateX(-50%) translateY(0);}
+  from{opacity:0.3;transform:translateY(4px);}
+  to{opacity:1;transform:translateY(0);}
 }
 #cc-overlay.cc-swap{animation:ccSwap 0.2s ease-out;}
+/* Invisible twin of the caption box. _fitsCaption() grows it word by word to
+   find where a chunk would spill past two lines, so the split follows the real
+   rendered width, font and line-height instead of a guessed character budget.
+   It must keep #cc-overlay's box metrics exactly — never give it a max-height,
+   that would cap clientHeight and make every measurement report "fits". */
+#cc-probe{
+  top:0;bottom:auto;opacity:0 !important;visibility:hidden;
+  z-index:-1;animation:none !important;transition:none !important;
+}
 body.cc-off #cc-overlay{display:none;}
 
 /* Caption-safe bottom zone.
@@ -2548,8 +2556,11 @@ const Cueline = {
   // Rolling-caption state. One cue's narration is split into <=2-line chunks and
   // advanced in step with the audio, instead of dumping the whole paragraph on
   // screen at once and overlapping the slide.
-  ccCharBudget: 150,    // ~2 lines in the caption box at 14px
+  ccCharBudget: 150,    // fallback only — _fitsCaption measures the real box
   ccMsPerChar: 62,      // preview-mode reading pace (~16 chars/sec)
+  ccMaxLines: 2,      // hard ceiling on caption height
+  _ccProbe:   null,
+  _ccCache:   {},
   _ccChunks: [],
   _ccIdx: -1,
   _ccTimer: null,
@@ -2789,50 +2800,87 @@ const Cueline = {
     if(this._ccChunks.length > 1) this._driveCaptionByTimer();
   },
 
-  // Break one cue's narration into chunks that each fit the 2-line caption box.
-  // Sentence boundaries first, then word boundaries for any sentence still too
-  // long, then greedily re-pack neighbours up to the budget so we never flash a
-  // four-word chunk on its own.
+  // Split one cue's narration into chunks that genuinely fit the caption box.
+  // The box is measured, not guessed: an invisible twin is grown word by word
+  // until it would spill past ccMaxLines, so the split matches the real width,
+  // font and line-height in every module.
   _splitCaption(text){
-    const budget = this.ccCharBudget;
     const clean = String(text).replace(/\s+/g, ' ').trim();
-    if(clean.length <= budget) return [clean];
-    const sentences = [];
+    if(!clean) return [''];
+    if(this._ccCache[clean]) return this._ccCache[clean].slice();
+    const probe = this._ensureCaptionProbe();
+    const fits = probe ? (s) => this._fitsCaption(probe, s)
+                       : (s) => s.length <= this.ccCharBudget;   // no DOM to measure
+
+    const chunks = [];
+    let cur = '';
+    const flush = () => { if(cur){ chunks.push(cur); cur = ''; } };
+
+    this._sentenceUnits(clean).forEach(unit => {
+      const joined = cur ? cur + ' ' + unit : unit;
+      if(fits(joined)){ cur = joined; return; }
+      flush();
+      if(fits(unit)){ cur = unit; return; }
+      // One sentence longer than the box — break it on word boundaries.
+      let line = '';
+      unit.split(' ').forEach(w => {
+        const next = line ? line + ' ' + w : w;
+        if(fits(next)){ line = next; return; }
+        if(line) chunks.push(line);
+        line = w;
+      });
+      cur = line;
+    });
+    flush();
+
+    const out = chunks.length ? chunks : [clean];
+    this._ccCache[clean] = out;
+    return out.slice();
+  },
+
+  // Sentence boundaries, except a full stop only ends a sentence when a space
+  // and a capital follow — so "Trip.com" and "dusit.com" stay intact.
+  _sentenceUnits(clean){
+    const out = [];
     let start = 0;
     for(let i = 0; i < clean.length; i++){
       if('.!?'.indexOf(clean[i]) < 0) continue;
       let j = i;
       while(j + 1 < clean.length && '.!?'.indexOf(clean[j + 1]) > -1) j++;
       const nxt = clean[j + 1];
-      // A full stop only ends a sentence when a space and a capital follow —
-      // otherwise it is a domain ("Trip.com") or a decimal, and stays put.
       if(nxt === undefined || (nxt === ' ' && /[A-Z0-9"'(\u201C]/.test(clean[j + 2] || ''))){
-        sentences.push(clean.slice(start, j + 1).trim());
+        out.push(clean.slice(start, j + 1).trim());
         start = j + 2;
       }
       i = j;
     }
-    if(start < clean.length) sentences.push(clean.slice(start).trim());
-    if(!sentences.length) sentences.push(clean);
-    const parts = [];
-    sentences.forEach(raw => {
-      const s = raw.trim();
-      if(!s) return;
-      if(s.length <= budget){ parts.push(s); return; }
-      let line = '';
-      s.split(' ').forEach(w => {
-        if(line && (line + ' ' + w).length > budget){ parts.push(line); line = w; }
-        else line = line ? line + ' ' + w : w;
-      });
-      if(line) parts.push(line);
-    });
-    const chunks = [];
-    parts.forEach(p => {
-      const last = chunks[chunks.length - 1];
-      if(last && (last + ' ' + p).length <= budget) chunks[chunks.length - 1] = last + ' ' + p;
-      else chunks.push(p);
-    });
-    return chunks.length ? chunks : [clean];
+    if(start < clean.length) out.push(clean.slice(start).trim());
+    return out.length ? out : [clean];
+  },
+
+  _ensureCaptionProbe(){
+    if(typeof document === 'undefined') return null;
+    if(this._ccProbe && this._ccProbe.parentNode) return this._ccProbe;
+    if(!this.ccEl || !this.ccEl.parentNode) return null;
+    const el = document.createElement('div');
+    el.id = 'cc-probe';
+    el.setAttribute('aria-hidden', 'true');
+    this.ccEl.parentNode.appendChild(el);
+    this._ccProbe = el;
+    return el;
+  },
+
+  // True when text renders in ccMaxLines or fewer inside the caption box.
+  _fitsCaption(probe, text){
+    if(!text) return true;
+    probe.textContent = text;
+    const cs = getComputedStyle(probe);
+    let lh = parseFloat(cs.lineHeight);
+    if(!isFinite(lh) || lh <= 0) lh = (parseFloat(cs.fontSize) || 14) * 1.5;
+    const inner = probe.clientHeight
+                - (parseFloat(cs.paddingTop) || 0)
+                - (parseFloat(cs.paddingBottom) || 0);
+    return inner <= lh * this.ccMaxLines + 1;   // 1px tolerance for rounding
   },
 
   _renderCaptionChunk(i){
