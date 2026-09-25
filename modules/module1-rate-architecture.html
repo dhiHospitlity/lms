@@ -13,7 +13,7 @@
   --b200:#B5D4F4;--b100:#D8EAFB;--b50:#EEF6FD;
   --dark:#0A0A1A;--dark2:#12122A;
   --g700:#374151;--g500:#6B7280;--g300:#9CA3AF;--g100:#E5E7EB;--g50:#F8F9FA;
-  --white:#FFFFFF;--gold:#C9A84C;--gold-l:#F5EDD8;
+  --white:#FFFFFF;--gold:#C9A84C;--gold-d:#836D31;--gold-l:#F5EDD8;
   --r:12px;--rs:8px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -119,8 +119,8 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .s-centre{justify-content:center;}
 
 /* ── TYPOGRAPHY ── */
-.eye-lt{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block;}
-.eye{font-size:9px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block;}
+.eye-lt{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-d);margin-bottom:6px;display:block;}
+.eye{font-size:9px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--gold-d);margin-bottom:6px;display:block;}
 .sh-lt{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--dark);line-height:1.25;margin-bottom:10px;}
 .sh{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--dark);line-height:1.25;margin-bottom:10px;}
 .why-lt{font-size:12px;color:var(--g700);line-height:1.78;margin-bottom:14px;}
@@ -128,7 +128,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .why-lt i{font-style:italic;color:var(--g500);}
 .sp{font-size:12px;color:var(--g500);line-height:1.7;}
 .deep-n{font-family:'DusitDisplay',sans-serif;font-size:38px;font-weight:800;color:var(--b900);line-height:1;margin-bottom:2px;}
-.deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;opacity:1;}
+.deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-d);margin-bottom:8px;opacity:1;}
 .deep-title{font-family:'DusitDisplay',sans-serif;font-size:20px;font-weight:800;color:var(--b900);line-height:1.2;margin-bottom:10px;}
 .deep-why{font-size:12px;color:var(--g700);line-height:1.78;}
 .deep-why b,.deep-why strong{color:var(--b900);font-weight:700;}
@@ -137,7 +137,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 /* ── OVERVIEW GRID ── */
 .ov-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px;}
 .ov-card{border-radius:var(--rs);border:1.5px solid var(--g100);background:var(--g50);padding:14px 10px;cursor:pointer;transition:all 0.15s;text-align:center;}
-.ov-card:hover{border-color:var(--gold);background:var(--g100);transform:translateY(-2px);}
+.ov-card:hover{border-color:var(--gold-d);background:var(--g100);transform:translateY(-2px);}
 .ov-num{font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:var(--b900);line-height:1;margin-bottom:4px;}
 .ov-label{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b900);margin-bottom:3px;}
 .ov-desc{font-size:10px;color:var(--g500);line-height:1.45;}
@@ -153,7 +153,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .vs-facts{list-style:none;}
 .vs-fact{font-size:11px;color:var(--g500);padding:3px 0;border-bottom:1px solid var(--g100);display:flex;gap:6px;line-height:1.35;}
 .vs-fact:last-child{border-bottom:none;}
-.vfi{color:var(--gold);font-size:9px;margin-top:2px;flex-shrink:0;}
+.vfi{color:var(--gold-d);font-size:9px;margin-top:2px;flex-shrink:0;}
 .key-box{background:var(--white);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 13px;font-size:11px;color:var(--b900);line-height:1.6;}
 .key-box strong{color:var(--b900);}
 
@@ -164,11 +164,11 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .room-rung.dlx{background:var(--g50);border:1px solid var(--g100);}
 .room-rung.ste{background:var(--g50);border:1px solid var(--b900);}
 .rr-name{font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;}
-.room-rung.std .rr-name{color:var(--dark);}.room-rung.dlx .rr-name{color:var(--b900);}.room-rung.ste .rr-name{color:white;}
+.room-rung.std .rr-name{color:var(--dark);}.room-rung.dlx .rr-name{color:var(--b900);}.room-rung.ste .rr-name{color:var(--b900);}
 .rr-sup{font-size:10px;margin-top:1px;}
-.room-rung.std .rr-sup{color:var(--g300);}.room-rung.dlx .rr-sup{color:var(--gold);}.room-rung.ste .rr-sup{color:rgba(201,168,76,0.8);}
+.room-rung.std .rr-sup{color:var(--g300);}.room-rung.dlx .rr-sup{color:var(--gold-d);}.room-rung.ste .rr-sup{color:var(--gold-d);}
 .rr-price{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;}
-.room-rung.std .rr-price{color:var(--dark);}.room-rung.dlx .rr-price{color:var(--b900);}.room-rung.ste .rr-price{color:white;}
+.room-rung.std .rr-price{color:var(--dark);}.room-rung.dlx .rr-price{color:var(--b900);}.room-rung.ste .rr-price{color:var(--b900);}
 
 /* ── DO / DON'T ── */
 .dodont{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -194,7 +194,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .quiz-wrap{display:flex;flex-direction:column;height:100%;}
 .quiz-header{padding:20px 24px 0;flex-shrink:0;}
 .q-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.q-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
+.q-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-d);}
 .q-dots{display:flex;gap:5px;}
 .q-dot{width:9px;height:9px;border-radius:50%;background:var(--g100);transition:all 0.2s;}
 .q-dot.current{background:var(--b900);transform:scale(1.2);}
@@ -203,10 +203,10 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .q-text{font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:700;color:var(--dark);line-height:1.5;margin-bottom:0;}
 .quiz-opts{padding:12px 24px;display:flex;flex-direction:column;gap:7px;flex:1;overflow-y:auto;}
 .qopt{padding:10px 14px;border:1.5px solid var(--g100);border-radius:var(--rs);font-size:12px;color:var(--dark);cursor:pointer;background:var(--white);text-align:left;line-height:1.45;transition:all 0.12s;font-family:'DusitText',sans-serif;}
-.qopt:hover:not([disabled]){border-color:var(--gold);background:var(--g50);color:var(--b900);}
-.qopt.correct{background:var(--g50);border-color:var(--gold);color:var(--b900);font-weight:600;}
+.qopt:hover:not([disabled]){border-color:var(--gold-d);background:var(--g50);color:var(--b900);}
+.qopt.correct{background:var(--g50);border-color:var(--gold-d);color:var(--b900);font-weight:600;}
 .qopt.wrong{background:var(--g50);border-color:var(--g300);color:var(--g700);}
-.qopt.reveal{border-color:var(--gold);border-style:dashed;}
+.qopt.reveal{border-color:var(--gold-d);border-style:dashed;}
 .q-fb{margin:0 24px;padding:9px 12px;border-radius:var(--rs);font-size:11px;line-height:1.65;display:none;flex-shrink:0;}
 .q-fb.correct{background:var(--g50);color:var(--b900);border-left:3px solid var(--b900);}
 .q-fb.wrong{background:var(--g50);color:var(--g700);border-left:3px solid var(--g300);}
@@ -310,11 +310,11 @@ body.cueline-active .ov-card[data-cue]{
 }
 body.cueline-active .ov-card[data-cue].lit{
   opacity:1;
-  border-color:var(--gold);
+  border-color:var(--gold-d);
   transform:scale(1);
   box-shadow:0 6px 22px rgba(201,168,76,0.22);
 }
-body.cueline-active .ov-card[data-cue].lit .ov-num{color:var(--gold);}
+body.cueline-active .ov-card[data-cue].lit .ov-num{color:var(--gold-d);}
 body.cueline-active .ov-grid.pulse{animation:cueline-pulse 0.85s ease-out;}
 @keyframes cueline-pulse{
   0%{transform:scale(1);}
@@ -333,7 +333,7 @@ body.cueline-active .vs-card[data-cue]{
              box-shadow 0.4s ease;
 }
 body.cueline-active .vs-card[data-cue].reveal{
-  border-color:var(--gold);
+  border-color:var(--gold-d);
   transform:scale(1.025);
   box-shadow:0 8px 26px rgba(201,168,76,0.28);
 }
@@ -372,7 +372,7 @@ body.cueline-active .key-box[data-cue].reveal{opacity:1;transform:translateY(0);
 .agenda-item{display:flex;align-items:flex-start;gap:22px;}
 .agenda-num{
   font-family:'DusitDisplay',sans-serif;
-  font-size:26px;font-weight:800;color:var(--gold);
+  font-size:26px;font-weight:800;color:var(--gold-d);
   line-height:1.15;min-width:44px;
 }
 .agenda-text{
@@ -414,7 +414,7 @@ body.cueline-active .dont-box[data-cue]{
 }
 body.cueline-active .do-box[data-cue].reveal,
 body.cueline-active .dont-box[data-cue].reveal{
-  border-color:var(--gold);
+  border-color:var(--gold-d);
   transform:scale(1.015);
   box-shadow:0 6px 22px rgba(201,168,76,0.22);
 }
@@ -474,7 +474,7 @@ body.cc-off #cc-overlay{display:none;}
 #cue-hint{
   position:absolute;top:12px;right:14px;z-index:80;
   background:rgba(201,168,76,0.14);border:1px solid rgba(201,168,76,0.4);
-  color:var(--gold);font-family:'DusitDisplay',sans-serif;
+  color:var(--gold-d);font-family:'DusitDisplay',sans-serif;
   font-size:9px;font-weight:700;letter-spacing:0.1em;
   padding:5px 10px 5px 26px;border-radius:14px;text-transform:uppercase;
   display:none;position:absolute;
@@ -673,7 +673,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           <h2 class="deep-title">Right Room</h2>
         </div>
         <div class="split-right">
-          <p style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Room ladder. BAR $133 base</p>
+          <p style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-d);margin-bottom:10px;">Room ladder. BAR $133 base</p>
           <div class="room-ladder">
             <div class="room-rung std" data-cue="rung-std"><div><div class="rr-name">Standard Room</div><div class="rr-sup">No supplement. Base derived rate.</div></div><div class="rr-price">$133</div></div>
             <div class="room-rung dlx" data-cue="rung-dlx"><div><div class="rr-name">Deluxe Room</div><div class="rr-sup">+ $17 fixed supplement</div></div><div class="rr-price">$150</div></div>
@@ -689,24 +689,24 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
           <!-- LEFT: context panel -->
           <div style="padding:28px 22px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--g50);">
-            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);opacity:0.7;margin-bottom:8px;display:block;">The connected system</span>
+            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-d);opacity:0.7;margin-bottom:8px;display:block;">The connected system</span>
             <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--b900);line-height:1.35;margin-bottom:18px;">One change.<br>Every rate.<br>Automatic.</h2>
             <div class="sys-demo" data-cue="sys-demo" style="background:var(--white);border:1px solid var(--g100);border-radius:8px;padding:11px 13px;">
-              <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Watch BAR move: ฿4,000 → ฿5,000</div>
+              <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-d);margin-bottom:8px;">Watch BAR move: ฿4,000 → ฿5,000</div>
               <div style="display:flex;flex-direction:column;gap:5px;">
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:var(--g300);">Corporate −15%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold);">฿3,400 → ฿4,250</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:var(--g300);">OTA (parity)</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold);">฿4,000 → ฿5,000</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:var(--g300);">Dusit Gold −15%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold);">฿3,400 → ฿4,250</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:var(--g300);">Direct BAR</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold);">฿4,000 → ฿5,000</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:var(--g500);">Corporate −15%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-d);">฿3,400 → ฿4,250</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:var(--g500);">OTA (parity)</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-d);">฿4,000 → ฿5,000</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:var(--g500);">Dusit Gold −15%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-d);">฿3,400 → ฿4,250</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:var(--g500);">Direct BAR</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-d);">฿4,000 → ฿5,000</span></div>
               </div>
-              <div style="margin-top:8px;padding-top:7px;border-top:1px solid var(--g100);font-size:9px;color:var(--g300);text-align:center;">All updated automatically · No manual work</div>
+              <div style="margin-top:8px;padding-top:7px;border-top:1px solid var(--g100);font-size:9px;color:var(--g500);text-align:center;">All updated automatically · No manual work</div>
             </div>
           </div>
 
           <!-- RIGHT: animated diagram -->
           <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 16px;background:var(--white);position:relative;">
 
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Live rate propagation</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-d);margin-bottom:16px;">Live rate propagation</div>
 
             <!-- The animation canvas -->
             <div id="sys-anim" style="width:100%;max-width:540px;position:relative;height:280px;">
@@ -778,7 +778,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
             </div><!-- /sys-anim -->
 
-            <div style="font-size:10px;color:var(--g300);margin-top:10px;text-align:center;letter-spacing:0.03em;">Tap the BAR hub to simulate a rate update</div>
+            <div style="font-size:10px;color:var(--g500);margin-top:10px;text-align:center;letter-spacing:0.03em;">Tap the BAR hub to simulate a rate update</div>
           </div>
         </div>
       </div>
@@ -790,7 +790,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           transition:border-color 0.3s,background 0.3s,transform 0.2s;
           box-shadow:0 1px 6px rgba(0,60,150,0.07);
         }
-        .ch-card.updated{border-color:var(--gold);background:var(--g50);}
+        .ch-card.updated{border-color:var(--gold-d);background:var(--g50);}
         .ch-card.flash{animation:cardflash 0.5s ease;}
         @keyframes cardflash{0%{background:var(--g100);}100%{background:var(--g50);}}
         .ch-label{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;color:var(--b900);margin-bottom:2px;}
@@ -944,7 +944,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <li class="chi" data-cue="chk-5" onclick="tick(this)"><div class="chbox"></div>I know the 3 rate levels: Flexible, Saver (10%), Stay Longer (15%)</li>
           </ul>
           <div id="unlockNote" style="display:none;margin-top:14px;background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:10px 14px;font-size:11px;color:var(--b900);">✓ <strong>Quiz unlocked.</strong> Press Next to begin.</div>
-          <div id="visitNote" style="display:none;margin-top:10px;font-size:10px;color:var(--gold);">↑ Visit all slides first. Some are still unvisited.</div>
+          <div id="visitNote" style="display:none;margin-top:10px;font-size:10px;color:var(--gold-d);">↑ Visit all slides first. Some are still unvisited.</div>
         </div>
       </div>
 
