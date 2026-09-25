@@ -49,14 +49,14 @@ const MODULES = {
   },
   module4: {
     identifier: 'dusit_module4_contracted_otas',
-    title:      'Module 4 — Contracted OTAs & Promotions',
+    title:      'Contracted OTAs & Promotions',
     htmlPath:   'modules/module4-contracted-otas.html',
     masteryScore: 80,       // blueprint spec: 4 of 5 to pass
     duration:   'PT43M'
   },
   module5: {
     identifier: 'dusit_module5_pricing_strategy',
-    title:      'Module 5 — Dusit Rationale Pricing Strategy',
+    title:      'Pricing Strategy',
     htmlPath:   'modules/module5-pricing-strategy.html',
     masteryScore: 80,       // blueprint spec: 4 of 5 to pass
     duration:   'PT45M'
