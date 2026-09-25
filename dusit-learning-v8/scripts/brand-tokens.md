@@ -68,7 +68,17 @@
 - **No brand-colour fills anywhere inside the canvas.** Not on panels, not on cards, not on chips, table headers or callouts. Surfaces are `--white` and `--g50`, separated by `1px solid var(--g100)` hairlines. Hierarchy comes from **type weight, type colour and scale** — a navy eyebrow above a grey one, a navy numeral against grey body copy — never from a coloured block. Swept across all six modules 2026-09-25; the cream-card / navy-panel look it replaced was the single thing that made the programme read as a generic template.
   - Legitimate exceptions, all small or transient: data bars and chart columns (they need a fill to be data), diagram nodes under ~110px, toggle and progress fills, primary buttons, and `--gold-l` interaction feedback.
   - **Chrome is not the canvas.** The sidebar, top bar, fullscreen bars and the quiz results overlay stay `--dark`. That black frame is what lets the light canvas read as premium rather than plain — keep it.
-- **Flipping a fill means flipping the text inside it.** A navy panel that goes light leaves white text behind, invisible. After any colour change run `node dusit-learning-v8/build-pipeline/test_contrast.js`, which renders every slide of every module and fails on any text under 2.5:1.
+- **Flipping a fill means flipping the text inside it.** A navy panel that goes light leaves white text behind, invisible.
+
+### Enforcement — run these after ANY visual edit
+
+```
+node dusit-learning-v8/build-pipeline/test_palette.js    # are the rules above still kept
+node dusit-learning-v8/build-pipeline/test_contrast.js   # is every slide still readable
+node dusit-learning-v8/build-pipeline/test_captions.js   # do captions still fit two lines
+```
+
+`test_palette.js` is this section as code: it fails on brand-colour fills inside the canvas, raw hex fills, `color:var(--gold)` on a light surface, and on the two caption-box regressions. It carries the allowlist for the legitimate exceptions, so if you add a data bar or a diagram node, add it there rather than loosening the rule. These rules were set with Prakash on 2026-09-25 and take precedence over any later edit that quietly reverts them.
 - **Card grids** — 2 to 4 cards per row, `border-radius: var(--r)`, subtle grey border, gold left edge on emphasis cards.
 - **Key-box** — "one principle per slide" bar. White bg, gold left border (3–4px), body text with **strong** or gold keyword.
 - **Hooks** — light bg, gold eyebrow (module tag), navy display headline (~30px, weight 800), gold horizontal rule (~2×88px), muted body. Interior animation / diagram sits on the same light surface.
