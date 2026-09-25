@@ -88,8 +88,8 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .slide.s-split.on{display:flex;}
 
 .split-left{
-  width:300px;min-width:300px;flex-shrink:0;
-  background:var(--g50);padding:28px 26px;
+  width:360px;min-width:360px;flex-shrink:0;
+  background:var(--g50);padding:30px 28px;
   display:flex;flex-direction:column;justify-content:center;overflow:hidden;
 }
 .split-right{
@@ -302,7 +302,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 /* ORIGIN */
 .origin-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
 .origin-card{border-radius:var(--r);padding:20px;border:2px solid var(--g100);}
-.origin-card.dir{background:var(--g50);border-color:var(--gold-l);}
+.origin-card.dir{background:var(--g50);border-color:var(--g100);}
 .origin-card.ind{background:var(--g50);border-color:var(--g100);}
 .origin-code{font-family:'DusitDisplay',sans-serif;font-size:28px;font-weight:800;margin-bottom:4px;}
 .origin-card.dir .origin-code{color:var(--b900);}
@@ -709,7 +709,10 @@ body.cc-off #cc-overlay{display:none;}
    quiz, summary) regardless of whether the body uses .s-inner or its own
    flex layout. !important so inline padding on individual slides can't defeat
    the safe zone — the CC has to be free of collisions module-wide. */
-body.cueline-active:not(.cc-off) .slide{padding-bottom:var(--cc-reserve,92px) !important;}
+body.cueline-active:not(.cc-off) .slide:not(.s-split){padding-bottom:92px !important;}
+/* Split slides keep their panels full-bleed; the reserve goes on the content inside. */
+body.cueline-active:not(.cc-off) .s-split .split-left,
+body.cueline-active:not(.cc-off) .s-split .split-right{padding-bottom:92px;}
 /* Quiz slides use their own quiz-foot bar; keep them out of the blanket rule. */
 body.cueline-active:not(.cc-off) .slide.s-quiz{padding-bottom:0 !important;}
 
@@ -954,7 +957,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           <h2 class="sh" style="margin-bottom:5px;">Does it touch the price, or not?</h2>
           <p class="body-text" style="margin-bottom:18px;max-width:620px;">Every lever an OTA offers falls into one of two groups. That single question sorts all of them.</p>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
 
             <!-- Green group -->
             <div data-cue="tk-green" data-cue-panel style="border:1.5px solid rgba(91,140,122,0.5);border-radius:var(--r);background:rgba(91,140,122,0.05);padding:19px 21px;display:flex;flex-direction:column;">
@@ -1001,7 +1004,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           </div>
           <h2 class="sh" style="margin-bottom:18px;">The three safe levers</h2>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;flex:1;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
 
             <div data-cue="g-booster" data-cue-panel style="border:1.5px solid rgba(91,140,122,0.4);border-radius:var(--r);background:var(--white);padding:18px 17px;display:flex;flex-direction:column;">
               <div style="font-family:'DusitDisplay',sans-serif;font-size:12.5px;font-weight:800;color:var(--b900);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:9px;">Ranking Booster</div>
@@ -1045,7 +1048,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           </div>
           <h2 class="sh" style="margin-bottom:18px;">The three that move the price</h2>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;flex:1;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
 
             <div data-cue="r-member" data-cue-panel style="border:1.5px solid rgba(139,74,90,0.4);border-radius:var(--r);background:var(--white);padding:18px 17px;display:flex;flex-direction:column;">
               <div style="font-family:'DusitDisplay',sans-serif;font-size:12.5px;font-weight:800;color:var(--b900);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:9px;">Member Exclusive</div>
@@ -1092,7 +1095,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           <div id="sort-pool" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;min-height:38px;padding:9px;background:var(--g50);border:1px dashed var(--g100);border-radius:var(--rs);margin-bottom:14px;"></div>
 
           <!-- Two bins -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
             <div class="sort-bin" data-bin="green" style="border:2px dashed rgba(91,140,122,0.45);border-radius:var(--r);background:rgba(91,140,122,0.04);padding:14px;display:flex;flex-direction:column;transition:background 0.25s,border-color 0.25s;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
                 <span style="width:9px;height:9px;border-radius:50%;background:#5B8C7A;flex-shrink:0;"></span>
@@ -1215,7 +1218,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           <h2 class="sh" style="margin-bottom:5px;">Member exclusive</h2>
           <p class="body-text" style="margin-bottom:15px;font-size:12.5px;max-width:640px;">Powerful, because your public price never changes. But this is the lever closest to the line, so the SOPs cap it hard.</p>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:13px;flex:1;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:13px;">
 
             <div data-cue="m-expedia" data-cue-panel style="border:1.5px solid rgba(139,74,90,0.35);border-radius:var(--r);background:var(--white);padding:15px 14px;display:flex;flex-direction:column;">
               <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--g500);letter-spacing:0.08em;margin-bottom:7px;">EXPEDIA</div>
@@ -1261,7 +1264,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           <span class="eye" style="color:#8B4A5A;">Price impact &middot; fence it or lose it</span>
           <h2 class="sh" style="margin-bottom:15px;">POS and package</h2>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;flex:1;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
 
             <!-- POS -->
             <div data-cue="pp-pos" data-cue-panel style="border:1.5px solid rgba(139,74,90,0.35);border-radius:var(--r);background:var(--white);padding:17px 18px;display:flex;flex-direction:column;">
@@ -1352,7 +1355,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <span style="font-size:13px;color:var(--b900);font-weight:600;">Each OTA stacks promotions differently. Never assume.</span>
           </div>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px;flex:1;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px;">
 
             <div data-cue="st-expedia" data-cue-panel style="border:1.5px solid var(--g100);border-radius:var(--r);background:var(--white);padding:15px 17px;">
               <div style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--g500);letter-spacing:0.08em;margin-bottom:8px;">EXPEDIA</div>
