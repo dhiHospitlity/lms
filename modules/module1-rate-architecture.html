@@ -103,7 +103,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 /* left white / right white split.unified white canvas */
 .split-left{
   width:336px;min-width:336px;flex-shrink:0;
-  background:var(--dark);padding:28px 26px;
+  background:var(--g50);padding:28px 26px;
   display:flex;flex-direction:column;justify-content:center;overflow:hidden;
 }
 .split-right{
@@ -127,12 +127,12 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .why-lt b{color:var(--b900);font-weight:700;}
 .why-lt i{font-style:italic;color:var(--g500);}
 .sp{font-size:12px;color:var(--g500);line-height:1.7;}
-.deep-n{font-family:'DusitDisplay',sans-serif;font-size:38px;font-weight:800;color:var(--gold-l);line-height:1;margin-bottom:2px;}
-.deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);margin-bottom:8px;opacity:0.7;}
-.deep-title{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--white);line-height:1.2;margin-bottom:10px;}
-.deep-why{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.78;}
-.deep-why b{color:var(--gold-l);font-weight:600;}
-.deep-why em{font-style:italic;color:rgba(255,255,255,0.8);}
+.deep-n{font-family:'DusitDisplay',sans-serif;font-size:38px;font-weight:800;color:var(--b900);line-height:1;margin-bottom:2px;}
+.deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;opacity:1;}
+.deep-title{font-family:'DusitDisplay',sans-serif;font-size:20px;font-weight:800;color:var(--b900);line-height:1.2;margin-bottom:10px;}
+.deep-why{font-size:12px;color:var(--g700);line-height:1.78;}
+.deep-why b,.deep-why strong{color:var(--b900);font-weight:700;}
+.deep-why em{font-style:italic;color:var(--b900);}
 
 /* ── OVERVIEW GRID ── */
 .ov-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px;}
@@ -154,7 +154,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .vs-fact{font-size:11px;color:var(--g500);padding:3px 0;border-bottom:1px solid var(--g100);display:flex;gap:6px;line-height:1.35;}
 .vs-fact:last-child{border-bottom:none;}
 .vfi{color:var(--gold);font-size:9px;margin-top:2px;flex-shrink:0;}
-.key-box{background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 13px;font-size:11px;color:var(--b900);line-height:1.6;}
+.key-box{background:var(--white);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 13px;font-size:11px;color:var(--b900);line-height:1.6;}
 .key-box strong{color:var(--b900);}
 
 /* ── ROOM LADDER ── */
@@ -162,7 +162,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .room-rung{border-radius:var(--rs);padding:11px 14px;display:flex;justify-content:space-between;align-items:center;}
 .room-rung.std{background:var(--g50);border:1px solid var(--g100);}
 .room-rung.dlx{background:var(--g50);border:1px solid var(--g100);}
-.room-rung.ste{background:var(--b900);border:1px solid var(--b900);}
+.room-rung.ste{background:var(--g50);border:1px solid var(--b900);}
 .rr-name{font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;}
 .room-rung.std .rr-name{color:var(--dark);}.room-rung.dlx .rr-name{color:var(--b900);}.room-rung.ste .rr-name{color:white;}
 .rr-sup{font-size:10px;margin-top:1px;}
@@ -688,18 +688,18 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         <div style="display:grid;grid-template-columns:268px 1fr;height:100%;">
 
           <!-- LEFT: context panel -->
-          <div style="padding:28px 22px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--dark);">
-            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);opacity:0.7;margin-bottom:8px;display:block;">The connected system</span>
-            <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:white;line-height:1.35;margin-bottom:18px;">One change.<br>Every rate.<br>Automatic.</h2>
-            <div class="sys-demo" data-cue="sys-demo" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:11px 13px;">
-              <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-l);margin-bottom:8px;">Watch BAR move: ฿4,000 → ฿5,000</div>
+          <div style="padding:28px 22px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--g100);background:var(--g50);">
+            <span style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);opacity:0.7;margin-bottom:8px;display:block;">The connected system</span>
+            <h2 style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--b900);line-height:1.35;margin-bottom:18px;">One change.<br>Every rate.<br>Automatic.</h2>
+            <div class="sys-demo" data-cue="sys-demo" style="background:var(--white);border:1px solid var(--g100);border-radius:8px;padding:11px 13px;">
+              <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Watch BAR move: ฿4,000 → ฿5,000</div>
               <div style="display:flex;flex-direction:column;gap:5px;">
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Corporate −15%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">฿3,400 → ฿4,250</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">OTA (parity)</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">฿4,000 → ฿5,000</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Dusit Gold −15%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">฿3,400 → ฿4,250</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:rgba(255,255,255,0.42);">Direct BAR</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);">฿4,000 → ฿5,000</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:var(--g300);">Corporate −15%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold);">฿3,400 → ฿4,250</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:var(--g300);">OTA (parity)</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold);">฿4,000 → ฿5,000</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:var(--g300);">Dusit Gold −15%</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold);">฿3,400 → ฿4,250</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:var(--g300);">Direct BAR</span><span style="font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--gold);">฿4,000 → ฿5,000</span></div>
               </div>
-              <div style="margin-top:8px;padding-top:7px;border-top:1px solid rgba(255,255,255,0.08);font-size:9px;color:rgba(255,255,255,0.28);text-align:center;">All updated automatically · No manual work</div>
+              <div style="margin-top:8px;padding-top:7px;border-top:1px solid var(--g100);font-size:9px;color:var(--g300);text-align:center;">All updated automatically · No manual work</div>
             </div>
           </div>
 

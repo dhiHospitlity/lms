@@ -89,7 +89,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 
 .split-left{
   width:300px;min-width:300px;flex-shrink:0;
-  background:var(--dark);padding:28px 26px;
+  background:var(--g50);padding:28px 26px;
   display:flex;flex-direction:column;justify-content:center;overflow:hidden;
 }
 .split-right{
@@ -111,11 +111,11 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .sh-lt{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--white);line-height:1.25;margin-bottom:10px;}
 .body-text{font-size:12px;color:var(--g700);line-height:1.78;margin-bottom:12px;}
 .body-text b{color:var(--b900);font-weight:700;}
-.deep-n{font-family:'DusitDisplay',sans-serif;font-size:38px;font-weight:800;color:var(--gold-l);line-height:1;margin-bottom:2px;}
-.deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);margin-bottom:8px;opacity:0.7;}
-.deep-title{font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--white);line-height:1.2;margin-bottom:10px;}
-.deep-why{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.78;}
-.deep-why b{color:var(--gold-l);font-weight:600;}
+.deep-n{font-family:'DusitDisplay',sans-serif;font-size:38px;font-weight:800;color:var(--b900);line-height:1;margin-bottom:2px;}
+.deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;opacity:1;}
+.deep-title{font-family:'DusitDisplay',sans-serif;font-size:20px;font-weight:800;color:var(--b900);line-height:1.2;margin-bottom:10px;}
+.deep-why{font-size:11px;color:var(--g700);line-height:1.78;}
+.deep-why b,.deep-why strong{color:var(--b900);font-weight:700;}
 
 /* TRACKING FIELDS */
 .tracking-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
@@ -142,8 +142,8 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .hv-crumb{display:flex;align-items:center;gap:8px;min-height:28px;margin-bottom:14px;flex-wrap:wrap;position:relative;padding-right:120px;}
 .hv-crumb:empty{margin-bottom:0;min-height:0;padding-right:0;}
 .hv-crumb-item{cursor:pointer;color:var(--g700);font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border-radius:16px;border:1px solid var(--g100);background:var(--white);transition:all 0.18s;animation:hvCrumbIn 0.3s cubic-bezier(.4,0,.2,1);}
-.hv-crumb-item:hover{border-color:var(--gold);color:var(--b900);background:var(--gold-l);}
-.hv-crumb-item.current{background:var(--gold-l);color:var(--b900);border-color:var(--gold);cursor:default;}
+.hv-crumb-item:hover{border-color:var(--gold);color:var(--b900);background:var(--g50);}
+.hv-crumb-item.current{background:var(--white);color:var(--b900);border-color:var(--b900);cursor:default;}
 .hv-crumb-sep{color:var(--g300);font-size:12px;font-family:'DusitDisplay',sans-serif;}
 
 /* Back button.positioned at the right edge of the breadcrumb row on any
@@ -151,7 +151,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
    Learners kept telling us they felt lost in the drill-down; this makes the
    escape hatch obvious even if the breadcrumb chips don't read as clickable. */
 .hv-back{position:absolute;right:0;top:50%;transform:translateY(-50%);cursor:pointer;font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:6px 14px;border-radius:16px;border:1px solid var(--gold);background:var(--white);color:var(--b900);transition:all 0.18s;display:inline-flex;align-items:center;gap:6px;}
-.hv-back:hover{background:var(--gold);color:var(--white);}
+.hv-back:hover{background:var(--g100);color:var(--b900);}
 .hv-back::before{content:'←';font-size:12px;}
 @keyframes hvCrumbIn{from{opacity:0;transform:translateX(-6px);}to{opacity:1;transform:translateX(0);}}
 
@@ -180,7 +180,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .hv-hero-stat{text-align:center;}
 .hv-hero-stat b{font-family:'DusitDisplay',sans-serif;font-size:30px;font-weight:700;color:var(--gold);line-height:1;display:block;margin-bottom:4px;letter-spacing:-0.02em;}
 .hv-hero-stat span{font-size:9.5px;color:var(--g500);letter-spacing:0.12em;text-transform:uppercase;font-family:'DusitDisplay',sans-serif;font-weight:700;}
-.hv-hero-cta{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--b900);letter-spacing:0.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px;padding:10px 22px;background:var(--gold);border-radius:24px;margin-top:6px;transition:all 0.25s;}
+.hv-hero-cta{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--b900);letter-spacing:0.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px;padding:10px 22px;background:var(--white);border:1px solid var(--gold);border-radius:24px;margin-top:6px;transition:all 0.25s;}
 .hv-hero:hover .hv-hero-cta{background:#B8972F;padding-right:26px;}
 .hv-hero-cta-arrow{font-size:14px;display:inline-block;animation:hvCtaArrow 1.4s infinite;}
 @keyframes hvCtaArrow{0%,100%{transform:translateX(0);}50%{transform:translateX(4px);}}
@@ -268,13 +268,13 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .hv-code-row:hover{border-color:var(--gold);background:var(--g50);}
 @keyframes hvRowIn{to{opacity:1;transform:translateX(0);}}
 
-.hv-code-badge{font-family:'DusitDisplay',sans-serif;font-weight:800;font-size:10px;color:var(--b900);letter-spacing:0.05em;background:var(--gold-l);padding:4px 8px;border-radius:4px;text-align:center;align-self:flex-start;}
+.hv-code-badge{font-family:'DusitDisplay',sans-serif;font-weight:800;font-size:10px;color:var(--b900);letter-spacing:0.05em;background:var(--g50);border:1px solid var(--g100);padding:3px 7px;border-radius:4px;text-align:center;align-self:flex-start;}
 .hv-code-label{font-family:'DusitDisplay',sans-serif;font-weight:700;font-size:11px;color:var(--b900);letter-spacing:0.02em;}
 .hv-code-desc{color:var(--g700);line-height:1.55;font-size:10.5px;}
 .hv-code-desc b{color:var(--b900);font-weight:700;}
 
 /* segment group colors */
-.sg-fit{background:var(--gold-l);border-color:var(--gold);}.sg-fit .seg-group-name{color:var(--b900);}
+.sg-fit{background:var(--g50);border-color:var(--b900);}.sg-fit .seg-group-name{color:var(--b900);}
 .sg-grp{background:#EAF3DE;border-color:#C0DD97;}.sg-grp .seg-group-name{color:#27500A;}
 .sg-oth{background:#F1EFE8;border-color:#D3D1C7;}.sg-oth .seg-group-name{color:#444441;}
 
@@ -292,7 +292,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 
 /* SOURCE TABLE */
 .source-table{width:100%;border-collapse:collapse;font-size:10px;margin-top:8px;}
-.source-table th{background:var(--b900);color:white;padding:7px 10px;text-align:left;font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.05em;}
+.source-table th{background:var(--g50);color:var(--b900);border-bottom:1px solid var(--g100);padding:7px 10px;text-align:left;font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.05em;}
 .source-table td{padding:6px 10px;border-bottom:1px solid var(--g100);color:var(--g700);vertical-align:top;line-height:1.4;}
 .source-table tr:last-child td{border-bottom:none;}
 .source-table tr:nth-child(even) td{background:var(--g50);}
@@ -323,9 +323,9 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .rule-card.revealed{opacity:1;transform:translateY(0);}
 .rule-num{font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:var(--gold-l);line-height:1;margin-bottom:6px;}
 .rule-text{font-size:11px;color:var(--b900);line-height:1.5;font-weight:500;}
-.rule-card.highlighted{border-color:var(--gold);background:var(--b900);}
-.rule-card.highlighted .rule-num{color:rgba(255,255,255,0.4);}
-.rule-card.highlighted .rule-text{color:white;}
+.rule-card.highlighted{border-color:var(--b900);background:var(--white);}
+.rule-card.highlighted .rule-num{color:var(--g300);}
+.rule-card.highlighted .rule-text{color:var(--b900);}
 
 /* DO / DONT */
 .dodont{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -423,7 +423,7 @@ body.fullscreen #fs-bot{display:flex;}
 .fs-btn:disabled{opacity:0.22;cursor:not-allowed;}
 
 /* KEY BOX */
-.key-box{background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 13px;font-size:11px;color:var(--b900);line-height:1.6;margin-top:10px;}
+.key-box{background:var(--white);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 13px;font-size:11px;color:var(--b900);line-height:1.6;margin-top:10px;}
 .key-box strong{color:var(--b900);}
 
 /* BREADCRUMB NAV */
@@ -917,7 +917,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <div style="font-family:'DusitText',sans-serif;font-size:7px;color:var(--g500);text-align:center;line-height:1.2;">Deluxe · 2 nights</div>
               <div style="font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:800;color:var(--b900);text-align:center;">$999<span style="font-size:7px;color:var(--g500);font-weight:500;"> /night</span></div>
               <!-- Book now button -->
-              <div style="background:var(--gold);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;letter-spacing:0.1em;padding:7px 8px;border-radius:6px;text-align:center;margin-top:auto;">BOOK NOW</div>
+              <div style="background:var(--g50);border:1px solid var(--g100);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;letter-spacing:0.1em;padding:6px 7px;border-radius:6px;text-align:center;margin-top:auto;">BOOK NOW</div>
               <!-- Home indicator -->
               <div style="position:absolute;bottom:4px;left:50%;transform:translateX(-50%);width:36px;height:3px;background:var(--g300);border-radius:2px;"></div>
             </div>
@@ -962,10 +962,10 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
         <!-- Channel chip row · per-chip data-cue for Path A per-mention highlighting -->
         <div data-cue="channels" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:8px 0;">
           <span style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);align-self:center;">That connection could be:</span>
-          <span data-cue="chip-ota"        class="chn-chip" style="background:var(--gold-l);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;transition:transform 0.2s,box-shadow 0.2s;">OTA</span>
-          <span data-cue="chip-wholesaler" class="chn-chip" style="background:var(--gold-l);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;transition:transform 0.2s,box-shadow 0.2s;">Wholesaler</span>
-          <span data-cue="chip-agent"      class="chn-chip" style="background:var(--gold-l);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;transition:transform 0.2s,box-shadow 0.2s;">Travel agent</span>
-          <span data-cue="chip-direct"     class="chn-chip" style="background:var(--gold-l);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;transition:transform 0.2s,box-shadow 0.2s;">dusit.com</span>
+          <span data-cue="chip-ota"        class="chn-chip" style="background:var(--g50);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;transition:transform 0.2s,box-shadow 0.2s;">OTA</span>
+          <span data-cue="chip-wholesaler" class="chn-chip" style="background:var(--g50);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;transition:transform 0.2s,box-shadow 0.2s;">Wholesaler</span>
+          <span data-cue="chip-agent"      class="chn-chip" style="background:var(--g50);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;transition:transform 0.2s,box-shadow 0.2s;">Travel agent</span>
+          <span data-cue="chip-direct"     class="chn-chip" style="background:var(--g50);color:var(--b900);font-family:'DusitDisplay',sans-serif;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;transition:transform 0.2s,box-shadow 0.2s;">dusit.com</span>
         </div>
 
         <!-- Headline -->
@@ -1028,7 +1028,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
                   <span>Maintain Parity</span>
                 </div>
                 <!-- Sixth row: gold treatment, "This module" tag, revealed with the gold wedge. -->
-                <div data-cue="lever-6" class="lever-row" style="display:grid;grid-template-columns:22px 1fr;gap:14px;align-items:center;padding:10px 14px;background:var(--gold-l);border-left:3px solid var(--gold);border-radius:0 var(--rs) var(--rs) 0;margin-top:2px;">
+                <div data-cue="lever-6" class="lever-row" style="display:grid;grid-template-columns:22px 1fr;gap:14px;align-items:center;padding:10px 14px;background:var(--g50);border-left:3px solid var(--gold);border-radius:0 var(--rs) var(--rs) 0;margin-top:2px;">
                   <span style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--gold);">6</span>
                   <div>
                     <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:2px;">This module</div>
@@ -1054,7 +1054,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <h2 class="sh" style="margin-top:6px;">What distribution actually means</h2>
           </div>
 
-          <div data-cue="def" style="text-align:center;padding:14px 24px;background:var(--gold-l);border-radius:var(--r);max-width:640px;margin:0 auto;">
+          <div data-cue="def" style="text-align:center;padding:14px 24px;background:var(--g50);border-radius:var(--r);max-width:640px;margin:0 auto;">
             <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:700;color:var(--b900);line-height:1.45;">Every route a booking can physically take to reach you. Not just where you advertise — every route.</div>
           </div>
 
@@ -1257,7 +1257,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             </svg>
 
             <!-- TOP: OTAs -->
-            <div data-cue="channel-ota" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:250px;padding:10px 14px;background:var(--gold-l);border:1.5px solid var(--gold);border-radius:var(--rs);text-align:center;">
+            <div data-cue="channel-ota" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:250px;padding:10px 14px;background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);text-align:center;">
               <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">OTAs</div>
               <div style="font-family:'DusitText',sans-serif;font-size:11px;color:var(--g500);margin-top:2px;">10+ partners · 3 tiers · <b style="color:var(--gold);">next slide →</b></div>
             </div>
@@ -1319,17 +1319,17 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <tbody>
               <!-- TIER 01 · MAJOR 4 -->
               <tr data-cue="tier-major">
-                <td style="padding:12px 16px;background:var(--gold-l);border-top-left-radius:var(--rs);border-bottom-left-radius:var(--rs);vertical-align:middle;">
+                <td style="padding:12px 16px;background:var(--g50);border-top-left-radius:var(--rs);border-bottom-left-radius:var(--rs);vertical-align:middle;">
                   <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;">Tier 01</div>
                   <div style="font-family:'DusitDisplay',sans-serif;font-size:15px;font-weight:800;color:var(--b900);margin-top:2px;">Major 4</div>
                 </td>
-                <td style="padding:12px 8px;background:var(--gold-l);text-align:center;vertical-align:middle;">
+                <td style="padding:12px 8px;background:var(--g50);text-align:center;vertical-align:middle;">
                   <span class="ota-check on">✓</span>
                 </td>
-                <td style="padding:12px 8px;background:var(--gold-l);text-align:center;vertical-align:middle;">
+                <td style="padding:12px 8px;background:var(--g50);text-align:center;vertical-align:middle;">
                   <span class="ota-check on">✓</span>
                 </td>
-                <td style="padding:10px 20px;background:var(--gold-l);border-top-right-radius:var(--rs);border-bottom-right-radius:var(--rs);vertical-align:middle;">
+                <td style="padding:10px 20px;background:var(--g50);border-top-right-radius:var(--rs);border-bottom-right-radius:var(--rs);vertical-align:middle;">
                   <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
                     <!-- Expedia -->
                     <span data-cue="ota-expedia" class="ota-brand" style="display:inline-flex;align-items:center;gap:7px;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);transition:transform 0.25s,filter 0.25s;">
@@ -1399,7 +1399,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:3px;">Booking.com</div>
               <div style="font-family:'DusitText',sans-serif;font-size:11.5px;color:var(--b900);line-height:1.45;">Purely an OTA. Dusit offers <b>B2C rates only</b>.</div>
             </div>
-            <div style="padding:10px 14px;background:var(--gold-l);border:1.5px solid var(--gold);border-radius:var(--rs);text-align:left;">
+            <div style="padding:10px 14px;background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);text-align:left;">
               <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:3px;">Expedia · Trip.com</div>
               <div style="font-family:'DusitText',sans-serif;font-size:11.5px;color:var(--b900);line-height:1.45;">Also distribute to B2B as merchant sites. Dusit offers <b>B2C, Package, and B2B</b>.</div>
             </div>
@@ -1512,9 +1512,9 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               </colgroup>
               <tbody>
                 <tr data-cue="market-global">
-                  <td style="padding:11px 16px;background:var(--gold-l);vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">Global</td>
-                  <td style="padding:11px 16px;background:var(--gold-l);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">Everywhere</td>
-                  <td style="padding:11px 20px;background:var(--gold-l);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);font-weight:600;">Hotelbeds · WebBeds · TBO · Dida · Dnata · Miki</td>
+                  <td style="padding:11px 16px;background:var(--g50);vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);">Global</td>
+                  <td style="padding:11px 16px;background:var(--g50);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g700);">Everywhere</td>
+                  <td style="padding:11px 20px;background:var(--g50);vertical-align:middle;font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);font-weight:600;">Hotelbeds · WebBeds · TBO · Dida · Dnata · Miki</td>
                 </tr>
                 <tr data-cue="market-rest">
                   <td style="padding:10px 16px;background:var(--white);vertical-align:middle;font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);border-top:1px solid var(--g100);">India</td>
@@ -1540,7 +1540,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             </table>
           </div>
 
-          <div data-cue="b2b-rule" style="max-width:680px;margin:12px auto 0;padding:10px 20px;background:var(--gold-l);border-radius:var(--r);text-align:center;">
+          <div data-cue="b2b-rule" style="max-width:680px;margin:12px auto 0;padding:10px 20px;background:var(--g50);border-radius:var(--r);text-align:center;">
             <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:2px;">The rule that matters</div>
             <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);line-height:1.4;">B2B rates are room-only. They belong in B2B channels — <span style="color:var(--gold);">never on a public consumer site.</span></div>
           </div>
@@ -1629,7 +1629,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           <div data-cue="manual-work" style="max-width:660px;margin:0 auto 10px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.5;">None of that is automatic. <b style="color:var(--b900);">Somebody at the hotel loads the rate, checks the availability, keys the booking in.</b></div>
 
           <!-- The consequence -->
-          <div data-cue="risk" style="max-width:640px;margin:0 auto;padding:12px 22px;background:var(--gold-l);border-radius:var(--r);text-align:center;">
+          <div data-cue="risk" style="max-width:640px;margin:0 auto;padding:12px 22px;background:var(--g50);border-radius:var(--r);text-align:center;">
             <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);line-height:1.4;">Manual means slower. And when something goes wrong, <span style="color:var(--gold);">it went wrong on your side, not in a system.</span></div>
           </div>
         </div>
@@ -1800,7 +1800,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           <div data-cue="gds-block" style="max-width:640px;margin:0 auto 12px;font-family:'DusitText',sans-serif;font-size:12px;color:var(--g500);line-height:1.5;">Two more players in the connected map — <b style="color:var(--b900);">both look similar, they do very different jobs.</b></div>
 
           <!-- GDS panel · sells -->
-          <div data-cue="gds-what" style="max-width:820px;margin:0 auto 10px;padding:16px 20px;background:var(--gold-l);border:1.5px solid var(--gold);border-radius:var(--r);display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:center;text-align:left;">
+          <div data-cue="gds-what" style="max-width:820px;margin:0 auto 10px;padding:16px 20px;background:var(--g50);border:1px solid var(--g100);border-radius:var(--r);display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:center;text-align:left;">
             <div>
               <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:4px;">Sells the room</div>
               <div style="font-family:'DusitDisplay',sans-serif;font-size:20px;font-weight:800;color:var(--b900);line-height:1;">GDS</div>
@@ -1827,10 +1827,10 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <div>
               <div style="font-family:'DusitText',sans-serif;font-size:12px;color:var(--b900);line-height:1.55;margin-bottom:6px;">Compares prices across channels then <b>sends the guest onward</b> — usually to dusit.com or to an OTA. The transaction happens elsewhere.</div>
               <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                <span style="padding:4px 12px;background:var(--gold-l);border:1px solid var(--gold);border-radius:12px;font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);">Google Hotel Ads</span>
-                <span style="padding:4px 12px;background:var(--gold-l);border:1px solid var(--gold);border-radius:12px;font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);">Trivago</span>
-                <span style="padding:4px 12px;background:var(--gold-l);border:1px solid var(--gold);border-radius:12px;font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);">TripAdvisor</span>
-                <span style="padding:4px 12px;background:var(--gold-l);border:1px solid var(--gold);border-radius:12px;font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);">Kayak</span>
+                <span style="padding:4px 12px;background:var(--g50);border:1px solid var(--g100);border-radius:12px;font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);">Google Hotel Ads</span>
+                <span style="padding:4px 12px;background:var(--g50);border:1px solid var(--g100);border-radius:12px;font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);">Trivago</span>
+                <span style="padding:4px 12px;background:var(--g50);border:1px solid var(--g100);border-radius:12px;font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);">TripAdvisor</span>
+                <span style="padding:4px 12px;background:var(--g50);border:1px solid var(--g100);border-radius:12px;font-family:'DusitDisplay',sans-serif;font-size:11px;font-weight:800;color:var(--b900);">Kayak</span>
               </div>
             </div>
           </div>
@@ -1850,7 +1850,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
           <div style="display:grid;grid-template-columns:270px 1fr;gap:14px;max-width:860px;margin:0 auto;">
             <!-- Booking card · fixed, always visible -->
-            <div style="background:var(--gold-l);border:1.5px solid var(--gold);border-radius:var(--r);padding:14px 16px;">
+            <div style="background:var(--g50);border:1px solid var(--g100);border-radius:var(--r);padding:14px 16px;">
               <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;">The booking</div>
               <div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--b900);line-height:1.35;margin-bottom:10px;">Ms Priya Sharma · 2 nights · Dusit Thani Bangkok · Deluxe</div>
               <div style="display:flex;flex-direction:column;gap:6px;font-family:'DusitText',sans-serif;font-size:11px;color:var(--b900);line-height:1.45;">
@@ -1865,9 +1865,9 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <div id="trace-stages" style="display:flex;flex-direction:column;gap:8px;"></div>
           </div>
 
-          <div id="trace-done" style="display:none;max-width:640px;margin:12px auto 0;padding:10px 20px;background:var(--b900);border-radius:var(--r);text-align:center;">
+          <div id="trace-done" style="display:none;max-width:640px;margin:12px auto 0;padding:10px 20px;background:var(--g50);border-radius:var(--r);text-align:center;">
             <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:2px;">Booking traced</div>
-            <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--white);line-height:1.4;">Wholesale via Hotelbeds. Room-only. No loyalty. <span style="color:var(--gold);">You've read a live booking end-to-end.</span></div>
+            <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);line-height:1.4;">Wholesale via Hotelbeds. Room-only. No loyalty. <span style="color:var(--gold);">You've read a live booking end-to-end.</span></div>
           </div>
         </div>
       </div>
