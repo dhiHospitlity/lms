@@ -89,7 +89,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 
 .split-left{
   width:360px;min-width:360px;flex-shrink:0;
-  background:var(--dark);padding:30px 28px;
+  background:var(--g50);padding:30px 28px;
   display:flex;flex-direction:column;justify-content:center;overflow:hidden;
 }
 .split-right{
@@ -111,11 +111,11 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .sh-lt{font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--white);line-height:1.25;margin-bottom:10px;}
 .body-text{font-size:12px;color:var(--g700);line-height:1.78;margin-bottom:12px;}
 .body-text b{color:var(--b900);font-weight:700;}
-.deep-n{font-family:'DusitDisplay',sans-serif;font-size:38px;font-weight:800;color:var(--gold-l);line-height:1;margin-bottom:2px;}
-.deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-l);margin-bottom:8px;opacity:0.7;}
-.deep-title{font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--white);line-height:1.2;margin-bottom:10px;}
-.deep-why{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.78;}
-.deep-why b{color:var(--gold-l);font-weight:600;}
+.deep-n{font-family:'DusitDisplay',sans-serif;font-size:38px;font-weight:800;color:var(--b900);line-height:1;margin-bottom:2px;}
+.deep-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;opacity:1;}
+.deep-title{font-family:'DusitDisplay',sans-serif;font-size:20px;font-weight:800;color:var(--b900);line-height:1.2;margin-bottom:10px;}
+.deep-why{font-size:11px;color:var(--g700);line-height:1.78;}
+.deep-why b,.deep-why strong{color:var(--b900);font-weight:700;}
 
 /* TRACKING FIELDS */
 .tracking-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
@@ -142,8 +142,8 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .hv-crumb{display:flex;align-items:center;gap:8px;min-height:28px;margin-bottom:14px;flex-wrap:wrap;position:relative;padding-right:120px;}
 .hv-crumb:empty{margin-bottom:0;min-height:0;padding-right:0;}
 .hv-crumb-item{cursor:pointer;color:var(--g700);font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border-radius:16px;border:1px solid var(--g100);background:var(--white);transition:all 0.18s;animation:hvCrumbIn 0.3s cubic-bezier(.4,0,.2,1);}
-.hv-crumb-item:hover{border-color:var(--gold);color:var(--b900);background:var(--gold-l);}
-.hv-crumb-item.current{background:var(--gold-l);color:var(--b900);border-color:var(--gold);cursor:default;}
+.hv-crumb-item:hover{border-color:var(--gold);color:var(--b900);background:var(--g50);}
+.hv-crumb-item.current{background:var(--white);color:var(--b900);border-color:var(--b900);cursor:default;}
 .hv-crumb-sep{color:var(--g300);font-size:12px;font-family:'DusitDisplay',sans-serif;}
 
 /* Back button.positioned at the right edge of the breadcrumb row on any
@@ -151,7 +151,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
    Learners kept telling us they felt lost in the drill-down; this makes the
    escape hatch obvious even if the breadcrumb chips don't read as clickable. */
 .hv-back{position:absolute;right:0;top:50%;transform:translateY(-50%);cursor:pointer;font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:6px 14px;border-radius:16px;border:1px solid var(--gold);background:var(--white);color:var(--b900);transition:all 0.18s;display:inline-flex;align-items:center;gap:6px;}
-.hv-back:hover{background:var(--gold);color:var(--white);}
+.hv-back:hover{background:var(--g100);color:var(--b900);}
 .hv-back::before{content:'←';font-size:12px;}
 @keyframes hvCrumbIn{from{opacity:0;transform:translateX(-6px);}to{opacity:1;transform:translateX(0);}}
 
@@ -180,7 +180,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .hv-hero-stat{text-align:center;}
 .hv-hero-stat b{font-family:'DusitDisplay',sans-serif;font-size:30px;font-weight:700;color:var(--gold);line-height:1;display:block;margin-bottom:4px;letter-spacing:-0.02em;}
 .hv-hero-stat span{font-size:9.5px;color:var(--g500);letter-spacing:0.12em;text-transform:uppercase;font-family:'DusitDisplay',sans-serif;font-weight:700;}
-.hv-hero-cta{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--b900);letter-spacing:0.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px;padding:10px 22px;background:var(--gold);border-radius:24px;margin-top:6px;transition:all 0.25s;}
+.hv-hero-cta{font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:800;color:var(--b900);letter-spacing:0.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px;padding:10px 22px;background:var(--white);border:1px solid var(--gold);border-radius:24px;margin-top:6px;transition:all 0.25s;}
 .hv-hero:hover .hv-hero-cta{background:#B8972F;padding-right:26px;}
 .hv-hero-cta-arrow{font-size:14px;display:inline-block;animation:hvCtaArrow 1.4s infinite;}
 @keyframes hvCtaArrow{0%,100%{transform:translateX(0);}50%{transform:translateX(4px);}}
@@ -268,13 +268,13 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .hv-code-row:hover{border-color:var(--gold);background:var(--g50);}
 @keyframes hvRowIn{to{opacity:1;transform:translateX(0);}}
 
-.hv-code-badge{font-family:'DusitDisplay',sans-serif;font-weight:800;font-size:10px;color:var(--b900);letter-spacing:0.05em;background:var(--gold-l);padding:4px 8px;border-radius:4px;text-align:center;align-self:flex-start;}
+.hv-code-badge{font-family:'DusitDisplay',sans-serif;font-weight:800;font-size:10px;color:var(--b900);letter-spacing:0.05em;background:var(--g50);border:1px solid var(--g100);padding:3px 7px;border-radius:4px;text-align:center;align-self:flex-start;}
 .hv-code-label{font-family:'DusitDisplay',sans-serif;font-weight:700;font-size:11px;color:var(--b900);letter-spacing:0.02em;}
 .hv-code-desc{color:var(--g700);line-height:1.55;font-size:10.5px;}
 .hv-code-desc b{color:var(--b900);font-weight:700;}
 
 /* segment group colors */
-.sg-fit{background:var(--gold-l);border-color:var(--gold);}.sg-fit .seg-group-name{color:var(--b900);}
+.sg-fit{background:var(--g50);border-color:var(--b900);}.sg-fit .seg-group-name{color:var(--b900);}
 .sg-grp{background:#EAF3DE;border-color:#C0DD97;}.sg-grp .seg-group-name{color:#27500A;}
 .sg-oth{background:#F1EFE8;border-color:#D3D1C7;}.sg-oth .seg-group-name{color:#444441;}
 
@@ -292,7 +292,7 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 
 /* SOURCE TABLE */
 .source-table{width:100%;border-collapse:collapse;font-size:10px;margin-top:8px;}
-.source-table th{background:var(--b900);color:white;padding:7px 10px;text-align:left;font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.05em;}
+.source-table th{background:var(--g50);color:var(--b900);border-bottom:1px solid var(--g100);padding:7px 10px;text-align:left;font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.05em;}
 .source-table td{padding:6px 10px;border-bottom:1px solid var(--g100);color:var(--g700);vertical-align:top;line-height:1.4;}
 .source-table tr:last-child td{border-bottom:none;}
 .source-table tr:nth-child(even) td{background:var(--g50);}
@@ -323,9 +323,9 @@ body.fullscreen #canvas{border-radius:0;box-shadow:none;}
 .rule-card.revealed{opacity:1;transform:translateY(0);}
 .rule-num{font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:var(--gold-l);line-height:1;margin-bottom:6px;}
 .rule-text{font-size:11px;color:var(--b900);line-height:1.5;font-weight:500;}
-.rule-card.highlighted{border-color:var(--gold);background:var(--b900);}
-.rule-card.highlighted .rule-num{color:rgba(255,255,255,0.4);}
-.rule-card.highlighted .rule-text{color:white;}
+.rule-card.highlighted{border-color:var(--b900);background:var(--white);}
+.rule-card.highlighted .rule-num{color:var(--g300);}
+.rule-card.highlighted .rule-text{color:var(--b900);}
 
 /* DO / DONT */
 .dodont{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -423,7 +423,7 @@ body.fullscreen #fs-bot{display:flex;}
 .fs-btn:disabled{opacity:0.22;cursor:not-allowed;}
 
 /* KEY BOX */
-.key-box{background:var(--g50);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 13px;font-size:11px;color:var(--b900);line-height:1.6;margin-top:10px;}
+.key-box{background:var(--white);border:1px solid var(--g100);border-radius:var(--rs);padding:9px 13px;font-size:11px;color:var(--b900);line-height:1.6;margin-top:10px;}
 .key-box strong{color:var(--b900);}
 
 /* BREADCRUMB NAV */
@@ -957,7 +957,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             <div style="font-size:12px;color:var(--g500);letter-spacing:0.08em;margin-bottom:26px;">WARREN BUFFETT</div>
           </div>
           <div data-cue="pw-stats" style="display:flex;gap:14px;justify-content:center;">
-            <div style="flex:1;max-width:200px;border:1.5px solid var(--gold);border-radius:var(--r);background:var(--gold-l);padding:16px 18px;">
+            <div style="flex:1;max-width:200px;border:1px solid var(--g100);border-radius:var(--r);background:var(--g50);padding:16px 18px;">
               <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;color:var(--g700);margin-bottom:6px;">RATE +5%</div>
               <div style="font-family:'DusitDisplay',sans-serif;font-size:28px;font-weight:800;color:var(--b900);line-height:1;">+20%</div>
               <div style="font-size:11px;color:var(--g700);margin-top:4px;">profit</div>
@@ -986,41 +986,38 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
           <div style="border:1px solid var(--g100);border-radius:var(--rs);overflow:hidden;">
 
-            <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;background:var(--b900);padding:9px 16px;">
-              <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;color:var(--gold-l);">A 5% IMPROVEMENT IN</div>
-              <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.5);text-align:right;">FROM</div>
-              <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.5);text-align:right;">TO</div>
-              <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;color:var(--gold-l);text-align:right;">PROFIT</div>
+            <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;background:var(--g50);padding:9px 16px;">
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;color:var(--gold);">A 5% IMPROVEMENT IN</div>
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;color:var(--g500);text-align:right;">FROM</div>
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;color:var(--g500);text-align:right;">TO</div>
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;color:var(--gold);text-align:right;">PROFIT</div>
             </div>
 
             <!-- The winner. Gold fill earns its place here because it is the one
                  row the whole slide exists to make. -->
-            <div data-cue="lv-rate" data-cue-panel style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;padding:10px 16px;background:var(--gold-l);border-bottom:1px solid var(--g100);align-items:center;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Average room rate</div>
-              <div style="font-size:12px;color:var(--g700);text-align:right;">$180</div>
-              <div style="font-size:12px;color:var(--b900);text-align:right;font-weight:700;">$189</div>
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:19px;font-weight:800;color:var(--gold);text-align:right;line-height:1;">+20%</div>
+            <div data-cue="lv-var" data-cue-panel style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;padding:12px 16px;border-bottom:1px solid var(--g100);background:var(--white);align-items:center;">
+              <div style="font-size:13px;font-weight:700;color:var(--b900);">Variable cost per room night</div>
+              <div style="font-size:12px;color:var(--g700);text-align:right;">$45.00</div>
+              <div style="font-size:12px;color:var(--b900);text-align:right;">$42.75</div>
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--g500);text-align:right;line-height:1;">+5%</div>
             </div>
-
-            <div data-cue="lv-occ" data-cue-panel style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;padding:10px 16px;background:var(--white);border-bottom:1px solid var(--g100);align-items:center;">
-              <div style="font-size:13px;font-weight:700;color:var(--b900);">Occupancy</div>
-              <div style="font-size:12px;color:var(--g700);text-align:right;">100,000 RN</div>
-              <div style="font-size:12px;color:var(--b900);text-align:right;">105,000 RN</div>
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--g700);text-align:right;line-height:1;">+15%</div>
-            </div>
-
-            <div data-cue="lv-fixed" data-cue-panel style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;padding:10px 16px;background:var(--g50);border-bottom:1px solid var(--g100);align-items:center;">
+            <div data-cue="lv-fixed" data-cue-panel style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;padding:12px 16px;background:var(--g50);border-bottom:1px solid var(--g100);align-items:center;">
               <div style="font-size:13px;font-weight:700;color:var(--b900);">Fixed costs</div>
               <div style="font-size:12px;color:var(--g700);text-align:right;">$9.00M</div>
               <div style="font-size:12px;color:var(--b900);text-align:right;">$8.55M</div>
               <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--g500);text-align:right;line-height:1;">+10%</div>
             </div>
-
-            <div data-cue="lv-var" data-cue-panel style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;padding:10px 16px;background:var(--white);align-items:center;">
-              <div style="font-size:13px;font-weight:700;color:var(--b900);">Variable cost per room night</div>
-              <div style="font-size:12px;color:var(--g700);text-align:right;">$45.00</div>
-              <div style="font-size:12px;color:var(--b900);text-align:right;">$42.75</div>
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--g500);text-align:right;line-height:1;">+5%</div>
+            <div data-cue="lv-occ" data-cue-panel style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;padding:12px 16px;background:var(--white);border-bottom:1px solid var(--g100);align-items:center;">
+              <div style="font-size:13px;font-weight:700;color:var(--b900);">Occupancy</div>
+              <div style="font-size:12px;color:var(--g700);text-align:right;">100,000 RN</div>
+              <div style="font-size:12px;color:var(--b900);text-align:right;">105,000 RN</div>
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--g700);text-align:right;line-height:1;">+15%</div>
+            </div>
+            <div data-cue="lv-rate" data-cue-panel style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;padding:12px 16px;background:var(--gold-l);align-items:center;">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Average room rate</div>
+              <div style="font-size:12px;color:var(--g700);text-align:right;">$180</div>
+              <div style="font-size:12px;color:var(--b900);text-align:right;font-weight:700;">$189</div>
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:19px;font-weight:800;color:var(--gold);text-align:right;line-height:1;">+20%</div>
             </div>
           </div>
 
@@ -1066,7 +1063,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
             <!-- Profit readout -->
             <div style="display:flex;flex-direction:column;">
-              <div style="border:1.5px solid var(--gold);border-radius:var(--r);background:var(--gold-l);padding:16px 18px;">
+              <div style="border:1px solid var(--g100);border-radius:var(--r);background:var(--g50);padding:16px 18px;">
                 <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--g700);margin-bottom:6px;">ANNUAL PROFIT</div>
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:30px;font-weight:800;color:var(--b900);line-height:1;" id="pc-profit">$4.50M</div>
                 <div style="font-size:12px;font-weight:700;margin-top:5px;color:var(--g500);" id="pc-delta">Base case</div>
@@ -1143,7 +1140,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;flex:1;">
 
-            <div data-cue="mb-value" data-cue-panel style="border:1.5px solid var(--gold);border-radius:var(--r);background:var(--gold-l);padding:16px 15px;display:flex;flex-direction:column;">
+            <div data-cue="mb-value" data-cue-panel style="border:1px solid var(--g100);border-radius:var(--r);background:var(--g50);padding:16px 15px;display:flex;flex-direction:column;">
               <div style="font-family:'DusitDisplay',sans-serif;font-size:11.5px;font-weight:800;color:var(--b900);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:9px;">03 &middot; Value-based</div>
               <p style="font-size:11.5px;color:var(--g700);line-height:1.55;margin-bottom:11px;">The rate reflects what the guest believes the experience is worth.</p>
               <div style="font-size:11px;color:var(--b900);line-height:1.5;background:var(--white);border-radius:var(--rs);padding:9px 11px;margin-bottom:11px;">A sea-view room beats the same room facing the car park. Not because it costs more to clean.</div>
@@ -1188,7 +1185,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:7px;">
               <span style="font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--gold);">$260</span>
-              <div style="width:78px;height:100px;background:var(--gold);border-radius:var(--rs) var(--rs) 0 0;"></div>
+              <div style="width:78px;height:100px;background:var(--b900);border-radius:var(--rs) var(--rs) 0 0;"></div>
               <span style="font-size:10px;color:var(--g500);">D-3</span>
             </div>
           </div>
@@ -1295,7 +1292,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           <h2 class="sh" style="margin-bottom:14px;">Clear beats clever</h2>
 
           <!-- The jam experiment -->
-          <div data-cue="pr-jam" data-cue-panel style="border:1.5px solid var(--gold);border-radius:var(--r);background:var(--gold-l);padding:15px 18px;margin-bottom:14px;">
+          <div data-cue="pr-jam" data-cue-panel style="border:1px solid var(--g100);border-radius:var(--r);background:var(--g50);padding:15px 18px;margin-bottom:14px;">
             <div style="font-family:'DusitDisplay',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--g700);margin-bottom:10px;">The jam experiment</div>
             <div style="display:flex;gap:22px;align-items:center;">
               <div style="text-align:center;"><div style="font-family:'DusitDisplay',sans-serif;font-size:22px;font-weight:800;color:var(--g500);line-height:1;">24</div><div style="font-size:10.5px;color:var(--g500);margin-top:3px;">varieties</div><div style="font-family:'DusitDisplay',sans-serif;font-size:14px;font-weight:800;color:var(--g700);margin-top:6px;">3% bought</div></div>
@@ -1367,7 +1364,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
               <div style="margin-top:auto;font-size:10.5px;color:var(--g500);line-height:1.5;">Room-only and room-with-breakfast must both be available on all channels at all times. Packages are built on top of this.</div>
             </div>
 
-            <div data-cue="pw-addons" data-cue-panel style="border:2px solid var(--gold);border-radius:var(--r);background:var(--gold-l);padding:16px 15px;display:flex;flex-direction:column;">
+            <div data-cue="pw-addons" data-cue-panel style="border:2px solid var(--gold);border-radius:var(--r);background:var(--g50);padding:16px 15px;display:flex;flex-direction:column;">
               <div style="font-family:'DusitDisplay',sans-serif;font-size:11.5px;font-weight:800;color:var(--b900);letter-spacing:0.07em;text-transform:uppercase;margin-bottom:9px;">Room + add-ons</div>
               <p style="font-size:11.5px;color:var(--g700);line-height:1.55;margin-bottom:11px;">The true hotel package. Spa, dining, transfers, activities.</p>
               <div style="margin-top:auto;font-size:10.5px;color:var(--g700);line-height:1.5;"><strong>This is where property teams have the most influence</strong>, and what the rest of this module is about.</div>
@@ -1391,7 +1388,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
           <div style="display:flex;flex-direction:column;gap:10px;flex:1;">
 
-            <div data-cue="lf-leader" data-cue-panel style="border:1.5px solid var(--gold);border-radius:var(--r);background:var(--gold-l);padding:14px 18px;display:flex;gap:18px;align-items:center;">
+            <div data-cue="lf-leader" data-cue-panel style="border:1px solid var(--g100);border-radius:var(--r);background:var(--g50);padding:14px 18px;display:flex;gap:18px;align-items:center;">
               <div style="min-width:78px;">
                 <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);letter-spacing:0.08em;">LEADER</div>
               </div>
@@ -1478,7 +1475,7 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
           <div id="cs-pool" style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:60px;padding:8px;background:var(--g50);border:1px dashed var(--g100);border-radius:var(--rs);margin-bottom:11px;"></div>
 
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px;flex:1;">
-            <div class="cs-bin" data-cat="leader" style="border:2px dashed var(--gold);border-radius:var(--r);background:var(--gold-l);padding:10px 9px;display:flex;flex-direction:column;transition:background 0.25s,border-color 0.25s;">
+            <div class="cs-bin" data-cat="leader" style="border:2px dashed var(--gold);border-radius:var(--r);background:var(--g50);padding:10px 9px;display:flex;flex-direction:column;transition:background 0.25s,border-color 0.25s;">
               <div style="font-family:'DusitDisplay',sans-serif;font-size:10.5px;font-weight:800;color:var(--b900);letter-spacing:0.08em;margin-bottom:8px;text-align:center;">LEADER</div>
               <div class="cs-drop" style="flex:1;display:flex;flex-direction:column;gap:5px;"></div>
             </div>
@@ -1506,16 +1503,16 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
 
           <div style="display:flex;gap:16px;flex:1;margin-top:10px;">
 
-            <div style="width:238px;flex-shrink:0;background:var(--b900);border-radius:var(--r);padding:16px 17px;display:flex;flex-direction:column;">
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.16em;color:var(--gold-l);margin-bottom:11px;">SITUATION BRIEFING</div>
+            <div style="width:238px;flex-shrink:0;background:var(--g50);border-radius:var(--r);padding:16px 17px;display:flex;flex-direction:column;">
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.16em;color:var(--gold);margin-bottom:11px;">SITUATION BRIEFING</div>
               <div style="display:flex;flex-direction:column;gap:8px;">
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:11px;color:rgba(255,255,255,0.6);">Lead time</span><span style="font-size:11.5px;color:var(--white);font-weight:700;">D-10, Friday</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:11px;color:rgba(255,255,255,0.6);">Occupancy</span><span style="font-size:11.5px;color:var(--white);font-weight:700;">58%</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:11px;color:rgba(255,255,255,0.6);">Last year, same night</span><span style="font-size:11.5px;color:var(--white);font-weight:700;">82%</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:11px;color:rgba(255,255,255,0.6);">Your BAR</span><span style="font-size:11.5px;color:var(--gold-l);font-weight:700;">$160</span></div>
-                <div style="display:flex;justify-content:space-between;"><span style="font-size:11px;color:rgba(255,255,255,0.6);">Competitor BAR</span><span style="font-size:11.5px;color:var(--gold-l);font-weight:700;">$130</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:11px;color:var(--g500);">Lead time</span><span style="font-size:11.5px;color:var(--b900);font-weight:700;">D-10, Friday</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:11px;color:var(--g500);">Occupancy</span><span style="font-size:11.5px;color:var(--b900);font-weight:700;">58%</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:11px;color:var(--g500);">Last year, same night</span><span style="font-size:11.5px;color:var(--b900);font-weight:700;">82%</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:11px;color:var(--g500);">Your BAR</span><span style="font-size:11.5px;color:var(--gold);font-weight:700;">$160</span></div>
+                <div style="display:flex;justify-content:space-between;"><span style="font-size:11px;color:var(--g500);">Competitor BAR</span><span style="font-size:11.5px;color:var(--gold);font-weight:700;">$130</span></div>
               </div>
-              <div style="margin-top:auto;padding-top:13px;border-top:1px solid rgba(255,255,255,0.12);font-size:11.5px;color:rgba(255,255,255,0.85);line-height:1.55;">Your Revenue Manager is on leave. The DOS is asking: should we drop the rate?</div>
+              <div style="margin-top:auto;padding-top:13px;border-top:1px solid var(--g100);font-size:11.5px;color:var(--g700);line-height:1.55;">Your Revenue Manager is on leave. The DOS is asking: should we drop the rate?</div>
             </div>
 
             <div style="flex:1;display:flex;flex-direction:column;">
