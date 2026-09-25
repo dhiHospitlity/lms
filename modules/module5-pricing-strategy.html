@@ -973,55 +973,61 @@ body.cueline-active.preview-mode #cue-hint{display:block;}
       </div>
 
 
-      <!-- SLIDE 3 (s-lever): CONCEPT. The rebased profit-lever table. -->
+      <!-- SLIDE 3 (s-lever): CONCEPT. The rebased profit-lever table.
+           Compacted to fit the 540px canvas once the caption reserve is taken
+           out — the bottom row was being clipped. Row padding 13px -> 9px and
+           tightened margins buy back ~45px. Zebra fill separates the rows,
+           which reads far better than relying on a 1px --g100 hairline alone. -->
       <div class="slide s-white" id="s-lever">
-        <div class="s-inner" style="padding:24px 38px;display:flex;flex-direction:column;">
-          <span class="eye">Section 2 · Pricing power</span>
-          <h2 class="sh" style="margin-bottom:4px;">Four levers, same 5% move</h2>
-          <p class="body-text" style="margin-bottom:15px;font-size:12.5px;max-width:620px;">Improve each one by five percent and watch what happens to profit. Only one of them wins.</p>
+        <div class="s-inner" style="padding:20px 38px;display:flex;flex-direction:column;">
+          <span class="eye">Section 2 &middot; Pricing power</span>
+          <h2 class="sh" style="margin-bottom:3px;">Four levers, same 5% move</h2>
+          <p class="body-text" style="margin-bottom:11px;font-size:12.5px;max-width:620px;">Improve each one by five percent and watch what happens to profit. Only one of them wins.</p>
 
-          <div style="border:1.5px solid var(--g100);border-radius:var(--r);overflow:hidden;">
-            <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;background:var(--b900);padding:10px 16px;">
-              <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--gold-l);">A 5% IMPROVEMENT IN</div>
-              <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;color:rgba(255,255,255,0.55);text-align:right;">FROM</div>
-              <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;color:rgba(255,255,255,0.55);text-align:right;">TO</div>
-              <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--gold-l);text-align:right;">PROFIT</div>
+          <div style="border:1px solid var(--g100);border-radius:var(--rs);overflow:hidden;">
+
+            <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;background:var(--b900);padding:9px 16px;">
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;color:var(--gold-l);">A 5% IMPROVEMENT IN</div>
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.5);text-align:right;">FROM</div>
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.5);text-align:right;">TO</div>
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;color:var(--gold-l);text-align:right;">PROFIT</div>
             </div>
 
-            <div data-cue="lv-rate" data-cue-panel style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;padding:13px 16px;background:var(--gold-l);border-bottom:1px solid var(--g100);align-items:center;">
+            <!-- The winner. Gold fill earns its place here because it is the one
+                 row the whole slide exists to make. -->
+            <div data-cue="lv-rate" data-cue-panel style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;padding:10px 16px;background:var(--gold-l);border-bottom:1px solid var(--g100);align-items:center;">
               <div style="font-family:'DusitDisplay',sans-serif;font-size:13px;font-weight:800;color:var(--b900);">Average room rate</div>
-              <div style="font-size:12.5px;color:var(--g700);text-align:right;">$180</div>
-              <div style="font-size:12.5px;color:var(--b900);text-align:right;font-weight:700;">$189</div>
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--gold);text-align:right;">+20%</div>
+              <div style="font-size:12px;color:var(--g700);text-align:right;">$180</div>
+              <div style="font-size:12px;color:var(--b900);text-align:right;font-weight:700;">$189</div>
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:19px;font-weight:800;color:var(--gold);text-align:right;line-height:1;">+20%</div>
             </div>
 
-            <div data-cue="lv-occ" data-cue-panel style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;padding:13px 16px;background:var(--white);border-bottom:1px solid var(--g100);align-items:center;">
+            <div data-cue="lv-occ" data-cue-panel style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;padding:10px 16px;background:var(--white);border-bottom:1px solid var(--g100);align-items:center;">
               <div style="font-size:13px;font-weight:700;color:var(--b900);">Occupancy</div>
-              <div style="font-size:12.5px;color:var(--g700);text-align:right;">100,000 RN</div>
-              <div style="font-size:12.5px;color:var(--b900);text-align:right;">105,000 RN</div>
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--g700);text-align:right;">+15%</div>
+              <div style="font-size:12px;color:var(--g700);text-align:right;">100,000 RN</div>
+              <div style="font-size:12px;color:var(--b900);text-align:right;">105,000 RN</div>
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--g700);text-align:right;line-height:1;">+15%</div>
             </div>
 
-            <div data-cue="lv-fixed" data-cue-panel style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;padding:13px 16px;background:var(--white);border-bottom:1px solid var(--g100);align-items:center;">
+            <div data-cue="lv-fixed" data-cue-panel style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;padding:10px 16px;background:var(--g50);border-bottom:1px solid var(--g100);align-items:center;">
               <div style="font-size:13px;font-weight:700;color:var(--b900);">Fixed costs</div>
-              <div style="font-size:12.5px;color:var(--g700);text-align:right;">$9.00M</div>
-              <div style="font-size:12.5px;color:var(--b900);text-align:right;">$8.55M</div>
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--g500);text-align:right;">+10%</div>
+              <div style="font-size:12px;color:var(--g700);text-align:right;">$9.00M</div>
+              <div style="font-size:12px;color:var(--b900);text-align:right;">$8.55M</div>
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--g500);text-align:right;line-height:1;">+10%</div>
             </div>
 
-            <div data-cue="lv-var" data-cue-panel style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;padding:13px 16px;background:var(--white);align-items:center;">
+            <div data-cue="lv-var" data-cue-panel style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.9fr;padding:10px 16px;background:var(--white);align-items:center;">
               <div style="font-size:13px;font-weight:700;color:var(--b900);">Variable cost per room night</div>
-              <div style="font-size:12.5px;color:var(--g700);text-align:right;">$45.00</div>
-              <div style="font-size:12.5px;color:var(--b900);text-align:right;">$42.75</div>
-              <div style="font-family:'DusitDisplay',sans-serif;font-size:17px;font-weight:800;color:var(--g500);text-align:right;">+5%</div>
+              <div style="font-size:12px;color:var(--g700);text-align:right;">$45.00</div>
+              <div style="font-size:12px;color:var(--b900);text-align:right;">$42.75</div>
+              <div style="font-family:'DusitDisplay',sans-serif;font-size:16px;font-weight:800;color:var(--g500);text-align:right;line-height:1;">+5%</div>
             </div>
           </div>
 
-          <div class="key-box" data-cue="lv-why" style="margin-top:14px;">Rate is the only lever with <strong>zero marginal cost</strong>. The room is already cleaned, the staff already on shift, the fixed costs already paid. Every dollar of rate improvement goes straight to the bottom line.</div>
-          <div data-cue="lv-note" style="margin-top:9px;font-size:10.5px;color:var(--g500);line-height:1.5;">Illustrative model at Dusit scale: 100,000 room nights, $180 ARR, $45 variable cost per room night, $9M fixed costs. All other factors held equal.</div>
+          <p data-cue="lv-why" style="margin-top:12px;font-size:12px;color:var(--g700);line-height:1.6;max-width:760px;">Rate is the only lever with <strong style="color:var(--b900);">zero marginal cost</strong>. The room is already cleaned, the staff already on shift, the fixed costs already paid. Every dollar of rate improvement goes straight to the bottom line.</p>
+          <p data-cue="lv-note" style="margin-top:7px;font-size:10px;color:var(--g500);line-height:1.5;">Illustrative model at Dusit scale: 100,000 room nights, $180 ARR, $45 variable cost per room night, $9M fixed costs. All other factors held equal.</p>
         </div>
       </div>
-
 
       <!-- SLIDE 4 (s-profit): INTERACTION — GATE. Four-slider profit model with Compare.
            Moving two different sliders marks the slide complete; see initProfitCalc(). -->
